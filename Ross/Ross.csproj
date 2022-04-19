@@ -200,7 +200,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WPFControlConnection">
-      <HintPath>..\..\..\Optima\Optima\Optima_3_2\dll\WPFControlConnection.dll</HintPath>
+      <HintPath>dll\WPFControlConnection.dll</HintPath>
     </Reference>
     <Reference Include="WpfMapControl">
       <HintPath>dll\WpfMapControl.dll</HintPath>
