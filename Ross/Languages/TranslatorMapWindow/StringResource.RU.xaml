@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system ="clr-namespace:System;assembly=mscorlib">
+
+    <Thickness x:Key="shift" Bottom="0" Left="-15" Right="0" Top="0"/>
+
+    <Thickness x:Key="shiftGlobal" Bottom="0" Left="-15" Right="0" Top="0"/>
+
+
+    <system:String x:Key="contentAJS">АСП: </system:String>
+    <system:String x:Key="toolTipAJS">Автоматизированная станция помех</system:String>
+
+    <system:String x:Key="contentRESFWSTD">ИРИ ФРЧ ЦР: </system:String>
+    <system:String x:Key="toolTipRESFWSTD">ИРИ ФРЧ ЦР @(расшифровать)@</system:String>
+
+    <system:String x:Key="contentRESFWSJ">ИРИ ФРЧ РП: </system:String>
+    <system:String x:Key="toolTipRESFWSJ">ИРИ ФРЧ РП@(расшифровать)@</system:String>
+
+    <system:String x:Key="contentRESFUSSTD">ИРИ ППРЧ ЦР: </system:String>
+    <system:String x:Key="toolTipRESFUSSTD">ИРИ ППРЯ ЦР@(расшифровать)@</system:String>
+
+    <system:String x:Key="contentRESFUSSJ">ИРИ ППРЧ РП: </system:String>
+    <system:String x:Key="toolTipRESFUSSJ">ИРИ ППРЧ РП@(расшифровать)@</system:String>
+
+
+
+</ResourceDictionary>

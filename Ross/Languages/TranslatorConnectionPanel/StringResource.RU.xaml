@@ -1,0 +1,115 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system ="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="contentLabelTextDB">БД</system:String>
+    <system:String x:Key="contentLabelHintDB">База данных</system:String>
+    <system:String x:Key="contentButServerHintDB">Подключить/отключить базу данных</system:String>
+    <system:String x:Key="contentLedReadDataHintDB">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintDB">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextTDF">ОП</system:String>
+    <system:String x:Key="contentLabelHintTDF">Обнаружитель-пеленгатор </system:String>
+    <system:String x:Key="contentButServerHintTDF">Подключить/отключить обнаружитель-пеленгатор </system:String>
+    <system:String x:Key="contentLedReadDataHintTDF">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintTDF">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextGNSS">ГНСС</system:String>
+    <system:String x:Key="contentLabelHintGNSS">Глобальная навигационная спутниковая система</system:String>
+    <system:String x:Key="contentButServerHintGNSS">Подключить/отключить ГНСС</system:String>
+    <system:String x:Key="contentLedReadDataHintGNSS">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintGNSS">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextCmpRX">КмпRX</system:String>
+    <system:String x:Key="contentLabelHintCmpRX">Компас пеленгаторной антенны</system:String>
+    <system:String x:Key="contentButServerHintCmpRX">Подключить/отключить компас пеленгаторной антенны</system:String>
+    <system:String x:Key="contentLedReadDataHintCmpRX">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintCmpRX">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextCmpTX">КмпTX</system:String>
+    <system:String x:Key="contentLabelHintCmpTX">Компас передающей антенны</system:String>
+    <system:String x:Key="contentButServerHintCmpTX">Подключить/отключить компас передающей антенны</system:String>
+    <system:String x:Key="contentLedReadDataHintCmpTX">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintCmpTX">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextBRDJamming">АПУ 1</system:String>
+    <system:String x:Key="contentLabelHintBRDJamming">Антенно-поворотное устройство радиоподавления</system:String>
+    <system:String x:Key="contentButServerHintBRDJamming">Подключить/отключить антенно-поворотное устройство радиоподавления</system:String>
+    <system:String x:Key="contentLedReadDataHintBRDJamming">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintBRDJamming">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextBRDConnection">АПУ 2</system:String>
+    <system:String x:Key="contentLabelHintBRDConnection">Антенно-поворотное устройство связи</system:String>
+    <system:String x:Key="contentButServerHintBRDConnection">Подключить/отключить антенно-поворотное устройство связи</system:String>
+    <system:String x:Key="contentLedReadDataHintBRDConnection">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintBRDConnection">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextOEM">ОЭМ</system:String>
+    <system:String x:Key="contentLabelHintOEM">Оптико-электронный модуль</system:String>
+    <system:String x:Key="contentButServerHintOEM">Подключить/отключить оптико-электронный модуль</system:String>
+    <system:String x:Key="contentLedReadDataHintOEM">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintOEM">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextCL">НК</system:String>
+    <system:String x:Key="contentLabelHintCL">Ноутбук командира</system:String>
+    <system:String x:Key="contentButServerHintCL">Подключить/отключить ноутбук командира</system:String>
+    <system:String x:Key="contentLedClientHintCL">Состояние ноутбука командира</system:String>
+    <system:String x:Key="contentLedReadDataHintCL">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintCL">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextLNK">АСПС</system:String>
+    <system:String x:Key="contentLabelHintLNK">Сопряженная станция</system:String>
+    <system:String x:Key="contentButServerHintLNK">Подключить/отключить сопряженную станцию</system:String>
+    <system:String x:Key="contentLedReadDataHintLNK">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintLNK">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextZRK">ЗРК</system:String>
+    <system:String x:Key="contentLabelHintZRK">Радиолокатор Зорки</system:String>
+    <system:String x:Key="contentButServerHintZRK">Подключить/отключить радиолокатор Зорки</system:String>
+    <system:String x:Key="contentLedReadDataHintZRK">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintZRK">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextRDN">РДН</system:String>
+    <system:String x:Key="contentLabelHintRDN">Радиолокатор Родник</system:String>
+    <system:String x:Key="contentButServerHintRDN">Подключить/отключить радиолокатор Родник</system:String>
+    <system:String x:Key="contentLedReadDataHintRDN">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintRDN">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextRS">СР</system:String>
+    <system:String x:Key="contentLabelHintRS">Система распознавания</system:String>
+    <system:String x:Key="contentButServerHintRS">Подключить/отключить систему распознавания</system:String>
+    <system:String x:Key="contentLedReadDataHintRS">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintRS">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextCP">ПУ</system:String>
+    <system:String x:Key="contentLabelHintCP">Пункт управления</system:String>
+    <system:String x:Key="contentButServerHintCP">Подключить/отключить пункт управления</system:String>
+    <system:String x:Key="contentLedReadDataHintCP">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintCP">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextAmp1">УМ1</system:String>
+    <system:String x:Key="contentLabelHintAmp1">Усилитель мощности 1</system:String>
+    <system:String x:Key="contentButServerHintAmp1">Подключить/отключить усилитель мощности 1</system:String>
+    <system:String x:Key="contentLedReadDataHintAmp1">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintAmp1">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextAmp2">УМ2</system:String>
+    <system:String x:Key="contentLabelHintAmp2">Усилитель мощности 2</system:String>
+    <system:String x:Key="contentButServerHintAmp2">Подключить/отключить усилитель мощности 2</system:String>
+    <system:String x:Key="contentLedReadDataHintAmp2">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintAmp2">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextCuirasse">КР</system:String>
+    <system:String x:Key="contentLabelHintCuirasse">Кираса</system:String>
+    <system:String x:Key="contentButServerHintCuirasse">Подключить/отключить Кирасу</system:String>
+    <system:String x:Key="contentLedReadDataHintCuirasse">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintCuirasse">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextSpoofing">СС</system:String>
+    <system:String x:Key="contentLabelHintSpoofing">Сервер спуфинга</system:String>
+    <system:String x:Key="contentButServerHintSpoofing">Подключить/отключить сервер спуфинга</system:String>
+    <system:String x:Key="contentLedReadDataHintSpoofing">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintSpoofing">Запись данных</system:String>
+
+
+</ResourceDictionary>

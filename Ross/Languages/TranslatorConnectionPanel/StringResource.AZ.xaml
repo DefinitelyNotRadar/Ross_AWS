@@ -1,0 +1,86 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system ="clr-namespace:System;assembly=mscorlib">
+
+
+    <system:String x:Key="contentLabelTextDB">MB</system:String>
+    <system:String x:Key="contentLabelHintDB">Məlumat bazası</system:String>
+    <system:String x:Key="contentButServerHintDB">Məlumat bazasını Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedReadDataHintDB">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintDB">Məlumatların qeydiyyatı</system:String>
+
+
+    <system:String x:Key="contentLabelTextTDF">AP</system:String>
+    <system:String x:Key="contentLabelHintTDF">Aşkaretmə pelenqatoru</system:String>
+    <system:String x:Key="contentButServerHintTDF">Aşkaretmə pelenqatoru Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedReadDataHintTDF">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintTDF">Məlumatların qeydiyyatı</system:String>
+
+    <system:String x:Key="contentLabelTextGNSS">QPNS</system:String>
+    <system:String x:Key="contentLabelHintGNSS">Qlobal Peyk Naviqasiya Sistemi</system:String>
+    <system:String x:Key="contentButServerHintGNSS">QPNS Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedReadDataHintGNSS">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintGNSS">Məlumatların qeydiyyatı</system:String>
+
+    <system:String x:Key="contentLabelTextCmpRX">RX kompası</system:String>
+    <system:String x:Key="contentLabelHintCmpRX">Pelenqator antenasının kompası</system:String>
+    <system:String x:Key="contentButServerHintCmpRX">Pelenqator antenasının kompası Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedReadDataHintCmpRX">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintCmpRX">Məlumatların qeydiyyatı</system:String>
+
+    <system:String x:Key="contentLabelTextCmpTX">TX kompası</system:String>
+    <system:String x:Key="contentLabelHintCmpTX">Ötürücü antenanın kompası</system:String>
+    <system:String x:Key="contentButServerHintCmpTX">Ötürücü antenanın kompası Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedReadDataHintCmpTX">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintCmpTX">Məlumatların qeydiyyatı</system:String>
+
+    <system:String x:Key="contentLabelTextARD">ADQ</system:String>
+    <system:String x:Key="contentLabelHintARD">Antena Döndərici Qurğunun</system:String>
+    <system:String x:Key="contentButServerHintARD">Antena Döndərici Qurğunun Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedReadDataHintARD">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintARD">Məlumatların qeydiyyatı</system:String>
+
+    <system:String x:Key="contentLabelTextOEM">OEV</system:String>
+    <system:String x:Key="contentLabelHintOEM">Optik-elektron vasitə</system:String>
+    <system:String x:Key="contentButServerHintOEM">Optik-elektron vasitə Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedReadDataHintOEM">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintOEM">Məlumatların qeydiyyatı</system:String>
+
+    <system:String x:Key="contentLabelTextCL">KP</system:String>
+    <system:String x:Key="contentLabelHintCL">Komandirin iş yeri</system:String>
+    <system:String x:Key="contentButServerHintCL">Komandirin iş yeri Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedClientHintCL">Komandirin iş yerinin vəziyyəti</system:String>
+    <system:String x:Key="contentLedReadDataHintCL">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintCL">Məlumatların qeydiyyatı</system:String>
+
+    <system:String x:Key="contentLabelTextLNK">AMSB</system:String>
+    <system:String x:Key="contentLabelHintLNK">Avtomatik maneə stansiyası birgə qoşulması</system:String>
+    <system:String x:Key="contentButServerHintLNK">Avtomatik maneə stansiyası birgə qoşulması Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedReadDataHintLNK">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintLNK">Məlumatların qeydiyyatı</system:String>
+
+    <system:String x:Key="contentLabelTextZRK">ZRK</system:String>
+    <system:String x:Key="contentLabelHintZRK">Zorki Radarı</system:String>
+    <system:String x:Key="contentButServerHintZRK">Zorki Radarı Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedReadDataHintZRK">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintZRK">Məlumatların qeydiyyatı</system:String>
+
+    <system:String x:Key="contentLabelTextRDN">RDN</system:String>
+    <system:String x:Key="contentLabelHintRDN">Rodnik Radarı</system:String>
+    <system:String x:Key="contentButServerHintRDN">Rodnik Radarı Qoşulmaq/Söndürmək</system:String>
+    <system:String x:Key="contentLedReadDataHintRDN">Məlumatların oxunması</system:String>
+    <system:String x:Key="contentLedWriteDataHintRDN">Məlumatların qeydiyyatı</system:String>
+
+    <system:String x:Key="contentLabelTextRS">СР</system:String>
+    <system:String x:Key="contentLabelHintRS">Система распознавания</system:String>
+    <system:String x:Key="contentButServerHintRS">Подключить/отключить систему распознавания</system:String>
+    <system:String x:Key="contentLedReadDataHintRS">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintRS">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextCP">ПУ</system:String>
+    <system:String x:Key="contentLabelHintCP">Пункт управления</system:String>
+    <system:String x:Key="contentButServerHintCP">Подключить/отключить пункт управления</system:String>
+    <system:String x:Key="contentLedReadDataHintCP">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintCP">Запись данных</system:String>
+
+</ResourceDictionary>

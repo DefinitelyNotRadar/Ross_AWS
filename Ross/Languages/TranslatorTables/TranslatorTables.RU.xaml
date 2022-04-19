@@ -1,0 +1,150 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ProjectTestTables"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+
+    <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-105" Top="-5" Right="0" Bottom="0"/>
+    <system:Double x:Key="PropertyGridMinWidthParamsFWS">200</system:Double>
+    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-150" Top="-5" Right="0" Bottom="0"/>
+    <system:Double x:Key="PropertyGridMinWidthCoordFWS">175</system:Double>
+    <Thickness x:Key="PropertyGridMarginCoordASP" Left="-145" Top="0" Right="0" Bottom="0"/>
+    <system:Double x:Key="PropertyGridMinWidthCoordASP">140</system:Double>
+    <system:Double x:Key="PropertyGridMinWidthRole">140</system:Double>
+
+    <!-- PropertyGrid -->
+    <system:String x:Key="PropertyGridLatitude">Широта, °</system:String>
+    <system:String x:Key="PropertyGridLongitude">Долгота, °</system:String>
+    <system:String x:Key="PropertyGridAltitude">Высота, м</system:String>
+    <system:String x:Key="PropertyGridLabelModulation">Вид модуляции</system:String>
+    <system:String x:Key="PropertyGridLabelManipulation">Манипуляция, мкс</system:String>
+    <system:String x:Key="PropertyGridLabelManipulationLChM">F сканирования, Гц</system:String>
+    <system:String x:Key="PropertyGridLabelDuration">Длит. излучения, мс</system:String>
+    <system:String x:Key="PropertyGridLabelDeviation">Ширина полосы, кГц</system:String>
+    <system:String x:Key="PropertyGridMaster">Ведущая</system:String>
+    <system:String x:Key="PropertyGridSlave">Ведомая</system:String>
+    <system:String x:Key="PropertyGridAutonomous">Автономная</system:String>
+    
+    <!-- PropertyGrid ToolTip -->
+    <system:String x:Key="PropertyGridToolTipLatitude">Широта</system:String>
+    <system:String x:Key="PropertyGridToolTipLongitude">Долгота</system:String>
+    <system:String x:Key="PropertyGridToolTipAltitude">Высота</system:String>
+    <system:String x:Key="PropertyGridToolTipModulation">Вид модуляции</system:String>
+    <system:String x:Key="PropertyGridToolTipManipulation">Манипуляция (Ширина полосы)</system:String>
+    <system:String x:Key="PropertyGridToolTipManipulationLChM">Частота сканирования</system:String>
+    <system:String x:Key="PropertyGridToolTipDeviation">Ширина полосы</system:String>
+    <system:String x:Key="PropertyGridToolTipDuration">Длительность излучения</system:String>
+    <system:String x:Key="PropertyGridToolTipFreq">Частота</system:String>
+    <system:String x:Key="PropertyGridToolTipFreqMin">Частота мин.</system:String>
+    <system:String x:Key="PropertyGridToolTipFreqMax">Частота макс.</system:String>
+    <system:String x:Key="PropertyGridToolTipThreshold">Порог</system:String>
+    <system:String x:Key="PropertyGridToolTipNetStep">Шаг сетки</system:String>
+    <system:String x:Key="PropertyGridToolTipBearing">Пеленг</system:String>
+    <system:String x:Key="PropertyGridToolTipPriority">Приоритет</system:String>
+
+
+
+    <!-- ToolTip -->
+    <system:String x:Key="ToolTipAdd">Добавить</system:String>
+    <system:String x:Key="ToolTipChange">Изменить</system:String>
+    <system:String x:Key="ToolTipDelete">Удалить</system:String>
+    <system:String x:Key="ToolTipClear">Очистить</system:String>
+    <system:String x:Key="ToolTipOpenTXT">Открыть текстовый документ</system:String>
+    <system:String x:Key="ToolTipPrint">Печать</system:String>
+    <system:String x:Key="ToolTipDefaultValues">Значения по умолчанию</system:String>
+    <system:String x:Key="ToolTipAddFHSS_RS">ИРИ на РП</system:String>
+    <system:String x:Key="ToolTipAddFWS_RS">ИРИ на РП</system:String>
+    <system:String x:Key="ToolTipAddFWS_TD">ИРИ на ЦР</system:String>
+    <system:String x:Key="ToolTipAddFWS_CRRD">ИРИ на КРПУ1</system:String>
+    <system:String x:Key="ToolTipAddFWS_CRRD2">ИРИ на КРПУ2</system:String>
+    <system:String x:Key="ToolTipExecBear">Исполнительное пеленгование</system:String>
+    <system:String x:Key="ToolTipQuasiBear">Квазиодновременное пеленгование</system:String>
+    <system:String x:Key="ToolTipFWS_TD">Целераспределение</system:String>
+    <system:String x:Key="ToolTipFWS_TD_RS">ИРИ ЦР на РП</system:String>
+    <system:String x:Key="ToolTipRN">Радиосети</system:String>
+    <system:String x:Key="ToolTipCC">Узлы связи</system:String>
+    <system:String x:Key="ToolTipIR">Подавление спутниковой связи типа IRIDIUM</system:String>
+    <system:String x:Key="ToolTipIN">Подавление спутниковой связи типа INMARSAT (THURAYA)</system:String>
+    <system:String x:Key="ToolTipGS">Подавление спутниковой связи типа GlobalStar</system:String>
+    <system:String x:Key="ToolTip433">Подавление БПЛА диапазона 433 МГц</system:String>
+    <system:String x:Key="ToolTip868">Подавление БПЛА диапазона 868 МГц</system:String>
+    <system:String x:Key="ToolTip920">Подавление БПЛА диапазона 920 МГц</system:String>
+    <system:String x:Key="ToolTip2_4">Подавление БПЛА диапазона 2400 МГц</system:String>
+    <system:String x:Key="ToolTip5_8">Подавление БПЛА диапазона 5800 МГц</system:String>
+    <system:String x:Key="ToolTipUAV">Подавление БПЛА всех диапазонов</system:String>
+    <system:String x:Key="ToolTipNAV">Подавление навигации</system:String>
+    <system:String x:Key="ToolTipSortActive">Активные сверху</system:String>
+
+
+    <!-- Header -->
+    <system:String x:Key="HeaderNumAJS">№ АСП</system:String>
+    <system:String x:Key="HeaderNumSituation">№ Обст.</system:String>
+    <system:String x:Key="HeaderConnect">Подкл.</system:String>
+    <system:String x:Key="HeaderIPaddress">Адрес IP</system:String>
+    <system:String x:Key="HeaderPort">Порт</system:String>
+    <system:String x:Key="HeaderMode">Режим</system:String>
+    <system:String x:Key="HeaderCallSign">Позывной</system:String>
+    <system:String x:Key="HeaderRole">Роль</system:String>
+    <system:String x:Key="HeaderType">Тип</system:String>
+    <system:String x:Key="HeaderAntennaJ">Ант. РП, м</system:String>
+    <system:String x:Key="HeaderAntennaRR">Ант. РР, м</system:String>
+    <system:String x:Key="HeaderLatLon">Шир.,°  Долг.,°</system:String>
+    <system:String x:Key="HeaderAlt">Выс., м</system:String>
+    <system:String x:Key="HeaderRRC1">РРС 1,°</system:String>
+    <system:String x:Key="HeaderRRC2">РРС 2,°</system:String>
+    <system:String x:Key="HeaderLPA1_3">ЛПА 1,3,°</system:String>
+    <system:String x:Key="HeaderLPA2_4">ЛПА 2,4,°</system:String>
+    <system:String x:Key="HeaderLPA5_10">ЛПА 5-10,°</system:String>
+    <system:String x:Key="HeaderSignature">Подпись</system:String>
+    <system:String x:Key="HeaderSign">Знак</system:String>
+    <system:String x:Key="HeaderFreqMin">F мин., кГц</system:String>
+    <system:String x:Key="HeaderFreqMax">F макс., кГц</system:String>
+    <system:String x:Key="HeaderAngleMin">θ мин., °</system:String>
+    <system:String x:Key="HeaderAngleMax">θ макс., °</system:String>
+    <system:String x:Key="HeaderNote">Примечание</system:String>
+    <system:String x:Key="HeaderDeltaF">Δf, кГц</system:String>
+    <system:String x:Key="HeaderTime">Время</system:String>
+    <system:String x:Key="HeaderStep">Шаг, кГц</system:String>
+    <system:String x:Key="HeaderPulseWidth">Длит. имп., мс</system:String>
+    <system:String x:Key="HeaderNumFreq">Кол. частот</system:String>
+    <system:String x:Key="HeaderJ_AJS">АСП РП</system:String>
+    <system:String x:Key="HeaderBearing">θ, °</system:String>
+    <system:String x:Key="HeaderNum">№</system:String>
+    <system:String x:Key="HeaderRMSE">СКО, °</system:String>
+    <system:String x:Key="HeaderLevel">U, дБ</system:String>
+    <system:String x:Key="HeaderDistance">S, м</system:String>
+    <system:String x:Key="HeaderRI_AJS">АСП РР</system:String>
+    <system:String x:Key="HeaderFreq">F, кГц</system:String>
+    <system:String x:Key="HeaderCount">Кол-во</system:String>
+    <system:String x:Key="HeaderJammerParams">Параметры помехи</system:String>
+    <system:String x:Key="HeaderSSR">ЕПО</system:String>
+    <system:String x:Key="HeaderCtrl">КР</system:String>
+    <system:String x:Key="HeaderJam">РП</system:String>
+    <system:String x:Key="HeaderRad">Изл.</system:String>
+    <system:String x:Key="HeaderLetters">Л</system:String>
+    <system:String x:Key="HeaderAJS">АСП</system:String>
+    <system:String x:Key="HeaderPriority">Пр.</system:String>
+
+    <!-- TabControl -->
+    <system:String x:Key="TabItemAJS">АСП</system:String>
+    <system:String x:Key="TabItemRES_FF">ИРИ ФРЧ</system:String>
+    <system:String x:Key="TabItemRES_FF_TD">ИРИ ФРЧ ЦР</system:String>
+    <system:String x:Key="TabItemRES_FF_J">ИРИ ФРЧ РП</system:String>
+    <system:String x:Key="TabItemRES_FHSS">ИРИ ППРЧ</system:String>
+    <system:String x:Key="TabItemRES_FHSS_J">ИРИ ППРЧ РП</system:String>
+    <system:String x:Key="TabItemSB_RI">СиД РР</system:String>
+    <system:String x:Key="TabItemSB_J">СиД РП</system:String>
+    <system:String x:Key="TabItemRF">ЗЧ</system:String>
+    <system:String x:Key="TabItemIF">ВЧ</system:String>
+    <system:String x:Key="TabItemKF">ИЧ</system:String>
+    
+    <!-- StatusBar -->
+    <system:String x:Key="StatusBarCountAll">Всего:  </system:String>
+    <system:String x:Key="StatusBarCountActive">Активных:  </system:String>
+    <system:String x:Key="StatusBarCountImportant">Важных:  </system:String>
+    
+    <!-- ToggleButtons UAV -->
+    <system:String x:Key="ToggleButtonsUAV">БПЛА</system:String>
+    <system:String x:Key="ToggleButtonsNAV">НАВ</system:String>
+
+</ResourceDictionary>

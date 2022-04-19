@@ -1,0 +1,150 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ProjectTestTables"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+
+    <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-85" Top="-5" Right="0" Bottom="0"/>
+    <system:Double x:Key="PropertyGridMinWidthParamsFWS">185</system:Double>
+    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-130" Top="-5" Right="0" Bottom="0"/>
+    <system:Double x:Key="PropertyGridMinWidthCoordFWS">155</system:Double>
+    <Thickness x:Key="PropertyGridMarginCoordASP" Left="-145" Top="0" Right="0" Bottom="0"/>
+    <system:Double x:Key="PropertyGridMinWidthCoordASP">140</system:Double>
+    <system:Double x:Key="PropertyGridMinWidthRole">140</system:Double>
+
+
+    <!-- PropertyGrid -->
+    <system:String x:Key="PropertyGridLatitude">Latitude, °</system:String>
+    <system:String x:Key="PropertyGridLongitude">Longitude, °</system:String>
+    <system:String x:Key="PropertyGridAltitude">Altitude, m</system:String>
+    <system:String x:Key="PropertyGridLabelModulation">Type modulation</system:String>
+    <system:String x:Key="PropertyGridLabelManipulation">Manipulation, µs</system:String>
+    <system:String x:Key="PropertyGridLabelManipulationLChM">F scan, Hz</system:String>
+    <system:String x:Key="PropertyGridLabelDuration">Rad duration , ms</system:String>
+    <system:String x:Key="PropertyGridLabelDeviation">Bandwidth, kHz</system:String>
+    <system:String x:Key="PropertyGridMaster">Master</system:String>
+    <system:String x:Key="PropertyGridSlave">Slave</system:String>
+    <system:String x:Key="PropertyGridAutonomous">Autonomous</system:String>
+
+    <!-- PropertyGrid ToolTip -->
+    <system:String x:Key="PropertyGridToolTipLatitude">Latitude</system:String>
+    <system:String x:Key="PropertyGridToolTipLongitude">Longitude</system:String>
+    <system:String x:Key="PropertyGridToolTipAltitude">Altitude</system:String>
+    <system:String x:Key="PropertyGridToolTipModulation">Type modulation</system:String>
+    <system:String x:Key="PropertyGridToolTipManipulation">Manipulation (Bandwidth)</system:String>
+    <system:String x:Key="PropertyGridToolTipManipulationLChM">F scan</system:String>
+    <system:String x:Key="PropertyGridToolTipDeviation">Bandwidth</system:String>
+    <system:String x:Key="PropertyGridToolTipDuration">Radiation duration</system:String>
+    <system:String x:Key="PropertyGridToolTipFreq">Frequency</system:String>
+    <system:String x:Key="PropertyGridToolTipFreqMin">Minimum frequency</system:String>
+    <system:String x:Key="PropertyGridToolTipFreqMax">Maximum frequency</system:String>
+    <system:String x:Key="PropertyGridToolTipThreshold">Threshold</system:String>
+    <system:String x:Key="PropertyGridToolTipNetStep">Net step</system:String>
+    <system:String x:Key="PropertyGridToolTipBearing">Bearing</system:String>
+    <system:String x:Key="PropertyGridToolTipPriority">Priority</system:String>
+
+
+    <!-- ToolTip -->
+    <system:String x:Key="ToolTipAdd">Add</system:String>
+    <system:String x:Key="ToolTipChange">Change</system:String>
+    <system:String x:Key="ToolTipDelete">Delete</system:String>
+    <system:String x:Key="ToolTipClear">Clear</system:String>
+    <system:String x:Key="ToolTipOpenTXT">Open text document</system:String>
+    <system:String x:Key="ToolTipPrint">Print</system:String>
+    <system:String x:Key="ToolTipDefaultValues">Default values</system:String>
+    <system:String x:Key="ToolTipAddFHSS_RS">RES FHSS for J</system:String>
+    <system:String x:Key="ToolTipAddFWS_RS">RES FF for J</system:String>
+    <system:String x:Key="ToolTipAddFWS_TD">RES FF for TD</system:String>
+    <system:String x:Key="ToolTipAddFWS_CRRD">RES FF for RX1</system:String>
+    <system:String x:Key="ToolTipAddFWS_CRRD2">RES FF for RX2</system:String>
+    <system:String x:Key="ToolTipExecBear">Executive direction finding</system:String>
+    <system:String x:Key="ToolTipQuasiBear">Quasi-simultaneous direction finding</system:String>
+    <system:String x:Key="ToolTipFWS_TD">Target distribution</system:String>
+    <system:String x:Key="ToolTipFWS_TD_RS">RES FF TD for J</system:String>
+    <system:String x:Key="ToolTipRN">Radio networks</system:String>
+    <system:String x:Key="ToolTipCC">Communication centers</system:String>
+    <system:String x:Key="ToolTipIR">Jamming of satellite communication: IRIDIUM</system:String>
+    <system:String x:Key="ToolTipIN">Jamming of satellite communication: INMARSAT (THURAYA)</system:String>
+    <system:String x:Key="ToolTipGS">Jamming of satellite communication: GlobalStar</system:String>
+    <system:String x:Key="ToolTip433">UAV jamming, 433 MHz range</system:String>
+    <system:String x:Key="ToolTip868">UAV jamming, 868 MHz range</system:String>
+    <system:String x:Key="ToolTip920">UAV jamming, 920 MHz range</system:String>
+    <system:String x:Key="ToolTip2_4">UAV jamming, 2400 MHz range</system:String>
+    <system:String x:Key="ToolTip5_8">UAV jamming, 5800 MHz range</system:String>
+    <system:String x:Key="ToolTipUAV">UAV jamming, all ranges</system:String>
+    <system:String x:Key="ToolTipNAV">Navigation jamming</system:String>
+    <system:String x:Key="ToolTipSortActive">Active First</system:String>
+
+
+    <!-- Header -->
+    <system:String x:Key="HeaderNumAJS">№ AJS</system:String>
+    <system:String x:Key="HeaderNumSituation">№ Situation</system:String>
+    <system:String x:Key="HeaderConnect">Connect</system:String>
+    <system:String x:Key="HeaderIPaddress">IP address</system:String>
+    <system:String x:Key="HeaderPort">Port</system:String>
+    <system:String x:Key="HeaderMode">Mode</system:String>
+    <system:String x:Key="HeaderCallSign">Call sign</system:String>
+    <system:String x:Key="HeaderRole">Role</system:String>
+    <system:String x:Key="HeaderType">Type</system:String>
+    <system:String x:Key="HeaderAntennaJ">Ant. J, m</system:String>
+    <system:String x:Key="HeaderAntennaRR">Ant. RI, m</system:String>
+    <system:String x:Key="HeaderLatLon">Lat.,°  Long.,°</system:String>
+    <system:String x:Key="HeaderAlt">Alt., m</system:String>
+    <system:String x:Key="HeaderRRC1">RRC 1,°</system:String>
+    <system:String x:Key="HeaderRRC2">RRC 2,°</system:String>
+    <system:String x:Key="HeaderLPA1_3">LPA 1,3,°</system:String>
+    <system:String x:Key="HeaderLPA2_4">LPA 2,4,°</system:String>
+    <system:String x:Key="HeaderLPA5_10">LPA 5-10,°</system:String>
+    <system:String x:Key="HeaderSignature">Signature</system:String>
+    <system:String x:Key="HeaderSign">Sign</system:String>
+    <system:String x:Key="HeaderFreqMin">F min, kHz</system:String>
+    <system:String x:Key="HeaderFreqMax">F max, kHz</system:String>
+    <system:String x:Key="HeaderAngleMin">θ min, °</system:String>
+    <system:String x:Key="HeaderAngleMax">θ max, °</system:String>
+    <system:String x:Key="HeaderNote">Note</system:String>
+    <system:String x:Key="HeaderDeltaF">Δf, kHz</system:String>
+    <system:String x:Key="HeaderTime">Time</system:String>
+    <system:String x:Key="HeaderStep">Step, kHz</system:String>
+    <system:String x:Key="HeaderPulseWidth">Pulse width, ms</system:String>
+    <system:String x:Key="HeaderNumFreq">Num. freq.</system:String>
+    <system:String x:Key="HeaderJ_AJS">J AJS</system:String>
+    <system:String x:Key="HeaderBearing">θ, °</system:String>
+    <system:String x:Key="HeaderNum">№</system:String>
+    <system:String x:Key="HeaderRMSE">RMSE, °</system:String>
+    <system:String x:Key="HeaderLevel">U, dB</system:String>
+    <system:String x:Key="HeaderDistance">S, m</system:String>
+    <system:String x:Key="HeaderRI_AJS">RI AJS</system:String>
+    <system:String x:Key="HeaderFreq">F, kHz</system:String>
+    <system:String x:Key="HeaderCount">Count</system:String>
+    <system:String x:Key="HeaderJammerParams">Jammer parameters</system:String>
+    <system:String x:Key="HeaderSSR">SSR</system:String>
+    <system:String x:Key="HeaderCtrl">Ctrl</system:String>
+    <system:String x:Key="HeaderJam">Jam</system:String>
+    <system:String x:Key="HeaderRad">Rad</system:String>
+    <system:String x:Key="HeaderLetters">L</system:String>
+    <system:String x:Key="HeaderAJS">AJS</system:String>
+    <system:String x:Key="HeaderPriority">Prio</system:String>
+
+    <!-- TabControl -->
+    <system:String x:Key="TabItemAJS">AJS</system:String>
+    <system:String x:Key="TabItemRES_FF">RES FF</system:String>
+    <system:String x:Key="TabItemRES_FF_TD">RES FF TD</system:String>
+    <system:String x:Key="TabItemRES_FF_J">RES FF J</system:String>
+    <system:String x:Key="TabItemRES_FHSS">RES FHSS</system:String>
+    <system:String x:Key="TabItemRES_FHSS_J">RES FHSS J</system:String>
+    <system:String x:Key="TabItemSB_RI">SB RI</system:String>
+    <system:String x:Key="TabItemSB_J">SB J</system:String>
+    <system:String x:Key="TabItemRF">RF</system:String>
+    <system:String x:Key="TabItemIF">IF</system:String>
+    <system:String x:Key="TabItemKF">KF</system:String>
+
+    <!-- StatusBar -->
+    <system:String x:Key="StatusBarCountAll">In all:  </system:String>
+    <system:String x:Key="StatusBarCountActive">Active:  </system:String>
+    <system:String x:Key="StatusBarCountImportant">Important:  </system:String>
+
+    <!-- ToggleButtons UAV -->
+    <system:String x:Key="ToggleButtonsUAV">UAV</system:String>
+    <system:String x:Key="ToggleButtonsNAV">NAV</system:String>
+
+</ResourceDictionary>

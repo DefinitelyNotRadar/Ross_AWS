@@ -1,0 +1,122 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system ="clr-namespace:System;assembly=mscorlib">
+
+
+    <system:String x:Key="contentLabelTextDB">DB</system:String>
+    <system:String x:Key="contentLabelHintDB">Data base</system:String>
+    <system:String x:Key="contentButServerHintDB">Connect/disconnect data base</system:String>
+    <system:String x:Key="contentLedReadDataHintDB">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintDB">Write data</system:String>
+
+
+    <system:String x:Key="contentLabelTextTDF">TDF</system:String>
+    <system:String x:Key="contentLabelHintTDF">Target detection-finder</system:String>
+    <system:String x:Key="contentButServerHintTDF">Connect/disconnect server of target detection-finder</system:String>
+    <system:String x:Key="contentLedReadDataHintTDF">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintTDF">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextGNSS">GNSS</system:String>
+    <system:String x:Key="contentLabelHintGNSS">Global navigation satellite system</system:String>
+    <system:String x:Key="contentButServerHintGNSS">Connect/disconnect receiver of global navigation satellite system</system:String>
+    <system:String x:Key="contentLedReadDataHintGNSS">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintGNSS">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextCmpRX">CmpRX</system:String>
+    <system:String x:Key="contentLabelHintCmpRX">Compass of receiver antenna</system:String>
+    <system:String x:Key="contentButServerHintCmpRX">Connect/disconnect compass of receiver antenna</system:String>
+    <system:String x:Key="contentLedReadDataHintCmpRX">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintCmpRX">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextCmpTX">CmpTX</system:String>
+    <system:String x:Key="contentLabelHintCmpTX">Compass of transmit antenna</system:String>
+    <system:String x:Key="contentButServerHintCmpTX">Connect/disconnect compass of transmit antenna</system:String>
+    <system:String x:Key="contentLedReadDataHintCmpTX">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintCmpTX">Write data</system:String>
+
+
+
+
+    <system:String x:Key="contentLabelTextBRDJamming">АПУ РП</system:String>
+    <system:String x:Key="contentLabelHintBRDJamming">Антенно-поворотное устройство радиоподавления</system:String>
+    <system:String x:Key="contentButServerHintBRDJamming">Подключить/отключить антенно-поворотное устройство радиоподавления</system:String>
+    <system:String x:Key="contentLedReadDataHintBRDJamming">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintBRDJamming">Запись данных</system:String>
+
+    <system:String x:Key="contentLabelTextBRDConnection">АПУ Св</system:String>
+    <system:String x:Key="contentLabelHintBRDConnection">Антенно-поворотное устройство связи</system:String>
+    <system:String x:Key="contentButServerHintBRDConnection">Подключить/отключить антенно-поворотное устройство связи</system:String>
+    <system:String x:Key="contentLedReadDataHintBRDConnection">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintBRDConnection">Запись данных</system:String>
+
+
+
+
+    <system:String x:Key="contentLabelTextOEM">EOM</system:String>
+    <system:String x:Key="contentLabelHintOEM">Optic-electronic module</system:String>
+    <system:String x:Key="contentButServerHintOEM">Connect/disconnect optic-electronic module</system:String>
+    <system:String x:Key="contentLedReadDataHintOEM">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintOEM">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextCL">CL</system:String>
+    <system:String x:Key="contentLabelHintCL">Commander laptop</system:String>
+    <system:String x:Key="contentButServerHintCL">Connect/disconnect server of commander laptop</system:String>
+    <system:String x:Key="contentLedClientHintCL">State of commander laptop</system:String>
+    <system:String x:Key="contentLedReadDataHintCL">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintCL">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextLNK">MAJS</system:String>
+    <system:String x:Key="contentLabelHintLNK">Mated jammer station</system:String>
+    <system:String x:Key="contentButServerHintLNK">Connect/disconnect mated jammer station</system:String>
+    <system:String x:Key="contentLedReadDataHintLNK">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintLNK">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextZRK">ZRK</system:String>
+    <system:String x:Key="contentLabelHintZRK">Radar Zorki</system:String>
+    <system:String x:Key="contentButServerHintZRK">Connect/disconnect radar Zorki</system:String>
+    <system:String x:Key="contentLedReadDataHintZRK">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintZRK">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextRDN">RDN</system:String>
+    <system:String x:Key="contentLabelHintRDN">Radar Roddnik</system:String>
+    <system:String x:Key="contentButServerHintRDN">Connect/disconnect radar Rodnik</system:String>
+    <system:String x:Key="contentLedReadDataHintRDN">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintRDN">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextRS">RS</system:String>
+    <system:String x:Key="contentLabelHintRS">Recognition system</system:String>
+    <system:String x:Key="contentButServerHintRS">Connect/disconnect recognition system</system:String>
+    <system:String x:Key="contentLedReadDataHintRS">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintRS">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextCP">CP</system:String>
+    <system:String x:Key="contentLabelHintCP">Control post</system:String>
+    <system:String x:Key="contentButServerHintCP">Connect/disconnect control post</system:String>
+    <system:String x:Key="contentLedReadDataHintCP">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintCP">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextAmp1">AMP1</system:String>
+    <system:String x:Key="contentLabelHintAmp1">Amplifier 1</system:String>
+    <system:String x:Key="contentButServerHintAmp1">Connect/disconnect amplifier 1</system:String>
+    <system:String x:Key="contentLedReadDataHintAmp1">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintAmp1">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextAmp2">AMP2</system:String>
+    <system:String x:Key="contentLabelHintAmp2">Amplifier 2</system:String>
+    <system:String x:Key="contentButServerHintAmp2">Connect/disconnect amplifier 2</system:String>
+    <system:String x:Key="contentLedReadDataHintAmp2">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintAmp2">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextCuirasse">CR</system:String>
+    <system:String x:Key="contentLabelHintCuirasse">Cuirasse</system:String>
+    <system:String x:Key="contentButServerHintCuirasse">Connect/disconnect Cuirasse</system:String>
+    <system:String x:Key="contentLedReadDataHintCuirasse">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintCuirasse">Write data</system:String>
+
+    <system:String x:Key="contentLabelTextSpoofing">SS</system:String>
+    <system:String x:Key="contentLabelHintSpoofing">Spoofing server</system:String>
+    <system:String x:Key="contentButServerHintSpoofing">Connect/disconnect Spoofing server</system:String>
+    <system:String x:Key="contentLedReadDataHintSpoofing">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintSpoofing">Write data</system:String>
+
+</ResourceDictionary>
