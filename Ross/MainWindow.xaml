@@ -9,7 +9,6 @@
         xmlns:SuppressFHSSControl="clr-namespace:SuppressFHSSControl;assembly=SuppressFHSSControl"
         xmlns:ReconFHSSControl="clr-namespace:ReconFHSSControl;assembly=ReconFHSSControl"
         xmlns:local="clr-namespace:Ross"
-        xmlns:map="clr-namespace:MapScreenLayout;assembly=MapScreenLayout"
         xmlns:suppressFwsControl="clr-namespace:SuppressFWSControl;assembly=SuppressFWSControl"
         xmlns:sectorsRangesControl="clr-namespace:SectorsRangesControl;assembly=SectorsRangesControl"
         xmlns:specFreqControl="clr-namespace:SpecFreqControl;assembly=SpecialFrequenciesControl"
