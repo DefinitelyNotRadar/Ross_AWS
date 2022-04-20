@@ -180,8 +180,11 @@
     <Reference Include="UCRMap">
       <HintPath>dll\UCRMap.dll</HintPath>
     </Reference>
-    <Reference Include="UIMap">
-      <HintPath>dll\UIMap.dll</HintPath>
+    <Reference Include="UILegendControl">
+      <HintPath>dll\UILegendControl.dll</HintPath>
+    </Reference>
+    <Reference Include="UIMapRast">
+      <HintPath>dll\UIMapRast.dll</HintPath>
     </Reference>
     <Reference Include="UISetAngle">
       <HintPath>dll\UISetAngle.dll</HintPath>
@@ -202,8 +205,8 @@
     <Reference Include="WpfMapControl">
       <HintPath>dll\WpfMapControl.dll</HintPath>
     </Reference>
-    <Reference Include="YamlDotNet, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.5.1.0\lib\net45\YamlDotNet.dll</HintPath>
+    <Reference Include="YamlDotNet, Version=6.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.6.0.0\lib\net45\YamlDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

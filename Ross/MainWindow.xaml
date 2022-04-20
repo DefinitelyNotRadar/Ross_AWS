@@ -106,7 +106,7 @@
             <propertyGrid:BasicProperties x:Name="Properties"  MaxWidth="600" 
                                           OnLanguageChange="Properties_OnLanguageChange" 
                                           OnPasswordChecked="Properties_OnPasswordChecked"
-                                          OnUpdateLocalProperties="Properties_OnUpdateLocalProperties" />
+                                          />
         </Grid>
         <GridSplitter x:Name="SettingSplitter" Grid.Column="2" Grid.RowSpan="2" Background="#525151"
                       ShowsPreview="False" Width="3"
