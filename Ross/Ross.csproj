@@ -226,7 +226,6 @@
       <DependentUpon>MapLayout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Map\StatusBarModel.cs" />
-    <Compile Include="Ymal\Yaml.cs" />
     <Page Include="Languages\TranslatorConnectionPanel\StringResource.AZ.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

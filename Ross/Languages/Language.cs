@@ -126,9 +126,7 @@ namespace Ross
         {
             SetLanguageTables(e);
             SetLanguageConnectionPanel(e);
-           // SetLanguageMapLayout(e);
-
-            //TranslatorTables.LoadDictionary(e);
+            SetLanguageMapLayout(e);
 
         }
 

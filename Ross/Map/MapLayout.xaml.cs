@@ -26,8 +26,7 @@ namespace Ross.Map
         }
 
         private void Properties_OnApplyButtonClick(object sender, DLLSettingsControlPointForMap.Model.LocalProperties e)
-        {
-            RastrMap.PathMap = e.PathMap.FileMap;       
+        {    
         }
 
         private void Properties_OnDefaultButtonClick(object sender, DLLSettingsControlPointForMap.Model.LocalProperties e)
@@ -65,7 +64,12 @@ namespace Ross.Map
 
         private void Properties_OnPathMapChanged(object sender, PathMap e)
         {
-            RastrMap.PathMap = e.FileMap;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
         }
     }
 }

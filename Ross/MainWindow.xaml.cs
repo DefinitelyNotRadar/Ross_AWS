@@ -53,6 +53,7 @@ namespace Ross
 
         private void ToggleButton_Map_Click(object sender, RoutedEventArgs e)
         {
+
             if (mapLayout.IsVisible)
                 mapLayout.Hide();
             else
@@ -61,14 +62,14 @@ namespace Ross
 
         private void Properties_OnUpdateLocalProperties(object sender, ModelsTablesDBLib.LocalProperties e)
         {
-            YamlSave(e);
+  
         }
 
         private void SetLocalProperties()
         {
             try
             {
-                Properties.Local = YamlLoad();
+                Properties.Local = SerializerJSON.Deserialize<ModelsTablesDBLib.LocalProperties>("LocalProperties");
             }
             catch (Exception ex)
             {
@@ -91,8 +92,6 @@ namespace Ross
                 sizeLeftDownTable = new SizeValue(DefaultSize.WidthDPanelJamming);
                 sizeRightDownTable = new SizeValue(DefaultSize.WidthDPanelJamming);
 
-
-                //SetDefaultDPanel();
             }
 
             else
@@ -101,19 +100,17 @@ namespace Ross
                 sizeTopTable = markSizeWnd.sizeTopTable;
                 sizeLeftDownTable = markSizeWnd.sizeLeftDownTable;
                 sizeRightDownTable = markSizeWnd.sizeRightDownTable;
-
-
-
-
             }
         }
 
         private void Properties_OnPasswordChecked(object sender, bool e)
         {
-            if(e)
-                mapLayout.MapProperties.Local.Common.Access = AccessTypes.Admin;
-            else
-                mapLayout.MapProperties.Local.Common.Access = AccessTypes.User;
+                mapLayout.MapProperties.Local.Common.Access = e? AccessTypes.Admin : AccessTypes.User;
+        }
+
+        private void Properties_OnUpdateLocalProperties_1(object sender, ModelsTablesDBLib.LocalProperties e)
+        {
+            SerializerJSON.Serialize<ModelsTablesDBLib.LocalProperties>(e, "LocalProperties");
         }
     }
 }

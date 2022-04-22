@@ -6,7 +6,7 @@
         xmlns:converter ="clr-namespace:Ross.Converters"
         xmlns:map="clr-namespace:UIMapRast;assembly=UIMapRast"
         xmlns:prop="clr-namespace:DLLSettingsControlPointForMap;assembly=DLLSettingsControlPointForMap"
-        mc:Ignorable="d" Background="#292929" >
+        mc:Ignorable="d" Background="#292929" Closing="Window_Closing" >
 
     <Window.Resources>
         <ResourceDictionary>
