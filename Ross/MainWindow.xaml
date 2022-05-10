@@ -116,7 +116,7 @@
         
         <Grid Grid.Row="0" Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="{Binding ElementName = TopTableToggleButton, Path = IsChecked, Converter={StaticResource BoolToRowHeightConverter}}"/>
                 <RowDefinition Height="2"/>
                 <RowDefinition Height="{Binding ElementName = DownTablePanelToggleButton, Path = IsChecked, Converter={StaticResource BoolToRowHeightConverter}}"/>
             </Grid.RowDefinitions>
@@ -164,47 +164,47 @@
         </GridSplitter>
 
             <Grid x:Name="sTables" Grid.Row="2" Visibility="{Binding ElementName = DownTablePanelToggleButton, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <GridSplitter x:Name="SplitterV2" Grid.Column="1" 
-                        ShowsPreview="False" 
-                        Width="2"
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Stretch" 
-                        Background="Gray"/>
+                <GridSplitter x:Name="SplitterV2" Grid.Column="1" 
+                            ShowsPreview="False" 
+                            Width="2"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Stretch" 
+                            Background="Gray"/>
 
-            <TabControl x:Name="ASP" Grid.Column="0" >
-                <TabItem Header="{DynamicResource TabItemAJS}">
+                <TabControl x:Name="ASP" Grid.Column="0" >
+                    <TabItem Header="{DynamicResource TabItemAJS}">
                         <aspControl:UserControlASP x:Name="ucASP" />
                     </TabItem>
 
-            </TabControl>
-
-            <Grid  Grid.Column="2">
-                <TabControl x:Name="SRSF" >
-                    <TabItem Header="{DynamicResource TabItemSB_RI}">
-                        <sectorsRangesControl:UserControlSectorsRanges x:Name="ucSRangesRecon" NameTable="Recon" />
-                    </TabItem>
-                    <TabItem Header="{DynamicResource TabItemSB_J}">
-                        <sectorsRangesControl:UserControlSectorsRanges  x:Name="ucSRangesSuppr" NameTable="Suppr"/>
-                    </TabItem>
-                    <TabItem Header="{DynamicResource TabItemIF}">
-                        <specFreqControl:UserControlSpecFreq x:Name="ucSpecFreqImportant" NameTable="Important"/>
-                    </TabItem>
-                    <TabItem Header="{DynamicResource TabItemRF}">
-                        <specFreqControl:UserControlSpecFreq x:Name="ucSpecFreqForbidden" NameTable="Forbidden"/>
-                    </TabItem>
-                    <TabItem Header="{DynamicResource TabItemKF}">
-                        <specFreqControl:UserControlSpecFreq x:Name="ucSpecFreqKnown" NameTable="Known"/>
-                    </TabItem>
                 </TabControl>
+
+                <Grid  Grid.Column="2">
+                    <TabControl x:Name="SRSF" >
+                        <TabItem Header="{DynamicResource TabItemSB_RI}">
+                            <sectorsRangesControl:UserControlSectorsRanges x:Name="ucSRangesRecon" NameTable="Recon" />
+                        </TabItem>
+                        <TabItem Header="{DynamicResource TabItemSB_J}">
+                            <sectorsRangesControl:UserControlSectorsRanges  x:Name="ucSRangesSuppr" NameTable="Suppr"/>
+                        </TabItem>
+                        <TabItem Header="{DynamicResource TabItemIF}">
+                            <specFreqControl:UserControlSpecFreq x:Name="ucSpecFreqImportant" NameTable="Important"/>
+                        </TabItem>
+                        <TabItem Header="{DynamicResource TabItemRF}">
+                            <specFreqControl:UserControlSpecFreq x:Name="ucSpecFreqForbidden" NameTable="Forbidden"/>
+                        </TabItem>
+                        <TabItem Header="{DynamicResource TabItemKF}">
+                            <specFreqControl:UserControlSpecFreq x:Name="ucSpecFreqKnown" NameTable="Known"/>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+
             </Grid>
-            
-        </Grid>
         </Grid>
 
 
