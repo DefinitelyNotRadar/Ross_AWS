@@ -108,9 +108,6 @@
     <Reference Include="GeoUtility">
       <HintPath>dll\GeoUtility.dll</HintPath>
     </Reference>
-    <Reference Include="GrozaSModelsDBLib">
-      <HintPath>dll\GrozaSModelsDBLib.dll</HintPath>
-    </Reference>
     <Reference Include="ImageRotateControlLibrary">
       <HintPath>dll\ImageRotateControlLibrary.dll</HintPath>
     </Reference>
@@ -126,7 +123,8 @@
     <Reference Include="Mapsui.UI.Wpf">
       <HintPath>dll\Mapsui.UI.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="ModelsTablesDBLib">
+    <Reference Include="ModelsTablesDBLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\ModelsTablesDBLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -205,8 +203,8 @@
     <Reference Include="WpfMapControl">
       <HintPath>dll\WpfMapControl.dll</HintPath>
     </Reference>
-    <Reference Include="YamlDotNet, Version=6.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.6.0.0\lib\net45\YamlDotNet.dll</HintPath>
+    <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.11.0.1\lib\net45\YamlDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

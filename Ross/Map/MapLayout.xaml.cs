@@ -1,6 +1,7 @@
 ﻿using DLLSettingsControlPointForMap;
 using System.Windows;
 using DLLSettingsControlPointForMap.Model;
+using Ross.JSON;
 
 namespace Ross.Map
 {
@@ -14,6 +15,7 @@ namespace Ross.Map
             InitializeComponent();
             Properties.OnDefaultButtonClick += Properties_OnDefaultButtonClick;
             Properties.OnApplyButtonClick += Properties_OnApplyButtonClick;
+            LoadSettings();
         }
 
         public SettingsControlForMap MapProperties
@@ -25,11 +27,12 @@ namespace Ross.Map
             }
         }
 
-        private void Properties_OnApplyButtonClick(object sender, DLLSettingsControlPointForMap.Model.LocalProperties e)
-        {    
+        private void Properties_OnApplyButtonClick(object sender, LocalProperties e)
+        {
+            SerializerJSON.Serialize<LocalProperties>(e, "MapProperties");
         }
 
-        private void Properties_OnDefaultButtonClick(object sender, DLLSettingsControlPointForMap.Model.LocalProperties e)
+        private void Properties_OnDefaultButtonClick(object sender, LocalProperties e)
         {
             Properties.Local.Common.CoordinateSystem = GeographicCoordinateSystem.CK42;
             Properties.Local.Common.CoordinateView = CoordView.Dd;
@@ -44,6 +47,17 @@ namespace Ross.Map
            
         }
 
+        private void LoadSettings()
+        {
+            try
+            {
+                MapProperties.Local = SerializerJSON.Deserialize<LocalProperties>("MapProperties");
+            }
+            catch
+            {
+                
+            }
+        }
        
 
         private void Properties_OnLanguageChanged(object sender, ModelsTablesDBLib.Languages e)
