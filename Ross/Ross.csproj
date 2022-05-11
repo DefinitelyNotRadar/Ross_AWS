@@ -130,6 +130,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="protobuf-net, Version=2.3.15.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.3.15\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
     <Reference Include="ReconFHSSControl">
       <HintPath>dll\ReconFHSSControl.dll</HintPath>
     </Reference>
@@ -149,7 +152,10 @@
       <HintPath>dll\SuppressFWSControl.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Controls.WpfPropertyGrid, Version=2010.11.10.0, Culture=neutral, PublicKeyToken=be4b71144cd8a3e5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\System.Windows.Controls.WpfPropertyGrid.dll</HintPath>
@@ -186,6 +192,9 @@
     </Reference>
     <Reference Include="UISetAngle">
       <HintPath>dll\UISetAngle.dll</HintPath>
+    </Reference>
+    <Reference Include="UserControl_Chat">
+      <HintPath>dll\UserControl_Chat.dll</HintPath>
     </Reference>
     <Reference Include="ValuesConverter">
       <HintPath>dll\ValuesConverter.dll</HintPath>
@@ -318,6 +327,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Thin.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

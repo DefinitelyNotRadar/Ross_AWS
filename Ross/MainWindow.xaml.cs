@@ -16,6 +16,7 @@ using DLLSettingsControlPointForMap.Model;
 using Ross.AddPanel;
 using Ross.JSON;
 using Ross.Map;
+using UserControl_Chat;
 
 namespace Ross
 {
@@ -48,7 +49,12 @@ namespace Ross
             mapLayout = new MapLayout();
             SetLanguageMapLayout(Properties.Local.Common.Language);
 
+            SetChatSettings();
+
+
             InitMarkSizeWnd();
+
+
         }
 
         private void ToggleButton_Map_Click(object sender, RoutedEventArgs e)
@@ -63,6 +69,33 @@ namespace Ross
         private void Properties_OnUpdateLocalProperties(object sender, ModelsTablesDBLib.LocalProperties e)
         {
   
+        }
+
+
+
+        private void SetChatSettings()
+        {
+            List<StationClassForChat> testList = new List<StationClassForChat>()
+            {
+                new StationClassForChat(0,"ПУ", true),
+            };
+            UserControlChat.InitStations(testList);
+            Events.OnSendStationsMessage += ReturnApprovedMessages;
+        }
+
+        public void ReturnApprovedMessages(List<Message> stationsMessages)
+        {
+            foreach (Message curStationsMessage in stationsMessages)
+            {
+                //curStationsMessage.IsTransmited = true;
+                curStationsMessage.SenderName = "Извинитей пожалуйстович";
+                curStationsMessage.MessageFontSize = 20;
+                curStationsMessage.SenderNameFontSize = 15;
+                curStationsMessage.MessageFiled = curStationsMessage.MessageFiled;
+
+                //curStationsMessage.IsTransmited = false;
+            }
+            UserControlChat.DrawMessageToChat(stationsMessages);
         }
 
         private void SetLocalProperties()
@@ -110,7 +143,7 @@ namespace Ross
 
         private void Properties_OnUpdateLocalProperties_1(object sender, ModelsTablesDBLib.LocalProperties e)
         {
-            SerializerJSON.Serialize<ModelsTablesDBLib.LocalProperties>(e, "LocalProperties");
+                SerializerJSON.Serialize<ModelsTablesDBLib.LocalProperties>(e, "LocalProperties");
         }
     }
 }
