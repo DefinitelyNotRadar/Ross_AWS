@@ -22,4 +22,13 @@
     <system:String x:Key="toolTipRESFUSSJ">RES FUSS J@(расшифровать)@</system:String>
 
 
+    <system:String x:Key="tooltipOpenMap">Open map</system:String>
+    <system:String x:Key="tooltipCloseMap">Close map</system:String>
+    <system:String x:Key="tooltipOpenMatrix">Open height matrix</system:String>
+    <system:String x:Key="tooltipCenterMap">Centering map</system:String>
+    <system:String x:Key="tooltipSurveyZones">Show/Hide Survey zones</system:String>
+
+    <system:String x:Key="cntMenuSetPCPosition">Set PC position</system:String>
+    <system:String x:Key="cntMenuSetPointPosition">Set point position</system:String>
+
 </ResourceDictionary>

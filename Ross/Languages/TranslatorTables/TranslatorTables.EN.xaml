@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:ProjectTestTables"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
@@ -146,5 +145,12 @@
     <!-- ToggleButtons UAV -->
     <system:String x:Key="ToggleButtonsUAV">UAV</system:String>
     <system:String x:Key="ToggleButtonsNAV">NAV</system:String>
+
+
+    <system:String x:Key="toolTipToggleButton_Setting">Open settings pane</system:String>
+    <system:String x:Key="toolTipToggleButton_TS">Open chat</system:String>
+    <system:String x:Key="toolTipToggleButton_Map">Open map window</system:String>
+    <system:String x:Key="toolTipToggleButton_TopTable">Hide/Show top tables</system:String>
+    <system:String x:Key="toolTipToggleButton_DownTablePanel">Hide/Show down tables</system:String>
 
 </ResourceDictionary>

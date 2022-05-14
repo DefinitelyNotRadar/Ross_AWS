@@ -213,8 +213,40 @@ interval, ms</Eng>
     <Eng>Relative bearing, deg</Eng>
     <Azr>Kurs bucağı, dər</Azr>
   </Translate>
+	
 
-  <Translate ID="HeadingAngleToolTip">
+	<Translate ID="Language">
+		<Rus>Язык</Rus>
+		<Eng>Language</Eng>
+		<Azr>Language</Azr>
+	</Translate>
+
+	<Translate ID="Id">
+		<Rus>Id</Rus>
+		<Eng>Id</Eng>
+		<Azr>Id</Azr>
+	</Translate>
+
+	<Translate ID="SpoofingVisibility">
+		<Rus>Видимость панели спуфинга</Rus>
+		<Eng>Spoofing visibility</Eng>
+		<Azr>Spoofing visibility</Azr>
+	</Translate>
+
+	<Translate ID="Amplifiers">
+		<Rus>Усилители</Rus>
+		<Eng>Amplifiers</Eng>
+		<Azr>Amplifiers</Azr>
+	</Translate>
+
+	<Translate ID="TypeRadioSuppr">
+		<Rus>Тип</Rus>
+		<Eng>Type</Eng>
+		<Azr>Type</Azr>
+	</Translate>
+
+	
+	<Translate ID="HeadingAngleToolTip">
     <Rus>0 - 359</Rus>
     <Eng>0 - 359</Eng>
     <Azr>0 - 359</Azr>

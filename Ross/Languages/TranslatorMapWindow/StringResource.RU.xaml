@@ -11,17 +11,25 @@
     <system:String x:Key="toolTipAJS">Автоматизированная станция помех</system:String>
 
     <system:String x:Key="contentRESFWSTD">ИРИ ФРЧ ЦР: </system:String>
-    <system:String x:Key="toolTipRESFWSTD">ИРИ ФРЧ ЦР @(расшифровать)@</system:String>
+    <system:String x:Key="toolTipRESFWSTD">Источник радио излучения ФРЧ ЦР @(расшифровать)@</system:String>
 
     <system:String x:Key="contentRESFWSJ">ИРИ ФРЧ РП: </system:String>
-    <system:String x:Key="toolTipRESFWSJ">ИРИ ФРЧ РП@(расшифровать)@</system:String>
+    <system:String x:Key="toolTipRESFWSJ">Источник радио излучения ФРЧ РП@(расшифровать)@</system:String>
 
     <system:String x:Key="contentRESFUSSTD">ИРИ ППРЧ ЦР: </system:String>
-    <system:String x:Key="toolTipRESFUSSTD">ИРИ ППРЯ ЦР@(расшифровать)@</system:String>
+    <system:String x:Key="toolTipRESFUSSTD">Источник радио излучения ППРЧ ЦР@(расшифровать)@</system:String>
 
     <system:String x:Key="contentRESFUSSJ">ИРИ ППРЧ РП: </system:String>
-    <system:String x:Key="toolTipRESFUSSJ">ИРИ ППРЧ РП@(расшифровать)@</system:String>
+    <system:String x:Key="toolTipRESFUSSJ">Источник радио излучения ППРЧ РП@(расшифровать)@</system:String>
 
+    <system:String x:Key="tooltipOpenMap">Открыть карту</system:String>
+    <system:String x:Key="tooltipCloseMap">Закрыть карту</system:String>
+    <system:String x:Key="tooltipOpenMatrix">Открыть матрицу высот</system:String>
+    <system:String x:Key="tooltipCenterMap">Центрировать карту</system:String>
 
+    <system:String x:Key="tooltipSurveyZones">Отобразить/скрыть зоны контроля</system:String>
+
+    <system:String x:Key="cntMenuSetPCPosition">Установить позицию ПУ</system:String>
+    <system:String x:Key="cntMenuSetPointPosition">Установить позицию пункта</system:String>
 
 </ResourceDictionary>

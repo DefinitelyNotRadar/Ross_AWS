@@ -26,6 +26,12 @@
     <Az>FRT</Az>
   </Translate>
 
+	<Translate ID="Language">
+		<Rus>Язык</Rus>
+		<Eng>Language</Eng>
+		<Azr>Language</Azr>
+	</Translate>
+
   <Translate ID="NumberASP">
     <Rus>№ АСП</Rus>
     <Eng>№ AJS</Eng>

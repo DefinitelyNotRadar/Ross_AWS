@@ -34,14 +34,15 @@
         </ResourceDictionary>
     </Window.Resources>
 
-   
+
 
     <Grid  x:Name="RDGrid" Background="#333">
-        <!--левая часть-->
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="36"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" MaxWidth="1000" x:Name="columnSettings"/>
+            <ColumnDefinition Width="Auto" MaxWidth="1000" x:Name="columnChat"/>
+            <ColumnDefinition Width="*"/>
             
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -51,26 +52,38 @@
 
         <StackPanel Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2">
 
-            <ToggleButton  x:Name="SettingToggleButton"  Margin="2, 3, 2, 3" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="32" Height ="32"                           
-                           IsThreeState="False" Style="{StaticResource ToggleButton}" >
+            <ToggleButton  x:Name="ToggleButton_Setting"  Margin="2, 3, 2, 3" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="32" Height ="32"                           
+                           IsThreeState="False" Style="{StaticResource ToggleButton}" Unchecked="ToggleButton_Setting_UnChecked">
                 <Image Source="Resources\Property.png" Width="26" Height="26" Stretch="Fill"/>
+                <ToolTipService.ToolTip>
+                    <TextBlock FontSize="13" Text="{DynamicResource toolTipToggleButton_Setting}"/>
+                </ToolTipService.ToolTip>
             </ToggleButton>
 
             <Rectangle Fill="{StaticResource ResourceKey=ControlActiveBorderBrush}" Stroke="{StaticResource ResourceKey=ControlActiveBorderBrush}" StrokeThickness="2" VerticalAlignment="Bottom" Margin="2,0,3,0"  RadiusX="1" RadiusY="1"/>
 
-            <ToggleButton  x:Name="ToggleButton_TS"   Margin="2, 3, 2, 3" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="32" Height ="32"                           
-                           IsThreeState="False" Style="{StaticResource ToggleButton}"  Content="ТС" FontSize="20" VerticalContentAlignment="Top" HorizontalContentAlignment="Center">
+            <ToggleButton  x:Name="ToggleButton_TS"   Margin="2, 3, 2, 3" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="32" Height ="32"                       
+                           IsThreeState="False" Style="{StaticResource ToggleButton}"  Content="ТС" FontSize="20" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Unchecked="ToggleButton_TS_Unchecked">
+                <ToolTipService.ToolTip>
+                    <TextBlock FontSize="13" Text="{DynamicResource toolTipToggleButton_TS}"/>
+                </ToolTipService.ToolTip>
             </ToggleButton>
 
             <Rectangle Fill="{StaticResource ResourceKey=ControlActiveBorderBrush}" Stroke="{StaticResource ResourceKey=ControlActiveBorderBrush}" StrokeThickness="2" VerticalAlignment="Bottom" Margin="2,0,3,0"  RadiusX="1" RadiusY="1"/>
 
 
-            <ToggleButton  x:Name="ToggleButton_Map"  Margin="2, 3, 2, 3" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="32" Height ="32"                      
+            <ToggleButton  x:Name="ToggleButton_Map"  Margin="2, 3, 2, 3" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="32" Height ="32"                  
                            IsThreeState="False" Style="{StaticResource ToggleButton}"  Content="Map" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="ToggleButton_Map_Click">
+                <ToolTipService.ToolTip>
+                    <TextBlock FontSize="13" Text="{DynamicResource toolTipToggleButton_Map}"/>
+                </ToolTipService.ToolTip>
             </ToggleButton>
 
-            <ToggleButton  x:Name="TopTableToggleButton" IsChecked="True" Margin="2, 3, 2, 4" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="32" Height ="32" ToolTip="{DynamicResource tooltipTable}"                      
+            <ToggleButton  x:Name="ToggleButton_TopTable" IsChecked="True" Margin="2, 3, 2, 4" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="32" Height ="32"                    
                            IsThreeState="False"   Style="{StaticResource ToggleButton}" >
+                <ToolTipService.ToolTip>
+                    <TextBlock FontSize="13" Text="{DynamicResource toolTipToggleButton_TopTable}"/>
+                </ToolTipService.ToolTip>
                 <Image Source="Resources\DPJamming.png" Width="26" Height="26" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
@@ -83,8 +96,11 @@
                 </Image>
             </ToggleButton>
 
-            <ToggleButton  x:Name="DownTablePanelToggleButton" IsChecked="True" Margin="2, 0, 2, 3" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="32" Height ="32" ToolTip="{DynamicResource tooltipSendPanel}"                                 
-                           IsThreeState="False"   Style="{StaticResource ToggleButton}" >
+            <ToggleButton  x:Name="ToggleButton_DownTablePanel" IsChecked="True" Margin="2, 0, 2, 3" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="32" Height ="32"                                 
+                           IsThreeState="False" Style="{StaticResource ToggleButton}" >
+                <ToolTipService.ToolTip>
+                    <TextBlock FontSize="13" Text="{DynamicResource toolTipToggleButton_DownTablePanel}"/>
+                </ToolTipService.ToolTip>
                 <Image Source="Resources\DPSpoofing.png" Width="26" Height="26" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
@@ -96,40 +112,44 @@
                     </Image.RenderTransform>
                 </Image>
             </ToggleButton>
-
-            
-            
-            
         </StackPanel>
 
 
-        <Grid Grid.Column="1" Grid.RowSpan="1"  Visibility="{Binding ElementName= SettingToggleButton, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" Width="450">
-            <propertyGrid:BasicProperties x:Name="Properties"  MaxWidth="600" 
+        <Grid x:Name="PropertyGrid" Grid.Column="1" Grid.RowSpan="1" Visibility="{Binding ElementName = ToggleButton_Setting, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" MaxWidth="1000" MinWidth="300" >
+            <propertyGrid:BasicProperties x:Name="Properties" MaxWidth="1000" 
                                           OnLanguageChange="Properties_OnLanguageChange" 
-                                          OnPasswordChecked="Properties_OnPasswordChecked" OnUpdateLocalProperties="Properties_OnUpdateLocalProperties_1"
+                                          OnPasswordChecked="Properties_OnPasswordChecked" 
+                                          OnUpdateLocalProperties="Properties_OnUpdateLocalProperties_1"
+                                          PropertyChanged="Properties_OnPropertyChanged"
                                           />
         </Grid>
 
-        <chat:UserControlChat x:Name="UserControlChat" Grid.Column="1" Grid.RowSpan="1" 
-                                  Visibility="{Binding ElementName= ToggleButton_TS, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                                  Width="450" BorderBrush="Gray" BorderThickness="2" Margin="0,0,2,0" />
+        <Grid x:Name="ChatGrid" Grid.Column="2" Grid.RowSpan="1" Visibility="{Binding ElementName = ToggleButton_TS, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" MinWidth="400" MaxWidth="1000">
+            <chat:UserControlChat x:Name="UserControlChat" BorderBrush="Gray" BorderThickness="2" MaxWidth="1000"/>
+        </Grid>
 
-        <GridSplitter x:Name="SettingSplitter" Grid.Column="2" Grid.RowSpan="2" Background="#525151"
+        <GridSplitter Grid.Column="1" Grid.RowSpan="2" Background="#525151"                     
                       ShowsPreview="False" Width="3"
-                      VerticalAlignment="Stretch">
+                      VerticalAlignment="Stretch"
+                      Visibility="{Binding ElementName = ToggleButton_Setting, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
         </GridSplitter>
 
-        
-        <Grid Grid.Row="0" Grid.Column="2">
+        <GridSplitter Grid.Column="2" Grid.RowSpan="2" Background="#525151"                     
+                      ShowsPreview="False" Width="3"
+                      VerticalAlignment="Stretch"
+                      Visibility="{Binding ElementName = ToggleButton_TS, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+        </GridSplitter>
+
+
+        <Grid Grid.Row="0" Grid.Column="3">
             <Grid.RowDefinitions>
-                <RowDefinition Height="{Binding ElementName = TopTableToggleButton, Path = IsChecked, Converter={StaticResource BoolToRowHeightConverter}}"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="2"/>
-                <RowDefinition Height="{Binding ElementName = DownTablePanelToggleButton, Path = IsChecked, Converter={StaticResource BoolToRowHeightConverter}}"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-
-            <TabControl  Visibility="{Binding ElementName = TopTableToggleButton, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TabItem Header="{DynamicResource TabItemRES_FF}" ToolTip="">
+            <TabControl  Visibility="{Binding ElementName = ToggleButton_TopTable, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem Header="{DynamicResource TabItemRES_FF}">
                     <TempFWSControl:UserControlTempFWS x:Name="ucTemsFWS"/>
                 </TabItem>
                 <TabItem Header="{DynamicResource TabItemRES_FF_TD}">
@@ -163,13 +183,15 @@
                       HorizontalAlignment="Stretch" VerticalAlignment="Center">
             <GridSplitter.Visibility>
                     <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
-                        <Binding ElementName = "TopTableToggleButton" Path = "IsChecked"/>
-                        <Binding ElementName = "DownTablePanelToggleButton" Path = "IsChecked"/>
+                        <Binding ElementName = "ToggleButton_TopTable" Path = "IsChecked"/>
+                        <Binding ElementName = "ToggleButton_DownTablePanel" Path = "IsChecked"/>
                     </MultiBinding>
             </GridSplitter.Visibility>
         </GridSplitter>
 
-            <Grid x:Name="sTables" Grid.Row="2" Visibility="{Binding ElementName = DownTablePanelToggleButton, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" >
+            
+            
+            <Grid x:Name="sTables" Grid.Row="2" Visibility="{Binding ElementName = ToggleButton_DownTablePanel, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2"/>
@@ -214,7 +236,7 @@
         </Grid>
 
 
-        <StatusBar Grid.Row="3" Grid.ColumnSpan="3">
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="4">
             <StatusBarItem>
                 <ControlConnect:ConnectionControl x:Name="DbControlConnection"   
                                                   LEDClientVisible="False" 

@@ -8,6 +8,7 @@ namespace Ross.AddPanel
 {
     public class MarkSizeWnd
     {
+        public SizeValue sizeChat { get; set; } = new SizeValue();
         public SizeValue sizeSetting { get; set; } = new SizeValue();
         public SizeValue sizeTopTable { get; set; } = new SizeValue();
         public SizeValue sizeLeftDownTable { get; set; } = new SizeValue();
@@ -15,6 +16,7 @@ namespace Ross.AddPanel
 
         public MarkSizeWnd()
         {
+            sizeChat = new SizeValue();
             sizeSetting = new SizeValue();
             sizeTopTable = new SizeValue();
             sizeLeftDownTable = new SizeValue();

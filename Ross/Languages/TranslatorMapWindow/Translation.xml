@@ -8,4 +8,10 @@
     <AZ>Ümumi</AZ>
   </Translate>
 
+	<Translate ID="Language">
+		<Rus>Язык</Rus>
+		<Eng>Language</Eng>
+		<Azr>Language</Azr>
+	</Translate>
+
 </Translation>

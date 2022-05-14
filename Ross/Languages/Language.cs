@@ -100,20 +100,24 @@ namespace Ross
                     case Languages.Eng:
                         dict.Source = new Uri("/Ross;component/Languages/TranslatorMapWindow/StringResource.EN.xaml",
                                       UriKind.Relative);
+                        mapLayout.Properties.Local.Common.Language = DLLSettingsControlPointForMap.Model.Languages.EN;
 
                         break;
                     case Languages.Rus:
                         dict.Source = new Uri("/Ross;component/Languages/TranslatorMapWindow/StringResource.RU.xaml",
                                            UriKind.Relative);
+                        mapLayout.Properties.Local.Common.Language = DLLSettingsControlPointForMap.Model.Languages.RU;
                         break;
                     default:
                         dict.Source = new Uri("/Ross;component/Languages/TranslatorMapWindow/StringResource.RU.xaml",
                                       UriKind.Relative);
                         Properties.Local.Common.Language = Languages.Rus;
+                        mapLayout.Properties.Local.Common.Language = DLLSettingsControlPointForMap.Model.Languages.RU;
                         break;
                 }
 
                 mapLayout.Resources.MergedDictionaries.Add(dict);
+                
             }
             catch (Exception ex)
             {

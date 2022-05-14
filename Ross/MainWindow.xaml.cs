@@ -27,7 +27,9 @@ namespace Ross
     {
         
         private MapLayout mapLayout;
+        private MarkSizeWnd markSizeWnd;
 
+        private SizeValue sizeChat { get; set; }
         private SizeValue sizeSetting { get; set; }
         private SizeValue sizeTopTable { get; set; }
         private SizeValue sizeLeftDownTable { get; set; }
@@ -46,15 +48,20 @@ namespace Ross
 
             SetLanguageTables(Properties.Local.Common.Language);
             SetLanguageConnectionPanel(Properties.Local.Common.Language);
-            mapLayout = new MapLayout();
+            InitializeMapLayout();
             SetLanguageMapLayout(Properties.Local.Common.Language);
 
             SetChatSettings();
 
-
             InitMarkSizeWnd();
+        }
 
+        #region Map window
 
+        private void InitializeMapLayout()
+        {
+            mapLayout = new MapLayout();
+            mapLayout.Closing += MapLayout_Closing;
         }
 
         private void ToggleButton_Map_Click(object sender, RoutedEventArgs e)
@@ -66,12 +73,16 @@ namespace Ross
                 mapLayout.Show();
         }
 
-        private void Properties_OnUpdateLocalProperties(object sender, ModelsTablesDBLib.LocalProperties e)
+        private void MapLayout_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-  
+            ToggleButton_Map.IsChecked = false;
         }
 
+        #endregion
 
+
+
+        #region Chat
 
         private void SetChatSettings()
         {
@@ -98,11 +109,19 @@ namespace Ross
             UserControlChat.DrawMessageToChat(stationsMessages);
         }
 
+        #endregion
+
+
+
+        #region Properties
+
         private void SetLocalProperties()
         {
             try
             {
                 Properties.Local = SerializerJSON.Deserialize<ModelsTablesDBLib.LocalProperties>("LocalProperties");
+                Properties.Local.Common.PropertyChanged += Properties_OnPropertyChanged;
+                Properties.Local.Common.IsVisibleAZ = false;
             }
             catch (Exception ex)
             {
@@ -111,7 +130,30 @@ namespace Ross
         }
 
 
-        MarkSizeWnd markSizeWnd;
+        private void Properties_OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == nameof(Properties.Local.Common.AccessARM))
+                mapLayout.MapProperties.Local.Common.Access = ((AccessTypes)(byte)Properties.Local.Common.AccessARM);
+        }
+
+        private void Properties_OnUpdateLocalProperties(object sender, ModelsTablesDBLib.LocalProperties e)
+        {
+
+        }
+
+        private void Properties_OnPasswordChecked(object sender, bool e)
+        {
+            mapLayout.MapProperties.Local.Common.Access = e ? AccessTypes.Admin : AccessTypes.User;
+        }
+
+        private void Properties_OnUpdateLocalProperties_1(object sender, ModelsTablesDBLib.LocalProperties e)
+        {
+            SerializerJSON.Serialize<ModelsTablesDBLib.LocalProperties>(e, "LocalProperties");
+        }
+
+        #endregion
+
+
 
         private void InitMarkSizeWnd()
         {
@@ -120,30 +162,52 @@ namespace Ross
             if (markSizeWnd == null)
             {
                 markSizeWnd = new MarkSizeWnd();
-                sizeSetting = new SizeValue(DefaultSize.WidthDPanelSetting);
-                sizeTopTable = new SizeValue(DefaultSize.HeightDPanelJammer);
-                sizeLeftDownTable = new SizeValue(DefaultSize.WidthDPanelJamming);
-                sizeRightDownTable = new SizeValue(DefaultSize.WidthDPanelJamming);
+                sizeChat = new SizeValue(DefaultSize.sizeChat);
+                sizeSetting = new SizeValue(DefaultSize.sizeSetting);
+                sizeTopTable = new SizeValue(DefaultSize.sizeTopTable);
+                sizeLeftDownTable = new SizeValue(DefaultSize.sizeLeftDownTable);
+                sizeRightDownTable = new SizeValue(DefaultSize.sizeRightDownTable);
 
             }
 
             else
             {
-                sizeSetting = markSizeWnd.sizeSetting;
+                sizeChat = markSizeWnd.sizeSetting;
+                sizeSetting = markSizeWnd.sizeTopTable;
                 sizeTopTable = markSizeWnd.sizeTopTable;
                 sizeLeftDownTable = markSizeWnd.sizeLeftDownTable;
                 sizeRightDownTable = markSizeWnd.sizeRightDownTable;
             }
+
+            sizeChat.PropertyChanged += Size_PropertyChanged;
+            sizeSetting.PropertyChanged += Size_PropertyChanged;
+            sizeTopTable.PropertyChanged += Size_PropertyChanged;
+            sizeLeftDownTable.PropertyChanged += Size_PropertyChanged;
+            sizeRightDownTable.PropertyChanged += Size_PropertyChanged;
         }
 
-        private void Properties_OnPasswordChecked(object sender, bool e)
+        private void Size_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-                mapLayout.MapProperties.Local.Common.Access = e? AccessTypes.Admin : AccessTypes.User;
+
+            markSizeWnd.sizeChat = sizeChat;
+            markSizeWnd.sizeSetting = sizeSetting;
+            markSizeWnd.sizeTopTable = sizeTopTable;
+            markSizeWnd.sizeLeftDownTable = sizeLeftDownTable;
+            markSizeWnd.sizeRightDownTable = sizeRightDownTable;
+
+            SerializerJSON.Serialize<MarkSizeWnd>(markSizeWnd, AppDomain.CurrentDomain.BaseDirectory + "SizePanel.json");
         }
 
-        private void Properties_OnUpdateLocalProperties_1(object sender, ModelsTablesDBLib.LocalProperties e)
+        private void ToggleButton_Setting_UnChecked(object sender, RoutedEventArgs e)
         {
-                SerializerJSON.Serialize<ModelsTablesDBLib.LocalProperties>(e, "LocalProperties");
+            columnSettings.Width = GridLength.Auto;
         }
+
+        private void ToggleButton_TS_Unchecked(object sender, RoutedEventArgs e)
+        {
+            columnChat.Width = GridLength.Auto;
+        }
+
+      
     }
 }

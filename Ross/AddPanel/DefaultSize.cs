@@ -8,14 +8,14 @@ namespace Ross.AddPanel
 {
     public class DefaultSize
     {
-        public const double HeightDPanelJammer = 200;
+        public const double sizeChat = 200;
 
-        public const double WidthDPanelSetting = 300;
+        public const double sizeSetting = 300;
 
-        public const double WidthDPanelJamming = 90;
+        public const double sizeTopTable = 90;
 
-        public const double WidthDPanelSpoofing = 90;
+        public const double sizeLeftDownTable = 90;
 
-
+        public const double sizeRightDownTable = 90;
     }
 }

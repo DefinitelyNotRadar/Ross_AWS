@@ -65,12 +65,12 @@ namespace Ross.Map
             TranslateMapLayout(e);
         }
 
-        private void SettingToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void ToggleButton_Setting_Unchecked(object sender, RoutedEventArgs e)
         {
             ColumnSettings.Width = new GridLength(0, GridUnitType.Pixel);
         }
 
-        private void SettingToggleButton_Checked(object sender, RoutedEventArgs e)
+        private void ToggleButton_Setting_Checked(object sender, RoutedEventArgs e)
         {
             ColumnSettings.Width = new GridLength(0, GridUnitType.Auto);
 
