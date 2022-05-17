@@ -43,7 +43,7 @@
             <ColumnDefinition Width="Auto" MaxWidth="1000" x:Name="columnSettings"/>
             <ColumnDefinition Width="Auto" MaxWidth="1000" x:Name="columnChat"/>
             <ColumnDefinition Width="*"/>
-            
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -141,53 +141,70 @@
         </GridSplitter>
 
 
-        <Grid Grid.Row="0" Grid.Column="3">
+
+
+        <Grid Grid.Row="0" Grid.Column="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="2"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TabControl  Visibility="{Binding ElementName = ToggleButton_TopTable, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TabItem Header="{DynamicResource TabItemRES_FF}">
-                    <TempFWSControl:UserControlTempFWS x:Name="ucTemsFWS"/>
-                </TabItem>
-                <TabItem Header="{DynamicResource TabItemRES_FF_TD}">
-                    <ReconFWSControl:UserControlReconFWS x:Name="ucReconFWS"/>
-                </TabItem>
-                <TabItem Header="{DynamicResource TabItemRES_FF_J}">
-                    <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS"/>
-                </TabItem>
-                <TabItem Header="{DynamicResource TabItemRES_FHSS}">
-                    <ReconFHSSControl:UserControlReconFHSS x:Name="ucReconFHSS"/>
-                </TabItem>
-                <TabItem Header="{DynamicResource TabItemRES_FHSS_J}">
-                    <SuppressFHSSControl:UserControlSuppressFHSS x:Name="ucSuppressFHSS"/>
-                </TabItem>
-                <!--, Converter={StaticResource visibleConverter}-->
-                <TabItem Header="{DynamicResource TabItemSLJ}"  Visibility="{Binding Local.VoiceInterference.State, ElementName=basicProperties}" >
-                    <Grid>
-                        <Grid.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="#FF444444" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Grid.Background>
-                    </Grid>
-                </TabItem>
-            </TabControl>
+            <Grid Grid.Row="0" Grid.Column="0"  Visibility="{Binding ElementName = ToggleButton_TopTable, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TabControl>
+                    <TabItem Header="{DynamicResource TabItemRES_FF_TD}">
+                        <ReconFWSControl:UserControlReconFWS x:Name="ucReconFWS"/>
+                    </TabItem>
+                    <TabItem Header="{DynamicResource TabItemRES_FHSS}">
+                        <ReconFHSSControl:UserControlReconFHSS x:Name="ucReconFHSS"/>
+                    </TabItem>
+                </TabControl>
+
+
+                <TabControl Grid.Column="2">
+                    <TabItem Header="{DynamicResource TabItemRES_FF_J}">
+                        <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS"/>
+                    </TabItem>
+                    <TabItem Header="{DynamicResource TabItemRES_FHSS_J}">
+                        <SuppressFHSSControl:UserControlSuppressFHSS x:Name="ucSuppressFHSS"/>
+                    </TabItem>
+                    <!--, Converter={StaticResource visibleConverter}-->
+                    <TabItem Header="{DynamicResource TabItemSLJ}"  Visibility="{Binding Local.VoiceInterference.State, ElementName=basicProperties}" >
+                        <Grid>
+                            <Grid.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="Black" Offset="0"/>
+                                    <GradientStop Color="#FF444444" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+
+                <GridSplitter Grid.Column="1"
+                      Background="Gray"
+                      ShowsPreview="False" Width="2"
+                      HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                </GridSplitter>
+            </Grid>
 
             <GridSplitter x:Name="gridSplitterH2" Grid.Row="1"
                       Background="Gray"
                       ShowsPreview="False" Height="2"
                       HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <GridSplitter.Visibility>
-                    <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
-                        <Binding ElementName = "ToggleButton_TopTable" Path = "IsChecked"/>
-                        <Binding ElementName = "ToggleButton_DownTablePanel" Path = "IsChecked"/>
-                    </MultiBinding>
-            </GridSplitter.Visibility>
-        </GridSplitter>
+                <GridSplitter.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
+                            <Binding ElementName = "ToggleButton_TopTable" Path = "IsChecked"/>
+                            <Binding ElementName = "ToggleButton_DownTablePanel" Path = "IsChecked"/>
+                        </MultiBinding>
+                </GridSplitter.Visibility>
+            </GridSplitter>
 
             
             
@@ -236,7 +253,7 @@
         </Grid>
 
 
-        <StatusBar Grid.Row="3" Grid.ColumnSpan="4">
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="5">
             <StatusBarItem>
                 <ControlConnect:ConnectionControl x:Name="DbControlConnection"   
                                                   LEDClientVisible="False" 
