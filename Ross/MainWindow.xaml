@@ -158,17 +158,17 @@
                 </Grid.ColumnDefinitions>
 
                 <TabControl>
-                    <TabItem Header="{DynamicResource TabItemRES_FF_TD}">
-                        <ReconFWSControl:UserControlReconFWS x:Name="ucReconFWS"/>
+                    <TabItem Header="{DynamicResource TabItemRES_FF}">
+                        <TempFWSControl:UserControlTempFWS x:Name="ucReconFWS"/>
                     </TabItem>
-                    <TabItem Header="{DynamicResource TabItemRES_FHSS}">
+                    <TabItem Header="{DynamicResource TabItemRES_FF_J}">
                         <ReconFHSSControl:UserControlReconFHSS x:Name="ucReconFHSS"/>
                     </TabItem>
                 </TabControl>
 
 
                 <TabControl Grid.Column="2">
-                    <TabItem Header="{DynamicResource TabItemRES_FF_J}">
+                    <TabItem Header="{DynamicResource TabItemRES_FHSS}">
                         <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FHSS_J}">

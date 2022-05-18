@@ -230,6 +230,7 @@
     <Compile Include="Converters\DoubleGridLengthConverter.cs" />
     <Compile Include="Converters\MultiBooleanToVisibilityConverter.cs" />
     <Compile Include="JSON\SerializerJSON.cs" />
+    <Compile Include="MainWindowViewSize.cs" />
     <Compile Include="Map\MapLayout.xaml.cs">
       <DependentUpon>MapLayout.xaml</DependentUpon>
     </Compile>
