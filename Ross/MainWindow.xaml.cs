@@ -27,13 +27,7 @@ namespace Ross
     {
         
         private MapLayout mapLayout;
-        private MarkSizeWnd markSizeWnd;
-
-        private SizeValue sizeChat { get; set; }
-        private SizeValue sizeSetting { get; set; }
-        private SizeValue sizeTopTable { get; set; }
-        private SizeValue sizeLeftDownTable { get; set; }
-        private SizeValue sizeRightDownTable { get; set; }
+        MainWindowViewSize MainWindowViewSize;
 
 
         public MainWindow()
@@ -53,7 +47,8 @@ namespace Ross
 
             SetChatSettings();
 
-            InitMarkSizeWnd();
+            MainWindowViewSize = new MainWindowViewSize();
+            this.DataContext = MainWindowViewSize;
         }
 
         #region Map window
@@ -154,58 +149,14 @@ namespace Ross
         #endregion
 
 
-
-        private void InitMarkSizeWnd()
-        {
-            markSizeWnd = SerializerJSON.Deserialize<MarkSizeWnd>(AppDomain.CurrentDomain.BaseDirectory + "SizePanel.json");
-
-            if (markSizeWnd == null)
-            {
-                markSizeWnd = new MarkSizeWnd();
-                sizeChat = new SizeValue(DefaultSize.sizeChat);
-                sizeSetting = new SizeValue(DefaultSize.sizeSetting);
-                sizeTopTable = new SizeValue(DefaultSize.sizeTopTable);
-                sizeLeftDownTable = new SizeValue(DefaultSize.sizeLeftDownTable);
-                sizeRightDownTable = new SizeValue(DefaultSize.sizeRightDownTable);
-
-            }
-
-            else
-            {
-                sizeChat = markSizeWnd.sizeSetting;
-                sizeSetting = markSizeWnd.sizeTopTable;
-                sizeTopTable = markSizeWnd.sizeTopTable;
-                sizeLeftDownTable = markSizeWnd.sizeLeftDownTable;
-                sizeRightDownTable = markSizeWnd.sizeRightDownTable;
-            }
-
-            sizeChat.PropertyChanged += Size_PropertyChanged;
-            sizeSetting.PropertyChanged += Size_PropertyChanged;
-            sizeTopTable.PropertyChanged += Size_PropertyChanged;
-            sizeLeftDownTable.PropertyChanged += Size_PropertyChanged;
-            sizeRightDownTable.PropertyChanged += Size_PropertyChanged;
-        }
-
-        private void Size_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-
-            markSizeWnd.sizeChat = sizeChat;
-            markSizeWnd.sizeSetting = sizeSetting;
-            markSizeWnd.sizeTopTable = sizeTopTable;
-            markSizeWnd.sizeLeftDownTable = sizeLeftDownTable;
-            markSizeWnd.sizeRightDownTable = sizeRightDownTable;
-
-            SerializerJSON.Serialize<MarkSizeWnd>(markSizeWnd, AppDomain.CurrentDomain.BaseDirectory + "SizePanel.json");
-        }
-
         private void ToggleButton_Setting_UnChecked(object sender, RoutedEventArgs e)
         {
-            columnSettings.Width = GridLength.Auto;
+            //columnSettings.Width = GridLength.Auto;
         }
 
         private void ToggleButton_TS_Unchecked(object sender, RoutedEventArgs e)
         {
-            columnChat.Width = GridLength.Auto;
+            //columnChat.Width = GridLength.Auto;
         }
 
       

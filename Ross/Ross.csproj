@@ -228,6 +228,7 @@
     <Compile Include="Converters\BoolToRowHeightConverter.cs" />
     <Compile Include="Converters\CoordViewConverter.cs" />
     <Compile Include="Converters\DoubleGridLengthConverter.cs" />
+    <Compile Include="Converters\MultiBindingGridLengthConverter.cs" />
     <Compile Include="Converters\MultiBooleanToVisibilityConverter.cs" />
     <Compile Include="JSON\SerializerJSON.cs" />
     <Compile Include="MainWindowViewSize.cs" />
