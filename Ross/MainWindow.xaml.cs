@@ -17,6 +17,7 @@ using Ross.AddPanel;
 using Ross.JSON;
 using Ross.Map;
 using UserControl_Chat;
+using WpfControlLibrary1;
 
 namespace Ross
 {
@@ -107,6 +108,8 @@ namespace Ross
         #endregion
 
 
+      
+
 
         #region Properties
 
@@ -159,6 +162,10 @@ namespace Ross
             //columnChat.Width = GridLength.Auto;
         }
 
-      
+
+        private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+  
+        }
     }
 }

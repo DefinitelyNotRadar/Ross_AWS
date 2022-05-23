@@ -210,6 +210,9 @@
     <Reference Include="WPFControlConnection">
       <HintPath>dll\WPFControlConnection.dll</HintPath>
     </Reference>
+    <Reference Include="WpfControlLibrary1">
+      <HintPath>dll\WpfControlLibrary1.dll</HintPath>
+    </Reference>
     <Reference Include="WpfMapControl">
       <HintPath>dll\WpfMapControl.dll</HintPath>
     </Reference>

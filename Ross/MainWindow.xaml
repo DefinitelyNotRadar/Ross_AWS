@@ -16,8 +16,9 @@
         xmlns:propertyGrid="clr-namespace:ControlProperties;assembly=ControlProperties"
         xmlns:converters="clr-namespace:Ross.Converters"
         xmlns:chat="clr-namespace:UserControl_Chat;assembly=UserControl_Chat"
+        xmlns:evaTable="clr-namespace:WpfControlLibrary1;assembly=WpfControlLibrary1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowState="Maximized">
+        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" PreviewKeyUp="Window_PreviewKeyUp">
 
 
     <Window.Resources>
@@ -37,8 +38,11 @@
 
 
     <Grid  x:Name="RDGrid" Background="#333">
+        
 
-        <Grid.Resources>
+
+
+    <Grid.Resources>
             <converters:DoubleGridLengthConverter x:Key="DoubleGridLengthConverter"/>
         </Grid.Resources>
 
@@ -183,17 +187,7 @@
                     <TabItem Header="{DynamicResource TabItemRES_FHSS_J}">
                         <SuppressFHSSControl:UserControlSuppressFHSS x:Name="ucSuppressFHSS"/>
                     </TabItem>
-                    <!--, Converter={StaticResource visibleConverter}-->
-                    <TabItem Header="{DynamicResource TabItemSLJ}"  Visibility="{Binding Local.VoiceInterference.State, ElementName=basicProperties}" >
-                        <Grid>
-                            <Grid.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="Black" Offset="0"/>
-                                    <GradientStop Color="#FF444444" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Grid.Background>
-                        </Grid>
-                    </TabItem>
+                    <!--, Converter={StaticResource visibleConverter}-->                  
                 </TabControl>
             </Grid>
 
@@ -201,12 +195,12 @@
                       Background="Gray"
                       ShowsPreview="False" Height="2"
                       HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                <GridSplitter.Visibility>
+                <!--<GridSplitter.Visibility>
                         <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
                             <Binding Path = "sizeTopTable.Visible"/>
                             <Binding Path = "sizeDownTable.Visible"/>
                         </MultiBinding>
-                </GridSplitter.Visibility>
+                </GridSplitter.Visibility>-->
             </GridSplitter>
 
             

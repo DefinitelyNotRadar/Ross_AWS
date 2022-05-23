@@ -2,6 +2,7 @@
 using System.Windows;
 using DLLSettingsControlPointForMap.Model;
 using Ross.JSON;
+using System.Windows.Input;
 
 namespace Ross.Map
 {
@@ -16,6 +17,7 @@ namespace Ross.Map
             Properties.OnDefaultButtonClick += Properties_OnDefaultButtonClick;
             Properties.OnApplyButtonClick += Properties_OnApplyButtonClick;
             LoadSettings();
+            InitHotKeys();
         }
 
         public SettingsControlForMap MapProperties
@@ -26,6 +28,28 @@ namespace Ross.Map
                 Properties = value;
             }
         }
+
+
+        #region Hot Keys
+
+        private void InitHotKeys()
+        {
+            var newCmd = new RoutedCommand();
+            newCmd.InputGestures.Add(new KeyGesture(Key.C, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(newCmd, OpenEvaTable));
+        }
+
+        private void OpenEvaTable(object sender, ExecutedRoutedEventArgs e)
+        {
+           if(evaTable.Visibility == Visibility.Visible)
+                evaTable.Visibility = Visibility.Collapsed;
+           else evaTable.Visibility = Visibility.Visible;
+        }
+
+        #endregion
+
+
+        #region Properties
 
         private void Properties_OnApplyButtonClick(object sender, LocalProperties e)
         {
@@ -42,11 +66,7 @@ namespace Ross.Map
             Properties.Local.ColorsMap.ColorSectorRJ = ColorsForMap.Yellow;
         }
 
-        public void TranslateMapLayout(ModelsTablesDBLib.Languages languages)
-        {
-           
-        }
-
+    
         private void LoadSettings()
         {
             try
@@ -59,11 +79,27 @@ namespace Ross.Map
             }
         }
        
-
         private void Properties_OnLanguageChanged(object sender, ModelsTablesDBLib.Languages e)
         {
             TranslateMapLayout(e);
         }
+
+        private void Properties_OnPathMapChanged(object sender, PathMap e)
+        {
+        }
+
+        #endregion
+
+
+        #region Map
+
+        public void TranslateMapLayout(ModelsTablesDBLib.Languages languages)
+        {
+
+        }
+
+        #endregion
+
 
         private void ToggleButton_Setting_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -73,11 +109,6 @@ namespace Ross.Map
         private void ToggleButton_Setting_Checked(object sender, RoutedEventArgs e)
         {
             ColumnSettings.Width = new GridLength(0, GridUnitType.Auto);
-
-        }
-
-        private void Properties_OnPathMapChanged(object sender, PathMap e)
-        {
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

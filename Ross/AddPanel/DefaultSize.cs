@@ -8,9 +8,9 @@ namespace Ross.AddPanel
 {
     public class DefaultSize
     {
-        public const double sizeChat = 0;
+        public const double sizeChat = 200;
 
-        public const double sizeSetting = 0;
+        public const double sizeSetting = 200;
 
         public const double sizeTopTable = 200;
 
