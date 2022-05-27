@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Translation>
 
-  <Translate ID="Common">
-    <RU>Общее</RU>
-    <EN>Common</EN>
-    <AZ>Ümumi</AZ>
-  </Translate>
+	<Translate ID="Common">
+		<RU>Общее</RU>
+		<EN>Common</EN>
+		<AZ>Ümumi</AZ>
+	</Translate>
 
 	<Translate ID="Language">
 		<Rus>Язык</Rus>

@@ -1,11 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.IO;
+using Newtonsoft.Json;
 
 namespace Ross.JSON
 {
@@ -13,18 +7,16 @@ namespace Ross.JSON
     {
         internal static void Serialize<T>(this T arg, string fileName)
         {
-            string res = JsonConvert.SerializeObject(arg, Newtonsoft.Json.Formatting.Indented);
+            var res = JsonConvert.SerializeObject(arg, Formatting.Indented);
             File.WriteAllText(fileName, res);
         }
 
         internal static T Deserialize<T>(string fileName)
         {
-
-            string json = (File.Exists(fileName)) ? File.ReadAllText(fileName) : string.Empty;
-            T res = JsonConvert.DeserializeObject<T>(json);
+            var json = File.Exists(fileName) ? File.ReadAllText(fileName) : string.Empty;
+            var res = JsonConvert.DeserializeObject<T>(json);
 
             return res;
-
         }
     }
 }

@@ -1,0 +1,110 @@
+﻿using ModelsTablesDBLib;
+using System;
+
+namespace Ross
+{
+    public partial class MainWindow
+    {
+        public void InitTables()
+        {
+            // Таблица АСП
+            ucASP.OnAddRecord += OnAddRecord;
+            ucASP.OnChangeRecord += OnChangeRecord;
+            ucASP.OnDeleteRecord += OnDeleteRecord;
+            ucASP.OnClearRecords += OnClearRecords;
+            ucASP.OnSelectedRow += UcASP_OnSelectedRow;
+            ucASP.OnIsWindowPropertyOpen += UcASP_OnIsWindowPropertyOpen;
+            ucASP.OnAddTableToReport += OnAddTableToReport;
+
+
+            // Таблица Запрещенныее частоты
+            ucSpecFreqForbidden.OnAddRecord += OnAddRecord;
+            ucSpecFreqForbidden.OnChangeRecord += OnChangeRecord;
+            ucSpecFreqForbidden.OnDeleteRecord += OnDeleteRecord;
+            ucSpecFreqForbidden.OnClearRecords += OnClearRecords;            
+            ucSpecFreqForbidden.OnClearRecords += OnClearRecordsByFilter;
+            ucSpecFreqForbidden.OnIsWindowPropertyOpen += UcSpecFreqForbidden_OnIsWindowPropertyOpen;
+            ucSpecFreqForbidden.OnAddTableToReport += OnAddTableToReport;
+
+            // Таблица Важные частоты
+            ucSpecFreqImportant.OnAddRecord += OnAddRecord;
+            ucSpecFreqImportant.OnChangeRecord += OnChangeRecord;
+            ucSpecFreqImportant.OnDeleteRecord += OnDeleteRecord;
+            ucSpecFreqImportant.OnClearRecords += OnClearRecords;
+            ucSpecFreqImportant.OnClearRecords += OnClearRecordsByFilter;
+            ucSpecFreqImportant.OnIsWindowPropertyOpen += UcSpecFreqImportant_OnIsWindowPropertyOpen;
+            ucSpecFreqImportant.OnAddTableToReport += OnAddTableToReport;
+
+            // Таблица Известные частоты
+            ucSpecFreqKnown.OnAddRecord += OnAddRecord;
+            ucSpecFreqKnown.OnChangeRecord += OnChangeRecord;
+            ucSpecFreqKnown.OnDeleteRecord += OnDeleteRecord;
+            ucSpecFreqKnown.OnClearRecords += OnClearRecords;
+            ucSpecFreqKnown.OnClearRecords += OnClearRecordsByFilter;
+            ucSpecFreqKnown.OnIsWindowPropertyOpen += UcSpecFreqKnown_OnIsWindowPropertyOpen;
+            ucSpecFreqKnown.OnAddTableToReport += OnAddTableToReport;
+
+            // Таблица Сектора и диапазоны РР
+            ucSRangesRecon.OnAddRecord += OnAddRecord;
+            ucSRangesRecon.OnChangeRecord += OnChangeRecord;
+            ucSRangesRecon.OnDeleteRecord += OnDeleteRecord;
+            ucSRangesRecon.OnClearRecords += OnClearRecords;
+            ucSRangesRecon.OnClearRecords += OnClearRecordsByFilter;
+            ucSRangesRecon.OnLoadDefaultSRanges += UcSRangesRecon_OnLoadDefaultSRanges;
+            ucSRangesRecon.OnIsWindowPropertyOpen += UcSRangesRecon_OnIsWindowPropertyOpen;
+            ucSRangesRecon.OnAddTableToReport += OnAddTableToReport;
+
+            // Таблица Сектора и диапазоны РП
+            ucSRangesSuppr.OnAddRecord += OnAddRecord;
+            ucSRangesSuppr.OnChangeRecord += OnChangeRecord;
+            ucSRangesSuppr.OnDeleteRecord += OnDeleteRecord;
+            ucSRangesSuppr.OnClearRecords += OnClearRecords;
+            ucSRangesSuppr.OnClearRecords += OnClearRecordsByFilter;
+            ucSRangesSuppr.OnLoadDefaultSRanges += UcSRangesSuppr_OnLoadDefaultSRanges;
+            ucSRangesSuppr.OnIsWindowPropertyOpen += UcSRangesSuppr_OnIsWindowPropertyOpen;
+            ucSRangesSuppr.OnAddTableToReport += OnAddTableToReport;
+
+            // Таблица ИРИ ФРЧ
+            ucTempFWS.OnDeleteRecord += UcTemsFWS_OnDeleteRecord;
+            ucTempFWS.OnClearRecords += OnClearRecords;
+            ucTempFWS.OnAddFWS_RS += UcTemsFWS_OnAddFWS_RS;
+            ucTempFWS.OnAddFWS_TD += UcTemsFWS_OnAddFWS_TD;
+            ucTempFWS.OnSelectedRow += UcTemsFWS_OnSelectedRow;
+            ucTempFWS.OnGetExecBear += UcTemsFWS_OnGetExecBear;
+            ucTempFWS.OnGetKvBear += UcTemsFWS_OnGetKvBear;
+            ucTempFWS.OnSendFreqCRRD += UcTemsFWS_OnSendFreqCRRD;
+            ucTempFWS.OnSendFreqCRRD2 += UcTemsFWS_OnSendFreqCRRD2;
+            ucTempFWS.OnAddTableToReport += OnAddTableToReport;
+
+            // Таблица ИРИ ФРЧ РП
+            ucSuppressFWS.OnAddRecord += OnAddRecord;
+            ucSuppressFWS.OnChangeRecord += OnChangeRecord;
+            ucSuppressFWS.OnDeleteRecord += OnDeleteRecord;
+            ucSuppressFWS.OnClearRecords += OnClearRecords;
+            ucSuppressFWS.OnClearRecords += OnClearRecordsByFilter;
+            ucSuppressFWS.OnDeleteRange += UcSuppressFWS_OnDeleteRange;
+            ucSuppressFWS.OnAddRange += UcSuppressFWS_OnAddRange;
+            ucSuppressFWS.OnGetExecBear += UcSuppressFWS_OnGetExecBear;
+            ucSuppressFWS.OnSendFreqCRRD += UcSuppressFWS_OnSendFreqCRRD;
+            ucSuppressFWS.OnSendFreqCRRD2 += UcSuppressFWS_OnSendFreqCRRD2;
+            ucSuppressFWS.OnIsWindowPropertyOpen += UcSuppressFWS_OnIsWindowPropertyOpen;
+            ucSuppressFWS.OnAddTableToReport += OnAddTableToReport;
+
+            // Таблица ИРИ ППРЧ
+            ucReconFHSS.OnDeleteRecord += OnDeleteRecord;
+            ucReconFHSS.OnClearRecords += OnClearRecords;
+            ucReconFHSS.OnSelectedRow += UcReconFHSS_OnSelectedRow;
+            ucReconFHSS.OnAddFHSS_RS_Recon += UcReconFHSS_OnAddFHSS_RS_Recon;
+            ucReconFHSS.OnAddTableToReport += OnAddTableToReport;
+
+            // Таблица ИРИ ППРЧ РП
+            ucSuppressFHSS.OnAddRecord += OnAddRecord;
+            ucSuppressFHSS.OnChangeRecord += OnChangeRecord;
+            ucSuppressFHSS.OnDeleteRecord += OnDeleteRecord;
+            ucSuppressFHSS.OnClearRecords += OnClearRecords;
+            ucSuppressFHSS.OnIsWindowPropertyOpen += UcSuppressFHSS_OnIsWindowPropertyOpen;
+            ucSuppressFHSS.OnIsWindowPropertyOpenExc += UcSuppressFHSS_OnIsWindowPropertyOpenExc;
+            ucSuppressFHSS.OnAddTableToReport += OnAddTableToReport;
+        }
+    }
+}

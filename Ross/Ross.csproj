@@ -102,6 +102,9 @@
     <Reference Include="DtedLibrary">
       <HintPath>dll\DtedLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Errors">
+      <HintPath>dll\Errors.dll</HintPath>
+    </Reference>
     <Reference Include="Formation_RN_RD_CC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\Formation_RN_RD_CC.dll</HintPath>
@@ -111,6 +114,12 @@
     </Reference>
     <Reference Include="ImageRotateControlLibrary">
       <HintPath>dll\ImageRotateControlLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="InheritorsEventArgs">
+      <HintPath>dll\InheritorsEventArgs.dll</HintPath>
+    </Reference>
+    <Reference Include="InheritorsException">
+      <HintPath>dll\InheritorsException.dll</HintPath>
     </Reference>
     <Reference Include="Lib">
       <HintPath>dll\Lib.dll</HintPath>
@@ -131,6 +140,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OperationsTablesDBLib">
+      <HintPath>dll\OperationsTablesDBLib.dll</HintPath>
+    </Reference>
     <Reference Include="protobuf-net, Version=2.3.15.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <HintPath>..\packages\protobuf-net.2.3.15\lib\net40\protobuf-net.dll</HintPath>
     </Reference>
@@ -142,6 +154,9 @@
     </Reference>
     <Reference Include="SectorsRangesControl">
       <HintPath>dll\SectorsRangesControl.dll</HintPath>
+    </Reference>
+    <Reference Include="ServerDBLib">
+      <HintPath>dll\ServerDBLib.dll</HintPath>
     </Reference>
     <Reference Include="SpecialFrequenciesControl">
       <HintPath>dll\SpecialFrequenciesControl.dll</HintPath>
@@ -228,6 +243,11 @@
     <Compile Include="AddPanel\DefaultSize.cs" />
     <Compile Include="AddPanel\MarkSizeWnd.cs" />
     <Compile Include="AddPanel\SizeValue.cs" />
+    <Compile Include="ClientDB\ConnectDB.cs" />
+    <Compile Include="ClientDB\HandlerUpTables.cs" />
+    <Compile Include="ClientDB\InitDb.cs" />
+    <Compile Include="Table\InitTables.cs" />
+    <Compile Include="Table\RecordToDB.cs" />
     <Compile Include="Converters\BoolToRowHeightConverter.cs" />
     <Compile Include="Converters\CoordViewConverter.cs" />
     <Compile Include="Converters\DoubleGridLengthConverter.cs" />
@@ -239,6 +259,7 @@
       <DependentUpon>MapLayout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Map\StatusBarModel.cs" />
+    <Compile Include="Table\Function.cs" />
     <Page Include="Languages\TranslatorConnectionPanel\StringResource.EN.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -344,9 +365,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DB\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Property.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -3,11 +3,11 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
-    <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-85" Top="-5" Right="0" Bottom="0"/>
+    <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-85" Top="-5" Right="0" Bottom="0" />
     <system:Double x:Key="PropertyGridMinWidthParamsFWS">185</system:Double>
-    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-130" Top="-5" Right="0" Bottom="0"/>
+    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-130" Top="-5" Right="0" Bottom="0" />
     <system:Double x:Key="PropertyGridMinWidthCoordFWS">155</system:Double>
-    <Thickness x:Key="PropertyGridMarginCoordASP" Left="-145" Top="0" Right="0" Bottom="0"/>
+    <Thickness x:Key="PropertyGridMarginCoordASP" Left="-145" Top="0" Right="0" Bottom="0" />
     <system:Double x:Key="PropertyGridMinWidthCoordASP">140</system:Double>
     <system:Double x:Key="PropertyGridMinWidthRole">140</system:Double>
 

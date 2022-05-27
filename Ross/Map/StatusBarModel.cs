@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace Ross.Map
 {
     public partial class MapLayout : Window
     {
-        private double aJSValue = 0;
-        private double rESFWSTDValue = 0;
-        private double rESFWSJValue = 0;
-        private double rESFUSSTDValue = 0;
-        private double rESFUSSJValue = 0;
+        private double aJSValue;
+        private double rESFUSSJValue;
+        private double rESFUSSTDValue;
+        private double rESFWSJValue;
+        private double rESFWSTDValue;
 
 
-        public double AJSValue {
-            get { 
-                return aJSValue; 
-            }
-            set {
-                aJSValue = value; 
+        public double AJSValue
+        {
+            get => aJSValue;
+            set
+            {
+                aJSValue = value;
                 AJS.Text = value.ToString();
             }
         }
@@ -30,10 +24,7 @@ namespace Ross.Map
 
         public double RESFWSTDValue
         {
-            get
-            {
-                return rESFWSTDValue;
-            }
+            get => rESFWSTDValue;
             set
             {
                 rESFWSTDValue = value;
@@ -44,10 +35,7 @@ namespace Ross.Map
 
         public double RESFWSJValue
         {
-            get
-            {
-                return rESFWSJValue;
-            }
+            get => rESFWSJValue;
             set
             {
                 rESFWSJValue = value;
@@ -57,10 +45,7 @@ namespace Ross.Map
 
         public double RESFUSSTDValue
         {
-            get
-            {
-                return rESFUSSTDValue;
-            }
+            get => rESFUSSTDValue;
             set
             {
                 rESFUSSTDValue = value;
@@ -70,10 +55,7 @@ namespace Ross.Map
 
         public double RESFUSSJValue
         {
-            get
-            {
-                return rESFUSSJValue;
-            }
+            get => rESFUSSJValue;
             set
             {
                 rESFUSSJValue = value;

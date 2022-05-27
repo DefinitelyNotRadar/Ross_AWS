@@ -1,18 +1,19 @@
-﻿using Ross.AddPanel;
-using Ross.JSON;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using Ross.AddPanel;
+using Ross.JSON;
 
 namespace Ross
 {
     public class MainWindowViewSize : INotifyPropertyChanged
     {
         private MarkSizeWnd markSizeWnd;
+
+        public MainWindowViewSize()
+        {
+            InitMarkSizeWnd();
+        }
 
         public SizeValue sizeChat { get; set; }
         public SizeValue sizeSetting { get; set; }
@@ -21,14 +22,10 @@ namespace Ross
 
         public SizeValue sizeLeftDownTable { get; set; }
 
-        public MainWindowViewSize()
-        {
-            InitMarkSizeWnd();
-        }
-
         private void InitMarkSizeWnd()
         {
-            markSizeWnd = SerializerJSON.Deserialize<MarkSizeWnd>(AppDomain.CurrentDomain.BaseDirectory + "SizePanel.json");
+            markSizeWnd =
+                SerializerJSON.Deserialize<MarkSizeWnd>(AppDomain.CurrentDomain.BaseDirectory + "SizePanel.json");
 
             if (markSizeWnd == null)
             {
@@ -81,14 +78,14 @@ namespace Ross
         }
 
         private void Size_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {            
+        {
             markSizeWnd.sizeChat = sizeChat;
             markSizeWnd.sizeSetting = sizeSetting;
             markSizeWnd.sizeTopTable = sizeTopTable;
             markSizeWnd.sizeLeftDownTable = sizeLeftDownTable;
             markSizeWnd.sizeDownTable = sizeDownTable;
 
-            SerializerJSON.Serialize<MarkSizeWnd>(markSizeWnd, AppDomain.CurrentDomain.BaseDirectory + "SizePanel.json");
+            markSizeWnd.Serialize(AppDomain.CurrentDomain.BaseDirectory + "SizePanel.json");
         }
 
 
@@ -101,8 +98,6 @@ namespace Ross
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-
         #endregion
-
     }
 }

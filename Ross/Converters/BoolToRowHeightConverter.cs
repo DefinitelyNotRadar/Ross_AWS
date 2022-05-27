@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
@@ -13,11 +9,11 @@ namespace Ross.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool isChacked = (bool)value;
+            var isChacked = (bool)value;
             GridLength gridLength;
-            if (isChacked) 
+            if (isChacked)
                 gridLength = new GridLength(1, GridUnitType.Star);
-            else 
+            else
                 gridLength = new GridLength(0, GridUnitType.Star);
 
             return gridLength;

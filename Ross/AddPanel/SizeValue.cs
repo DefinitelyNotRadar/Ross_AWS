@@ -1,23 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ross.AddPanel
 {
     public class SizeValue : INotifyPropertyChanged
     {
-        private double _initial = 0;
+        private readonly double _initial = 0;
+        private double _current;
         private double _default;
+
+        private double _last;
 
         private bool _visible;
 
+        public SizeValue(double Deafult)
+        {
+            _default = Deafult;
+            _last = Deafult;
+            Visible = true;
+        }
+
+        public SizeValue()
+        {
+            _default = 100;
+            _last = 100;
+            Visible = true;
+        }
+
         public bool Visible
         {
-            get { return _visible; }
+            get => _visible;
             set
             {
                 if (_visible != value)
@@ -29,11 +41,9 @@ namespace Ross.AddPanel
             }
         }
 
-        private double _current;
-
         public double Current
         {
-            get { return _current; }
+            get => _current;
             set
             {
                 if (_current != value)
@@ -41,58 +51,34 @@ namespace Ross.AddPanel
                     _last = _current;
                     _current = value;
                     OnPropertyChanged();
-
                 }
             }
         }
-
-        private double _last;
 
         public double Last
         {
-            get { return _last; }
+            get => _last;
             set
             {
-                if (_last != value)
-                {
-                    _last = value;
-                }
+                if (_last != value) _last = value;
             }
-        }
-
-        public SizeValue(double Deafult)
-        {
-            _default = Deafult;
-            _last = Deafult;
-            Visible = true;
-
-        }
-
-        public SizeValue()
-        {
-            _default = 100;
-            _last = 100;
-            Visible = true;
-
-        }
-
-        public void SetDefault()
-        {
-
-        }
-
-        private void UpdateValue()
-        {
-            Current = (bool)Visible ? _last : _initial;
         }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public void SetDefault()
+        {
+        }
+
+        private void UpdateValue()
+        {
+            Current = Visible ? _last : _initial;
+        }
+
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-
         }
     }
 }

@@ -1,11 +1,7 @@
-﻿using DLLSettingsControlPointForMap.Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
+using DLLSettingsControlPointForMap.Model;
 
 namespace Ross.Converters
 {
@@ -15,11 +11,11 @@ namespace Ross.Converters
         {
             if ((CoordView)value == CoordView.Dd)
                 return "DD";
-            else if ((CoordView)value == CoordView.DMm)
+            if ((CoordView)value == CoordView.DMm)
                 return "DD_MM_mm";
-            else if ((CoordView)value == CoordView.DMSs)
+            if ((CoordView)value == CoordView.DMSs)
                 return "DD_MM_SS_ss";
-            else return "DD_dd";
+            return "DD_dd";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

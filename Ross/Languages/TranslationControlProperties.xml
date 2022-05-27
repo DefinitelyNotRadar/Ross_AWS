@@ -1,219 +1,223 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Translation>
 
-  <Translate ID="Properties">
-    <Rus>настройки</Rus>
-    <Eng>properties</Eng>
-    <Azr>tənzimləmə</Azr>
-  </Translate>
+	<Translate ID="Properties">
+		<Rus>настройки</Rus>
+		<Eng>properties</Eng>
+		<Azr>tənzimləmə</Azr>
+	</Translate>
 
-  <Translate ID="Error">
-    <Rus>Ошибка</Rus>
-    <Eng>Error</Eng>
-    <Azr>Səhv!</Azr>
-  </Translate>
+	<Translate ID="Error">
+		<Rus>Ошибка</Rus>
+		<Eng>Error</Eng>
+		<Azr>Səhv!</Azr>
+	</Translate>
 
-  <Translate ID="Global">
-    <Rus>Глобальные</Rus>
-    <Eng>Global</Eng>
-    <Azr>Qlobal</Azr>
-  </Translate>
+	<Translate ID="Global">
+		<Rus>Глобальные</Rus>
+		<Eng>Global</Eng>
+		<Azr>Qlobal</Azr>
+	</Translate>
 
-  <Translate ID="Local">
-    <Rus>Локальные</Rus>
-    <Eng>Local</Eng>
-    <Azr>Lokal</Azr>
-  </Translate>
+	<Translate ID="Local">
+		<Rus>Локальные</Rus>
+		<Eng>Local</Eng>
+		<Azr>Lokal</Azr>
+	</Translate>
 
-  <Translate ID="Common">
-    <Rus>Общие</Rus>
-    <Eng>Common</Eng>
-    <Azr>Ümumi</Azr>
-  </Translate>
+	<Translate ID="Common">
+		<Rus>Общие</Rus>
+		<Eng>Common</Eng>
+		<Azr>Ümumi</Azr>
+	</Translate>
 
-  <Translate ID="ADSB">
-    <Rus>РПУ 1090</Rus>
-    <Eng>RX 1090</Eng>
-    <Azr>RQQ 1090</Azr>
-  </Translate>
+	<Translate ID="ADSB">
+		<Rus>РПУ 1090</Rus>
+		<Eng>RX 1090</Eng>
+		<Azr>RQQ 1090</Azr>
+	</Translate>
 
-  <Translate ID="DbServer">
-    <Rus>БД</Rus>
-    <Eng>DB</Eng>
-    <Azr>BM</Azr>
-  </Translate>
+	<Translate ID="DbServer">
+		<Rus>БД</Rus>
+		<Eng>DB</Eng>
+		<Azr>BM</Azr>
+	</Translate>
 
-  <Translate ID="DspServer">
-    <Rus>ОП</Rus>
-    <Eng>DDF</Eng>
-    <Azr>AP</Azr>
-  </Translate>
+	<Translate ID="DspServer">
+		<Rus>ОП</Rus>
+		<Eng>DDF</Eng>
+		<Azr>AP</Azr>
+	</Translate>
 
-  <Translate ID="EdServer">
-    <Rus>ОД</Rus>
-    <Eng>DES</Eng>
-    <Azr>@DES</Azr>
-  </Translate>
+	<Translate ID="EdServer">
+		<Rus>ОД</Rus>
+		<Eng>DES</Eng>
+		<Azr>@DES</Azr>
+	</Translate>
 
-  <Translate ID="ARONE1">
-    <Rus>КРПУ1</Rus>
-    <Eng>CRRX1</Eng>
-    <Azr>YRQQ1</Azr>
-  </Translate>
+	<Translate ID="ARONE1">
+		<Rus>КРПУ1</Rus>
+		<Eng>CRRX1</Eng>
+		<Azr>YRQQ1</Azr>
+	</Translate>
 
-  <Translate ID="ARONE2">
-    <Rus>КРПУ2</Rus>
-    <Eng>CRRX2</Eng>
-    <Azr>YRQQ2</Azr>
-  </Translate>
+	<Translate ID="ARONE2">
+		<Rus>КРПУ2</Rus>
+		<Eng>CRRX2</Eng>
+		<Azr>YRQQ2</Azr>
+	</Translate>
 
-  <Translate ID="ARD1">
-    <Rus>ОПУ1</Rus>
-    <Eng>RSD1</Eng>
-    <Azr>@DDC1</Azr>
-  </Translate>
+	<Translate ID="ARD1">
+		<Rus>ОПУ1</Rus>
+		<Eng>RSD1</Eng>
+		<Azr>@DDC1</Azr>
+	</Translate>
 
-  <Translate ID="ARD2">
-    <Rus>ОПУ2</Rus>
-    <Eng>RSD2</Eng>
-    <Azr>@DDC2</Azr>
-  </Translate>
+	<Translate ID="ARD2">
+		<Rus>ОПУ2</Rus>
+		<Eng>RSD2</Eng>
+		<Azr>@DDC2</Azr>
+	</Translate>
 
-  <Translate ID="ARD3">
-    <Rus>ОПУ3</Rus>
-    <Eng>RSD3</Eng>
-    <Azr>@DDC3</Azr>
-  </Translate>
+	<Translate ID="ARD3">
+		<Rus>ОПУ3</Rus>
+		<Eng>RSD3</Eng>
+		<Azr>@DDC3</Azr>
+	</Translate>
 
-  <Translate ID="CoordinatesProperty">
-    <Rus>Ориентация</Rus>
-    <Eng>Orientation</Eng>
-    <Azr>Səmtləşmə</Azr>
-  </Translate>
+	<Translate ID="CoordinatesProperty">
+		<Rus>Ориентация</Rus>
+		<Eng>Orientation</Eng>
+		<Azr>Səmtləşmə</Azr>
+	</Translate>
 
-  <Translate ID="Tuman">
-    <Rus>БПСС</Rus>
-    <Eng>SSTU</Eng>
-    <Azr>@XSB</Azr>
-  </Translate>
+	<Translate ID="Tuman">
+		<Rus>БПСС</Rus>
+		<Eng>SSTU</Eng>
+		<Azr>@XSB</Azr>
+	</Translate>
 
-  <Translate ID="CmpRR">
-    <Rus>Компас РР</Rus>
-    <Eng>Compass RI</Eng>
-    <Azr>RK kompası</Azr>
-  </Translate>
+	<Translate ID="CmpRR">
+		<Rus>Компас РР</Rus>
+		<Eng>Compass RI</Eng>
+		<Azr>RK kompası</Azr>
+	</Translate>
 
-  <Translate ID="CmpPA">
-    <Rus>Компас ПА</Rus>
-    <Eng>Compass TA</Eng>
-    <Azr>ÇA kompası</Azr>
-  </Translate>
+	<Translate ID="CmpPA">
+		<Rus>Компас ПА</Rus>
+		<Eng>Compass TA</Eng>
+		<Azr>ÇA kompası</Azr>
+	</Translate>
 
-  <Translate ID="RadioRecon">
-    <Rus>РР</Rus>
-    <Eng>RadioRecon</Eng>
-    <Azr>RK</Azr>
-  </Translate>
+	<Translate ID="RadioRecon">
+		<Rus>РР</Rus>
+		<Eng>RadioRecon</Eng>
+		<Azr>RK</Azr>
+	</Translate>
 
-  <Translate ID="FAHI">
-    <Rus>РП-AПРЧ</Rus>
-    <Eng>J-AFH</Eng>
-    <Azr>RS-AFRT</Azr>
-  </Translate>
+	<Translate ID="FAHI">
+		<Rus>РП-AПРЧ</Rus>
+		<Eng>J-AFH</Eng>
+		<Azr>RS-AFRT</Azr>
+	</Translate>
 
-  <Translate ID="FHSS">
-    <Rus>РП-ППРЧ</Rus>
-    <Eng>J-FHSS</Eng>
-    <Azr>RS-İTTK</Azr>
-  </Translate>
+	<Translate ID="FHSS">
+		<Rus>РП-ППРЧ</Rus>
+		<Eng>J-FHSS</Eng>
+		<Azr>RS-İTTK</Azr>
+	</Translate>
 
-  <Translate ID="FWS">
-    <Rus>РП-ФРЧ</Rus>
-    <Eng>J-FF</Eng>
-    <Azr>RS-FRT</Azr>
-  </Translate>
+	<Translate ID="FWS">
+		<Rus>РП-ФРЧ</Rus>
+		<Eng>J-FF</Eng>
+		<Azr>RS-FRT</Azr>
+	</Translate>
 
-  <Translate ID="Spoofing">
-    <Rus>Спуфинг</Rus>
-    <Eng>Spoofing</Eng>
-    <Azr>Spufinq</Azr>
-  </Translate>
+	<Translate ID="Spoofing">
+		<Rus>Спуфинг</Rus>
+		<Eng>Spoofing</Eng>
+		<Azr>Spufinq</Azr>
+	</Translate>
 
-  <Translate ID="Cicada">
-    <Rus>Цикада</Rus>
-    <Eng>Cicada</Eng>
-    <Azr>Cicada</Azr>
-  </Translate>
+	<Translate ID="Cicada">
+		<Rus>Цикада</Rus>
+		<Eng>Cicada</Eng>
+		<Azr>Cicada</Azr>
+	</Translate>
 
-  <Translate ID="PingIntervalFHSAP">
-    <Rus>Интервал опроса
-состояния ФПС и УМ, мс</Rus>
-    <Eng>JSG and PA poll
-interval, ms</Eng>
-    <Azr>@Maneə SFP və GG, ms</Azr>
-  </Translate>
+	<Translate ID="PingIntervalFHSAP">
+		<Rus>
+			Интервал опроса
+			состояния ФПС и УМ, мс
+		</Rus>
+		<Eng>
+			JSG and PA poll
+			interval, ms
+		</Eng>
+		<Azr>@Maneə SFP və GG, ms</Azr>
+	</Translate>
 
-  <Translate ID="PingIntervalFHSAPToolTip">
-    <Rus>0 - 18000</Rus>
-    <Eng>0 - 18000</Eng>
-    <Azr>0 - 18000</Azr>
-  </Translate>
+	<Translate ID="PingIntervalFHSAPToolTip">
+		<Rus>0 - 18000</Rus>
+		<Eng>0 - 18000</Eng>
+		<Azr>0 - 18000</Azr>
+	</Translate>
 
-  <Translate ID="TimeJamming">
-    <Rus>Время подавления, с</Rus>
-    <Eng>Time Jamming, s</Eng>
-    <Azr>Susdurma vaxtı, san</Azr>
-  </Translate>
+	<Translate ID="TimeJamming">
+		<Rus>Время подавления, с</Rus>
+		<Eng>Time Jamming, s</Eng>
+		<Azr>Susdurma vaxtı, san</Azr>
+	</Translate>
 
-  <Translate ID="TimeJammingToolTip">
-    <Rus>0 - 10000</Rus>
-    <Eng>0 - 10000</Eng>
-    <Azr>0 - 10000</Azr>
-  </Translate>
-    
-  <Translate ID="GnssInaccuracy">
-    <Rus>Погрешность СНС координат, м</Rus>
-    <Eng>Inaccuracy of GNSS coordinates, m</Eng>
-    <Azr>@Tezliyin GNSS koordinat, m</Azr>
-  </Translate>
-  
-    <Translate ID="GnssInaccuracyToolTip">
-    <Rus>0 - 32000</Rus>
-    <Eng>0 - 32000</Eng>
-    <Azr>0 - 32000</Azr>
-  </Translate>
- 
-  <Translate ID="NumberAveragingBearing">
-    <Rus>Кол-во усреднений пеленгов</Rus>
-    <Eng>Number of bearing averagings</Eng>
-    <Azr>Pelenqlərin ortalama sayı</Azr>
-  </Translate>
+	<Translate ID="TimeJammingToolTip">
+		<Rus>0 - 10000</Rus>
+		<Eng>0 - 10000</Eng>
+		<Azr>0 - 10000</Azr>
+	</Translate>
 
-  <Translate ID="NumberAveragingBearingToolTip">
-    <Rus>1 - 20</Rus>
-    <Eng>1 - 20</Eng>
-    <Azr>1 - 20</Azr>
-  </Translate>
+	<Translate ID="GnssInaccuracy">
+		<Rus>Погрешность СНС координат, м</Rus>
+		<Eng>Inaccuracy of GNSS coordinates, m</Eng>
+		<Azr>@Tezliyin GNSS koordinat, m</Azr>
+	</Translate>
 
-  <Translate ID="NumberAveragingPhase">
-    <Rus>Кол-во усреднений фаз</Rus>
-    <Eng>Number of phases averagings</Eng>
-    <Azr>Fazaların ortalama sayı</Azr>
-  </Translate>
+	<Translate ID="GnssInaccuracyToolTip">
+		<Rus>0 - 32000</Rus>
+		<Eng>0 - 32000</Eng>
+		<Azr>0 - 32000</Azr>
+	</Translate>
 
-  <Translate ID="NumberAveragingPhaseToolTip">
-    <Rus>1 - 20</Rus>
-    <Eng>1 - 20</Eng>
-    <Azr>1 - 20</Azr>
-  </Translate>
+	<Translate ID="NumberAveragingBearing">
+		<Rus>Кол-во усреднений пеленгов</Rus>
+		<Eng>Number of bearing averagings</Eng>
+		<Azr>Pelenqlərin ortalama sayı</Azr>
+	</Translate>
 
-  <Translate ID="HeadingAngle">
-    <Rus>Курсовой угол, град</Rus>
-    <Eng>Relative bearing, deg</Eng>
-    <Azr>Kurs bucağı, dər</Azr>
-  </Translate>
-	
+	<Translate ID="NumberAveragingBearingToolTip">
+		<Rus>1 - 20</Rus>
+		<Eng>1 - 20</Eng>
+		<Azr>1 - 20</Azr>
+	</Translate>
+
+	<Translate ID="NumberAveragingPhase">
+		<Rus>Кол-во усреднений фаз</Rus>
+		<Eng>Number of phases averagings</Eng>
+		<Azr>Fazaların ortalama sayı</Azr>
+	</Translate>
+
+	<Translate ID="NumberAveragingPhaseToolTip">
+		<Rus>1 - 20</Rus>
+		<Eng>1 - 20</Eng>
+		<Azr>1 - 20</Azr>
+	</Translate>
+
+	<Translate ID="HeadingAngle">
+		<Rus>Курсовой угол, град</Rus>
+		<Eng>Relative bearing, deg</Eng>
+		<Azr>Kurs bucağı, dər</Azr>
+	</Translate>
+
 
 	<Translate ID="Language">
 		<Rus>Язык</Rus>
@@ -245,239 +249,239 @@ interval, ms</Eng>
 		<Azr>Type</Azr>
 	</Translate>
 
-	
+
 	<Translate ID="HeadingAngleToolTip">
-    <Rus>0 - 359</Rus>
-    <Eng>0 - 359</Eng>
-    <Azr>0 - 359</Azr>
-  </Translate>
+		<Rus>0 - 359</Rus>
+		<Eng>0 - 359</Eng>
+		<Azr>0 - 359</Azr>
+	</Translate>
 
-  <Translate ID="DetectionFHSS">
-    <Rus>Обнаружение ППРЧ</Rus>
-    <Eng>Detection FHSS</Eng>
-    <Azr>İTTK aşkaretmə</Azr>
-  </Translate>
+	<Translate ID="DetectionFHSS">
+		<Rus>Обнаружение ППРЧ</Rus>
+		<Eng>Detection FHSS</Eng>
+		<Azr>İTTK aşkaretmə</Azr>
+	</Translate>
 
-  <Translate ID="SectorSearch">
-    <Rus>Сектор поиска, °</Rus>
-    <Eng>Search sector, °</Eng>
-    <Azr>Sektor axtarış, °</Azr>
-  </Translate>
+	<Translate ID="SectorSearch">
+		<Rus>Сектор поиска, °</Rus>
+		<Eng>Search sector, °</Eng>
+		<Azr>Sektor axtarış, °</Azr>
+	</Translate>
 
-  <Translate ID="SectorSearchToolTip">
-    <Rus>2 - 360</Rus>
-    <Eng>2 - 360</Eng>
-    <Azr>2 - 360</Azr>
-  </Translate>
+	<Translate ID="SectorSearchToolTip">
+		<Rus>2 - 360</Rus>
+		<Eng>2 - 360</Eng>
+		<Azr>2 - 360</Azr>
+	</Translate>
 
-  <Translate ID="TimeRadiateFWS">
-    <Rus>Время излучения, мс</Rus>
-    <Eng>Radiation time, ms</Eng>
-    <Azr>Şüalanma vaxtı, ms</Azr>
-  </Translate>
+	<Translate ID="TimeRadiateFWS">
+		<Rus>Время излучения, мс</Rus>
+		<Eng>Radiation time, ms</Eng>
+		<Azr>Şüalanma vaxtı, ms</Azr>
+	</Translate>
 
-  <Translate ID="TimeRadiateFWSToolTip">
-    <Rus>0, 1500 - 18000</Rus>
-    <Eng>0, 1500 - 18000</Eng>
-    <Azr>0, 1500 - 18000</Azr>
-  </Translate>
+	<Translate ID="TimeRadiateFWSToolTip">
+		<Rus>0, 1500 - 18000</Rus>
+		<Eng>0, 1500 - 18000</Eng>
+		<Azr>0, 1500 - 18000</Azr>
+	</Translate>
 
-  <Translate ID="SignHeadingAngle">
-    <Rus>Признак определения курсового угла</Rus>
-    <Eng>Sign heading angle</Eng>
-    <Azr>@Kurs açıının tərifinin bucağı</Azr>
-  </Translate>
+	<Translate ID="SignHeadingAngle">
+		<Rus>Признак определения курсового угла</Rus>
+		<Eng>Sign heading angle</Eng>
+		<Azr>@Kurs açıının tərifinin bucağı</Azr>
+	</Translate>
 
-  <Translate ID="SignHeadingAngleToolTip">
-    <Rus>Признак определения курсового угла</Rus>
-    <Eng>Sign heading angle</Eng>
-    <Azr>@Kurs açıının tərifinin bucağı</Azr>
-  </Translate>
+	<Translate ID="SignHeadingAngleToolTip">
+		<Rus>Признак определения курсового угла</Rus>
+		<Eng>Sign heading angle</Eng>
+		<Azr>@Kurs açıının tərifinin bucağı</Azr>
+	</Translate>
 
-  <Translate ID="FFTResolution">
-    <Rus>Разрешение БПФ</Rus>
-    <Eng>FFT resolution</Eng>
-    <Azr>Füryenin tez çevirməsinə icazə</Azr>
-  </Translate>
+	<Translate ID="FFTResolution">
+		<Rus>Разрешение БПФ</Rus>
+		<Eng>FFT resolution</Eng>
+		<Azr>Füryenin tez çevirməsinə icazə</Azr>
+	</Translate>
 
-  <Translate ID="FFTResolutionToolTip">
-    <Rus>Разрешение БПФ</Rus>
-    <Eng>FFT resolution</Eng>
-    <Azr>Füryenin tez çevirməsinə icazə</Azr>
-  </Translate>
+	<Translate ID="FFTResolutionToolTip">
+		<Rus>Разрешение БПФ</Rus>
+		<Eng>FFT resolution</Eng>
+		<Azr>Füryenin tez çevirməsinə icazə</Azr>
+	</Translate>
 
-  <Translate ID="TimeRadiateFHSS">
-    <Rus>Время излучения, мкс</Rus>
-    <Eng>Radiation time, µs</Eng>
-    <Azr>Şüalanma vaxtı, µs</Azr>
-  </Translate>
+	<Translate ID="TimeRadiateFHSS">
+		<Rus>Время излучения, мкс</Rus>
+		<Eng>Radiation time, µs</Eng>
+		<Azr>Şüalanma vaxtı, µs</Azr>
+	</Translate>
 
-  <Translate ID="TimeRadiateFHSSToolTip">
-    <Rus>300 - 5000</Rus>
-    <Eng>300 - 5000</Eng>
-    <Azr>300 - 5000</Azr>
-  </Translate>
+	<Translate ID="TimeRadiateFHSSToolTip">
+		<Rus>300 - 5000</Rus>
+		<Eng>300 - 5000</Eng>
+		<Azr>300 - 5000</Azr>
+	</Translate>
 
-  <Translate ID="TimeRadiateFWS">
-    <Rus>Время излучения, мкс</Rus>
-    <Eng>Radiation time, µs</Eng>
-    <Azr>Şüalanma vaxtı, µs</Azr>
-  </Translate>
+	<Translate ID="TimeRadiateFWS">
+		<Rus>Время излучения, мкс</Rus>
+		<Eng>Radiation time, µs</Eng>
+		<Azr>Şüalanma vaxtı, µs</Azr>
+	</Translate>
 
-  <Translate ID="TimeRadiateFWSToolTip">
-    <Rus>0 - 18000</Rus>
-    <Eng>0 - 18000</Eng>
-    <Azr>0 - 18000</Azr>
-  </Translate>
+	<Translate ID="TimeRadiateFWSToolTip">
+		<Rus>0 - 18000</Rus>
+		<Eng>0 - 18000</Eng>
+		<Azr>0 - 18000</Azr>
+	</Translate>
 
-  <Translate ID="TimeSearch">
-    <Rus>Время поиска, мс</Rus>
-    <Eng>Search time, ms</Eng>
-    <Azr>Axtarış vaxt, san</Azr>
-  </Translate>
+	<Translate ID="TimeSearch">
+		<Rus>Время поиска, мс</Rus>
+		<Eng>Search time, ms</Eng>
+		<Azr>Axtarış vaxt, san</Azr>
+	</Translate>
 
-  <Translate ID="TimeSearchToolTip">
-    <Rus>1 - 18000</Rus>
-    <Eng>1 - 18000</Eng>
-    <Azr>1 - 18000</Azr>
-  </Translate>
+	<Translate ID="TimeSearchToolTip">
+		<Rus>1 - 18000</Rus>
+		<Eng>1 - 18000</Eng>
+		<Azr>1 - 18000</Azr>
+	</Translate>
 
-  <Translate ID="OperationTime">
-    <Rus>Время работы ДРРЛ, с</Rus>
-    <Eng>LSRL working time, s</Eng>
-    <Azr>Çoxdan işləmiş radiokanalın işləmə vaxtı, s</Azr>
-  </Translate>
+	<Translate ID="OperationTime">
+		<Rus>Время работы ДРРЛ, с</Rus>
+		<Eng>LSRL working time, s</Eng>
+		<Azr>Çoxdan işləmiş radiokanalın işləmə vaxtı, s</Azr>
+	</Translate>
 
-  <Translate ID="OperationTimeToolTip">
-    <Rus>1 - 20</Rus>
-    <Eng>1 - 20</Eng>
-    <Azr>1 - 20</Azr>
-  </Translate>
+	<Translate ID="OperationTimeToolTip">
+		<Rus>1 - 20</Rus>
+		<Eng>1 - 20</Eng>
+		<Azr>1 - 20</Azr>
+	</Translate>
 
-  <Translate ID="NumberChannels">
-    <Rus>Кол-во каналов в литере</Rus>
-    <Eng>Number of “Letter” channels </Eng>
-    <Azr>Literlərdə kanalların sayı</Azr>
-  </Translate>
+	<Translate ID="NumberChannels">
+		<Rus>Кол-во каналов в литере</Rus>
+		<Eng>Number of “Letter” channels </Eng>
+		<Azr>Literlərdə kanalların sayı</Azr>
+	</Translate>
 
-  <Translate ID="NumberChannelsToolTip">
-    <Rus>1 - 4</Rus>
-    <Eng>1 - 4</Eng>
-    <Azr>1 - 4</Azr>
-  </Translate>
+	<Translate ID="NumberChannelsToolTip">
+		<Rus>1 - 4</Rus>
+		<Eng>1 - 4</Eng>
+		<Azr>1 - 4</Azr>
+	</Translate>
 
-  <Translate ID="NumberIri">
-    <Rus>Кол-во ИРИ в литере</Rus>
-    <Eng>Number of RES in letter</Eng>
-    <Azr>@Literin RŞM-nin sayı</Azr>
-  </Translate>
+	<Translate ID="NumberIri">
+		<Rus>Кол-во ИРИ в литере</Rus>
+		<Eng>Number of RES in letter</Eng>
+		<Azr>@Literin RŞM-nin sayı</Azr>
+	</Translate>
 
-  <Translate ID="NumberIriToolTip">
-    <Rus>1 - 10</Rus>
-    <Eng>1 - 10</Eng>
-    <Azr>1 - 10</Azr>
-  </Translate>
+	<Translate ID="NumberIriToolTip">
+		<Rus>1 - 10</Rus>
+		<Eng>1 - 10</Eng>
+		<Azr>1 - 10</Azr>
+	</Translate>
 
-  <Translate ID="Priority">
-    <Rus>Приоритет</Rus>
-    <Eng>Priority</Eng>
-    <Azr>Üstünlük</Azr>
-  </Translate>
+	<Translate ID="Priority">
+		<Rus>Приоритет</Rus>
+		<Eng>Priority</Eng>
+		<Azr>Üstünlük</Azr>
+	</Translate>
 
-  <Translate ID="PriorityToolTip">
-    <Rus>1 - 9</Rus>
-    <Eng>1 - 9</Eng>
-    <Azr>1 - 9</Azr>
-  </Translate>
+	<Translate ID="PriorityToolTip">
+		<Rus>1 - 9</Rus>
+		<Eng>1 - 9</Eng>
+		<Azr>1 - 9</Azr>
+	</Translate>
 
-  <Translate ID="Threshold">
-    <Rus>Порог</Rus>
-    <Eng>Threshold</Eng>
-    <Azr>Hüdud</Azr>
-  </Translate>
+	<Translate ID="Threshold">
+		<Rus>Порог</Rus>
+		<Eng>Threshold</Eng>
+		<Azr>Hüdud</Azr>
+	</Translate>
 
-  <Translate ID="ThresholdToolTip">
-    <Rus>-130 - 0</Rus>
-    <Eng>-130 - 0</Eng>
-    <Azr>-130 - 0</Azr>
-  </Translate>
+	<Translate ID="ThresholdToolTip">
+		<Rus>-130 - 0</Rus>
+		<Eng>-130 - 0</Eng>
+		<Azr>-130 - 0</Azr>
+	</Translate>
 
-  <Translate ID="TypeRadioRecon">
-    <Rus>Тип радиоразведки</Rus>
-    <Eng>Type Radio recon</Eng>
-    <Azr>Növ Rs</Azr>
-  </Translate>
+	<Translate ID="TypeRadioRecon">
+		<Rus>Тип радиоразведки</Rus>
+		<Eng>Type Radio recon</Eng>
+		<Azr>Növ Rs</Azr>
+	</Translate>
 
-  <Translate ID="IpAddress">
-    <Rus>IP адрес</Rus>
-    <Eng>Ip Address</Eng>
-    <Azr>İP ünvan</Azr>
-  </Translate>
+	<Translate ID="IpAddress">
+		<Rus>IP адрес</Rus>
+		<Eng>Ip Address</Eng>
+		<Azr>İP ünvan</Azr>
+	</Translate>
 
-  <Translate ID="Address">
-    <Rus>Адрес</Rus>
-    <Eng>Address</Eng>
-    <Azr>ünvan</Azr>
-  </Translate>
+	<Translate ID="Address">
+		<Rus>Адрес</Rus>
+		<Eng>Address</Eng>
+		<Azr>ünvan</Azr>
+	</Translate>
 
-  <Translate ID="Port">
-    <Rus>Порт</Rus>
-    <Eng>Port</Eng>
-    <Azr>Port</Azr>
-  </Translate>
+	<Translate ID="Port">
+		<Rus>Порт</Rus>
+		<Eng>Port</Eng>
+		<Azr>Port</Azr>
+	</Translate>
 
-  <Translate ID="Latitude">
-    <Rus>Широта, °</Rus>
-    <Eng>Latitude, °</Eng>
-    <Azr>Coğrafi enlik, °</Azr>
-  </Translate>
+	<Translate ID="Latitude">
+		<Rus>Широта, °</Rus>
+		<Eng>Latitude, °</Eng>
+		<Azr>Coğrafi enlik, °</Azr>
+	</Translate>
 
-  <Translate ID="Longitude">
-    <Rus>Долгота, °</Rus>
-    <Eng>Longitude, °</Eng>
-    <Azr>Coğrafi uzaqlıq, °</Azr>
-  </Translate>
+	<Translate ID="Longitude">
+		<Rus>Долгота, °</Rus>
+		<Eng>Longitude, °</Eng>
+		<Azr>Coğrafi uzaqlıq, °</Azr>
+	</Translate>
 
-  <Translate ID="LatitudeToolTip">
-    <Rus>-90 - 90</Rus>
-    <Eng>-90 - 90</Eng>
-    <Azr>-90 - 90</Azr>
-  </Translate>
+	<Translate ID="LatitudeToolTip">
+		<Rus>-90 - 90</Rus>
+		<Eng>-90 - 90</Eng>
+		<Azr>-90 - 90</Azr>
+	</Translate>
 
-  <Translate ID="LongitudeToolTip">
-    <Rus>-180 - 180</Rus>
-    <Eng>-180 - 180</Eng>
-    <Azr>-180 - 180</Azr>
-  </Translate>
+	<Translate ID="LongitudeToolTip">
+		<Rus>-180 - 180</Rus>
+		<Eng>-180 - 180</Eng>
+		<Azr>-180 - 180</Azr>
+	</Translate>
 
-   <Translate ID="RangeJamming">
-    <Rus>Диапазон РП, МГц</Rus>
-    <Eng>Range jamming, MHz</Eng>
-    <Azr>Radiosusdurmada diapozon, MHs</Azr>
-  </Translate>
+	<Translate ID="RangeJamming">
+		<Rus>Диапазон РП, МГц</Rus>
+		<Eng>Range jamming, MHz</Eng>
+		<Azr>Radiosusdurmada diapozon, MHs</Azr>
+	</Translate>
 
-  <Translate ID="RangeRadioRecon">
-    <Rus>Диапазон РР, МГц</Rus>
-    <Eng>Range radioRecon, MHz</Eng>
-    <Azr>Radiokəşfiyyat diapozon, MHs</Azr>
-  </Translate>
+	<Translate ID="RangeRadioRecon">
+		<Rus>Диапазон РР, МГц</Rus>
+		<Eng>Range radioRecon, MHz</Eng>
+		<Azr>Radiokəşfiyyat diapozon, MHs</Azr>
+	</Translate>
 
-  <Translate ID="VoiceInterference">
-    <Rus>Голосовая помеха</Rus>
-    <Eng>Voice Interference</Eng>
-    <Azr>@Səs müdaxiləsi</Azr>
-  </Translate>
+	<Translate ID="VoiceInterference">
+		<Rus>Голосовая помеха</Rus>
+		<Eng>Voice Interference</Eng>
+		<Azr>@Səs müdaxiləsi</Azr>
+	</Translate>
 
-  <Translate ID="PCProperties">
-    <Rus>ПУ</Rus>
-    <Eng>PC</Eng>
-    <Azr>İM</Azr>
-  </Translate>
+	<Translate ID="PCProperties">
+		<Rus>ПУ</Rus>
+		<Eng>PC</Eng>
+		<Azr>İM</Azr>
+	</Translate>
 
-  <Translate ID="AP_2Properties">
-    <Rus>Апп-2</Rus>
-    <Eng>Ap-2</Eng>
-    <Azr>Ap-2</Azr>
-  </Translate>
-  
+	<Translate ID="AP_2Properties">
+		<Rus>Апп-2</Rus>
+		<Eng>Ap-2</Eng>
+		<Azr>Ap-2</Azr>
+	</Translate>
+
 </Translation>
