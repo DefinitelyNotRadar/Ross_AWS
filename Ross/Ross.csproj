@@ -109,6 +109,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\Formation_RN_RD_CC.dll</HintPath>
     </Reference>
+    <Reference Include="GeoCalculator">
+      <HintPath>dll\GeoCalculator.dll</HintPath>
+    </Reference>
     <Reference Include="GeoUtility">
       <HintPath>dll\GeoUtility.dll</HintPath>
     </Reference>
