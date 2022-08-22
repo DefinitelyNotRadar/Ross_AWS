@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Management.Instrumentation;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -68,12 +69,11 @@ namespace Ross.Map
         }
 
 
+        
+
         public void InitEvaTables()
-        {
-            evaTable.items = new ObservableCollection<Tabl>()
-            {
-                new Tabl(0, "Eva")
-            };
+        { 
+            evaTable.AddNewItem(new Tabl() {name = "Eva", id = 1});
         }
 
         #region Hot Keys
@@ -131,6 +131,7 @@ namespace Ross.Map
 
         private void Properties_OnPathMapChanged(object sender, PathMap e)
         {
+
         }
 
         #endregion
@@ -188,5 +189,7 @@ namespace Ross.Map
             }
             catch { }
         }
+
+        
     }
 }
