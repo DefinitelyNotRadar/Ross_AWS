@@ -184,14 +184,15 @@
                         <TempFWSControl:UserControlTempFWS x:Name="ucTempFWS" />
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FF_J}">
-                        <ReconFHSSControl:UserControlReconFHSS x:Name="ucReconFHSS" />
+                        <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS" />
+                      
                     </TabItem>
                 </TabControl>
 
 
                 <TabControl Grid.Column="1">
                     <TabItem Header="{DynamicResource TabItemRES_FHSS}">
-                        <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS" />
+                        <ReconFHSSControl:UserControlReconFHSS x:Name="ucReconFHSS"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FHSS_J}">
                         <SuppressFHSSControl:UserControlSuppressFHSS x:Name="ucSuppressFHSS" />

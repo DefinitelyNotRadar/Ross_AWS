@@ -65,7 +65,7 @@
                           HorizontalAlignment="Center" Width="32" Height="32"
                           IsThreeState="False" Style="{StaticResource ToggleButton}"
                           Unchecked="ToggleButton_Setting_Unchecked" Checked="ToggleButton_Setting_Checked">
-                <Image Source="\Resources\Property.png" Width="26" Height="26" Stretch="Fill" />
+                <Path Width="20" Height="20" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" Fill="{StaticResource ControlForegroundWhite}" Data="{StaticResource settingsStyle0}" />
             </ToggleButton>
 
             <Rectangle Fill="{StaticResource ResourceKey=ControlActiveBorderBrush}"
