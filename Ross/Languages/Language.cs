@@ -170,7 +170,6 @@ namespace Ross
         private void UcASP_OnIsWindowPropertyOpen(object sender, ASPProperty e)
         {
             e.SetLanguagePropertyGrid(Properties.Local.Common.Language);
-            //e.Resources.MergedDictionaries.Add(GetTableLanguageDict(Properties.Local.Common.Language));
         }
 
         private void UcSuppressFHSS_OnIsWindowPropertyOpen(object sender, SuppressFHSSProperty e)

@@ -3,11 +3,12 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
-    <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-105" Top="-5" Right="0" Bottom="0" />
+
+    <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-105" Top="-5" Right="0" Bottom="0"/>
     <system:Double x:Key="PropertyGridMinWidthParamsFWS">200</system:Double>
-    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-150" Top="-5" Right="0" Bottom="0" />
+    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-150" Top="-5" Right="0" Bottom="0"/>
     <system:Double x:Key="PropertyGridMinWidthCoordFWS">175</system:Double>
-    <Thickness x:Key="PropertyGridMarginCoordASP" Left="-145" Top="0" Right="0" Bottom="0" />
+    <Thickness x:Key="PropertyGridMarginCoordASP" Left="-145" Top="0" Right="0" Bottom="0"/>
     <system:Double x:Key="PropertyGridMinWidthCoordASP">140</system:Double>
     <system:Double x:Key="PropertyGridMinWidthRole">140</system:Double>
 
@@ -42,12 +43,13 @@
     <system:String x:Key="PropertyGridToolTipPriority">Приоритет</system:String>
 
 
+
     <!-- ToolTip -->
     <system:String x:Key="ToolTipAdd">Добавить</system:String>
     <system:String x:Key="ToolTipChange">Изменить</system:String>
     <system:String x:Key="ToolTipDelete">Удалить</system:String>
     <system:String x:Key="ToolTipClear">Очистить</system:String>
-    <system:String x:Key="ToolTipOpenTXT">Открыть текстовый документ</system:String>
+    <system:String x:Key="ToolTipOpenTXT">Сохранить текстовый документ</system:String>
     <system:String x:Key="ToolTipPrint">Печать</system:String>
     <system:String x:Key="ToolTipDefaultValues">Значения по умолчанию</system:String>
     <system:String x:Key="ToolTipAddFHSS_RS">ИРИ на РП</system:String>
@@ -137,19 +139,12 @@
     <system:String x:Key="TabItemKF">ИЧ</system:String>
 
     <!-- StatusBar -->
-    <system:String x:Key="StatusBarCountAll">Всего:  </system:String>
-    <system:String x:Key="StatusBarCountActive">Активных:  </system:String>
-    <system:String x:Key="StatusBarCountImportant">Важных:  </system:String>
+    <system:String x:Key="StatusBarCountAll">Всего:</system:String>
+    <system:String x:Key="StatusBarCountActive">Активных:</system:String>
+    <system:String x:Key="StatusBarCountImportant">Важных:</system:String>
 
     <!-- ToggleButtons UAV -->
     <system:String x:Key="ToggleButtonsUAV">БПЛА</system:String>
     <system:String x:Key="ToggleButtonsNAV">НАВ</system:String>
-
-
-    <system:String x:Key="toolTipToggleButton_Setting">Открыть настройки</system:String>
-    <system:String x:Key="toolTipToggleButton_TS">Открыть чат   </system:String>
-    <system:String x:Key="toolTipToggleButton_Map">Открыть окно карты</system:String>
-    <system:String x:Key="toolTipToggleButton_TopTable">Скрыть/Показать верхнии таблицы</system:String>
-    <system:String x:Key="toolTipToggleButton_DownTablePanel">Скрыть/Показать нижние таблицы</system:String>
 
 </ResourceDictionary>

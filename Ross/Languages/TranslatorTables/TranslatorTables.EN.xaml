@@ -3,11 +3,11 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
-    <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-85" Top="-5" Right="0" Bottom="0" />
+    <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-85" Top="-5" Right="0" Bottom="0"/>
     <system:Double x:Key="PropertyGridMinWidthParamsFWS">185</system:Double>
-    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-130" Top="-5" Right="0" Bottom="0" />
+    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-130" Top="-5" Right="0" Bottom="0"/>
     <system:Double x:Key="PropertyGridMinWidthCoordFWS">155</system:Double>
-    <Thickness x:Key="PropertyGridMarginCoordASP" Left="-145" Top="0" Right="0" Bottom="0" />
+    <Thickness x:Key="PropertyGridMarginCoordASP" Left="-145" Top="0" Right="0" Bottom="0"/>
     <system:Double x:Key="PropertyGridMinWidthCoordASP">140</system:Double>
     <system:Double x:Key="PropertyGridMinWidthRole">140</system:Double>
 
@@ -48,7 +48,7 @@
     <system:String x:Key="ToolTipChange">Change</system:String>
     <system:String x:Key="ToolTipDelete">Delete</system:String>
     <system:String x:Key="ToolTipClear">Clear</system:String>
-    <system:String x:Key="ToolTipOpenTXT">Open text document</system:String>
+    <system:String x:Key="ToolTipOpenTXT">Save text document</system:String>
     <system:String x:Key="ToolTipPrint">Print</system:String>
     <system:String x:Key="ToolTipDefaultValues">Default values</system:String>
     <system:String x:Key="ToolTipAddFHSS_RS">RES FHSS for J</system:String>
@@ -138,19 +138,12 @@
     <system:String x:Key="TabItemKF">KF</system:String>
 
     <!-- StatusBar -->
-    <system:String x:Key="StatusBarCountAll">In all:  </system:String>
-    <system:String x:Key="StatusBarCountActive">Active:  </system:String>
-    <system:String x:Key="StatusBarCountImportant">Important:  </system:String>
+    <system:String x:Key="StatusBarCountAll">In all:</system:String>
+    <system:String x:Key="StatusBarCountActive">Active:</system:String>
+    <system:String x:Key="StatusBarCountImportant">Important:</system:String>
 
     <!-- ToggleButtons UAV -->
     <system:String x:Key="ToggleButtonsUAV">UAV</system:String>
     <system:String x:Key="ToggleButtonsNAV">NAV</system:String>
-
-
-    <system:String x:Key="toolTipToggleButton_Setting">Open settings pane</system:String>
-    <system:String x:Key="toolTipToggleButton_TS">Open chat</system:String>
-    <system:String x:Key="toolTipToggleButton_Map">Open map window</system:String>
-    <system:String x:Key="toolTipToggleButton_TopTable">Hide/Show top tables</system:String>
-    <system:String x:Key="toolTipToggleButton_DownTablePanel">Hide/Show down tables</system:String>
 
 </ResourceDictionary>
