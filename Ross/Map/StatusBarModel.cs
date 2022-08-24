@@ -1,14 +1,16 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace Ross.Map
 {
-    public partial class MapLayout : Window
+    public class StatusBarModel : INotifyPropertyChanged
     {
-        private double aJSValue;
-        private double rESFUSSJValue;
-        private double rESFUSSTDValue;
-        private double rESFWSJValue;
-        private double rESFWSTDValue;
+        private double aJSValue = 0;
+        private double rESFUSSJValue = 0;
+        private double rESFUSSTDValue = 0;
+        private double rESFWSJValue = 0;
+        private double rESFWSTDValue = 0;
 
 
         public double AJSValue
@@ -16,8 +18,9 @@ namespace Ross.Map
             get => aJSValue;
             set
             {
+                if(aJSValue == value) return;
                 aJSValue = value;
-                AJS.Text = value.ToString();
+                OnPropertyChanged();
             }
         }
 
@@ -27,8 +30,9 @@ namespace Ross.Map
             get => rESFWSTDValue;
             set
             {
+                if(rESFWSTDValue == value) return;
                 rESFWSTDValue = value;
-                RESFWSTD.Text = value.ToString();
+                OnPropertyChanged();
             }
         }
 
@@ -38,8 +42,9 @@ namespace Ross.Map
             get => rESFWSJValue;
             set
             {
+                if(rESFWSJValue == value) return;
                 rESFWSJValue = value;
-                RESFWSJ.Text = value.ToString();
+                OnPropertyChanged();
             }
         }
 
@@ -48,8 +53,9 @@ namespace Ross.Map
             get => rESFUSSTDValue;
             set
             {
+                if(rESFUSSTDValue == value) return;
                 rESFUSSTDValue = value;
-                RESFUSSTD.Text = value.ToString();
+                OnPropertyChanged();
             }
         }
 
@@ -58,9 +64,26 @@ namespace Ross.Map
             get => rESFUSSJValue;
             set
             {
+                if(rESFUSSJValue == value) return;
                 rESFUSSJValue = value;
-                RESFUSSJ.Text = value.ToString();
+                OnPropertyChanged();
             }
         }
+
+        #region OnPropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            try
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            }
+            catch { }
+        }
+
+        #endregion
+
     }
 }

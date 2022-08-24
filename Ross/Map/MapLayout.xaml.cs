@@ -2,29 +2,34 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.Management.Instrumentation;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using DLLSettingsControlPointForMap;
 using DLLSettingsControlPointForMap.Model;
+using Mapsui.Geometries;
 using Mapsui.Styles;
 using ModelsTablesDBLib;
 using Ross.JSON;
 using UIMapRast.Models;
 using WpfControlLibrary1;
 using WpfMapControl;
-using Color = Mapsui.Styles.Color;
+using Brush = Mapsui.Styles.Brush;
+using Color = System.Windows.Media.Color;
 using Languages = ModelsTablesDBLib.Languages;
 using LocalProperties = DLLSettingsControlPointForMap.Model.LocalProperties;
 using Pen = Mapsui.Styles.Pen;
+using Point = Mapsui.Geometries.Point;
 
 namespace Ross.Map
 {
     /// <summary>
     ///     Логика взаимодействия для MapLayout.xaml
     /// </summary>
-    public partial class MapLayout : Window
+    public partial class MapLayout : Window, INotifyPropertyChanged
     {
         public MapLayout()
         {
@@ -33,7 +38,33 @@ namespace Ross.Map
             Properties.OnApplyButtonClick += Properties_OnApplyButtonClick;
             LoadSettings();
             InitHotKeys();
-            InitEvaTables();
+           
+        }
+
+
+        private Visibility iSVisibilityEvaTable = Visibility.Visible;
+        private StatusBarModel statusBar = new StatusBarModel();
+
+        public Visibility IsVisibleEvaTable
+        {
+            get => iSVisibilityEvaTable;
+            set
+            {
+                if(iSVisibilityEvaTable == value) return;
+                iSVisibilityEvaTable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public StatusBarModel StatusBar
+        {
+            get => statusBar;
+            set
+            {
+                if(statusBar == value) return;
+                statusBar = value;
+                OnPropertyChanged();
+            }
         }
 
         public SettingsControlForMap MapProperties
@@ -42,11 +73,11 @@ namespace Ross.Map
             set => Properties = value;
         }
 
-
         #region Map
 
         public void TranslateMapLayout(Languages languages)
         {
+            
         }
 
         #endregion
@@ -69,27 +100,20 @@ namespace Ross.Map
         }
 
 
-        
-
-        public void InitEvaTables()
-        { 
-            evaTable.AddNewItem(new Tabl() {name = "Eva", id = 1});
-        }
-
         #region Hot Keys
 
         private void InitHotKeys()
         {
             var newCmd = new RoutedCommand();
-            newCmd.InputGestures.Add(new KeyGesture(Key.C, ModifierKeys.Control));
-            CommandBindings.Add(new CommandBinding(newCmd, OpenEvaTable));
+            newCmd.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(newCmd, ShowEvaTable));
         }
 
-        private void OpenEvaTable(object sender, ExecutedRoutedEventArgs e)
+        private void ShowEvaTable(object sender, ExecutedRoutedEventArgs e)
         {
-            if (evaTable.Visibility == Visibility.Visible)
-                evaTable.Visibility = Visibility.Collapsed;
-            else evaTable.Visibility = Visibility.Visible;
+            if (IsVisibleEvaTable == Visibility.Visible)
+                IsVisibleEvaTable = Visibility.Collapsed;
+            else IsVisibleEvaTable = Visibility.Visible;
         }
 
         #endregion
@@ -164,20 +188,20 @@ namespace Ross.Map
                     Longitude = Math.Round(e.Longitude, 6)
                 };
 
-                DefinderJammingPoint definderJammingPoint = new DefinderJammingPoint(0);
+                DefinderJammingPoint definderJammingPoint = new DefinderJammingPoint(1);
                 definderJammingPoint.Coordinate = coord;
                 definderJammingPoint.Regime = ERegime.Jamming;
 
 
                 Pen pen = new Pen();
-                pen.Color = Color.FromArgb(50, 0, 255, 0);
+                pen.Color = Mapsui.Styles.Color.FromArgb(50, 0, 255, 0);
                 //pen.PenStrokeCap = PenStrokeCap.Square;
                 pen.PenStyle = PenStyle.Dash;
 
 
                 Zone zone = new Zone();
                 zone.PenZone = pen;
-                zone.Radius = 20000;
+                zone.Radius = 2000;
                 definderJammingPoint.ZoneDefinder = zone;
                 
 
@@ -190,6 +214,74 @@ namespace Ross.Map
             catch { }
         }
 
-        
+
+        #region OnPropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            try
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            }
+            catch { }
+        }
+
+        #endregion
+
+
+        #region Draw
+
+        private const string partOfPath = @"\Resources\";
+        private MapObjectStyle mapObjectStyleSqare;
+        private MapObjectStyle mapObjectStyleTriangle;
+        private double scale = 0.4;
+
+        public void DrawSourceFWS(Point point, ColorsForMap color)
+        {
+            switch (color)
+            {
+                case ColorsForMap.Yellow:
+                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "triangle_yellow.png", scale);
+                    break;
+                case ColorsForMap.Red:
+                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "triangle_red.png", scale);
+                    break;
+                case ColorsForMap.Green:
+                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "triangle_green.png", scale);
+                    break;
+                default:
+                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "triangle_black.png", scale);
+                    break;
+
+            }
+
+            RastrMap.mapControl.AddMapObject(mapObjectStyleTriangle, "", point);
+        }
+
+        public void DrawSourceFUSS(Mapsui.Geometries.Point point, ColorsForMap color)
+{
+            switch (color)
+            {
+                case ColorsForMap.Yellow:
+                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "sqare_yellow.png", scale);
+                    break;
+                case ColorsForMap.Red:
+                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "sqare_red.png", scale);
+                    break;
+                case ColorsForMap.Green:
+                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "sqare_green.png", scale);
+                    break;
+                default:
+                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "sqare_black.png", scale);
+                    break;
+
+            }
+
+            RastrMap.mapControl.AddMapObject(mapObjectStyleSqare, "", point);
+        }
+
+        #endregion
     }
 }

@@ -58,7 +58,7 @@
                           HorizontalAlignment="Center" Width="32" Height="32"
                           IsThreeState="False" Unchecked="ToggleButton_Setting_UnChecked"
                           Style="{StaticResource ToggleButton}" IsChecked="{Binding sizeSetting.Visible}">
-                <Image Source="Resources\Property.png" Width="26" Height="26" Stretch="Fill" />
+                <Path Width="20" Height="20" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" Fill="{StaticResource ControlForegroundWhite}" Data="{StaticResource settingsStyle0}" />
                 <ToolTipService.ToolTip>
                     <TextBlock FontSize="13" Text="{DynamicResource toolTipToggleButton_Setting}" />
                 </ToolTipService.ToolTip>
@@ -70,9 +70,10 @@
 
             <ToggleButton x:Name="ToggleButton_TS" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
                           HorizontalAlignment="Center" Width="32" Height="32"
-                          IsThreeState="False" Content="ТС" FontSize="20" VerticalContentAlignment="Top"
+                          IsThreeState="False" FontSize="20" VerticalContentAlignment="Top"
                           HorizontalContentAlignment="Center" Unchecked="ToggleButton_TS_Unchecked"
                           Style="{StaticResource ToggleButton}" IsChecked="{Binding sizeChat.Visible}">
+                <Path Width="20" Height="20" Margin="0,4.5,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" Fill="{StaticResource ControlForegroundWhite}" Data="{StaticResource chatStyle0}" />
                 <ToolTipService.ToolTip>
                     <TextBlock FontSize="13" Text="{DynamicResource toolTipToggleButton_TS}" />
                 </ToolTipService.ToolTip>
@@ -85,9 +86,10 @@
 
             <ToggleButton x:Name="ToggleButton_Map" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
                           HorizontalAlignment="Center" Width="32" Height="32"
-                          IsThreeState="False" Style="{StaticResource ToggleButton}" Content="Map" FontSize="15"
+                          IsThreeState="False" Style="{StaticResource ToggleButton}"  FontSize="15"
                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                           Click="ToggleButton_Map_Click">
+                <Path Width="20" Height="20" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" Fill="{StaticResource ControlForegroundWhite}" Data="{StaticResource mapStyle0}" />
                 <ToolTipService.ToolTip>
                     <TextBlock FontSize="13" Text="{DynamicResource toolTipToggleButton_Map}" />
                 </ToolTipService.ToolTip>

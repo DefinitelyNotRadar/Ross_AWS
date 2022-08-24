@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using DLLSettingsControlPointForMap.Model;
+using Mapsui.Geometries;
 using ModelsTablesDBLib;
 using Ross.JSON;
 using Ross.Map;
@@ -41,6 +42,7 @@ namespace Ross
             InitTables();
 
 
+
             MainWindowViewSize = new MainWindowViewSize();
             DataContext = MainWindowViewSize;
         }
@@ -67,6 +69,7 @@ namespace Ross
         {
             mapLayout = new MapLayout();
             mapLayout.Closing += MapLayout_Closing;
+
         }
 
         private void ToggleButton_Map_Click(object sender, RoutedEventArgs e)
@@ -75,6 +78,7 @@ namespace Ross
                 mapLayout.Hide();
             else
                 mapLayout.Show();
+            mapLayout.DrawSourceFWS(new Mapsui.Geometries.Point(44.23222, 45.2355), ColorsForMap.Yellow);
         }
 
         private void MapLayout_Closing(object sender, CancelEventArgs e)
