@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using ClientDataBase.Exceptions;
+using Database934;
 using InheritorsEventArgs;
 using ModelsTablesDBLib;
 using TableEvents;
+using TransmissionLib.GrpcTransmission;
 
 namespace Ross
 {
-    public partial class MainWindow
+    public partial class MainWindow : Window
     {
         private void HandlerError_ClientDb(object sender, OperationTableEventArgs e)
         {
@@ -82,6 +84,9 @@ namespace Ross
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList();
                 ucSpecFreqKnown.UpdateSpecFreqs(lSpecFreqKnown);
             });
+
+            //var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFreqKnown);
+            //SelectedByConnectionTypeClient.SendTableFreqKnown(knownFreqsToServer); //отправка
         }
 
         private void HandlerUpdate_TempWFS(object sender, TableEventArs<TempFWS> e)

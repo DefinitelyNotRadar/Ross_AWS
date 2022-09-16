@@ -3,12 +3,19 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
+
+
+    <system:String x:Key="contentLabelTextGrpcServer">Station</system:String>
+    <system:String x:Key="contentLabelHintGrpcServer">Station ??-934?</system:String>
+    <system:String x:Key="contentButServerHintGrpcServer">Connect/disconnect Station</system:String>
+    <system:String x:Key="contentLedReadDataHintGrpcServer">Read data</system:String>
+    <system:String x:Key="contentLedWriteDataHintGrpcServer">Write data</system:String>
+
     <system:String x:Key="contentLabelTextDB">DB</system:String>
     <system:String x:Key="contentLabelHintDB">Data base</system:String>
     <system:String x:Key="contentButServerHintDB">Connect/disconnect data base</system:String>
     <system:String x:Key="contentLedReadDataHintDB">Read data</system:String>
     <system:String x:Key="contentLedWriteDataHintDB">Write data</system:String>
-
 
     <system:String x:Key="contentLabelTextTDF">TDF</system:String>
     <system:String x:Key="contentLabelHintTDF">Target detection-finder</system:String>
@@ -96,23 +103,5 @@
     <system:String x:Key="contentButServerHintAmp1">Connect/disconnect amplifier 1</system:String>
     <system:String x:Key="contentLedReadDataHintAmp1">Read data</system:String>
     <system:String x:Key="contentLedWriteDataHintAmp1">Write data</system:String>
-
-    <system:String x:Key="contentLabelTextAmp2">AMP2</system:String>
-    <system:String x:Key="contentLabelHintAmp2">Amplifier 2</system:String>
-    <system:String x:Key="contentButServerHintAmp2">Connect/disconnect amplifier 2</system:String>
-    <system:String x:Key="contentLedReadDataHintAmp2">Read data</system:String>
-    <system:String x:Key="contentLedWriteDataHintAmp2">Write data</system:String>
-
-    <system:String x:Key="contentLabelTextCuirasse">CR</system:String>
-    <system:String x:Key="contentLabelHintCuirasse">Cuirasse</system:String>
-    <system:String x:Key="contentButServerHintCuirasse">Connect/disconnect Cuirasse</system:String>
-    <system:String x:Key="contentLedReadDataHintCuirasse">Read data</system:String>
-    <system:String x:Key="contentLedWriteDataHintCuirasse">Write data</system:String>
-
-    <system:String x:Key="contentLabelTextSpoofing">SS</system:String>
-    <system:String x:Key="contentLabelHintSpoofing">Spoofing server</system:String>
-    <system:String x:Key="contentButServerHintSpoofing">Connect/disconnect Spoofing server</system:String>
-    <system:String x:Key="contentLedReadDataHintSpoofing">Read data</system:String>
-    <system:String x:Key="contentLedWriteDataHintSpoofing">Write data</system:String>
 
 </ResourceDictionary>

@@ -2,6 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
+
+    <system:String x:Key="contentLabelTextGrpcServer">Станция</system:String>
+    <system:String x:Key="contentLabelHintGrpcServer">Станция ??-934?</system:String>
+    <system:String x:Key="contentButServerHintGrpcServer">Подключить/отключить станцию</system:String>
+    <system:String x:Key="contentLedReadDataHintGrpcServer">Чтение данных</system:String>
+    <system:String x:Key="contentLedWriteDataHintGrpcServer">Запись данных</system:String>
+
     <system:String x:Key="contentLabelTextDB">БД</system:String>
     <system:String x:Key="contentLabelHintDB">База данных</system:String>
     <system:String x:Key="contentButServerHintDB">Подключить/отключить базу данных</system:String>

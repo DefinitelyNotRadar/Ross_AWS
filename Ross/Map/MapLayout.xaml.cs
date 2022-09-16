@@ -11,6 +11,7 @@ using System.Windows.Media;
 using DLLSettingsControlPointForMap;
 using DLLSettingsControlPointForMap.Model;
 using Mapsui.Geometries;
+using Mapsui.Projection;
 using Mapsui.Styles;
 using ModelsTablesDBLib;
 using Ross.JSON;
@@ -29,8 +30,14 @@ namespace Ross.Map
     /// <summary>
     ///     Логика взаимодействия для MapLayout.xaml
     /// </summary>
-    public partial class MapLayout : Window, INotifyPropertyChanged
+    public partial class MapLayout : Window
     {
+        public EventHandler<Tabl> OnPreparationMode;
+        public EventHandler<Tabl> OnRadioIntelligenceMode;
+        public EventHandler<Tabl> OnRadioJammingMode;
+        public EventHandler<Tabl> OnPoll;
+
+
         public MapLayout()
         {
             InitializeComponent();
@@ -38,35 +45,14 @@ namespace Ross.Map
             Properties.OnApplyButtonClick += Properties_OnApplyButtonClick;
             LoadSettings();
             InitHotKeys();
-           
+
+            DataContext = new MapViewModel();
+
+            //mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", scale);
         }
 
 
-        private Visibility iSVisibilityEvaTable = Visibility.Visible;
-        private StatusBarModel statusBar = new StatusBarModel();
-
-        public Visibility IsVisibleEvaTable
-        {
-            get => iSVisibilityEvaTable;
-            set
-            {
-                if(iSVisibilityEvaTable == value) return;
-                iSVisibilityEvaTable = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public StatusBarModel StatusBar
-        {
-            get => statusBar;
-            set
-            {
-                if(statusBar == value) return;
-                statusBar = value;
-                OnPropertyChanged();
-            }
-        }
-
+    
         public SettingsControlForMap MapProperties
         {
             get => Properties;
@@ -80,18 +66,7 @@ namespace Ross.Map
             
         }
 
-        #endregion
-
-
-        private void ToggleButton_Setting_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ColumnSettings.Width = new GridLength(0, GridUnitType.Pixel);
-        }
-
-        private void ToggleButton_Setting_Checked(object sender, RoutedEventArgs e)
-        {
-            ColumnSettings.Width = new GridLength(0, GridUnitType.Auto);
-        }
+        #endregion 
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
@@ -111,9 +86,9 @@ namespace Ross.Map
 
         private void ShowEvaTable(object sender, ExecutedRoutedEventArgs e)
         {
-            if (IsVisibleEvaTable == Visibility.Visible)
-                IsVisibleEvaTable = Visibility.Collapsed;
-            else IsVisibleEvaTable = Visibility.Visible;
+            if (evaTable.IsVisible)
+                evaTable.Visibility = Visibility.Collapsed;
+            else evaTable.Visibility = Visibility.Visible;
         }
 
         #endregion
@@ -215,31 +190,17 @@ namespace Ross.Map
         }
 
 
-        #region OnPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            try
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-            }
-            catch { }
-        }
-
-        #endregion
-
-
         #region Draw
 
         private const string partOfPath = @"\Resources\";
         private MapObjectStyle mapObjectStyleSqare;
         private MapObjectStyle mapObjectStyleTriangle;
-        private double scale = 0.4;
+        private MapObjectStyle mapObjectStyleStation;
+        private double scale = 0.2;
 
         public void DrawSourceFWS(Point point, ColorsForMap color)
         {
+            point = Mercator.FromLonLat(point.X, point.Y);
             switch (color)
             {
                 case ColorsForMap.Yellow:
@@ -260,8 +221,9 @@ namespace Ross.Map
             RastrMap.mapControl.AddMapObject(mapObjectStyleTriangle, "", point);
         }
 
-        public void DrawSourceFUSS(Mapsui.Geometries.Point point, ColorsForMap color)
-{
+        public void DrawSourceFUSS(Point point, ColorsForMap color)
+        {
+            point = Mercator.FromLonLat(point.X, point.Y);
             switch (color)
             {
                 case ColorsForMap.Yellow:
@@ -282,6 +244,33 @@ namespace Ross.Map
             RastrMap.mapControl.AddMapObject(mapObjectStyleSqare, "", point);
         }
 
+        public void DrawStation(Point point)
+        {
+            point = Mercator.FromLonLat(point.X, point.Y);
+            RastrMap.mapControl.AddMapObject(mapObjectStyleStation, "", point);
+        }
+
         #endregion
+
+        private void EvaTable_OnGetLine(Tabl tabl, UserControl1.StatusContextMenu menu)
+        {
+            switch (menu)
+            {
+                case UserControl1.StatusContextMenu.StatusSurvey:
+                    OnPoll(this, tabl);
+                    break;
+                case UserControl1.StatusContextMenu.OnPreparationMode:
+                    OnPreparationMode(this, tabl);
+                    break;
+                case UserControl1.StatusContextMenu.OffRadioIntelligenceMode:
+                    OnRadioIntelligenceMode(this, tabl);
+                    break;
+                case UserControl1.StatusContextMenu.PollJammingMode:
+                    OnRadioJammingMode(this, tabl);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

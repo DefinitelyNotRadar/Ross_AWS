@@ -35,14 +35,14 @@ namespace Ross
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
             {
-                DbControlConnection.ShowDisconnect();
-                clientDB = null;
+                mainWindowViewSize.ConnectionStatesDB = WPFControlConnection.ConnectionStates.Disconnected;
+                  clientDB = null;
             });
         }
 
         private void HandlerConnect_ClientDb(object sender, ClientEventArgs e)
         {
-            DbControlConnection.ShowConnect();
+            mainWindowViewSize.ConnectionStatesDB = WPFControlConnection.ConnectionStates.Connected;
             LoadTables();
         }
     }

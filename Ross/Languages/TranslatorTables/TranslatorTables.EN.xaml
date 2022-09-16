@@ -5,16 +5,16 @@
 
     <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-85" Top="-5" Right="0" Bottom="0"/>
     <system:Double x:Key="PropertyGridMinWidthParamsFWS">185</system:Double>
-    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-130" Top="-5" Right="0" Bottom="0"/>
+    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-70" Top="-5" Right="0" Bottom="0"/>
     <system:Double x:Key="PropertyGridMinWidthCoordFWS">155</system:Double>
     <Thickness x:Key="PropertyGridMarginCoordASP" Left="-145" Top="0" Right="0" Bottom="0"/>
-    <system:Double x:Key="PropertyGridMinWidthCoordASP">140</system:Double>
+    <system:Double x:Key="PropertyGridMinWidthCoordASP">165</system:Double>
     <system:Double x:Key="PropertyGridMinWidthRole">140</system:Double>
 
 
     <!-- PropertyGrid -->
-    <system:String x:Key="PropertyGridLatitude">Latitude, °</system:String>
-    <system:String x:Key="PropertyGridLongitude">Longitude, °</system:String>
+    <system:String x:Key="PropertyGridLatitude">Latitude</system:String>
+    <system:String x:Key="PropertyGridLongitude">Longitude</system:String>
     <system:String x:Key="PropertyGridAltitude">Altitude, m</system:String>
     <system:String x:Key="PropertyGridLabelModulation">Type modulation</system:String>
     <system:String x:Key="PropertyGridLabelManipulation">Manipulation, µs</system:String>
@@ -85,14 +85,19 @@
     <system:String x:Key="HeaderCallSign">Call sign</system:String>
     <system:String x:Key="HeaderRole">Role</system:String>
     <system:String x:Key="HeaderType">Type</system:String>
+    <system:String x:Key="HeaderModulation">Modulation</system:String>
     <system:String x:Key="HeaderAntennaJ">Ant. J, m</system:String>
     <system:String x:Key="HeaderAntennaRR">Ant. RI, m</system:String>
-    <system:String x:Key="HeaderLatLon">Lat.,°  Long.,°</system:String>
+    <system:String x:Key="HeaderLatLon">Lat.,  Long.</system:String>
     <system:String x:Key="HeaderAlt">Alt., m</system:String>
     <system:String x:Key="HeaderRRC1">RRC 1,°</system:String>
     <system:String x:Key="HeaderRRC2">RRC 2,°</system:String>
     <system:String x:Key="HeaderLPA1_3">LPA 1,3,°</system:String>
     <system:String x:Key="HeaderLPA2_4">LPA 2,4,°</system:String>
+    <system:String x:Key="HeaderLPA5_7">LPA 5-7,°</system:String>
+    <system:String x:Key="HeaderLPA5_9">LPA 5-9,°</system:String>
+    <system:String x:Key="HeaderLPA10">LPA 10,°</system:String>
+    <system:String x:Key="HeaderBPSS">SSTU,°</system:String>
     <system:String x:Key="HeaderLPA5_10">LPA 5-10,°</system:String>
     <system:String x:Key="HeaderSignature">Signature</system:String>
     <system:String x:Key="HeaderSign">Sign</system:String>
@@ -138,9 +143,9 @@
     <system:String x:Key="TabItemKF">KF</system:String>
 
     <!-- StatusBar -->
-    <system:String x:Key="StatusBarCountAll">In all:</system:String>
-    <system:String x:Key="StatusBarCountActive">Active:</system:String>
-    <system:String x:Key="StatusBarCountImportant">Important:</system:String>
+    <system:String x:Key="StatusBarCountAll">In all:  </system:String>
+    <system:String x:Key="StatusBarCountActive">Active:  </system:String>
+    <system:String x:Key="StatusBarCountImportant">Important:  </system:String>
 
     <!-- ToggleButtons UAV -->
     <system:String x:Key="ToggleButtonsUAV">UAV</system:String>

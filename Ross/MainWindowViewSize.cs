@@ -1,8 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using DataTransferModels.DB;
+using DLLSettingsControlPointForMap.Model;
 using Ross.AddPanel;
 using Ross.JSON;
+using Ross.Map;
+using Ross.Models;
+using WPFControlConnection;
 
 namespace Ross
 {
@@ -10,17 +16,41 @@ namespace Ross
     {
         private MarkSizeWnd markSizeWnd;
 
+
         public MainWindowViewSize()
         {
             InitMarkSizeWnd();
         }
 
-        public SizeValue sizeChat { get; set; }
-        public SizeValue sizeSetting { get; set; }
+
+        private ConnectionTypeServerOD connectionType;
+
+        public ConnectionTypeServerOD SelectedConnectionType
+        {
+            get => connectionType;
+            set
+            {
+                if (connectionType == value) return;
+                connectionType = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        public LocalProperties Local { get; set; }
+
+        public ConnectionStates ConnectionStatesDB { get; set; } = ConnectionStates.Disconnected;
+
+        public ConnectionStates ConnectionStatesGrpcServer { get; set; } = ConnectionStates.Disconnected;
+
+        public SizeValue sizeChat { get; set; } = new SizeValue() { Current = 0, Visible = false};
+        public SizeValue sizeSetting { get; set; } = new SizeValue() { Current = 0, Visible = false};
         public SizeValue sizeTopTable { get; set; }
         public SizeValue sizeDownTable { get; set; }
 
         public SizeValue sizeLeftDownTable { get; set; }
+
 
         private void InitMarkSizeWnd()
         {

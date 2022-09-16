@@ -63,6 +63,41 @@ namespace Ross
             return dict;
         }
 
+        private void SetLanguageMainWindow(Languages languages)
+        {
+            var dict = new ResourceDictionary();
+try
+            {
+                switch (languages)
+                {
+                    case Languages.Eng:
+                        dict.Source = new Uri(
+                            "/Ross;component/Languages/TranslatorMainWindow/StringResource.EN.xaml",
+                            UriKind.Relative);
+                        break;
+                    case Languages.Rus:
+                        dict.Source = new Uri(
+                            "/Ross;component/Languages/TranslatorMainWindow/StringResource.RU.xaml",
+                            UriKind.Relative);
+                        break;
+                    case Languages.Azr:
+                        dict.Source = new Uri(
+                            "/Ross;component/Languages/TranslatorMainWindow/StringResource.AZ.xaml",
+                            UriKind.Relative);
+                        break;
+                    default:
+                        dict.Source = new Uri(
+                            "/Ross;component/Languages/TranslatorMainWindow/StringResource.RU.xaml",
+                            UriKind.Relative);
+                        break;
+                }
+
+                Resources.MergedDictionaries.Add(dict);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
 
         private void SetLanguageConnectionPanel(Languages language)
         {
@@ -136,11 +171,16 @@ namespace Ross
 
         private void Properties_OnLanguageChange(object sender, Languages e)
         {
+            ChangeLanguage(e);
+        }
+
+        private void ChangeLanguage(Languages e)
+        {
             SetLanguageTables(e);
             SetLanguageConnectionPanel(e);
             SetLanguageMapLayout(e);
+            SetLanguageMainWindow(e);
         }
-
 
         private void UcSRangesRecon_OnIsWindowPropertyOpen(object sender, SectorsRangesProperty e)
         {
@@ -169,7 +209,7 @@ namespace Ross
 
         private void UcASP_OnIsWindowPropertyOpen(object sender, ASPProperty e)
         {
-            e.SetLanguagePropertyGrid(Properties.Local.Common.Language);
+            //e.SetLanguagePropertyGrid(Properties.Local.Common.Language);
         }
 
         private void UcSuppressFHSS_OnIsWindowPropertyOpen(object sender, SuppressFHSSProperty e)

@@ -8,7 +8,10 @@ using Mapsui.Geometries;
 using ModelsTablesDBLib;
 using Ross.JSON;
 using Ross.Map;
+using TableEvents;
+using TransmissionLib.GrpcTransmission;
 using UserControl_Chat;
+using WpfControlLibrary1;
 using LocalProperties = ModelsTablesDBLib.LocalProperties;
 
 namespace Ross
@@ -18,107 +21,47 @@ namespace Ross
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly MainWindowViewSize MainWindowViewSize;
+        private readonly MainWindowViewSize mainWindowViewSize;
 
         private MapLayout mapLayout;
-
 
         public MainWindow()
         {
             InitializeComponent();
 
             ucSRangesRecon.AddSRange(new TableSectorsRanges());
-            ucASP.AddASP(new TableASP());
-
 
             SetLocalProperties();
-
-            SetLanguageTables(Properties.Local.Common.Language);
-            SetLanguageConnectionPanel(Properties.Local.Common.Language);
             InitializeMapLayout();
-            SetLanguageMapLayout(Properties.Local.Common.Language);
 
-            SetChatSettings();
+            ChangeLanguage(Properties.Local.Common.Language);
+            InitChat();
             InitTables();
 
 
-
-            MainWindowViewSize = new MainWindowViewSize();
-            DataContext = MainWindowViewSize;
+            mainWindowViewSize = new MainWindowViewSize();
+            mainWindowViewSize.PropertyChanged += MainWindowViewSize_PropertyChanged;
+            DataContext = mainWindowViewSize;
         }
 
-
-        private void ToggleButton_Setting_UnChecked(object sender, RoutedEventArgs e)
+        private void MainWindowViewSize_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            //columnSettings.Width = GridLength.Auto;
-        }
-
-        private void ToggleButton_TS_Unchecked(object sender, RoutedEventArgs e)
-        {
-            //columnChat.Width = GridLength.Auto;
-        }
-
-
-        private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
-        {
-        }
-
-        #region Map window
-
-        private void InitializeMapLayout()
-        {
-            mapLayout = new MapLayout();
-            mapLayout.Closing += MapLayout_Closing;
-
-        }
-
-        private void ToggleButton_Map_Click(object sender, RoutedEventArgs e)
-        {
-            if (mapLayout.IsVisible)
-                mapLayout.Hide();
-            else
-                mapLayout.Show();
-            mapLayout.DrawSourceFWS(new Mapsui.Geometries.Point(44.23222, 45.2355), ColorsForMap.Yellow);
-        }
-
-        private void MapLayout_Closing(object sender, CancelEventArgs e)
-        {
-            ToggleButton_Map.IsChecked = false;
-        }
-
-        #endregion
-
-
-        #region Chat
-
-        private void SetChatSettings()
-        {
-            var testList = new List<StationClassForChat>
+            if(e.PropertyName.Equals(nameof(MainWindowViewSize.SelectedConnectionType)))
             {
-                new StationClassForChat(0, "ПУ", true)
-            };
-            UserControlChat.InitStations(testList);
-            Events.OnSendStationsMessage += ReturnApprovedMessages;
-        }
-
-        public void ReturnApprovedMessages(List<Message> stationsMessages)
-        {
-            foreach (var curStationsMessage in stationsMessages)
-            {
-                //curStationsMessage.IsTransmited = true;
-                curStationsMessage.SenderName = "Извинитей пожалуйстович";
-                curStationsMessage.MessageFontSize = 20;
-                curStationsMessage.SenderNameFontSize = 15;
-                curStationsMessage.MessageFiled = curStationsMessage.MessageFiled;
-
-                //curStationsMessage.IsTransmited = false;
+                switch (mainWindowViewSize.SelectedConnectionType)
+                {
+                    case Models.ConnectionTypeServerOD.Ethernet:
+                        SelectedByConnectionTypeClient = grpcClientEthernet;
+                        break;
+                    case Models.ConnectionTypeServerOD.Robustel_3G_4G:
+                        SelectedByConnectionTypeClient = grpcClient_3G_4G;
+                        break;
+                    case Models.ConnectionTypeServerOD.Viper_Radio:
+                        SelectedByConnectionTypeClient = grpcClientViper;
+                        break;
+                }
             }
-
-            UserControlChat.DrawMessageToChat(stationsMessages);
         }
-
-        #endregion
-
 
         #region Properties
 
@@ -129,6 +72,7 @@ namespace Ross
                 Properties.Local = SerializerJSON.Deserialize<LocalProperties>("LocalProperties");
                 Properties.Local.Common.PropertyChanged += Properties_OnPropertyChanged;
                 Properties.Local.Common.IsVisibleAZ = false;
+                Properties.Local.EdServer.PropertyChanged += EdServer_PropertyChanged;
             }
             catch (Exception ex)
             {
@@ -136,6 +80,7 @@ namespace Ross
             }
         }
 
+     
 
         private void Properties_OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -145,6 +90,7 @@ namespace Ross
 
         private void Properties_OnUpdateLocalProperties(object sender, LocalProperties e)
         {
+
         }
 
         private void Properties_OnPasswordChecked(object sender, bool e)
@@ -158,5 +104,12 @@ namespace Ross
         }
 
         #endregion
+
+        private void UcASP_OnOnAddRecord(object sender, TableEvent e)
+        {
+            //mapLayout.DrawStation();
+        }
+
+    
     }
 }
