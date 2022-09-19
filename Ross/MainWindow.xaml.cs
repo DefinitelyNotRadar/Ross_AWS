@@ -103,13 +103,6 @@ namespace Ross
             e.Serialize("LocalProperties");
         }
 
-        #endregion
-
-        private void UcASP_OnOnAddRecord(object sender, TableEvent e)
-        {
-            //mapLayout.DrawStation();
-        }
-
-    
+        #endregion   
     }
 }

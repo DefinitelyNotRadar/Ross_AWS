@@ -181,6 +181,8 @@ namespace Ross
                 var listTempSuppressFWS = e.Table;
                 ucSuppressFWS.UpdateRadioJamState(listTempSuppressFWS);
                 //UpdateRadioJamStateStructForBRZ(listTempSuppressFWS);
+                var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSuppressFWS);
+                SelectedByConnectionTypeClient.SendFwsJamming(obj);
             });
         }
 

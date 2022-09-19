@@ -14,17 +14,27 @@ namespace Ross
     {
         private void MapLayout_OnRadioJammingMode(object sender, Tabl e)
         {
-           
+            var obj = SelectedByConnectionTypeClient.SendMode(0);
+            var newTabl = e;//.Clone();
+
+            mapLayout.SetStationInEvaTable(newTabl, e);
+
         }
 
         private void MapLayout_OnRadioIntelligenceMode(object sender, Tabl e)
         {
+            var obj = SelectedByConnectionTypeClient.SendMode(0);
+            var newTabl = e;//.Clone();
 
+            mapLayout.SetStationInEvaTable(newTabl, e);
         }
 
         private void MapLayout_OnPreparationMode(object sender, Tabl e)
         {
+           var obj = SelectedByConnectionTypeClient.SendMode(0);
+           var newTabl = e;//.Clone();
 
+           mapLayout.SetStationInEvaTable(newTabl, e);
         }
 
         private void MapLayout_OnPoll(object sender, Tabl e)

@@ -197,7 +197,7 @@
 
                 <TabControl>
                     <TabItem Header="{DynamicResource TabItemRES_FF}">
-                        <TempFWSControl:UserControlTempFWS x:Name="ucTempFWS" />
+                        <TempFWSControl:UserControlTempFWS x:Name="ucTempFWS"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FF_J}">
                         <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS" />
@@ -239,7 +239,7 @@
 
                 <TabControl x:Name="ASP" Grid.Column="0">
                     <TabItem Header="{DynamicResource TabItemAJS}">
-                        <aspControl:UserControlASP x:Name="ucASP" OnAddRecord="UcASP_OnOnAddRecord"/>
+                        <aspControl:UserControlASP x:Name="ucASP"/>
                     </TabItem>
 
                 </TabControl>

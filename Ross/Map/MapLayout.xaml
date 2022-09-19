@@ -7,15 +7,15 @@
         xmlns:prop="clr-namespace:DLLSettingsControlPointForMap;assembly=DLLSettingsControlPointForMap"
         xmlns:evaTable="clr-namespace:WpfControlLibrary1;assembly=WpfControlLibrary1"
         xmlns:converter="clr-namespace:Ross.Converters"
-        mc:Ignorable="d" Background="#292929" Closing="Window_Closing">
+        mc:Ignorable="d" Background="#292929" Closing="Window_Closing" Title="Map">
 
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Theme/ThemeBlue.xaml" />
-                <ResourceDictionary Source="/Theme/icons.xaml" />
-                <ResourceDictionary Source="/Theme/BrushesBlue.xaml" />
-                <ResourceDictionary Source="/Theme/Core.xaml" />
+                <ResourceDictionary Source="Theme/ThemeBlue.xaml" />
+                <ResourceDictionary Source="Theme/icons.xaml" />
+                <ResourceDictionary Source="Theme/BrushesBlue.xaml" />
+                <ResourceDictionary Source="Theme/Core.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converter:BooleanToGridLengthConverter x:Key="BooleanToGridLengthConverter"/>

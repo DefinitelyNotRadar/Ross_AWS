@@ -52,6 +52,12 @@ namespace Ross.Map
         }
 
 
+        public void SetStationInEvaTable(Tabl newtabl, Tabl oldTable)
+        {
+            evaTable.DeleteItemModel(oldTable);
+            evaTable.AddNewItem(newtabl);
+        }
+
     
         public SettingsControlForMap MapProperties
         {
@@ -198,9 +204,9 @@ namespace Ross.Map
         private MapObjectStyle mapObjectStyleStation;
         private double scale = 0.2;
 
-        public void DrawSourceFWS(Point point, ColorsForMap color)
+        public void DrawSourceFWS(Coord point, ColorsForMap color)
         {
-            point = Mercator.FromLonLat(point.X, point.Y);
+           var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
             switch (color)
             {
                 case ColorsForMap.Yellow:
@@ -218,12 +224,12 @@ namespace Ross.Map
 
             }
 
-            RastrMap.mapControl.AddMapObject(mapObjectStyleTriangle, "", point);
+            RastrMap.mapControl.AddMapObject(mapObjectStyleTriangle, "", p);
         }
 
-        public void DrawSourceFUSS(Point point, ColorsForMap color)
+        public void DrawSourceFUSS(Coord point, ColorsForMap color)
         {
-            point = Mercator.FromLonLat(point.X, point.Y);
+            var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
             switch (color)
             {
                 case ColorsForMap.Yellow:
@@ -240,14 +246,14 @@ namespace Ross.Map
                     break;
 
             }
-
-            RastrMap.mapControl.AddMapObject(mapObjectStyleSqare, "", point);
+             
+            RastrMap.mapControl.AddMapObject(mapObjectStyleSqare, "", p);
         }
 
-        public void DrawStation(Point point)
+        public void DrawStation(Coord point)
         {
-            point = Mercator.FromLonLat(point.X, point.Y);
-            RastrMap.mapControl.AddMapObject(mapObjectStyleStation, "", point);
+            var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
+            RastrMap.mapControl.AddMapObject(mapObjectStyleStation, "", p);
         }
 
         #endregion
@@ -259,13 +265,13 @@ namespace Ross.Map
                 case UserControl1.StatusContextMenu.StatusSurvey:
                     OnPoll(this, tabl);
                     break;
-                case UserControl1.StatusContextMenu.OnPreparationMode:
+                case UserControl1.StatusContextMenu.PreparationMode:
                     OnPreparationMode(this, tabl);
                     break;
-                case UserControl1.StatusContextMenu.OffRadioIntelligenceMode:
+                case UserControl1.StatusContextMenu.RadioIntelligenceMode:
                     OnRadioIntelligenceMode(this, tabl);
                     break;
-                case UserControl1.StatusContextMenu.PollJammingMode:
+                case UserControl1.StatusContextMenu.JammingMode:
                     OnRadioJammingMode(this, tabl);
                     break;
                 default:
