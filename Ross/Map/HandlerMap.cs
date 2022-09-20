@@ -14,32 +14,40 @@ namespace Ross
     {
         private void MapLayout_OnRadioJammingMode(object sender, Tabl e)
         {
-            var obj = SelectedByConnectionTypeClient.SendMode(0);
-            var newTabl = e;//.Clone();
+            var IsSeccess = SelectedByConnectionTypeClient.SendMode(0);
 
-            mapLayout.SetStationInEvaTable(newTabl, e);
-
+            if (IsSeccess)
+            {
+                var newTabl = e;//.Clone();
+                mapLayout.SetStationInEvaTable(newTabl, e);
+            }
         }
 
         private void MapLayout_OnRadioIntelligenceMode(object sender, Tabl e)
         {
-            var obj = SelectedByConnectionTypeClient.SendMode(0);
-            var newTabl = e;//.Clone();
+            var IsSeccess = SelectedByConnectionTypeClient.SendMode(0);
 
-            mapLayout.SetStationInEvaTable(newTabl, e);
+            if (IsSeccess)
+            {
+                var newTabl = e;//.Clone();
+                mapLayout.SetStationInEvaTable(newTabl, e);
+            }
         }
 
         private void MapLayout_OnPreparationMode(object sender, Tabl e)
         {
-           var obj = SelectedByConnectionTypeClient.SendMode(0);
-           var newTabl = e;//.Clone();
+            var IsSeccess = SelectedByConnectionTypeClient.SendMode(0);
 
-           mapLayout.SetStationInEvaTable(newTabl, e);
+            if (IsSeccess)
+            {
+                var newTabl = e;//.Clone();
+                mapLayout.SetStationInEvaTable(newTabl, e);
+            }
         }
 
         private void MapLayout_OnPoll(object sender, Tabl e)
         {
-            
+            Poll();
         }
 
         private void ToggleButton_Map_Click(object sender, RoutedEventArgs e)
@@ -53,6 +61,46 @@ namespace Ross
         private void MapLayout_Closing(object sender, CancelEventArgs e)
         {
             ToggleButton_Map.IsChecked = false;
+        }
+
+        private void DrawAllObjects()
+        {
+            mapLayout.RastrMap.mapControl.RemoveAllObjects();
+
+            DrawAllASP();
+
+            DrawAllFWS();
+
+            DrawAllFHSS();
+        }
+
+        private void DrawAllASP()
+        {
+            foreach(var asp in lASP)
+            {
+                mapLayout.DrawStation(asp.Coordinates);
+            }
+        }
+
+        private void DrawAllFWS()
+        {
+            foreach (var fws in lReconFWS)
+                mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
+            foreach (var fws in lSuppressFWS)
+                mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
+        }
+
+        private void DrawAllFHSS()
+        {
+            foreach(var fhss in lSourceFHSS)
+            {
+                mapLayout.DrawSourceFHSS(fhss.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
+            }
+
+            //foreach (var fhss in lReconFHSS)
+            //    mapLayout.DrawSourceFHSS(fhss., DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
+            //foreach (var fhss in lSuppressFHSS)
+            //    mapLayout.DrawSourceFHSS(fhss., DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
         }
     }
 }

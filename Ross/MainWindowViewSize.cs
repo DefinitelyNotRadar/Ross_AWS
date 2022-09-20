@@ -15,7 +15,9 @@ namespace Ross
     public class MainWindowViewSize : INotifyPropertyChanged
     {
         private MarkSizeWnd markSizeWnd;
-
+        private ConnectionTypeServerOD connectionType;
+        private ConnectionStates connectionStates = ConnectionStates.Disconnected;
+        private ConnectionStates connectionStatesGrpcServer = ConnectionStates.Disconnected;
 
         public MainWindowViewSize()
         {
@@ -23,7 +25,7 @@ namespace Ross
         }
 
 
-        private ConnectionTypeServerOD connectionType;
+        public LocalProperties Local { get; set; }
 
         public ConnectionTypeServerOD SelectedConnectionType
         {
@@ -36,13 +38,28 @@ namespace Ross
             }
         }
 
+        public ConnectionStates ConnectionStatesDB 
+        {
+            get => connectionStates; 
+            set
+            {
+                if(connectionStates == value) return;
+                connectionStates = value;
+                OnPropertyChanged();
+            }
+        } 
 
+        public ConnectionStates ConnectionStatesGrpcServer 
+        {
+            get => connectionStatesGrpcServer; 
+            set
+            {
+                if (connectionStatesGrpcServer == value) return;
+                connectionStatesGrpcServer = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public LocalProperties Local { get; set; }
-
-        public ConnectionStates ConnectionStatesDB { get; set; } = ConnectionStates.Disconnected;
-
-        public ConnectionStates ConnectionStatesGrpcServer { get; set; } = ConnectionStates.Disconnected;
 
         public SizeValue sizeChat { get; set; } = new SizeValue() { Current = 0, Visible = false};
         public SizeValue sizeSetting { get; set; } = new SizeValue() { Current = 0, Visible = false};

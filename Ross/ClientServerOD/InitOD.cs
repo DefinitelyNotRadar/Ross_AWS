@@ -47,24 +47,7 @@ namespace Ross
         private void CommonPartInitialization(GrpcClient grpcClient)
         {
             grpcClient.OnGetTextMessage += GrpcClient_OnGetTextMessage;
-            grpcClient.ConnectionStateChanged += GrpcClient_ConnectionStateChanged;
-            Poll();
-        }
-
-        private void Poll()
-        {
-            Task task1 = new Task(() =>
-            {
-                ReadRecord(SelectedByConnectionTypeClient.GetFwsElint(), NameTable.TableReconFWS);
-                ReadRecord(SelectedByConnectionTypeClient.GetFhssElint(), NameTable.TableReconFHSS);
-                ReadRecord(SelectedByConnectionTypeClient.GetAsps(), NameTable.TableASP);
-            }); 
-        }
-
-        private void ReadRecord(object table, NameTable nameTable)
-        {
-            var fwsRecordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(nameTable).ListRecords;
-            clientDB?.Tables[nameTable].AddRange(fwsRecordsToDB);
+            grpcClient.ConnectionStateChanged += GrpcClient_ConnectionStateChanged;          
         }
     }
 }

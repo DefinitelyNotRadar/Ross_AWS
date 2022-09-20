@@ -103,6 +103,11 @@ namespace Ross
             e.Serialize("LocalProperties");
         }
 
-        #endregion   
+        #endregion
+
+        private void SRSF_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

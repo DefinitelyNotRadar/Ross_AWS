@@ -31,6 +31,7 @@ namespace Ross
                 //UpdateTableASP4MainPanel(lASP);
 
                 ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
+                DrawAllObjects();
             });
         }
 
@@ -43,6 +44,9 @@ namespace Ross
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList();
 
                 ucSRangesRecon.UpdateSRanges(lSRangeRecon);
+
+                var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSectorsRangesRecon);
+                SelectedByConnectionTypeClient.SendSectorsRangesElint(knownFreqsToServer); //отправка
             });
         }
 
@@ -53,6 +57,9 @@ namespace Ross
                 lSRangeSuppr = (from t in e.Table let a = t as TableSectorsRanges select a).ToList()
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList();
                 ucSRangesSuppr.UpdateSRanges(lSRangeSuppr);
+
+                var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSectorsRangesSuppr);
+                SelectedByConnectionTypeClient.SendSectorsRangesJamming(knownFreqsToServer); //отправка
             });
         }
 
@@ -63,6 +70,9 @@ namespace Ross
                 lSpecFreqForbidden = (from t in e.Table let a = t as TableFreqSpec select a).ToList()
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList();
                 ucSpecFreqForbidden.UpdateSpecFreqs(lSpecFreqForbidden);
+
+                var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFreqForbidden);
+                SelectedByConnectionTypeClient.SendTableFreqForbidden(knownFreqsToServer); //отправка
             });
         }
 
@@ -73,6 +83,9 @@ namespace Ross
                 lSpecFreqImportant = (from t in e.Table let a = t as TableFreqSpec select a).ToList()
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList();
                 ucSpecFreqImportant.UpdateSpecFreqs(lSpecFreqImportant);
+
+                var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFreqImportant);
+                SelectedByConnectionTypeClient.SendTableFreqImportant(knownFreqsToServer); //отправка
             });
         }
 
@@ -83,10 +96,12 @@ namespace Ross
                 lSpecFreqKnown = (from t in e.Table let a = t as TableFreqSpec select a).ToList()
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList();
                 ucSpecFreqKnown.UpdateSpecFreqs(lSpecFreqKnown);
+
+                var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFreqKnown);
+                SelectedByConnectionTypeClient.SendTableFreqKnown(knownFreqsToServer); //отправка
             });
 
-            //var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFreqKnown);
-            //SelectedByConnectionTypeClient.SendTableFreqKnown(knownFreqsToServer); //отправка
+
         }
 
         private void HandlerUpdate_TempWFS(object sender, TableEventArs<TempFWS> e)
@@ -98,6 +113,7 @@ namespace Ross
                 ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
             });
+
         }
 
         private void HandlerChangeFWS(object sender, TempFWS e)
@@ -107,6 +123,8 @@ namespace Ross
                 ucTempFWS.ChangeTempFWS(e.Id, e);
                 ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
+
+                DrawAllObjects();
             });
         }
 
@@ -118,6 +136,8 @@ namespace Ross
                     lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
                 ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
+
+                DrawAllObjects();
             });
         }
 
@@ -147,18 +167,7 @@ namespace Ross
                 Properties.Global = globalProperties;
                 //UpdateGlobalProperties4MainPanel(globalProperties);
                 //UpdateGlobalProperties4LeftRIButtons(globalProperties);
-                UpdateSpoofCoord(globalProperties);
             });
-        }
-
-
-        private void UpdateSpoofCoord(GlobalProperties globalProperties)
-        {
-            if (globalProperties.Latitude > 0 && globalProperties.Longitude > 0)
-            {
-                //spoof.SpoofControl.SpoofParameters.Latitude = globalProperties.Latitude;
-                //spoof.SpoofControl.SpoofParameters.Longitude = globalProperties.Longitude;
-            }
         }
 
         private void HandlerUpdate_TableSuppressFWS(object sender, TableEventArs<TableSuppressFWS> e)
@@ -171,6 +180,10 @@ namespace Ross
                 //ListFormer(lSuppressFWS, null);
 
                 ucSuppressFWS.UpdateSuppressFWS(lSuppressFWS);
+
+                var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSuppressFWS);
+                SelectedByConnectionTypeClient.SendFwsJamming(obj);
+                DrawAllObjects();
             });
         }
 
@@ -181,8 +194,6 @@ namespace Ross
                 var listTempSuppressFWS = e.Table;
                 ucSuppressFWS.UpdateRadioJamState(listTempSuppressFWS);
                 //UpdateRadioJamStateStructForBRZ(listTempSuppressFWS);
-                var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSuppressFWS);
-                SelectedByConnectionTypeClient.SendFwsJamming(obj);
             });
         }
 
@@ -195,6 +206,9 @@ namespace Ross
                 ucSuppressFHSS.UpdateSuppressFHSS(lSuppressFHSS);
 
 
+                var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSuppressFWS);
+                SelectedByConnectionTypeClient.SendFhssJamming(obj);
+                DrawAllObjects();
                 //ListFormer(lSuppressFWS, null);
             });
         }
@@ -206,6 +220,8 @@ namespace Ross
                 lReconFHSS = e.Table;
                 ucReconFHSS.UpdateReconFHSS(lReconFHSS);
                 ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
+
+                DrawAllObjects();
             });
         }
 
@@ -216,8 +232,13 @@ namespace Ross
                 lReconFHSS = e.Table;
                 ucReconFHSS.AddReconFHSSs(lReconFHSS);
                 ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
+
+                DrawAllObjects();
             });
         }
+
+
+      
 
         private async void LoadTables()
         {

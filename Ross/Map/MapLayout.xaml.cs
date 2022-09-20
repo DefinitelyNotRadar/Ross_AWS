@@ -227,7 +227,8 @@ namespace Ross.Map
             RastrMap.mapControl.AddMapObject(mapObjectStyleTriangle, "", p);
         }
 
-        public void DrawSourceFUSS(Coord point, ColorsForMap color)
+
+        public void DrawSourceFHSS(Coord point, ColorsForMap color)
         {
             var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
             switch (color)
