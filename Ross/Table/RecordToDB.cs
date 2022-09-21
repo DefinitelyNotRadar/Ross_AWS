@@ -245,7 +245,7 @@ namespace Ross
                         var buttonsNAV = new ButtonsNAV();
                         buttonsNAV.NumberASP = (e.Record as TableASP).Id;
                         buttonsNAV.IdMission = (e.Record as TableASP).IdMission;
-                        clientDB?.Tables[NameTable.ButtonsNAV].Add(buttonsNAV);                  
+                        clientDB?.Tables[NameTable.ButtonsNAV].Add(buttonsNAV);
                         break;
 
                     case NameTable.TableSuppressFWS:
