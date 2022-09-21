@@ -45,6 +45,7 @@
 
         <Grid.Resources>
             <converters:DoubleGridLengthConverter x:Key="DoubleGridLengthConverter" />
+            <converters:ViewCoordsConverter x:Key="ViewCoordsConverter"/>
         </Grid.Resources>
 
         <Grid.ColumnDefinitions>
@@ -239,7 +240,14 @@
 
                 <TabControl x:Name="ASP" Grid.Column="0">
                     <TabItem Header="{DynamicResource TabItemAJS}">
-                        <aspControl:UserControlASP x:Name="ucASP"/>
+                        <aspControl:UserControlASP x:Name="ucASP" 
+                            ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"
+                            StateOPU1="{Binding Local.ARD1.State, ElementName=basicProperties, Mode=OneWay}"
+                            StateOPU2="{Binding Local.ARD2.State, ElementName=basicProperties, Mode=OneWay}"
+                            StateOPU3="{Binding Local.ARD3.State, ElementName=basicProperties, Mode=OneWay}"
+                            OPU1="{Binding Local.ARD1.Device, ElementName=basicProperties, Mode=OneWay}"
+                            OPU2="{Binding Local.ARD2.Device, ElementName=basicProperties, Mode=OneWay}"
+                            OPU3="{Binding Local.ARD3.Device, ElementName=basicProperties, Mode=OneWay}"      />
                     </TabItem>
 
                 </TabControl>

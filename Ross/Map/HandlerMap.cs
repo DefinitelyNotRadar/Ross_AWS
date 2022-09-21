@@ -65,13 +65,13 @@ namespace Ross
 
         private void DrawAllObjects()
         {
-            mapLayout.RastrMap.mapControl.RemoveAllObjects();
+            //mapLayout.RastrMap.mapControl.RemoveAllObjects();
 
-            DrawAllASP();
+            //DrawAllASP();
 
-            DrawAllFWS();
+            //DrawAllFWS();
 
-            DrawAllFHSS();
+            //DrawAllFHSS();
         }
 
         private void DrawAllASP()

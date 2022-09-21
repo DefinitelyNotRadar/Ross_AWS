@@ -5,6 +5,31 @@ using DLLSettingsControlPointForMap.Model;
 
 namespace Ross.Converters
 {
+    public class ViewCoordsConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            switch (value)
+            {
+                case "DD.dddddd":
+                    return 1;
+
+                case "DD MM.mmmm":
+                    return 2;
+
+                case "DD MM SS.ss":
+                    return 3;
+            }
+
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
     internal class CoordViewConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -23,4 +48,6 @@ namespace Ross.Converters
             throw new NotImplementedException();
         }
     }
+
+    
 }

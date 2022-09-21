@@ -38,10 +38,28 @@ namespace Ross
             InitChat();
             InitTables();
 
+            PropViewCoords.ViewCoords = ViewCoordToByte(Properties.Local.CoordinatesProperty.View);
 
             mainWindowViewSize = new MainWindowViewSize();
             mainWindowViewSize.PropertyChanged += MainWindowViewSize_PropertyChanged;
             DataContext = mainWindowViewSize;
+        }
+
+        private byte ViewCoordToByte(string viewCoord)
+        {
+            switch (viewCoord)
+            {
+                case "DD.dddddd":
+                    return 1;
+
+                case "DD MM.mmmm":
+                    return 2;
+
+                case "DD MM SS.ss":
+                    return 3;
+            }
+
+            return 1;
         }
 
         private void MainWindowViewSize_PropertyChanged(object sender, PropertyChangedEventArgs e)
