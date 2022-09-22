@@ -1,4 +1,6 @@
-﻿using Ross.Map;
+﻿using EvaTable;
+using Ross.Map;
+using Ross.Map._EventArgs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,19 +8,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using WpfControlLibrary1;
 
 namespace Ross
 {
     public partial class MainWindow : Window
     {
+
+        private void MapLayout_OnCoordControlPoinChanged(object sender, CoordEventArgs e)
+        {
+            Properties.Local.Common.Latitude = e.Data.Latitude;
+            Properties.Local.Common.Longitude = e.Data.Longitude;
+        }
+
+        private void MapLayout_OnCoordASPPropertyGridSelecteted(object sender, CoordEventArgs e)
+        {
+            ucASP.SetCoordsASPToPG(e.Data);
+        }
+
+
+
         private void MapLayout_OnRadioJammingMode(object sender, Tabl e)
         {
             var IsSeccess = SelectedByConnectionTypeClient.SendMode(0);
 
             if (IsSeccess)
             {
-                var newTabl = e;//.Clone();
+                var newTabl = e.Clone();
                 mapLayout.SetStationInEvaTable(newTabl, e);
             }
         }
@@ -29,7 +44,7 @@ namespace Ross
 
             if (IsSeccess)
             {
-                var newTabl = e;//.Clone();
+                var newTabl = e.Clone();
                 mapLayout.SetStationInEvaTable(newTabl, e);
             }
         }
@@ -40,7 +55,7 @@ namespace Ross
 
             if (IsSeccess)
             {
-                var newTabl = e;//.Clone();
+                var newTabl = e.Clone();
                 mapLayout.SetStationInEvaTable(newTabl, e);
             }
         }
@@ -65,13 +80,14 @@ namespace Ross
 
         private void DrawAllObjects()
         {
-            //mapLayout.RastrMap.mapControl.RemoveAllObjects();
+            
+            mapLayout.RastrMap.mapControl.RemoveAllObjects();
 
-            //DrawAllASP();
+            DrawAllASP();
 
-            //DrawAllFWS();
+            DrawAllFWS();
 
-            //DrawAllFHSS();
+            DrawAllFHSS();
         }
 
         private void DrawAllASP()

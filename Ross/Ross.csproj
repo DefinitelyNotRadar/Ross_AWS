@@ -114,6 +114,9 @@
     <Reference Include="Errors">
       <HintPath>dll\Errors.dll</HintPath>
     </Reference>
+    <Reference Include="EvaTable">
+      <HintPath>dll\EvaTable.dll</HintPath>
+    </Reference>
     <Reference Include="Formation_RN_RD_CC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\Formation_RN_RD_CC.dll</HintPath>
@@ -257,9 +260,6 @@
     <Reference Include="WPFControlConnection">
       <HintPath>dll\WPFControlConnection.dll</HintPath>
     </Reference>
-    <Reference Include="WpfControlLibrary1">
-      <HintPath>dll\WpfControlLibrary1.dll</HintPath>
-    </Reference>
     <Reference Include="WpfMapControl">
       <HintPath>dll\WpfMapControl.dll</HintPath>
     </Reference>
@@ -287,6 +287,7 @@
     <Compile Include="Converters\HelpClasses\EnumHelper.cs" />
     <Compile Include="Converters\EnumToCollectionConverter .cs" />
     <Compile Include="Converters\HelpClasses\ValueDescription.cs" />
+    <Compile Include="Map\EventArgs\CoordEventArgs.cs" />
     <Compile Include="Map\HandlerMap.cs" />
     <Compile Include="Map\InitMap.cs" />
     <Compile Include="Map\MapViewModel.cs" />
@@ -441,18 +442,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sqare_black.png">
+    <Resource Include="Resources\sqare_black.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\sqare_yellow.png">
+    </Resource>
+    <Resource Include="Resources\sqare_yellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\sqare_green.png">
+    </Resource>
+    <Resource Include="Resources\sqare_green.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\sqare_red.png">
+    </Resource>
+    <Resource Include="Resources\sqare_red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Property.png">
@@ -488,20 +489,20 @@
     <Resource Include="Languages\TranslatorMapWindow\Translation.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\triangle_red.png">
+    <Resource Include="Resources\triangle_red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\triangle_yellow.png">
+    </Resource>
+    <Resource Include="Resources\triangle_yellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\triangle_green.png">
+    </Resource>
+    <Resource Include="Resources\triangle_green.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\triangle_black.png">
+    <Resource Include="Resources\triangle_black.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons8-walkie-talkie-64%281%29.ico" />

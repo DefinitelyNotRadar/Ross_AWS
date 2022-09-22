@@ -17,7 +17,7 @@
         xmlns:chat="clr-namespace:UserControl_Chat;assembly=UserControl_Chat"
         xmlns:models="clr-namespace:Ross.Models"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowState="Maximized">
+        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" Closed="Window_Closed" >
 
 
     <Window.Resources>

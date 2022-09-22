@@ -34,6 +34,7 @@ namespace Ross
             {
                 if (connectionType == value) return;
                 connectionType = value;
+                ConnectionStatesGrpcServer = ConnectionStates.Disconnected;
                 OnPropertyChanged();
             }
         }

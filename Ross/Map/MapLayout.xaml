@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:map="clr-namespace:UIMapRast;assembly=UIMapRast"
         xmlns:prop="clr-namespace:DLLSettingsControlPointForMap;assembly=DLLSettingsControlPointForMap"
-        xmlns:evaTable="clr-namespace:WpfControlLibrary1;assembly=WpfControlLibrary1"
+        xmlns:evaTable="clr-namespace:EvaTable;assembly=EvaTable"
         xmlns:converter="clr-namespace:Ross.Converters"
         mc:Ignorable="d" Background="#292929" Closing="Window_Closing" Title="Map">
 
@@ -45,7 +45,7 @@
                         OnPCPosition="RastrMap_OnOnPCPosition"
                         OnPointPosition="RastrMap_OnOnPointPosition"/>
 
-        <evaTable:UserControl1 x:Name="evaTable" Grid.Column="4" Grid.Row="0" Width="350" Height="400"
+        <evaTable:UserControl1  x:Name="evaTable" Grid.Column="4" Grid.Row="0" Width="350" Height="400"
                                Margin="3,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                                BorderBrush="Transparent" Visibility="{Binding IsVisibleEvaTable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                GetLine="EvaTable_OnGetLine"

@@ -10,13 +10,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using DLLSettingsControlPointForMap;
 using DLLSettingsControlPointForMap.Model;
+using EvaTable;
 using Mapsui.Geometries;
 using Mapsui.Projection;
 using Mapsui.Styles;
 using ModelsTablesDBLib;
 using Ross.JSON;
+using Ross.Map._EventArgs;
 using UIMapRast.Models;
-using WpfControlLibrary1;
 using WpfMapControl;
 using Brush = Mapsui.Styles.Brush;
 using Color = System.Windows.Media.Color;
@@ -37,6 +38,9 @@ namespace Ross.Map
         public EventHandler<Tabl> OnRadioJammingMode;
         public EventHandler<Tabl> OnPoll;
 
+        public EventHandler<CoordEventArgs> OnCoordControlPoinChanged;
+        public EventHandler<CoordEventArgs> OnCoordASPPropertyGridSelecteted;
+
 
         public MapLayout()
         {
@@ -45,10 +49,11 @@ namespace Ross.Map
             Properties.OnApplyButtonClick += Properties_OnApplyButtonClick;
             LoadSettings();
             InitHotKeys();
+            DrawStation(new Coord() { Latitude = 40, Longitude = 47 });
 
             DataContext = new MapViewModel();
 
-            //mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", scale);
+            mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", scale);
         }
 
 
@@ -155,44 +160,15 @@ namespace Ross.Map
                 controlPost.Coordinate = coord;
 
                RastrMap.UpdatePC(controlPost);
+
+                OnCoordControlPoinChanged(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
             }
             catch { }
         }
 
         private void RastrMap_OnOnPointPosition(object sender, Location e)
         {
-            try
-            {
-                WGSCoordinate coord = new WGSCoordinate
-                {
-                    Latitude = Math.Round(e.Latitude, 6),
-                    Longitude = Math.Round(e.Longitude, 6)
-                };
-
-                DefinderJammingPoint definderJammingPoint = new DefinderJammingPoint(1);
-                definderJammingPoint.Coordinate = coord;
-                definderJammingPoint.Regime = ERegime.Jamming;
-
-
-                Pen pen = new Pen();
-                pen.Color = Mapsui.Styles.Color.FromArgb(50, 0, 255, 0);
-                //pen.PenStrokeCap = PenStrokeCap.Square;
-                pen.PenStyle = PenStyle.Dash;
-
-
-                Zone zone = new Zone();
-                zone.PenZone = pen;
-                zone.Radius = 2000;
-                definderJammingPoint.ZoneDefinder = zone;
-                
-
-                var collection = new ObservableCollection<DefinderJammingPoint>();
-                collection.Add(definderJammingPoint);
-
-
-                RastrMap.UpdateDFP(collection);
-            }
-            catch { }
+           OnCoordASPPropertyGridSelecteted(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
         }
 
 

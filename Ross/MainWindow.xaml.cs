@@ -9,9 +9,6 @@ using ModelsTablesDBLib;
 using Ross.JSON;
 using Ross.Map;
 using TableEvents;
-using TransmissionLib.GrpcTransmission;
-using UserControl_Chat;
-using WpfControlLibrary1;
 using LocalProperties = ModelsTablesDBLib.LocalProperties;
 
 namespace Ross
@@ -123,9 +120,15 @@ namespace Ross
 
         #endregion
 
-        private void SRSF_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void Window_Closed(object sender, EventArgs e)
         {
+            clientDB?.Disconnect();
+            clientDB = null;
+            grpcClientEthernet?.ShutDown();
+            grpcClientViper?.ShutDown();
+            grpcClient_3G_4G?.ShutDown();
 
+            System.Windows.Threading.Dispatcher.ExitAllFrames();
         }
     }
 }

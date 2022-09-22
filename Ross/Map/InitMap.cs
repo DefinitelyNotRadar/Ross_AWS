@@ -1,4 +1,5 @@
 ﻿using Ross.Map;
+using Ross.Map._EventArgs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace Ross
             mapLayout.OnPreparationMode += MapLayout_OnPreparationMode;
             mapLayout.OnRadioIntelligenceMode += MapLayout_OnRadioIntelligenceMode;
             mapLayout.OnRadioJammingMode += MapLayout_OnRadioJammingMode;
+            mapLayout.OnCoordASPPropertyGridSelecteted += MapLayout_OnCoordASPPropertyGridSelecteted;
+            mapLayout.OnCoordControlPoinChanged += MapLayout_OnCoordControlPoinChanged;
         }
     }
 }
