@@ -22,23 +22,23 @@ namespace Ross
 
         private byte clientAddress = 255;
         private byte serverAddress = 1;
-        private int deadline = 10;
+        private int deadlineMs = 10000;
 
         private void InitializeODConnection_Ethernet()
         {
-            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Ethernet.IpAddress, Properties.Local.EdServer.Ethernet.Port, deadline, clientAddress, serverAddress);
+            grpcClientEthernet = new GrpcClient("127.0.0.1", 30051, deadlineMs, clientAddress, serverAddress);
             CommonPartInitialization(grpcClientEthernet);
         }
 
         private void InitializeODConnection_Viper()
         {
-            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Viper1.IpAddress, Properties.Local.EdServer.Viper1.Port, deadline, clientAddress, serverAddress);
+            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Viper1.IpAddress, Properties.Local.EdServer.Viper1.Port, deadlineMs, clientAddress, serverAddress);
             CommonPartInitialization(grpcClientViper);
         }
 
         private void InitializeODConnection_3G_4G()
         {
-            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Robustel1.IpAddress, Properties.Local.EdServer.Robustel2.Port, deadline, clientAddress, serverAddress);
+            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Robustel1.IpAddress, Properties.Local.EdServer.Robustel2.Port, deadlineMs, clientAddress, serverAddress);
             CommonPartInitialization(grpcClient_3G_4G);
            
         }
@@ -46,7 +46,7 @@ namespace Ross
 
         private void CommonPartInitialization(GrpcClient grpcClient)
         {
-            grpcClient.OnGetTextMessage += GrpcClient_OnGetTextMessage;
+            grpcClient.OnTextMessageReceived += GrpcClient_OnGetTextMessage;
             grpcClient.ConnectionStateChanged += GrpcClient_ConnectionStateChanged;          
         }
     }

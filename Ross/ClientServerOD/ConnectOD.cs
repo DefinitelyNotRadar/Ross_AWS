@@ -12,7 +12,12 @@ namespace Ross
     {
         private void GrpcServer_ButServerClick(object sender, RoutedEventArgs e)
         {
-             IsChosenConnectionConnected(SelectedByConnectionTypeClient);
+            if (SelectedByConnectionTypeClient == null)
+            {
+                InitializeODConnection_Ethernet();
+                SelectedByConnectionTypeClient = grpcClientEthernet;
+            }
+            IsChosenConnectionConnected(SelectedByConnectionTypeClient);
         }
 
         private void IsChosenConnectionConnected(GrpcClient grpcClient)
@@ -21,7 +26,7 @@ namespace Ross
 
             if (grpcClient.IsConnected)
             {
-                grpcClient.Disconnect();
+                grpcClient.AbortConnection();
                 mainWindowViewSize.ConnectionStatesGrpcServer = WPFControlConnection.ConnectionStates.Disconnected;
             }
             else
