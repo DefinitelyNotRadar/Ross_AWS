@@ -31,7 +31,7 @@ namespace Ross
             }
             else
             {
-                SelectedByConnectionTypeClient.AbortConnection();
+                //SelectedByConnectionTypeClient.AbortConnection();
                 Dispatcher.Invoke(() =>
                 {
                     mainWindowViewSize.ConnectionStatesGrpcServer = WPFControlConnection.ConnectionStates.Disconnected;
