@@ -84,7 +84,7 @@ namespace Ross
         {
             try
             {
-                Properties.Local = SerializerJSON.Deserialize<LocalProperties>("LocalProperties");
+                Properties.Local = SerializerJSON.Deserialize<ControlProperties.LocalProperties>("LocalProperties");
                 Properties.Local.Common.PropertyChanged += Properties_OnPropertyChanged;
                 Properties.Local.Common.IsVisibleAZ = false;
                 Properties.Local.EdServer.PropertyChanged += EdServer_PropertyChanged;
@@ -103,17 +103,13 @@ namespace Ross
                 mapLayout.MapProperties.Local.Common.Access = (AccessTypes)(byte)Properties.Local.Common.AccessARM;
         }
 
-        private void Properties_OnUpdateLocalProperties(object sender, LocalProperties e)
-        {
-
-        }
 
         private void Properties_OnPasswordChecked(object sender, bool e)
         {
             mapLayout.MapProperties.Local.Common.Access = e ? AccessTypes.Admin : AccessTypes.User;
         }
 
-        private void Properties_OnUpdateLocalProperties_1(object sender, LocalProperties e)
+        private void Properties_OnUpdateLocalProperties_1(object sender, ControlProperties.LocalProperties e)
         {
             e.Serialize("LocalProperties");
         }

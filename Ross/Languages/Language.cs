@@ -66,7 +66,7 @@ namespace Ross
         private void SetLanguageMainWindow(Languages languages)
         {
             var dict = new ResourceDictionary();
-try
+            try
             {
                 switch (languages)
                 {
@@ -209,7 +209,7 @@ try
 
         private void UcASP_OnIsWindowPropertyOpen(object sender, ASPProperty e)
         {
-            //e.SetLanguagePropertyGrid(Properties.Local.Common.Language);
+            e.SetLanguagePropertyGrid(Properties.Local.Common.Language);
         }
 
         private void UcSuppressFHSS_OnIsWindowPropertyOpen(object sender, SuppressFHSSProperty e)

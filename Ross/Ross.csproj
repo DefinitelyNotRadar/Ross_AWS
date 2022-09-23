@@ -306,44 +306,51 @@
     </Compile>
     <Compile Include="Map\StatusBarModel.cs" />
     <Compile Include="Table\Function.cs" />
-    <Page Include="Languages\TranslatorConnectionPanel\StringResource.EN.xaml">
+    <Resource Include="Languages\TranslatorConnectionPanel\StringResource.EN.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Languages\TranslatorConnectionPanel\StringResource.RU.xaml">
+    </Resource>
+    <Resource Include="Languages\TranslatorConnectionPanel\StringResource.RU.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Languages\TranslatorMainWindow\StringResource.EN.xaml">
+    </Resource>
+    <Resource Include="Languages\TranslatorMainWindow\StringResource.EN.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Languages\TranslatorMainWindow\StringResource.RU.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Languages\TranslatorMainWindow\StringResource.RU.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Languages\TranslatorMapWindow\StringResource.EN.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Languages\TranslatorMapWindow\StringResource.EN.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Languages\TranslatorMapWindow\StringResource.RU.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Languages\TranslatorMapWindow\StringResource.RU.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Languages\TranslatorTables\TranslatorTables.AZ.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Languages\TranslatorTables\TranslatorTables.AZ.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Languages\TranslatorTables\TranslatorTables.EN.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Languages\TranslatorTables\TranslatorTables.EN.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Languages\TranslatorTables\TranslatorTables.RU.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Languages\TranslatorTables\TranslatorTables.RU.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

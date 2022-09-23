@@ -70,7 +70,10 @@ namespace Ross
             if (mapLayout.IsVisible)
                 mapLayout.Hide();
             else
+            {
                 mapLayout.Show();
+                DrawAllObjects();
+            }
         }
 
         private void MapLayout_Closing(object sender, CancelEventArgs e)
@@ -78,9 +81,18 @@ namespace Ross
             ToggleButton_Map.IsChecked = false;
         }
 
+        private void UpdateEvaTable()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                mapLayout.ClearEvaTable();
+                foreach (var asp in lASP)
+                    mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.Caption, Id = asp.Id, StateASP = asp.IsConnect == ModelsTablesDBLib.Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode });
+            });
+        }
+
         private void DrawAllObjects()
         {
-            
             mapLayout.RastrMap.mapControl.RemoveAllObjects();
 
             DrawAllASP();
@@ -88,13 +100,15 @@ namespace Ross
             DrawAllFWS();
 
             DrawAllFHSS();
+
+            UpdateEvaTable();
         }
 
         private void DrawAllASP()
         {
             foreach(var asp in lASP)
             {
-                mapLayout.DrawStation(asp.Coordinates);
+                mapLayout.DrawStation(asp.Coordinates, asp.Caption);
             }
         }
 

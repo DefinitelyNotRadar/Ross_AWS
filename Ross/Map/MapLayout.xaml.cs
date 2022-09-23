@@ -49,13 +49,21 @@ namespace Ross.Map
             Properties.OnApplyButtonClick += Properties_OnApplyButtonClick;
             LoadSettings();
             InitHotKeys();
-            DrawStation(new Coord() { Latitude = 40, Longitude = 47 });
 
             DataContext = new MapViewModel();
 
-            mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", scale);
+            mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,-130), scale, new Offset(0, 0));
         }
 
+        public void ClearEvaTable()
+        {
+            evaTable.DeleteAllItems();
+        }
+
+        public void AddStationInEvaTable(Tabl tabl)
+        {
+            evaTable.AddNewItem(tabl);
+        }
 
         public void SetStationInEvaTable(Tabl newtabl, Tabl oldTable)
         {
@@ -159,7 +167,7 @@ namespace Ross.Map
                 ControlPost controlPost = new ControlPost(0);
                 controlPost.Coordinate = coord;
 
-               RastrMap.UpdatePC(controlPost);
+                RastrMap.UpdatePC(controlPost);
 
                 OnCoordControlPoinChanged(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
             }
@@ -227,10 +235,10 @@ namespace Ross.Map
             RastrMap.mapControl.AddMapObject(mapObjectStyleSqare, "", p);
         }
 
-        public void DrawStation(Coord point)
+        public void DrawStation(Coord point, string text = "")
         {
-            var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
-            RastrMap.mapControl.AddMapObject(mapObjectStyleStation, "", p);
+            var p = Mercator.FromLonLat(point.Longitude, point.Latitude);        
+            RastrMap.mapControl.AddMapObject(mapObjectStyleStation, text, p);
         }
 
         #endregion
