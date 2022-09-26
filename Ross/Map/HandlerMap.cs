@@ -93,7 +93,7 @@ namespace Ross
 
         private void DrawAllObjects()
         {
-            mapLayout.RastrMap.mapControl.RemoveAllObjects();
+            mapLayout?.RastrMap?.mapControl?.RemoveAllObjects();
 
             DrawAllASP();
 
