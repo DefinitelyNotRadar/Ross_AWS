@@ -26,7 +26,7 @@ namespace Ross
                 Poll();
                 Dispatcher.Invoke(() =>
                 {
-                    mainWindowViewSize.ConnectionStatesGrpcServer = WPFControlConnection.ConnectionStates.Connected;
+                    mainWindowViewSize.ConnectionStatesGrpcServer1 = WPFControlConnection.ConnectionStates.Connected;
                 });
             }
             else
@@ -34,7 +34,7 @@ namespace Ross
                 //SelectedByConnectionTypeClient.AbortConnection();
                 Dispatcher.Invoke(() =>
                 {
-                    mainWindowViewSize.ConnectionStatesGrpcServer = WPFControlConnection.ConnectionStates.Disconnected;
+                    mainWindowViewSize.ConnectionStatesGrpcServer1 = WPFControlConnection.ConnectionStates.Disconnected;
                 });
             }
         }

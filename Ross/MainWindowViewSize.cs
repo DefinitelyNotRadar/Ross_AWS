@@ -15,9 +15,11 @@ namespace Ross
     public class MainWindowViewSize : INotifyPropertyChanged
     {
         private MarkSizeWnd markSizeWnd;
-        private ConnectionTypeServerOD connectionType;
+        private ConnectionTypeServerOD connectionType1;
+        private ConnectionTypeServerOD connectionType2;
         private ConnectionStates connectionStates = ConnectionStates.Disconnected;
-        private ConnectionStates connectionStatesGrpcServer = ConnectionStates.Disconnected;
+        private ConnectionStates connectionStatesGrpcServer1 = ConnectionStates.Disconnected;
+        private ConnectionStates connectionStatesGrpcServer2 = ConnectionStates.Disconnected;
 
         public MainWindowViewSize()
         {
@@ -27,36 +29,59 @@ namespace Ross
 
         public LocalProperties Local { get; set; }
 
-        public ConnectionTypeServerOD SelectedConnectionType
+        public ConnectionStates ConnectionStatesDB
         {
-            get => connectionType;
+            get => connectionStates;
             set
             {
-                if (connectionType == value) return;
-                connectionType = value;
-                ConnectionStatesGrpcServer = ConnectionStates.Disconnected;
+                if (connectionStates == value) return;
+                connectionStates = value;
                 OnPropertyChanged();
             }
         }
 
-        public ConnectionStates ConnectionStatesDB 
+        public ConnectionTypeServerOD SelectedConnectionType1
         {
-            get => connectionStates; 
+            get => connectionType1;
             set
             {
-                if(connectionStates == value) return;
-                connectionStates = value;
+                if (connectionType1 == value) return;
+                connectionType1 = value;
+                ConnectionStatesGrpcServer1 = ConnectionStates.Disconnected;
                 OnPropertyChanged();
             }
-        } 
+        }
 
-        public ConnectionStates ConnectionStatesGrpcServer 
+        public ConnectionTypeServerOD SelectedConnectionType2
         {
-            get => connectionStatesGrpcServer; 
+            get => connectionType2;
             set
             {
-                if (connectionStatesGrpcServer == value) return;
-                connectionStatesGrpcServer = value;
+                if (connectionType2 == value) return;
+                connectionType2 = value;
+                ConnectionStatesGrpcServer2 = ConnectionStates.Disconnected;
+                OnPropertyChanged();
+            }
+        }
+
+        public ConnectionStates ConnectionStatesGrpcServer1 
+        {
+            get => connectionStatesGrpcServer1; 
+            set
+            {
+                if (connectionStatesGrpcServer1 == value) return;
+                connectionStatesGrpcServer1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ConnectionStates ConnectionStatesGrpcServer2
+        {
+            get => connectionStatesGrpcServer2;
+            set
+            {
+                if (connectionStatesGrpcServer2 == value) return;
+                connectionStatesGrpcServer2 = value;
                 OnPropertyChanged();
             }
         }

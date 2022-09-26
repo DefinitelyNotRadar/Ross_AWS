@@ -61,9 +61,9 @@ namespace Ross
 
         private void MainWindowViewSize_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName.Equals(nameof(MainWindowViewSize.SelectedConnectionType)))
+            if(e.PropertyName.Equals(nameof(MainWindowViewSize.SelectedConnectionType1)))
             {
-                switch (mainWindowViewSize.SelectedConnectionType)
+                switch (mainWindowViewSize.SelectedConnectionType1)
                 {
                     case Models.ConnectionTypeServerOD.Ethernet:
                         SelectedByConnectionTypeClient = grpcClientEthernet;

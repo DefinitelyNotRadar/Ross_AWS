@@ -300,23 +300,46 @@
 
             <StatusBarItem>
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox x:Name="GrpcConnectionType" Margin="0,-1,0,0" Height="24" Width="82" 
-                              ItemsSource="{Binding Path=SelectedConnectionType, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
+                    <ComboBox x:Name="GrpcConnectionType1" Margin="0,-1,0,0" Height="24" Width="82" 
+                              ItemsSource="{Binding Path=SelectedConnectionType1, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
                               SelectedValuePath="Value"
                               DisplayMemberPath="Description"
-                              SelectedValue="{Binding Path=SelectedConnectionType}"
+                              SelectedValue="{Binding Path=SelectedConnectionType1}"
                               >
                                                     
                     </ComboBox>
-                    <ControlConnect:ConnectionControl x:Name="GrpcServer"
+                    <ControlConnect:ConnectionControl x:Name="GrpcServer1"
                                                   LEDClientVisible="False" Margin="2,0,0,0"
-                                                  LabelText="{DynamicResource contentLabelTextGrpcServer}"
+                                                  LabelText="{DynamicResource contentLabelTextGrpcServer1}"
                                                   LabelHint="{DynamicResource contentLabelHintGrpcServer}"
                                                   ButServerHint="{DynamicResource contentButServerHintGrpcServer}"
                                                   LedReadDataHint="{DynamicResource contentLedReadDataHintGrpcServer}"
                                                   LedWriteDataHint="{DynamicResource contentLedWriteDataHintGrpcServer}"
                                                   LedTransVisible="false"
-                                                  ServerConnectionState="{Binding ConnectionStatesGrpcServer}" ButServerClick="GrpcServer_ButServerClick"
+                                                  ServerConnectionState="{Binding ConnectionStatesGrpcServer1}" ButServerClick="GrpcServer_ButServerClick"
+                                                  />
+                </StackPanel>
+            </StatusBarItem>
+            
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox x:Name="GrpcConnectionType2" Margin="0,-1,0,0" Height="24" Width="82" 
+                              ItemsSource="{Binding Path=SelectedConnectionType2, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
+                              SelectedValuePath="Value"
+                              DisplayMemberPath="Description"
+                              SelectedValue="{Binding Path=SelectedConnectionType2}"
+                              >
+
+                    </ComboBox>
+                    <ControlConnect:ConnectionControl x:Name="GrpcServer2"
+                                                  LEDClientVisible="False" Margin="2,0,0,0"
+                                                  LabelText="{DynamicResource contentLabelTextGrpcServer2}"
+                                                  LabelHint="{DynamicResource contentLabelHintGrpcServer}"
+                                                  ButServerHint="{DynamicResource contentButServerHintGrpcServer}"
+                                                  LedReadDataHint="{DynamicResource contentLedReadDataHintGrpcServer}"
+                                                  LedWriteDataHint="{DynamicResource contentLedWriteDataHintGrpcServer}"
+                                                  LedTransVisible="false"
+                                                  ServerConnectionState="{Binding ConnectionStatesGrpcServer2}" ButServerClick="GrpcServer_ButServerClick"
                                                   />
                 </StackPanel>
             </StatusBarItem>

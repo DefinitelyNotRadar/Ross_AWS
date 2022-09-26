@@ -27,12 +27,12 @@ namespace Ross
             if (grpcClient.IsConnected)
             {
                 grpcClient.AbortConnection();
-                mainWindowViewSize.ConnectionStatesGrpcServer = WPFControlConnection.ConnectionStates.Disconnected;
+                mainWindowViewSize.ConnectionStatesGrpcServer1 = WPFControlConnection.ConnectionStates.Disconnected;
             }
             else
             {
                 grpcClient.Connect(grpcClient.ServerIp, grpcClient.ServerPort);
-                mainWindowViewSize.ConnectionStatesGrpcServer = WPFControlConnection.ConnectionStates.Connected;
+                mainWindowViewSize.ConnectionStatesGrpcServer1 = WPFControlConnection.ConnectionStates.Connected;
             }
         }
 

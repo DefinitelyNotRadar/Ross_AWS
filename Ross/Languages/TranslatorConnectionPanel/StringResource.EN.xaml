@@ -5,7 +5,8 @@
 
 
 
-    <system:String x:Key="contentLabelTextGrpcServer">Station</system:String>
+    <system:String x:Key="contentLabelTextGrpcServer1">Station 1</system:String>
+    <system:String x:Key="contentLabelTextGrpcServer2">Station 2</system:String>
     <system:String x:Key="contentLabelHintGrpcServer">Station ??-934?</system:String>
     <system:String x:Key="contentButServerHintGrpcServer">Connect/disconnect Station</system:String>
     <system:String x:Key="contentLedReadDataHintGrpcServer">Read data</system:String>

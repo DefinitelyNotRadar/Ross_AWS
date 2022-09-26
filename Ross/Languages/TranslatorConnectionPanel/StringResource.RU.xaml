@@ -3,7 +3,8 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
-    <system:String x:Key="contentLabelTextGrpcServer">Станция</system:String>
+    <system:String x:Key="contentLabelTextGrpcServer1">Станция 1</system:String>
+    <system:String x:Key="contentLabelTextGrpcServer2">Станция 2</system:String>
     <system:String x:Key="contentLabelHintGrpcServer">Станция ??-934?</system:String>
     <system:String x:Key="contentButServerHintGrpcServer">Подключить/отключить станцию</system:String>
     <system:String x:Key="contentLedReadDataHintGrpcServer">Чтение данных</system:String>
