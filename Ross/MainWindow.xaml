@@ -339,7 +339,7 @@
                                                   LedReadDataHint="{DynamicResource contentLedReadDataHintGrpcServer}"
                                                   LedWriteDataHint="{DynamicResource contentLedWriteDataHintGrpcServer}"
                                                   LedTransVisible="false"
-                                                  ServerConnectionState="{Binding ConnectionStatesGrpcServer2}" ButServerClick="GrpcServer_ButServerClick"
+                                                  ServerConnectionState="{Binding ConnectionStatesGrpcServer2}" ButServerClick="GrpcServer2_ButServerClick" 
                                                   />
                 </StackPanel>
             </StatusBarItem>

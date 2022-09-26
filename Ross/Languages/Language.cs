@@ -27,7 +27,10 @@ namespace Ross
         {
             var dict = GetTableLanguageDict(language);
             if (dict != null)
+            {
                 Resources.MergedDictionaries.Add(dict);
+                ucSuppressFWS.Resources.MergedDictionaries.Add(dict);
+            }
         }
 
         private ResourceDictionary GetTableLanguageDict(Languages language)

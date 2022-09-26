@@ -14,11 +14,14 @@ namespace Ross
 {
     public partial class MainWindow : Window
     {
-        private GrpcClient SelectedByConnectionTypeClient;
+        private GrpcClient SelectedByConnectionTypeClient1;
+        private GrpcClient SelectedByConnectionTypeClient2;
 
         private GrpcClient grpcClientEthernet;
-        private GrpcClient grpcClientViper;
-        private GrpcClient grpcClient_3G_4G;
+        private GrpcClient grpcClientViper1;
+        private GrpcClient grpcClient_3G_4G1;
+        private GrpcClient grpcClientViper2;
+        private GrpcClient grpcClient_3G_4G2;
 
         private byte clientAddress = 255;
         private byte serverAddress = 1;
@@ -26,21 +29,33 @@ namespace Ross
 
         private void InitializeODConnection_Ethernet()
         {
-            grpcClientEthernet = new GrpcClient("127.0.0.1", 30051, deadlineMs, clientAddress, serverAddress);
+            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Ethernet.IpAddress, 30051, deadlineMs, clientAddress, serverAddress);
             CommonPartInitialization(grpcClientEthernet);
         }
 
-        private void InitializeODConnection_Viper()
+        private void InitializeODConnection_Viper_1()
         {
-            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Viper1.IpAddress, Properties.Local.EdServer.Viper1.Port, deadlineMs, clientAddress, serverAddress);
-            CommonPartInitialization(grpcClientViper);
+            grpcClientViper1 = new GrpcClient(Properties.Local.EdServer.Viper1.IpAddress, Properties.Local.EdServer.Viper1.Port, deadlineMs, clientAddress, serverAddress);
+            CommonPartInitialization(grpcClientViper1);
         }
 
-        private void InitializeODConnection_3G_4G()
+        private void InitializeODConnection_3G_4G_1()
         {
-            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Robustel1.IpAddress, Properties.Local.EdServer.Robustel2.Port, deadlineMs, clientAddress, serverAddress);
-            CommonPartInitialization(grpcClient_3G_4G);
+            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Robustel1.IpAddress, Properties.Local.EdServer.Robustel1.Port, deadlineMs, clientAddress, serverAddress);
+            CommonPartInitialization(grpcClient_3G_4G1);
            
+        }
+
+        private void InitializeODConnection_Viper_2()
+        {
+            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Viper2.IpAddress, Properties.Local.EdServer.Viper2.Port, deadlineMs, clientAddress, serverAddress);
+            CommonPartInitialization(grpcClientViper2);
+        }
+
+        private void InitializeODConnection_3G_4G_2()
+        {
+            grpcClientEthernet = new GrpcClient(Properties.Local.EdServer.Robustel2.IpAddress, Properties.Local.EdServer.Robustel2.Port, deadlineMs, clientAddress, serverAddress);
+            CommonPartInitialization(grpcClient_3G_4G2);
         }
 
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TransmissionLib.GrpcTransmission;
+using WPFControlConnection;
 
 namespace Ross
 {
@@ -12,27 +13,37 @@ namespace Ross
     {
         private void GrpcServer_ButServerClick(object sender, RoutedEventArgs e)
         {
-            if (SelectedByConnectionTypeClient == null)
+            if (SelectedByConnectionTypeClient1 == null)
             {
                 InitializeODConnection_Ethernet();
-                SelectedByConnectionTypeClient = grpcClientEthernet;
+                SelectedByConnectionTypeClient1 = grpcClientEthernet;
             }
-            IsChosenConnectionConnected(SelectedByConnectionTypeClient);
+            IsChosenConnectionConnected(SelectedByConnectionTypeClient1, mainWindowViewSize.ConnectionStatesGrpcServer1);
         }
 
-        private void IsChosenConnectionConnected(GrpcClient grpcClient)
+        private void GrpcServer2_ButServerClick(object sender, RoutedEventArgs e)
+        {
+            if (SelectedByConnectionTypeClient2 == null)
+            {
+                InitializeODConnection_Ethernet();
+                SelectedByConnectionTypeClient2 = grpcClientEthernet;
+            }
+            IsChosenConnectionConnected(SelectedByConnectionTypeClient2, mainWindowViewSize.ConnectionStatesGrpcServer2);
+        }
+
+        private void IsChosenConnectionConnected(GrpcClient grpcClient, ConnectionStates connectionStates)
         {
             if(grpcClient == null) return;
 
             if (grpcClient.IsConnected)
             {
                 grpcClient.AbortConnection();
-                mainWindowViewSize.ConnectionStatesGrpcServer1 = WPFControlConnection.ConnectionStates.Disconnected;
+                connectionStates = WPFControlConnection.ConnectionStates.Disconnected;
             }
             else
             {
                 grpcClient.Connect(grpcClient.ServerIp, grpcClient.ServerPort);
-                mainWindowViewSize.ConnectionStatesGrpcServer1 = WPFControlConnection.ConnectionStates.Connected;
+                connectionStates = WPFControlConnection.ConnectionStates.Connected;
             }
         }
 

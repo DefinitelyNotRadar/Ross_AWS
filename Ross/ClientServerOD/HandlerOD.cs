@@ -39,15 +39,17 @@ namespace Ross
             }
         }
 
+     
+
         private void Poll()
         {
             Task task1 = new Task(() =>
             {
-                if (!SelectedByConnectionTypeClient.Ping("")) return;
+                if (!SelectedByConnectionTypeClient1.Ping("")) return;
 
-                ReadRecord(SelectedByConnectionTypeClient.GetFwsElint(), NameTable.TableReconFWS);
-                ReadRecord(SelectedByConnectionTypeClient.GetFhssElint(), NameTable.TableReconFHSS);
-                ReadRecord(SelectedByConnectionTypeClient.GetAsps(), NameTable.TableASP);   
+                ReadRecord(SelectedByConnectionTypeClient1.GetFwsElint(), NameTable.TableReconFWS);
+                ReadRecord(SelectedByConnectionTypeClient1.GetFhssElint(), NameTable.TableReconFHSS);
+                ReadRecord(SelectedByConnectionTypeClient1.GetAsps(), NameTable.TableASP);   
             });
         }
 
@@ -62,7 +64,7 @@ namespace Ross
 
         private void ReadStationCoord()
         {
-            var table = SelectedByConnectionTypeClient.GetCoordinates();
+            var table = SelectedByConnectionTypeClient1.GetCoordinates();
             var coord = (table as Any).Unpack<TransmissionPackageGroza934.CoordMessage>();
 
             Dispatcher.Invoke(() =>
@@ -85,10 +87,10 @@ namespace Ross
                     InitializeODConnection_Ethernet();
                     break;
                 case nameof(Properties.Local.EdServer.Viper1):
-                    InitializeODConnection_Viper();
+                    InitializeODConnection_Viper_1();
                     break;
                 case nameof(Properties.Local.EdServer.Robustel1):
-                    InitializeODConnection_3G_4G();
+                    InitializeODConnection_3G_4G_1();
                     break;
 
             }

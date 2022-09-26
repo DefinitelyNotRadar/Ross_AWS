@@ -29,7 +29,7 @@ namespace Ross
 
         private void MapLayout_OnRadioJammingMode(object sender, Tabl e)
         {
-            var IsSeccess = SelectedByConnectionTypeClient.SendMode(0);
+            var IsSeccess = SelectedByConnectionTypeClient1.SendMode(0);
 
             if (IsSeccess)
             {
@@ -40,7 +40,7 @@ namespace Ross
 
         private void MapLayout_OnRadioIntelligenceMode(object sender, Tabl e)
         {
-            var IsSeccess = SelectedByConnectionTypeClient.SendMode(0);
+            var IsSeccess = SelectedByConnectionTypeClient1.SendMode(0);
 
             if (IsSeccess)
             {
@@ -51,7 +51,7 @@ namespace Ross
 
         private void MapLayout_OnPreparationMode(object sender, Tabl e)
         {
-            var IsSeccess = SelectedByConnectionTypeClient.SendMode(0);
+            var IsSeccess = SelectedByConnectionTypeClient1.SendMode(0);
 
             if (IsSeccess)
             {

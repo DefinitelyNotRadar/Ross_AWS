@@ -47,7 +47,7 @@ namespace Ross
                 ucSRangesRecon.UpdateSRanges(lSRangeRecon);
 
                 var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSectorsRangesRecon);
-                SelectedByConnectionTypeClient?.SendSectorsRangesElint(knownFreqsToServer); //отправка
+                SelectedByConnectionTypeClient1?.SendSectorsRangesElint(knownFreqsToServer); //отправка
             });
         }
 
@@ -60,7 +60,7 @@ namespace Ross
                 ucSRangesSuppr.UpdateSRanges(lSRangeSuppr);
 
                 var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSectorsRangesSuppr);
-                SelectedByConnectionTypeClient?.SendSectorsRangesJamming(knownFreqsToServer); //отправка
+                SelectedByConnectionTypeClient1?.SendSectorsRangesJamming(knownFreqsToServer); //отправка
             });
         }
 
@@ -73,7 +73,7 @@ namespace Ross
                 ucSpecFreqForbidden.UpdateSpecFreqs(lSpecFreqForbidden);
 
                 var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFreqForbidden);
-                SelectedByConnectionTypeClient?.SendTableFreqForbidden(knownFreqsToServer); //отправка
+                SelectedByConnectionTypeClient1?.SendTableFreqForbidden(knownFreqsToServer); //отправка
             });
         }
 
@@ -86,7 +86,7 @@ namespace Ross
                 ucSpecFreqImportant.UpdateSpecFreqs(lSpecFreqImportant);
 
                 var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFreqImportant);
-                SelectedByConnectionTypeClient?.SendTableFreqImportant(knownFreqsToServer); //отправка
+                SelectedByConnectionTypeClient1?.SendTableFreqImportant(knownFreqsToServer); //отправка
             });
         }
 
@@ -99,7 +99,7 @@ namespace Ross
                 ucSpecFreqKnown.UpdateSpecFreqs(lSpecFreqKnown);
 
                 var knownFreqsToServer = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFreqKnown);
-                SelectedByConnectionTypeClient?.SendTableFreqKnown(knownFreqsToServer); //отправка
+                SelectedByConnectionTypeClient1?.SendTableFreqKnown(knownFreqsToServer); //отправка
             });
 
 
@@ -208,7 +208,7 @@ namespace Ross
 
 
                 var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSuppressFWS);
-                SelectedByConnectionTypeClient.SendFhssJamming(obj);
+                SelectedByConnectionTypeClient1.SendFhssJamming(obj);
                 DrawAllObjects();
                 //ListFormer(lSuppressFWS, null);
             });

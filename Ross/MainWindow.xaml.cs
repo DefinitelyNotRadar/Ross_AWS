@@ -66,13 +66,13 @@ namespace Ross
                 switch (mainWindowViewSize.SelectedConnectionType1)
                 {
                     case Models.ConnectionTypeServerOD.Ethernet:
-                        SelectedByConnectionTypeClient = grpcClientEthernet;
+                        SelectedByConnectionTypeClient1 = grpcClientEthernet;
                         break;
                     case Models.ConnectionTypeServerOD.Robustel_3G_4G:
-                        SelectedByConnectionTypeClient = grpcClient_3G_4G;
+                        SelectedByConnectionTypeClient1 = grpcClient_3G_4G1;
                         break;
                     case Models.ConnectionTypeServerOD.Viper_Radio:
-                        SelectedByConnectionTypeClient = grpcClientViper;
+                        SelectedByConnectionTypeClient1 = grpcClientViper1;
                         break;
                 }
             }
@@ -111,7 +111,7 @@ namespace Ross
 
         private void Properties_OnUpdateLocalProperties_1(object sender, ControlProperties.LocalProperties e)
         {
-            e.Serialize("LocalProperties");
+            SerializerJSON.Serialize(e, "LocalProperties");
         }
 
         #endregion
@@ -121,10 +121,14 @@ namespace Ross
             clientDB?.Disconnect();
             clientDB = null;
             grpcClientEthernet?.ShutDown();
-            grpcClientViper?.ShutDown();
-            grpcClient_3G_4G?.ShutDown();
+            grpcClientViper1?.ShutDown();
+            grpcClient_3G_4G1?.ShutDown();
+            grpcClientViper2?.ShutDown();
+            grpcClient_3G_4G2?.ShutDown();
 
             System.Windows.Threading.Dispatcher.ExitAllFrames();
         }
+
+      
     }
 }
