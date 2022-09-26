@@ -93,6 +93,10 @@ namespace Ross
 
         private void DrawAllObjects()
         {
+            if (this.mapLayout == null || this.mapLayout.RastrMap == null || this.mapLayout.RastrMap.mapControl == null)
+            {
+                return;
+            }
             mapLayout?.RastrMap?.mapControl?.RemoveAllObjects();
 
             DrawAllASP();

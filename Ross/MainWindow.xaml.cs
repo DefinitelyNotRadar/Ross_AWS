@@ -13,6 +13,8 @@ using LocalProperties = ModelsTablesDBLib.LocalProperties;
 
 namespace Ross
 {
+    using ValuesCorrectLib;
+
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
@@ -26,6 +28,7 @@ namespace Ross
         {
             InitializeComponent();
 
+            TranslatorTables.LoadDictionary(Properties.Local.Common.Language);
             ucSRangesRecon.AddSRange(new TableSectorsRanges());
 
             SetLocalProperties();
@@ -35,6 +38,7 @@ namespace Ross
             InitChat();
             InitTables();
 
+            SetLanguageTables(Properties.Local.Common.Language);
             PropViewCoords.ViewCoords = ViewCoordToByte(Properties.Local.CoordinatesProperty.View);
 
             mainWindowViewSize = new MainWindowViewSize();

@@ -198,17 +198,20 @@
 
                 <TabControl>
                     <TabItem Header="{DynamicResource TabItemRES_FF}">
-                        <TempFWSControl:UserControlTempFWS x:Name="ucTempFWS"/>
+                        <TempFWSControl:UserControlTempFWS x:Name="ucTempFWS"
+                            ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FF_J}">
-                        <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS" />
+                        <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS"
+                             ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                 </TabControl>
 
 
                 <TabControl Grid.Column="1">
                     <TabItem Header="{DynamicResource TabItemRES_FHSS}">
-                        <ReconFHSSControl:UserControlReconFHSS x:Name="ucReconFHSS" />
+                        <ReconFHSSControl:UserControlReconFHSS x:Name="ucReconFHSS"
+                            ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FHSS_J}">
                         <SuppressFHSSControl:UserControlSuppressFHSS x:Name="ucSuppressFHSS" />
