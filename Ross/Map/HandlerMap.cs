@@ -93,19 +93,19 @@ namespace Ross
 
         private void DrawAllObjects()
         {
-            if (this.mapLayout == null || this.mapLayout.RastrMap == null || this.mapLayout.RastrMap.mapControl == null)
-            {
-                return;
-            }
-            mapLayout?.RastrMap?.mapControl?.RemoveAllObjects();
+            if (this.mapLayout == null) return;   
+            UpdateEvaTable();
+
+            if (this.mapLayout.RastrMap == null || this.mapLayout.RastrMap.mapControl == null || !mapLayout.RastrMap.IsLoaded) return;
+
+            if(mapLayout.RastrMap.mapControl.MapObjects.Count > 0 || mapLayout.RastrMap.mapControl.PolyObjects.Count > 0)
+                mapLayout?.RastrMap?.mapControl.RemoveAllObjects();
 
             DrawAllASP();
 
             DrawAllFWS();
 
             DrawAllFHSS();
-
-            UpdateEvaTable();
         }
 
         private void DrawAllASP()

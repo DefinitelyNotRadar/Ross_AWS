@@ -106,6 +106,9 @@
     <Reference Include="DataTransferModels">
       <HintPath>dll\DataTransferModels.dll</HintPath>
     </Reference>
+    <Reference Include="DLLControlPointForTable">
+      <HintPath>dll\DLLControlPointForTable.dll</HintPath>
+    </Reference>
     <Reference Include="DLLSettingsControlPointForMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\DLLSettingsControlPointForMap.dll</HintPath>
@@ -278,99 +281,6 @@
     <Reference Include="WpfMapControl">
       <HintPath>dll\WpfMapControl.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.4.4.22258.9000\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Aero.4.4.22258.9000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.MaterialDesign, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.MaterialDesign.4.4.22258.9000\lib\net40\Xceed.Wpf.AvalonDock.Themes.MaterialDesign.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Metro.4.4.22258.9000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.MetroAccent, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.MetroAccent.4.4.22258.9000\lib\net40\Xceed.Wpf.AvalonDock.Themes.MetroAccent.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Office2007, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Office2007.4.4.22258.9000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Office2007.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.VS2010.4.4.22258.9000\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Windows10, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Windows10.4.4.22258.9000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Windows10.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.DataGrid, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.DataGrid.Toolkit.4.4.22258.9000\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.DataGrid.Themes.MaterialDesign, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.DataGrid.Themes.MaterialDesign.4.4.22258.9000\lib\net40\Xceed.Wpf.DataGrid.Themes.MaterialDesign.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.DataGrid.Themes.Metro, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.DataGrid.Themes.Metro.4.4.22258.9000\lib\net40\Xceed.Wpf.DataGrid.Themes.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.DataGrid.Themes.Office2007, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.DataGrid.Themes.Office2007.4.4.22258.9000\lib\net40\Xceed.Wpf.DataGrid.Themes.Office2007.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.DataGrid.Themes.Windows10, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.DataGrid.Themes.Windows10.4.4.22258.9000\lib\net40\Xceed.Wpf.DataGrid.Themes.Windows10.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.ListBox, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.ListBox.4.4.22258.9000\lib\net40\Xceed.Wpf.ListBox.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.ListBox.Themes.LiveExplorer, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.LiveExplorer.4.4.22258.9000\lib\net40\Xceed.Wpf.ListBox.Themes.LiveExplorer.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.ListBox.Themes.MaterialDesign, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.MaterialDesign.4.4.22258.9000\lib\net40\Xceed.Wpf.ListBox.Themes.MaterialDesign.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.ListBox.Themes.Metro, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.Metro.4.4.22258.9000\lib\net40\Xceed.Wpf.ListBox.Themes.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.ListBox.Themes.Office2007, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.Office2007.4.4.22258.9000\lib\net40\Xceed.Wpf.ListBox.Themes.Office2007.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.ListBox.Themes.Windows10, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.Windows10.4.4.22258.9000\lib\net40\Xceed.Wpf.ListBox.Themes.Windows10.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.ListBox.Themes.WMP11, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.WMP11.4.4.22258.9000\lib\net40\Xceed.Wpf.ListBox.Themes.WMP11.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Themes, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Themes.4.4.22258.9000\lib\net40\Xceed.Wpf.Themes.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Themes.MaterialDesign, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Themes.MaterialDesign.4.4.22258.9000\lib\net40\Xceed.Wpf.Themes.MaterialDesign.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Themes.MaterialDesignColors, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Themes.MaterialDesignColors.4.4.22258.9000\lib\net40\Xceed.Wpf.Themes.MaterialDesignColors.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Themes.Metro, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Themes.Metro.4.4.22258.9000\lib\net40\Xceed.Wpf.Themes.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Themes.Office2007, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Themes.Office2007.4.4.22258.9000\lib\net40\Xceed.Wpf.Themes.Office2007.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Themes.Windows10, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Themes.Windows10.4.4.22258.9000\lib\net40\Xceed.Wpf.Themes.Windows10.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Toolkit.4.4.22258.9000\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit.Themes.MaterialDesign, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Toolkit.Themes.MaterialDesign.4.4.22258.9000\lib\net40\Xceed.Wpf.Toolkit.Themes.MaterialDesign.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit.Themes.Metro, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Toolkit.Themes.Metro.4.4.22258.9000\lib\net40\Xceed.Wpf.Toolkit.Themes.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit.Themes.Office2007, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Toolkit.Themes.Office2007.4.4.22258.9000\lib\net40\Xceed.Wpf.Toolkit.Themes.Office2007.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit.Themes.Windows10, Version=4.4.22258.9000, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.Toolkit.Themes.Windows10.4.4.22258.9000\lib\net40\Xceed.Wpf.Toolkit.Themes.Windows10.dll</HintPath>
-    </Reference>
     <Reference Include="YamlDotNet, Version=6.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
       <HintPath>..\packages\YamlDotNet.6.0.0\lib\net45\YamlDotNet.dll</HintPath>
     </Reference>
@@ -383,6 +293,10 @@
     <Compile Include="AddPanel\DefaultSize.cs" />
     <Compile Include="AddPanel\MarkSizeWnd.cs" />
     <Compile Include="AddPanel\SizeValue.cs" />
+    <Compile Include="Chat\Buble.xaml.cs" />
+    <Compile Include="Chat\BubleVM.cs" />
+    <Compile Include="Chat\Chat.xaml.cs" />
+    <Compile Include="Chat\CloseWindowCommand .cs" />
     <Compile Include="Chat\HendlerChat.cs" />
     <Compile Include="Chat\InitChat.cs" />
     <Compile Include="ClientDB\ConnectDB.cs" />
@@ -459,6 +373,18 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Page Include="Chat\Buble.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chat\BubleColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chat\Chat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

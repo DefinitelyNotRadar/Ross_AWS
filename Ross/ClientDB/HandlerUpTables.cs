@@ -205,12 +205,26 @@ namespace Ross
                 lSuppressFHSS = (from t in e.Table let a = t select a).ToList()
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList();
                 ucSuppressFHSS.UpdateSuppressFHSS(lSuppressFHSS);
+               
 
 
-                var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSuppressFWS);
-                SelectedByConnectionTypeClient1.SendFhssJamming(obj);
+                //var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableSuppressFWS);
+                //SelectedByConnectionTypeClient1.SendFhssJamming(obj);
                 DrawAllObjects();
-                //ListFormer(lSuppressFWS, null);
+            });
+        }
+
+        private void HandlerUpdate_TableFHSSExcludedFreq(object sender, TableEventArs<TableFHSSExcludedFreq> e)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+            {
+                var lFHSSExcludedFreq = e.Table;
+                ucSuppressFHSS.UpdateFHSSExcludedFreq(lFHSSExcludedFreq);
+
+
+
+                //var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFHSSExcludedFreq);
+                //SelectedByConnectionTypeClient1.SendFhssJamming(obj);
             });
         }
 
@@ -296,9 +310,6 @@ namespace Ross
                 //UpdateGlobalProperties4LeftRIButtons(arg);
                 //UpdateRanges(arg);
 
-
-                //UpdateSpoofCoord(arg);
-
                 lSuppressFHSS = (await clientDB.Tables[NameTable.TableSuppressFHSS].LoadAsync<TableSuppressFHSS>())
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList();
                 ucSuppressFHSS.UpdateSuppressFHSS(lSuppressFHSS);
@@ -308,23 +319,11 @@ namespace Ross
 
                 try
                 {
-                    //double anglePA = AnglePA;
-                    //double angleRR = AngleRR;
-
 
                     var tempGNSS = (await clientDB?.Tables[NameTable.TempGNSS].LoadAsync<TempGNSS>()).FirstOrDefault();
 
-                    //if (anglePA != -1 && angleRR != -1)
-                    //{
-                    //    Properties.Local.CoordinatesProperty.CoordGPS = tempGNSS.Location;
-                    //    Properties.Local.CoordinatesProperty.CompassPA = tempGNSS.CmpPA;
-                    //    Properties.Local.CoordinatesProperty.CompassRR = tempGNSS.CmpRR;
-                    //    return;
-                    //}
                     if (tempGNSS != null)
                     {
-                        //tempGNSS.CmpPA = anglePA == -1 ? tempGNSS.CmpPA : anglePA;
-                        //tempGNSS.CmpRR = angleRR == -1 ? tempGNSS.CmpRR : angleRR;
                         clientDB.Tables[NameTable.TempGNSS].Change(tempGNSS);
                     }
                     else
@@ -376,10 +375,6 @@ namespace Ross
                     tempGNSS.Location.Altitude = Math.Round(tempGNSS.Location.Altitude, 0);
 
                     Properties.Local.CoordinatesProperty.CoordGPS = tempGNSS.Location;
-                    Properties.Local.CoordinatesProperty.CompassPA = tempGNSS.CmpPA;
-
-                    if (Properties.Local.CoordinatesProperty.CompassRR != tempGNSS.CmpRR)
-                        Properties.Local.CoordinatesProperty.CompassRR = tempGNSS.CmpRR;
                 }
             });
         }

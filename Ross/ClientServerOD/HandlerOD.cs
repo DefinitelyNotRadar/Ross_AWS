@@ -82,10 +82,7 @@ namespace Ross
         private void EdServer_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
-            {
-                case nameof(Properties.Local.EdServer.Ethernet):
-                    InitializeODConnection_Ethernet();
-                    break;
+            {              
                 case nameof(Properties.Local.EdServer.Viper1):
                     InitializeODConnection_Viper_1();
                     break;

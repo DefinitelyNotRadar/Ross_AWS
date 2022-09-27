@@ -15,8 +15,8 @@ namespace Ross
         {
             if (SelectedByConnectionTypeClient1 == null)
             {
-                InitializeODConnection_Ethernet();
-                SelectedByConnectionTypeClient1 = grpcClientEthernet;
+                InitializeODConnection_Viper_1();
+                SelectedByConnectionTypeClient1 = grpcClientViper1;
             }
             IsChosenConnectionConnected(SelectedByConnectionTypeClient1, mainWindowViewSize.ConnectionStatesGrpcServer1);
         }
@@ -25,8 +25,8 @@ namespace Ross
         {
             if (SelectedByConnectionTypeClient2 == null)
             {
-                InitializeODConnection_Ethernet();
-                SelectedByConnectionTypeClient2 = grpcClientEthernet;
+                InitializeODConnection_Viper_2();
+                SelectedByConnectionTypeClient1 = grpcClientViper2;
             }
             IsChosenConnectionConnected(SelectedByConnectionTypeClient2, mainWindowViewSize.ConnectionStatesGrpcServer2);
         }

@@ -1,5 +1,7 @@
 ﻿using ClientDataBase;
+using InheritorsEventArgs;
 using ModelsTablesDBLib;
+using System;
 
 namespace Ross
 {
@@ -37,6 +39,8 @@ namespace Ross
                 HandlerUpdate_TempSuppressFWS;
             (clientDB.Tables[NameTable.TableSuppressFHSS] as ITableUpdate<TableSuppressFHSS>).OnUpTable +=
                 HandlerUpdate_TableSuppressFHSS;
+            (clientDB.Tables[NameTable.TableFHSSExcludedFreq] as ITableUpdate<TableFHSSExcludedFreq>).OnUpTable +=
+             HandlerUpdate_TableFHSSExcludedFreq;
             (clientDB.Tables[NameTable.TableReconFHSS] as ITableUpdate<TableReconFHSS>).OnUpTable +=
                 HandlerUpdate_TableReconFHSS;
             (clientDB.Tables[NameTable.TempGNSS] as ITableUpdate<TempGNSS>).OnUpTable += HandlerUpdate_TempGNSS;
@@ -48,5 +52,7 @@ namespace Ross
             (clientDB.Tables[NameTable.TableReconFHSS] as ITableAddRange<TableReconFHSS>).OnAddRange +=
                 HandlerAddRangeReconFHSS;
         }
+
+       
     }
 }

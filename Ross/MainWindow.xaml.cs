@@ -69,9 +69,6 @@ namespace Ross
             {
                 switch (mainWindowViewSize.SelectedConnectionType1)
                 {
-                    case Models.ConnectionTypeServerOD.Ethernet:
-                        SelectedByConnectionTypeClient1 = grpcClientEthernet;
-                        break;
                     case Models.ConnectionTypeServerOD.Robustel_3G_4G:
                         SelectedByConnectionTypeClient1 = grpcClient_3G_4G1;
                         break;
@@ -124,7 +121,6 @@ namespace Ross
         {
             clientDB?.Disconnect();
             clientDB = null;
-            grpcClientEthernet?.ShutDown();
             grpcClientViper1?.ShutDown();
             grpcClient_3G_4G1?.ShutDown();
             grpcClientViper2?.ShutDown();
