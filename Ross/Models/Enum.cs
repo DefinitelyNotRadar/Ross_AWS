@@ -9,11 +9,11 @@ namespace Ross.Models
 {
     public enum ConnectionTypeServerOD
     {
-        [Description("Ethernet")]
-        Ethernet = 0,
-        [Description("Viper")]
-        Robustel_3G_4G = 1,
+        [Description("Radio modem")]
+        Robustel_3G_4G = 0,
         [Description("3G/4G")]
-        Viper_Radio = 2,
+        Viper_Radio = 1,
+        [Description("Ethernet")]
+        Ethernet = 2,
     }
 }

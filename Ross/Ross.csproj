@@ -297,7 +297,6 @@
     <Compile Include="Chat\BubleVM.cs" />
     <Compile Include="Chat\Chat.xaml.cs" />
     <Compile Include="Chat\CloseWindowCommand .cs" />
-    <Compile Include="Chat\HendlerChat.cs" />
     <Compile Include="Chat\InitChat.cs" />
     <Compile Include="ClientDB\ConnectDB.cs" />
     <Compile Include="ClientDB\HandlerUpTables.cs" />
@@ -314,6 +313,7 @@
     <Compile Include="Map\InitMap.cs" />
     <Compile Include="Map\MapViewModel.cs" />
     <Compile Include="Models\Enum.cs" />
+    <Compile Include="Models\SelectedStationModel.cs" />
     <Compile Include="Table\InitTables.cs" />
     <Compile Include="Table\RecordToDB.cs" />
     <Compile Include="Converters\BoolToRowHeightConverter.cs" />
@@ -358,11 +358,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Languages\TranslatorTables\TranslatorTables.AZ.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Languages\TranslatorTables\TranslatorTables.EN.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -382,6 +377,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Chat\Chat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Languages\UIChat\StringResource.EN.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Languages\UIChat\StringResource.RU.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

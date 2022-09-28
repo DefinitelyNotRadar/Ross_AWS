@@ -29,7 +29,10 @@ namespace Ross
 
         private void MapLayout_OnRadioJammingMode(object sender, Tabl e)
         {
-            var IsSeccess = SelectedByConnectionTypeClient1.SendMode(0);
+            var IsSeccess = false;
+            if (e.Id == SelectedByConnectionTypeClient1.IdMaster || e.Id == SelectedByConnectionTypeClient1.IdSlave)
+                IsSeccess = SelectedByConnectionTypeClient1.SelectedConnectionObject.SendMode(2);
+            else IsSeccess = SelectedByConnectionTypeClient2.SelectedConnectionObject.SendMode(2);
 
             if (IsSeccess)
             {
@@ -40,7 +43,10 @@ namespace Ross
 
         private void MapLayout_OnRadioIntelligenceMode(object sender, Tabl e)
         {
-            var IsSeccess = SelectedByConnectionTypeClient1.SendMode(0);
+            var IsSeccess = false;
+            if (e.Id == SelectedByConnectionTypeClient1.IdMaster || e.Id == SelectedByConnectionTypeClient1.IdSlave)
+                IsSeccess = SelectedByConnectionTypeClient1.SelectedConnectionObject.SendMode(1);
+            else IsSeccess = SelectedByConnectionTypeClient2.SelectedConnectionObject.SendMode(1);
 
             if (IsSeccess)
             {
@@ -51,7 +57,11 @@ namespace Ross
 
         private void MapLayout_OnPreparationMode(object sender, Tabl e)
         {
-            var IsSeccess = SelectedByConnectionTypeClient1.SendMode(0);
+            var IsSeccess = false;
+            if (e.Id == SelectedByConnectionTypeClient1.IdMaster || e.Id == SelectedByConnectionTypeClient1.IdSlave)
+                IsSeccess = SelectedByConnectionTypeClient1.SelectedConnectionObject.SendMode(0);
+            else IsSeccess = SelectedByConnectionTypeClient2.SelectedConnectionObject.SendMode(0);
+
 
             if (IsSeccess)
             {
@@ -62,7 +72,7 @@ namespace Ross
 
         private void MapLayout_OnPoll(object sender, Tabl e)
         {
-            Poll();
+            Poll_Station_1();
         }
 
         private void ToggleButton_Map_Click(object sender, RoutedEventArgs e)

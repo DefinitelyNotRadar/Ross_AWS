@@ -1,12 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace Ross
 {
     /// <summary>
-    /// Логика взаимодействия для Buble.xaml
+    /// Interaction logic for Buble.xaml
     /// </summary>
     public partial class Buble : Window
     {
@@ -29,14 +39,12 @@ namespace Ross
 
         public void SetMessage(string message)
         {
-            
+            this.Show();
             Application.Current.Dispatcher.Invoke((Action)delegate // <--- HERE
             {
-                this.Show();
                 this.Opacity = 1;
-                tempVM.Message = message;
             });
-            
+            tempVM.Message = message;
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

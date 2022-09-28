@@ -6,7 +6,6 @@ using DataTransferModels.DB;
 using DLLSettingsControlPointForMap.Model;
 using Ross.AddPanel;
 using Ross.JSON;
-using Ross.Map;
 using Ross.Models;
 using WPFControlConnection;
 
@@ -97,8 +96,7 @@ namespace Ross
 
         private void InitMarkSizeWnd()
         {
-            markSizeWnd =
-                SerializerJSON.Deserialize<MarkSizeWnd>(AppDomain.CurrentDomain.BaseDirectory + "SizePanel.json");
+            markSizeWnd = SerializerJSON.Deserialize<MarkSizeWnd>(AppDomain.CurrentDomain.BaseDirectory + "SizePanel.json");
 
             if (markSizeWnd == null)
             {

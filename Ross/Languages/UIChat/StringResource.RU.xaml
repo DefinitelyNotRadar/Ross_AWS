@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+
+    <system:String x:Key="UIChatClear">Очистить чат</system:String>
+    <system:String x:Key="UIChatSaveTxt">Сохранить сообщения в .txt файл</system:String>
+    <system:String x:Key="UIChatSaveHistory">Сохранить историю сообщений</system:String>
+    <system:String x:Key="UIChatLoad">Загрузить историю сообщений</system:String>
+    <system:String x:Key="UIChatClose">Закрыть чат</system:String>
+    <system:String x:Key="UIChatSend">Отправить</system:String>
+    <system:String x:Key="UIChatSendToAll">Отправить одному/всем</system:String>
+
+
+
+</ResourceDictionary>

@@ -14,7 +14,7 @@
         xmlns:aspControl="clr-namespace:ASPControl;assembly=ASPControl"
         xmlns:propertyGrid="clr-namespace:ControlProperties;assembly=ControlProperties"
         xmlns:converters="clr-namespace:Ross.Converters"
-        xmlns:chat="clr-namespace:UserControl_Chat;assembly=UserControl_Chat"
+        xmlns:local="clr-namespace:Ross"
         xmlns:models="clr-namespace:Ross.Models"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowState="Maximized" Closed="Window_Closed" >
@@ -171,7 +171,7 @@
                       Visibility="{Binding sizeSetting.Visible, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <Grid x:Name="ChatGrid" Grid.Column="2" Grid.RowSpan="1" MinWidth="400" MaxWidth="1000">
-            <chat:UserControlChat x:Name="UserControlChat" BorderBrush="Gray" BorderThickness="2" MaxWidth="1000" />
+            <local:Chat x:Name="UserControlChat" BorderBrush="Gray" BorderThickness="2" MaxWidth="1000"/>
         </Grid>
 
         <GridSplitter Grid.Column="2" Grid.RowSpan="2"

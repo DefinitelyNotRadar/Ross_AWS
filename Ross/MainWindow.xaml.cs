@@ -13,6 +13,7 @@ using LocalProperties = ModelsTablesDBLib.LocalProperties;
 
 namespace Ross
 {
+    using Ross.Models;
     using ValuesCorrectLib;
 
     /// <summary>
@@ -31,6 +32,8 @@ namespace Ross
             TranslatorTables.LoadDictionary(Properties.Local.Common.Language);
             ucSRangesRecon.AddSRange(new TableSectorsRanges());
 
+            
+            InitializationAllConnections();
             SetLocalProperties();
             InitializeMapLayout();
 
@@ -70,10 +73,22 @@ namespace Ross
                 switch (mainWindowViewSize.SelectedConnectionType1)
                 {
                     case Models.ConnectionTypeServerOD.Robustel_3G_4G:
-                        SelectedByConnectionTypeClient1 = grpcClient_3G_4G1;
+                        SelectedByConnectionTypeClient1.SelectedConnectionObject = grpcClient_3G_4G1;
                         break;
                     case Models.ConnectionTypeServerOD.Viper_Radio:
-                        SelectedByConnectionTypeClient1 = grpcClientViper1;
+                        SelectedByConnectionTypeClient1.SelectedConnectionObject = grpcClientViper1;
+                        break;
+                }
+            }
+            else if (e.PropertyName.Equals(nameof(MainWindowViewSize.SelectedConnectionType2)))
+            {
+                switch (mainWindowViewSize.SelectedConnectionType2)
+                {
+                    case Models.ConnectionTypeServerOD.Robustel_3G_4G:
+                        SelectedByConnectionTypeClient2.SelectedConnectionObject = grpcClient_3G_4G1;
+                        break;
+                    case Models.ConnectionTypeServerOD.Viper_Radio:
+                        SelectedByConnectionTypeClient2.SelectedConnectionObject = grpcClientViper1;
                         break;
                 }
             }
@@ -112,7 +127,7 @@ namespace Ross
 
         private void Properties_OnUpdateLocalProperties_1(object sender, ControlProperties.LocalProperties e)
         {
-            SerializerJSON.Serialize(e, "LocalProperties");
+            JSON.SerializerJSON.Serialize(e, "LocalProperties");
         }
 
         #endregion

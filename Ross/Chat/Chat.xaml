@@ -3,16 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Ross"
         xmlns:ChatControl="clr-namespace:UserControl_Chat;assembly=UserControl_Chat"
-        mc:Ignorable="d" 
-        Height="450" Width="800" MinHeight="300" MinWidth="550">
+        xmlns:local="clr-namespace:Ross"
+        mc:Ignorable="d" >
     <UserControl.InputBindings>
         <KeyBinding Key="Escape" Command="{x:Static local:CloseWindowCommand.Instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
     </UserControl.InputBindings>
 
     <Grid>
-
         <ChatControl:UserControlChat x:Name="curChat" SideMenuWidth="55" DragIncrement="50"/>
     </Grid>
 </UserControl>
