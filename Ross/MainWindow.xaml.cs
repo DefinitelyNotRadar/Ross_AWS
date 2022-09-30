@@ -68,30 +68,7 @@ namespace Ross
 
         private void MainWindowViewSize_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName.Equals(nameof(MainWindowViewSize.SelectedConnectionType1)))
-            {
-                switch (mainWindowViewSize.SelectedConnectionType1)
-                {
-                    case Models.ConnectionTypeServerOD.Robustel_3G_4G:
-                        SelectedByConnectionTypeClient1.SelectedConnectionObject = grpcClient_3G_4G1;
-                        break;
-                    case Models.ConnectionTypeServerOD.Viper_Radio:
-                        SelectedByConnectionTypeClient1.SelectedConnectionObject = grpcClientViper1;
-                        break;
-                }
-            }
-            else if (e.PropertyName.Equals(nameof(MainWindowViewSize.SelectedConnectionType2)))
-            {
-                switch (mainWindowViewSize.SelectedConnectionType2)
-                {
-                    case Models.ConnectionTypeServerOD.Robustel_3G_4G:
-                        SelectedByConnectionTypeClient2.SelectedConnectionObject = grpcClient_3G_4G1;
-                        break;
-                    case Models.ConnectionTypeServerOD.Viper_Radio:
-                        SelectedByConnectionTypeClient2.SelectedConnectionObject = grpcClientViper1;
-                        break;
-                }
-            }
+            UpdateSelectedStationModel(lASP);
         }
 
         #region Properties

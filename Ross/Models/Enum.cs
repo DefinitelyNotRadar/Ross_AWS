@@ -16,4 +16,12 @@ namespace Ross.Models
         [Description("Ethernet")]
         Ethernet = 2,
     }
+
+    public enum Stations : int
+    {
+        StationsPair1 = 0,
+        StationsPair2 = 1,
+        SinglStation1 = 2,
+        SinglStation2 = 3,
+    }
 }

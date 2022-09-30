@@ -1,4 +1,5 @@
 ﻿using EvaTable;
+using ModelsTablesDBLib;
 using Ross.Map;
 using Ross.Map._EventArgs;
 using System;
@@ -97,7 +98,10 @@ namespace Ross
             {
                 mapLayout.ClearEvaTable();
                 foreach (var asp in lASP)
-                    mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.Caption, Id = asp.Id, StateASP = asp.IsConnect == ModelsTablesDBLib.Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode });
+                {
+                    Role roleStation = asp.Role == RoleStation.Master ? Role.Master : (asp.Role == RoleStation.Slave ? Role.Slave : Role.Single);  
+                    mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.Caption, Id = asp.Id, Role = roleStation, StateASP = asp.IsConnect == ModelsTablesDBLib.Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode }); 
+                }
             });
         }
 

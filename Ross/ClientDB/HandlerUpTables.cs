@@ -258,48 +258,53 @@ namespace Ross
 
         private void SendToEachStation<T>(List<T> list, NameTable nameTable) where T : AbstractDependentASP
         {
-            List<T>[] forStation = new List<T>[SelectedStationModels.Length];
-
-            for (int i = 0; i < SelectedStationModels.Length; i++)
+            try
             {
-                foreach (var listItem in list)
+                for (int i = 0; i < SelectedStationModels.Length; i++)
                 {
-                    if (SelectedStationModels[i].IdMaster == listItem.NumberASP || SelectedStationModels[i].IdSlave == listItem.NumberASP)
+                    if (SelectedStationModels[i].SelectedConnectionObject == null) continue;
+
+                    List<T> forStation = new List<T>();
+                    
+
+                    foreach (var listItem in list)
                     {
-                        forStation[i].Add(listItem);
+                        if (SelectedStationModels[i].IdMaster == listItem.NumberASP || SelectedStationModels[i].IdSlave == listItem.NumberASP)
+                        {
+                            forStation.Add(listItem);
+                        }
                     }
+
+                    var obj = ClassDataCommon.ConvertToListAbstractCommonTable(forStation).ConvertToProto(nameTable);
+
+                    switch (nameTable)
+                    {
+                        case NameTable.TableSuppressFWS:
+                            SelectedStationModels[i].SelectedConnectionObject.SendFwsJamming(obj);
+                            break;
+                        case NameTable.TableSuppressFHSS:
+                            SelectedStationModels[i].SelectedConnectionObject.SendFhssJamming(obj);
+                            break;
+                        case NameTable.TableFreqKnown:
+                            SelectedStationModels[i].SelectedConnectionObject.SendTableFreqKnown(obj);
+                            break;
+                        case NameTable.TableFreqForbidden:
+                            SelectedStationModels[i].SelectedConnectionObject.SendTableFreqForbidden(obj);
+                            break;
+                        case NameTable.TableFreqImportant:
+                            SelectedStationModels[i].SelectedConnectionObject.SendTableFreqImportant(obj);
+                            break;
+                        case NameTable.TableSectorsRangesRecon:
+                            SelectedStationModels[i].SelectedConnectionObject.SendSectorsRangesElint(obj);
+                            break;
+                        case NameTable.TableSectorsRangesSuppr:
+                            SelectedStationModels[i].SelectedConnectionObject.SendSectorsRangesJamming(obj);
+                            break;
+                    }
+
                 }
-
-                var obj = ClassDataCommon.ConvertToListAbstractCommonTable(list).ConvertToProto(nameTable);
-
-                switch (nameTable)
-                {
-                    case NameTable.TableSuppressFWS:
-                        SelectedStationModels[i].SelectedConnectionObject?.SendFwsJamming(obj);
-                        break;
-                    case NameTable.TableSuppressFHSS:
-                        SelectedStationModels[i].SelectedConnectionObject?.SendFhssJamming(obj);
-                        break;
-                    case NameTable.TableFreqKnown:
-                        SelectedStationModels[i].SelectedConnectionObject?.SendTableFreqKnown(obj);
-                        break;
-                    case NameTable.TableFreqForbidden:
-                        SelectedStationModels[i].SelectedConnectionObject?.SendTableFreqForbidden(obj);
-                        break;
-                    case NameTable.TableFreqImportant:
-                        SelectedStationModels[i].SelectedConnectionObject?.SendTableFreqImportant(obj);
-                        break;
-                    case NameTable.TableSectorsRangesRecon:
-                        SelectedStationModels[i].SelectedConnectionObject?.SendSectorsRangesElint(obj);
-                        break;
-                    case NameTable.TableSectorsRangesSuppr:
-                        SelectedStationModels[i].SelectedConnectionObject?.SendSectorsRangesJamming(obj);
-                        break;
-                           
-
-                }
-
             }
+            catch { }
         }
 
 
@@ -313,6 +318,7 @@ namespace Ross
                 ucASP.UpdateASPs(lASP);
                 UpdateSideMenu(lASP);
                 UpdateSelectedStationModel(lASP);
+                ConnectedGrpcClients();
                 //UpdateTableASP4MainPanel(lASP);
 
                 lSRangeRecon = await clientDB.Tables[NameTable.TableSectorsRangesRecon].LoadAsync<TableSectorsRanges>();
@@ -411,23 +417,27 @@ namespace Ross
             int j = 0;
 
             foreach (var tableASP in tableASPs)
-            {
-                if (SelectedStationModels[j].SelectedConnectionObject != null)
+            {              
+                //if (tableASP.SlaveId >= 0)
                 {
-                    //if (tableASP.SlaveId >= 0)
-                    {
-                        //  SelectedByConnectionTypeClient1.IdSlave = tableASP.SlaveId;
-                        SelectedStationModels[j].IdMaster = tableASP.Id;
-                        SelectedStationModels[j].IpAddressMaster = tableASP.AddressIP;
-                        SelectedStationModels[j].PortMaster = tableASP.AddressPort;
-                    }
-                    //else if(tableASP.SlaveId == -1)
-                    //{
-                    //    SelectedByConnectionTypeClient1.IdMaster = tableASP.Id;
-                    //}
-                    //j++;
-                    //if (j == selectedStationModels.Length) return;
+                    //  SelectedByConnectionTypeClient1.IdSlave = tableASP.SlaveId;
+
+                    InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, (byte)tableASP.Id, 0, (Stations)j);
                 }
+                //else if(tableASP.SlaveId == -1)
+                //{
+                //    SelectedByConnectionTypeClient1.IdMaster = tableASP.Id;
+                //}
+                j++;
+                if (j == SelectedStationModels.Length) return;
+            }
+        }
+
+        private void ConnectedGrpcClients()
+        {
+            foreach(var station in SelectedStationModels)
+            {
+                //station.SelectedConnectionObject?.Connect();
             }
         }
 

@@ -51,7 +51,7 @@ namespace Ross.Models
             }
         }
 
-        public string IpAddressMaster
+        public string IpAddress_interior
         {
             get => ipAddress;
             set
@@ -62,7 +62,7 @@ namespace Ross.Models
             }
         }
 
-        public int PortMaster
+        public int Port_interior
         {
             get => port;
             set

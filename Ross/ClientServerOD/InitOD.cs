@@ -6,6 +6,7 @@ using Ross.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,44 +27,62 @@ namespace Ross
         private GrpcClient grpcClient_3G_4G2;
 
         private byte clientAddress = 255;
-        private byte serverAddress = 1;
         private int deadlineMs = 10000;
 
      
         private void InitializationAllConnections()
         {
             SelectedStationModels = new SelectedStationModel[2] { SelectedByConnectionTypeClient1, SelectedByConnectionTypeClient2 };
-            InitializeODConnection_3G_4G_1();
-            InitializeODConnection_3G_4G_2();
-            InitializeODConnection_Viper_1();
-            InitializeODConnection_Viper_2();
         }
 
-        private void InitializeODConnection_Viper_1()
+        private void InitializeODConnection(SelectedStationModel selectedStationModel, string serverIp, int serverPort, byte serverAddress,int slaveId , Stations stations)
         {
-            grpcClientViper1 = new GrpcClient(Properties.Local.EdServer.Viper1.IpAddress, Properties.Local.EdServer.Viper1.Port, deadlineMs, clientAddress, serverAddress);
-            CommonPartInitialization1(grpcClientViper1);
+            selectedStationModel.SelectedConnectionObject = new GrpcClient(serverIp, serverPort, deadlineMs, clientAddress, serverAddress);
+            selectedStationModel.IdMaster = serverAddress;
+            selectedStationModel.IdSlave = slaveId;
+
+            if (stations == Stations.StationsPair1 || stations == Stations.SinglStation1)
+            {
+                switch (mainWindowViewSize.SelectedConnectionType1)
+                {
+                    case ConnectionTypeServerOD.Robustel_3G_4G:
+                        CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Robustel1);
+                        break;
+                    case ConnectionTypeServerOD.Viper_Radio:
+                    case ConnectionTypeServerOD.Ethernet:
+                        CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Viper1);
+                        break;
+                    default:
+                        CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Viper1);
+                        break;
+                }
+                CommonPartInitialization1(SelectedByConnectionTypeClient1.SelectedConnectionObject);
+            }
+            else
+            {
+                switch (mainWindowViewSize.SelectedConnectionType2)
+                {
+                    case ConnectionTypeServerOD.Robustel_3G_4G:
+                        CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Robustel2);
+                        break;
+                    case ConnectionTypeServerOD.Viper_Radio:
+                    case ConnectionTypeServerOD.Ethernet:
+                        CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Viper2);
+                        break;
+                    default:
+                        CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Viper2);
+                        break;
+                }
+                CommonPartInitialization1(SelectedByConnectionTypeClient2.SelectedConnectionObject);
+            }
         }
 
-        private void InitializeODConnection_3G_4G_1()
+        private void CreateEndPointObject(SelectedStationModel selectedStationModel,ControlProperties.EndPointConnection endPointConnection)
         {
-            grpcClient_3G_4G1 = new GrpcClient(Properties.Local.EdServer.Robustel1.IpAddress, Properties.Local.EdServer.Robustel1.Port, deadlineMs, clientAddress, serverAddress);
-            CommonPartInitialization1(grpcClient_3G_4G1);           
+            selectedStationModel.IpAddress_interior = endPointConnection.IpAddress;
+            selectedStationModel.Port_interior = endPointConnection.Port;
         }
-
-        private void InitializeODConnection_Viper_2()
-        {
-            grpcClientViper2 = new GrpcClient(Properties.Local.EdServer.Viper2.IpAddress, Properties.Local.EdServer.Viper2.Port, deadlineMs, clientAddress, serverAddress);
-            CommonPartInitialization2(grpcClientViper2);
-        }
-
-        private void InitializeODConnection_3G_4G_2()
-        {
-            grpcClient_3G_4G2 = new GrpcClient(Properties.Local.EdServer.Robustel2.IpAddress, Properties.Local.EdServer.Robustel2.Port, deadlineMs, clientAddress, serverAddress);
-            CommonPartInitialization2(grpcClient_3G_4G2);
-        }
-
-
+      
         private void CommonPartInitialization1(GrpcClient grpcClient)
         {
             grpcClient.OnTextMessageReceived += GrpcClient_OnGetTextMessage;

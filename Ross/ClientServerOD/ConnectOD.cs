@@ -14,48 +14,44 @@ namespace Ross
     {
         private void GrpcServer_ButServerClick(object sender, RoutedEventArgs e)
         {
-            switch(GrpcConnectionType1.SelectedValue)
+            UpdateSelectedStationModel(lASP);
+
+            Task.Factory.StartNew(() =>
             {
-                case ConnectionTypeServerOD.Robustel_3G_4G:
-                    SelectedByConnectionTypeClient1.SelectedConnectionObject = grpcClient_3G_4G1;
-                    break;
-                case ConnectionTypeServerOD.Viper_Radio:
-                case ConnectionTypeServerOD.Ethernet:
-                    SelectedByConnectionTypeClient1.SelectedConnectionObject = grpcClientViper1;
-                    break;
-            }
-            IsChosenConnectionConnected(SelectedByConnectionTypeClient1, mainWindowViewSize.ConnectionStatesGrpcServer1);
+                ConnectionStates connectionStates = IsChosenConnectionConnected(SelectedByConnectionTypeClient1);
+                Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer1 = connectionStates);
+            });
         }
 
         private void GrpcServer2_ButServerClick(object sender, RoutedEventArgs e)
         {
+            UpdateSelectedStationModel(lASP);
 
-            switch (GrpcConnectionType2.SelectedValue)
+            Task.Factory.StartNew(() =>
             {
-                case ConnectionTypeServerOD.Robustel_3G_4G:
-                    SelectedByConnectionTypeClient2.SelectedConnectionObject = grpcClient_3G_4G2;
-                    break;
-                case ConnectionTypeServerOD.Viper_Radio:
-                case ConnectionTypeServerOD.Ethernet:
-                    SelectedByConnectionTypeClient2.SelectedConnectionObject = grpcClientViper2;
-                    break;
-            }
-            IsChosenConnectionConnected(SelectedByConnectionTypeClient2, mainWindowViewSize.ConnectionStatesGrpcServer2);
+                ConnectionStates connectionStates = IsChosenConnectionConnected(SelectedByConnectionTypeClient2);
+                Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer2 = connectionStates);      
+            });
         }
 
-        private void IsChosenConnectionConnected(SelectedStationModel grpcClientModel, ConnectionStates connectionStates)
+
+
+
+        private ConnectionStates IsChosenConnectionConnected(SelectedStationModel grpcClientModel)
         {
-            if(grpcClientModel.SelectedConnectionObject == null) return;
+            if(grpcClientModel.SelectedConnectionObject == null) return ConnectionStates.Disconnected;
 
             if (grpcClientModel.SelectedConnectionObject.IsConnected)
             {
                 grpcClientModel.SelectedConnectionObject.AbortConnection();
-                connectionStates = ConnectionStates.Disconnected;
+                return ConnectionStates.Disconnected;
             }
             else
             {
-                grpcClientModel.SelectedConnectionObject.Connect(grpcClientModel.IpAddressMaster, grpcClientModel.PortMaster);
-                connectionStates = ConnectionStates.Connected;
+                grpcClientModel.SelectedConnectionObject.Connect();
+                if(grpcClientModel.SelectedConnectionObject.IsConnected)
+                    return ConnectionStates.Connected;
+                else return ConnectionStates.Disconnected;
             }
         }
 

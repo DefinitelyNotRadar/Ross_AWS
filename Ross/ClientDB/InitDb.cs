@@ -12,7 +12,7 @@ namespace Ross
 
 
         //TODO: по номеру арма из настроек брать
-        private new string Name { get; } = "ARM";
+        private new string Name { get; } = "ROSS";
 
         private void InitClientDB()
         {

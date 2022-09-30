@@ -154,22 +154,22 @@ namespace Ross
 
         private void EdServer_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            switch (e.PropertyName)
-            {              
-                case nameof(Properties.Local.EdServer.Viper1):
-                    InitializeODConnection_Viper_1();
-                    break;
-                case nameof(Properties.Local.EdServer.Robustel1):
-                    InitializeODConnection_3G_4G_1();
-                    break;
-                case nameof(Properties.Local.EdServer.Viper2):
-                    InitializeODConnection_Viper_2();
-                    break;
-                case nameof(Properties.Local.EdServer.Robustel2):
-                    InitializeODConnection_3G_4G_2();
-                    break;
+            //switch (e.PropertyName)
+            //{
+            //    case nameof(Properties.Local.EdServer.Viper1):
+                    
+            //        break;
+            //    case nameof(Properties.Local.EdServer.Robustel1):
+                    
+            //        break;
+            //    case nameof(Properties.Local.EdServer.Viper2):
+                    
+            //        break;
+            //    case nameof(Properties.Local.EdServer.Robustel2):
+                    
+            //        break;
 
-            }
+            //}
         }
 
 
