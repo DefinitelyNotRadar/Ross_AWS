@@ -73,7 +73,9 @@ namespace Ross
 
         private void MapLayout_OnPoll(object sender, Tabl e)
         {
-            Poll_Station_1();
+            if (e.Id == SelectedByConnectionTypeClient1.IdMaster || e.Id == SelectedByConnectionTypeClient1.IdSlave)
+                    Poll_Station(SelectedByConnectionTypeClient1.SelectedConnectionObject);
+            else Poll_Station(SelectedByConnectionTypeClient2.SelectedConnectionObject);
         }
 
         private void ToggleButton_Map_Click(object sender, RoutedEventArgs e)

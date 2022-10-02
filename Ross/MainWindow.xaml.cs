@@ -104,7 +104,7 @@ namespace Ross
 
         private void Properties_OnUpdateLocalProperties_1(object sender, ControlProperties.LocalProperties e)
         {
-            JSON.SerializerJSON.Serialize(e, "LocalProperties");
+            SerializerJSON.Serialize(e, "LocalProperties");
         }
 
         #endregion
@@ -121,6 +121,10 @@ namespace Ross
             System.Windows.Threading.Dispatcher.ExitAllFrames();
         }
 
-      
+        private void ToggleButton_Poll_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in SelectedStationModels)
+                Poll_Station(item.SelectedConnectionObject);
+        }
     }
 }

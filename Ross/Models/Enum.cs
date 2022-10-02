@@ -24,4 +24,12 @@ namespace Ross.Models
         SinglStation1 = 2,
         SinglStation2 = 3,
     }
+
+    public enum Liters
+    {
+        L13,
+        L24,
+        L59,
+        L10
+    }
 }

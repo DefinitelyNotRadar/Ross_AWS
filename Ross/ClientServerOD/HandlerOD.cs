@@ -24,7 +24,6 @@ namespace Ross
         {
             if (e)
             {
-                Poll_Station_1();
                 Dispatcher.Invoke(() =>
                 {
                     mainWindowViewSize.ConnectionStatesGrpcServer1 = WPFControlConnection.ConnectionStates.Connected;
@@ -44,7 +43,6 @@ namespace Ross
         {
             if (e)
             {
-                Poll_Station_2();
                 Dispatcher.Invoke(() =>
                 {
                     mainWindowViewSize.ConnectionStatesGrpcServer2 = WPFControlConnection.ConnectionStates.Connected;
@@ -61,27 +59,18 @@ namespace Ross
         }
 
 
-        private void Poll_Station_1()
+        private void Poll_Station(GrpcClient selectedStation)
         {
             Task task1 = new Task(() =>
             {
-                if (!SelectedByConnectionTypeClient1.SelectedConnectionObject.Ping("")) return;
+                if (!selectedStation.Ping("ROSS")) return;
 
-                ReadRecord(SelectedByConnectionTypeClient1.SelectedConnectionObject.GetFwsElint(), NameTable.TableReconFWS);
-                ReadRecord(SelectedByConnectionTypeClient1.SelectedConnectionObject.GetFhssElint(), NameTable.TableReconFHSS);
-                ReadRecord(SelectedByConnectionTypeClient1.SelectedConnectionObject.GetAsps(), NameTable.TableASP);   
-            });
-        }
-
-        private void Poll_Station_2()
-        {
-            Task task1 = new Task(() =>
-            {
-                if (!SelectedByConnectionTypeClient2.SelectedConnectionObject.Ping("")) return;
-
-                ReadRecord(SelectedByConnectionTypeClient2.SelectedConnectionObject.GetFwsElint(), NameTable.TableReconFWS);
-                ReadRecord(SelectedByConnectionTypeClient2.SelectedConnectionObject.GetFhssElint(), NameTable.TableReconFHSS);
-                ReadRecord(SelectedByConnectionTypeClient2.SelectedConnectionObject.GetAsps(), NameTable.TableASP);
+                ReadRecord(selectedStation.GetFwsElint(), NameTable.TableReconFWS);
+                ReadRecord(selectedStation.GetFhssElint(), NameTable.TableReconFHSS);
+                ReadRecord(selectedStation.GetAsps(), NameTable.TableASP);
+                ReadStationCoord(selectedStation);
+                ReadAntenasDirections(selectedStation);
+                
             });
         }
 
@@ -105,9 +94,9 @@ namespace Ross
             });
         }
 
-        private void ReadStationCoord1()
+        private void ReadStationCoord(GrpcClient selectedStation)
         {
-            var table = SelectedByConnectionTypeClient1.SelectedConnectionObject.GetCoordinates();
+            var table = selectedStation.GetCoordinates();
             var coord = (table as Any).Unpack<TransmissionPackageGroza934.CoordMessage>();
 
             Dispatcher.Invoke(() =>
@@ -117,16 +106,14 @@ namespace Ross
 
         }
 
-        private void ReadStationCoord2()
+        private void ReadAntenasDirections(GrpcClient selectedStation)
         {
-            var table = SelectedByConnectionTypeClient2.SelectedConnectionObject.GetCoordinates();
-            var coord = (table as Any).Unpack<TransmissionPackageGroza934.CoordMessage>();
-
+            var table = selectedStation?.GetAntennasDirection();
+            var directions = (table as Any).Unpack<TransmissionPackageGroza934.SectorsMessage>();
             Dispatcher.Invoke(() =>
             {
-                mapLayout.DrawStation(new Coord() { Latitude = coord.Latitude, Longitude = coord.Longitude });
+                //mapLayout.DrawSector(directions.)
             });
-
         }
 
         private void GrpcClient_OnGetTextMessage(object sender, string e)

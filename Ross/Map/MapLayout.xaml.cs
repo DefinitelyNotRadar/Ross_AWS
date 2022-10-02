@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Management.Instrumentation;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using DLLSettingsControlPointForMap;
 using DLLSettingsControlPointForMap.Model;
 using EvaTable;
@@ -53,6 +55,8 @@ namespace Ross.Map
             DataContext = new MapViewModel();
 
             mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,-130), scale, new Offset(0, 0));
+
+            DrawSector(new Coord() { Latitude = 40, Longitude = 47}, 50);
         }
 
         public void ClearEvaTable()
@@ -241,6 +245,11 @@ namespace Ross.Map
             RastrMap.mapControl.AddMapObject(mapObjectStyleStation, text, p);
         }
 
+
+        public void DrawSector(Coord point, int angle)
+        {           
+               //RastrMap.ViewModel.DefinderJammingPoint.Add(new DefinderJammingPoint(0) { AntennaJamming = new List<Antenna> { new Antenna() { Radius = 3000, Direction = angle, Sector = 20, Active = true } } });
+        }
         #endregion
 
         private void EvaTable_OnGetLine(Tabl tabl, UserControl1.StatusContextMenu menu)
