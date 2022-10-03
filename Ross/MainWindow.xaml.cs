@@ -68,7 +68,7 @@ namespace Ross
 
         private void MainWindowViewSize_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            UpdateSelectedStationModel(lASP);
+            //UpdateSelectedStationModel(lASP);
         }
 
         #region Properties

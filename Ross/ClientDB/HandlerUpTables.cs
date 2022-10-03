@@ -32,6 +32,7 @@ namespace Ross
                 lASP = e.Table;
                 ucASP.UpdateASPs(lASP);
                 UpdateSideMenu(lASP);
+                UpdateSelectedStationModel(lASP);
                 //UpdateTableASP4MainPanel(lASP);
                 DrawAllObjects();
                 ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
