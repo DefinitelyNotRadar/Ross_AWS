@@ -65,30 +65,36 @@ namespace Ross
             {
                 if (!selectedStation.Ping("ROSS")) return;
 
-                ReadRecord(selectedStation.GetFwsElint(), NameTable.TableReconFWS);
+                ReadRecord(selectedStation.GetFwsElint(), NameTable.TempFWS);
                 ReadRecord(selectedStation.GetFhssElint(), NameTable.TableReconFHSS);
                 ReadRecord(selectedStation.GetAsps(), NameTable.TableASP);
                 ReadStationCoord(selectedStation);
                 ReadAntenasDirections(selectedStation);
-                
+
             });
         }
 
+        //private int tempFWSCounter = 0;
         private void ReadRecord(object table, NameTable nameTable)
         {
+            //TODO: переделать под несколько станций
             Dispatcher.Invoke(() =>
             {
                 var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(nameTable).ListRecords;
+                var fromDB = clientDB?.Tables[nameTable].Load<AbstractCommonTable>().Select(t=>t.Id).ToList();
                 foreach(var record in recordsToDB)
                 {
-                    foreach(var tableItem in clientDB?.Tables[nameTable].Load<AbstractCommonTable>())
+                    //foreach(var tableItem in fromDB)
+                    //{
+                    if(fromDB != null && fromDB.Contains(record.Id))
                     {
-                        if(tableItem.Id != record.Id)
-                        {
-                            clientDB?.Tables[nameTable].Add(record);
-                            break;
-                        }
+                        clientDB?.Tables[nameTable].Change(record);
                     }
+                    else
+                    {
+                        clientDB?.Tables[nameTable].Add(record);
+                    }
+                    //}
                 }
                 
             });
