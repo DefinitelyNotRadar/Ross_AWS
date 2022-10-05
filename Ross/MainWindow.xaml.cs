@@ -124,7 +124,10 @@ namespace Ross
         private void ToggleButton_Poll_Click(object sender, RoutedEventArgs e)
         {
             foreach (var item in SelectedStationModels)
-                Poll_Station(item.SelectedConnectionObject);
+            {
+                if(item.SelectedConnectionObject != null && item.SelectedConnectionObject.IsConnected)
+                    Poll_Station(item.SelectedConnectionObject);
+            }
         }
     }
 }

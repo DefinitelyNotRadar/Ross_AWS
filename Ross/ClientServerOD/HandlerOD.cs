@@ -63,15 +63,16 @@ namespace Ross
         {
             Task task1 = new Task(() =>
             {
-                if (!selectedStation.Ping("ROSS")) return;
+                //if (!selectedStation.Ping("ROSS")) return;
 
                 ReadRecord(selectedStation.GetFwsElint(), NameTable.TableReconFWS);
                 ReadRecord(selectedStation.GetFhssElint(), NameTable.TableReconFHSS);
-                ReadRecord(selectedStation.GetAsps(), NameTable.TableASP);
-                ReadStationCoord(selectedStation);
-                ReadAntenasDirections(selectedStation);
+                //ReadRecord(selectedStation.GetAsps(), NameTable.TableASP);
+                //ReadStationCoord(selectedStation);
+                //ReadAntenasDirections(selectedStation);
                 
             });
+            task1.Start();
         }
 
         private void ReadRecord(object table, NameTable nameTable)
@@ -98,6 +99,7 @@ namespace Ross
         {
             var table = selectedStation.GetCoordinates();
             var coord = (table as Any).Unpack<TransmissionPackageGroza934.CoordMessage>();
+            if (coord == null) return;
 
             Dispatcher.Invoke(() =>
             {
@@ -110,6 +112,7 @@ namespace Ross
         {
             var table = selectedStation?.GetAntennasDirection();
             var directions = (table as Any).Unpack<TransmissionPackageGroza934.SectorsMessage>();
+            if (directions == null) return;
             Dispatcher.Invoke(() =>
             {
                 //mapLayout.DrawSector(directions.)

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.31903.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ross", "Ross\Ross.csproj", "{F9F51F47-1389-42B1-BB8C-79A2D4B3D7FE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransmissionLib", "..\..\OD\od_future\DataTransferServer\TransmissionLib\TransmissionLib.csproj", "{85273CBE-06D9-4251-A55C-4C259DB89CE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{F9F51F47-1389-42B1-BB8C-79A2D4B3D7FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F9F51F47-1389-42B1-BB8C-79A2D4B3D7FE}.Release|x64.ActiveCfg = Release|x64
 		{F9F51F47-1389-42B1-BB8C-79A2D4B3D7FE}.Release|x64.Build.0 = Release|x64
+		{85273CBE-06D9-4251-A55C-4C259DB89CE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85273CBE-06D9-4251-A55C-4C259DB89CE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85273CBE-06D9-4251-A55C-4C259DB89CE2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{85273CBE-06D9-4251-A55C-4C259DB89CE2}.Debug|x64.Build.0 = Debug|Any CPU
+		{85273CBE-06D9-4251-A55C-4C259DB89CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85273CBE-06D9-4251-A55C-4C259DB89CE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85273CBE-06D9-4251-A55C-4C259DB89CE2}.Release|x64.ActiveCfg = Release|Any CPU
+		{85273CBE-06D9-4251-A55C-4C259DB89CE2}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

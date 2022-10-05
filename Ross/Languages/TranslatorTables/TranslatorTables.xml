@@ -1,0 +1,886 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Translation>
+
+  <Translate ID="Сектор">
+    <Rus>Сектор</Rus>
+    <Eng>Sector</Eng>
+    <Az>Sektor</Az>
+  </Translate>
+
+  <Translate ID="Прочее">
+    <Rus>Общие</Rus>
+    <Eng>General</Eng>
+    <Az>Ümumi</Az>
+  </Translate>
+
+  <Translate ID="Диапазон">
+    <Rus>Диапазон</Rus>
+    <Eng>Band</Eng>
+    <Az>Diapozon</Az>
+  </Translate>
+
+  <Translate ID="ФРЧ">
+    <Rus>ФРЧ</Rus>
+    <Eng>FF</Eng>
+    <Az>FRT</Az>
+  </Translate>
+
+  <Translate ID="NumberASP">
+    <Rus>№ АСП</Rus>
+    <Eng>№ AJS</Eng>
+    <Az>№ AMS</Az>
+  </Translate>
+
+  <Translate ID="FreqKHz">
+    <Rus>F, кГц</Rus>
+    <Eng>F, kHz</Eng>
+    <Az>F, kHz</Az>
+  </Translate>
+
+  <Translate ID="Deviation">
+    <Rus>Δf, кГц</Rus>
+    <Eng>Δf, kHz</Eng>
+    <Az>Δf, kHz</Az>
+  </Translate>
+
+  <Translate ID="FreqMinKHz">
+    <Rus>F мин., кГц</Rus>
+    <Eng>F min, kHz</Eng>
+    <Az>F min, kHz</Az>
+  </Translate>
+
+  <Translate ID="FreqMaxKHz">
+    <Rus>F макс., кГц</Rus>
+    <Eng>F max, kHz</Eng>
+    <Az>F max, kHz</Az>
+  </Translate>
+
+  <Translate ID="AngleMin">
+    <Rus>θ мин., °</Rus>
+    <Eng>θ min, °</Eng>
+    <Az>θ min, °</Az>
+  </Translate>
+
+  <Translate ID="AngleMax">
+    <Rus>θ макс., °</Rus>
+    <Eng>θ max, °</Eng>
+    <Az>θ max, °</Az>
+  </Translate>
+
+  <Translate ID="Note">
+    <Rus>Примечание</Rus>
+    <Eng>Note</Eng>
+    <Az>Qeyd</Az>
+  </Translate>
+
+  <Translate ID="Общие">
+    <Rus>Общие</Rus>
+    <Eng>General</Eng>
+    <Az>Ümumi</Az>
+  </Translate>
+
+  <Translate ID="Антенны">
+    <Rus>Антенны</Rus>
+    <Eng>Antennas</Eng>
+    <Az>@Anten</Az>
+  </Translate>
+
+  <Translate ID="Карта">
+    <Rus>Карта</Rus>
+    <Eng>Map</Eng>
+    <Az>xəritə</Az>
+  </Translate>
+
+  <Translate ID="Id">
+    <Rus>№ АСП</Rus>
+    <Eng>№ AJS</Eng>
+    <Az>@№ AMS</Az>
+  </Translate>
+
+  <Translate ID="ISOwn">
+    <Rus>Своя</Rus>
+    <Eng>Own</Eng>
+    <Az>@Öz</Az>
+  </Translate>
+
+  <Translate ID="AddressIP">
+    <Rus>Адрес IP</Rus>
+    <Eng>IP address</Eng>
+    <Az>İP ünvan</Az>
+  </Translate>
+
+  <Translate ID="AddressPort">
+    <Rus>Порт</Rus>
+    <Eng>Port</Eng>
+    <Az>Port</Az>
+  </Translate>
+
+  <Translate ID="CallSign">
+    <Rus>Позывной</Rus>
+    <Eng>Call sign</Eng>
+    <Az>Çağırış adı</Az>
+  </Translate>
+
+  <Translate ID="Role">
+    <Rus>Роль</Rus>
+    <Eng>Role</Eng>
+    <Az>Rol</Az>
+  </Translate>
+
+  <Translate ID="TypeConnection">
+    <Rus>Тип связи</Rus>
+    <Eng>Type connect</Eng>
+    <Az>@Rabitə növü</Az>
+  </Translate>
+
+  <Translate ID="AntHeightRec">
+    <Rus>Высота РР, м</Rus>
+    <Eng>Height RI, m</Eng>
+    <Az>Hündürlük, m </Az>
+  </Translate>
+
+  <Translate ID="AntHeightSup">
+    <Rus>Высота РП, м</Rus>
+    <Eng>Height J, m</Eng>
+    <Az>Hündürlük RS, m</Az>
+  </Translate>
+
+  <Translate ID="LPA13">
+    <Rus>ЛПА 1,3,°</Rus>
+    <Eng>LPA 1,3,°</Eng>
+    <Az>Loqoperiodik antena, 1,3,°</Az>
+  </Translate>
+
+  <Translate ID="LPA24">
+    <Rus>ЛПА 2,4,°</Rus>
+    <Eng>LPA 2,4,°</Eng>
+    <Az>Loqoperiodik antena, 2,4,°</Az>
+  </Translate>
+
+  <Translate ID="LPA510">
+    <Rus>ЛПА 5-10,°</Rus>
+    <Eng>LPA 5-10,°</Eng>
+    <Az>Loqoperiodik antena 5-10,°</Az>
+  </Translate>
+
+  <Translate ID="RRS1">
+    <Rus>РРС 1,°</Rus>
+    <Eng>RRC 1,°</Eng>
+    <Az>RRS 1,°</Az>
+  </Translate>
+
+  <Translate ID="RRS2">
+    <Rus>РРС 2,°</Rus>
+    <Eng>RRC 2,°</Eng>
+    <Az>RRS 2,°</Az>
+  </Translate>
+
+  <Translate ID="IsGnssUsed">
+    <Rus>СНС</Rus>
+    <Eng>SNS</Eng>
+    <Az>QPNS</Az>
+  </Translate>
+
+  <Translate ID="Caption">
+    <Rus>Подпись</Rus>
+    <Eng>Signature</Eng>
+    <Az>İmza</Az>
+  </Translate>
+
+  <Translate ID="Image">
+    <Rus>Знак</Rus>
+    <Eng>Sign</Eng>
+    <Az>İşarə</Az>
+  </Translate>
+
+  <Translate ID="Latitude">
+    <Rus>Широта,°</Rus>
+    <Eng>Latitude,°</Eng>
+    <Az>Enlik,°</Az>
+  </Translate>
+
+  <Translate ID="Longitude">
+    <Rus>Долгота,°</Rus>
+    <Eng>Longitude,°</Eng>
+    <Az>Uzunluq,°</Az>
+  </Translate>
+
+  <Translate ID="Altitude">
+    <Rus>Высота, м</Rus>
+    <Eng>Altitude, m</Eng>
+    <Az>Hündürlük, m </Az>
+  </Translate>
+
+  <Translate ID="StepKHz">
+    <Rus>Шаг сетки, кГц</Rus>
+    <Eng>Net step, kHz</Eng>
+    <Az>Tor addımım kHz</Az>
+  </Translate>
+
+  <Translate ID="Threshold">
+    <Rus>U, дБ</Rus>
+    <Eng>U, dB</Eng>
+    <Az>U, dB </Az>
+  </Translate>
+
+  <Translate ID="Priority">
+    <Rus>Приоритет</Rus>
+    <Eng>Priority</Eng>
+    <Az>Üstünlük</Az>
+  </Translate>
+
+  <!-- SMessageError -->
+  <Translate ID="mesErr">
+    <Rus>Ошибка!</Rus>
+    <Eng>Error!</Eng>
+    <Az>Səhv!</Az>
+  </Translate>
+
+  <Translate ID="mesErrFreqWithoutRange">
+    <Rus>Частота вне диапазона работы станции!</Rus>
+    <Eng>Frequency outside station operation range!</Eng>
+    <Az>Trzlik satansiyanın işçi tezliyində deyil!</Az>
+  </Translate>
+
+  <Translate ID="mesErrIncorrSetPel">
+    <Rus>Неверно задан пеленг!</Rus>
+    <Eng>Wrong bearing setting!</Eng>
+    <Az>Pelenq diapazondan kənardır!</Az>
+  </Translate>
+
+  <Translate ID="mesErrValBandwidth">
+    <Rus>Значение ширины полосы задается от 0 до 1000!</Rus>
+    <Eng>Bandwidth value is set from 0 to 1000!</Eng>
+    <Az>@Band genişliyi dəyəri 0-dan 1000-ə qədər müəyyən edilir!</Az>
+  </Translate>
+
+  <Translate ID="mesErrValStep">
+    <Rus>Значение шага сетки задается от 1 до 30000!</Rus>
+    <Eng>Net step value is set from 1 to 30000!</Eng>
+    <Az>@Grid addım dəyəri 1-dən 30000-ə qədər müəyyən edilir!</Az>
+  </Translate>
+
+  <Translate ID="mesErrFreqOutNetwork">
+    <Rus>Частота не принадлежит выбранной сети!</Rus>
+    <Eng>Frequency does not belong to the selected network!</Eng>
+    <Az>@Tezlik seçilmiş şəbəkə aid deyil!</Az>
+  </Translate>
+
+  <Translate ID="mesErrIncorrSetManip">
+    <Rus>Для выбранной девиации значении манипуляции должно быть больше!</Rus>
+    <Eng>Manipulation value must be greater for the selected deviation!</Eng>
+    <Az>@Seçilmiş deviasiya üçün manipulyasiya dəyəri daha böyük olmalıdır!</Az>
+  </Translate>
+
+  <Translate ID="mesErrIncorrSetManip6_25">
+    <Rus>Для заданной частоты значение манипуляции не должно превышать 6,25 МГц!</Rus>
+    <Eng>Manipulation value must not exceed 6,25 MHz for the set frequency!</Eng>
+    <Az>@Verilən tezlik üçün manipulyasiya dəyəri 6,25 MHz-dən çox olmamalıdır!</Az>
+  </Translate>
+
+  <Translate ID="mesErrIncorrSetManip12_5">
+    <Rus>Для заданной частоты значение манипуляции не должно превышать 12,5 МГц!</Rus>
+    <Eng>Manipulation value must not exceed 12,5 MHz for the set frequency!</Eng>
+    <Az>@Verilən tezlik üçün manipulyasiya dəyəri 12,5 MHz-dən çox olmamalıdır!</Az>
+  </Translate>
+
+  <Translate ID="mesErrEnterValues">
+    <Rus>Введите значения!</Rus>
+    <Eng>Enter values!</Eng>
+    <Az>@Emsalını daxil edin!</Az>
+  </Translate>
+
+  <!-- SMeaning -->
+  <Translate ID="meaningAddRecord">
+    <Rus>Добавить запись</Rus>
+    <Eng>Add record</Eng>
+    <Az>@Giriş əlavə et</Az>
+  </Translate>
+
+  <Translate ID="meaningChangeRecord">
+    <Rus>Изменить запись</Rus>
+    <Eng>Change record</Eng>
+    <Az>@Yazma dəyişdirin</Az>
+  </Translate>
+
+  <Translate ID="meaningOwn">
+    <Rus>Ведущая</Rus>
+    <Eng>Master</Eng>
+    <Az>İdarə edən</Az>
+  </Translate>
+
+  <Translate ID="meaningLinked">
+    <Rus>Ведомая</Rus>
+    <Eng>Slave</Eng>
+    <Az>İdarə olunan</Az>
+  </Translate>
+
+  <Translate ID="meaningAutonomous">
+    <Rus>Автономная</Rus>
+    <Eng>Autonomous</Eng>
+    <Az>Avtonom</Az>
+  </Translate>
+
+  <Translate ID="meaningHz">
+    <Rus>Гц</Rus>
+    <Eng>Hz</Eng>
+    <Az>Hz</Az>
+  </Translate>
+
+  <Translate ID="meaningkHz">
+    <Rus>кГц</Rus>
+    <Eng>kHz</Eng>
+    <Az>kHz</Az>
+  </Translate>
+
+  <Translate ID="meaningMHz">
+    <Rus>МГц</Rus>
+    <Eng>MHz</Eng>
+    <Az>MHz</Az>
+  </Translate>
+
+  <Translate ID="meaningmks">
+    <Rus>мкс</Rus>
+    <Eng>µs</Eng>
+    <Az>µs</Az>
+  </Translate>
+
+  <Translate ID="meaningms">
+    <Rus>мс</Rus>
+    <Eng>ms</Eng>
+    <Az>ms</Az>
+  </Translate>
+
+  <Translate ID="meaningShum">
+    <Rus>Шум</Rus>
+    <Eng>Noise</Eng>
+    <Az>Küy</Az>
+  </Translate>
+
+  <Translate ID="meaningNes">
+    <Rus>Несущая</Rus>
+    <Eng>CF</Eng>
+    <Az>Daşıyıcı</Az>
+  </Translate>
+
+  <Translate ID="meaningAMn">
+    <Rus>АМн</Rus>
+    <Eng>AM</Eng>
+    <Az>AMpl</Az>
+  </Translate>
+
+  <Translate ID="meaningFMn">
+    <Rus>ФМн</Rus>
+    <Eng>PSK</Eng>
+    <Az>FMn</Az>
+  </Translate>
+
+  <Translate ID="meaningChMn2">
+    <Rus>ЧМн2</Rus>
+    <Eng>FSK-2</Eng>
+    <Az>ÇMn2</Az>
+  </Translate>
+
+  <Translate ID="meaningAMChM">
+    <Rus>АМ ЧМ</Rus>
+    <Eng>AM FM</Eng>
+    <Az>AMdl ÇM</Az>
+  </Translate>
+
+  <Translate ID="meaningChMn4">
+    <Rus>ЧМн4</Rus>
+    <Eng>FSK-4</Eng>
+    <Az>ÇMn4</Az>
+  </Translate>
+
+  <Translate ID="meaningChMn8">
+    <Rus>ЧМн8</Rus>
+    <Eng>FSK-8</Eng>
+    <Az>ÇMn8</Az>
+  </Translate>
+
+  <Translate ID="meaningChM">
+    <Rus>ЧМ</Rus>
+    <Eng>FM</Eng>
+    <Az>ÇM</Az>
+  </Translate>
+
+  <Translate ID="meaningChMn">
+    <Rus>ЧМн</Rus>
+    <Eng>FSK</Eng>
+    <Az>ÇMn</Az>
+  </Translate>
+
+  <Translate ID="meaningShPS">
+    <Rus>ШПС</Rus>
+    <Eng>SSM</Eng>
+    <Az>Enlizolaqlı</Az>
+  </Translate>
+
+  <Translate ID="meaningUnkn">
+    <Rus>Неизв.</Rus>
+    <Eng>Unknown</Eng>
+    <Az>Bilinməyən</Az>
+  </Translate>
+
+  <Translate ID="meaningCoord">
+    <Rus>Координаты</Rus>
+    <Eng>Coordinates</Eng>
+    <Az>Koordinat</Az>
+  </Translate>
+
+  <Translate ID="meaningInterferenceParam">
+    <Rus>Параметры помехи</Rus>
+    <Eng>Jammer parameters</Eng>
+    <Az>Maneənin parametrləri</Az>
+  </Translate>
+
+  <!--STypeModulation-->
+  <Translate ID="paramChMSh">
+    <Rus>ЧМШ</Rus>
+    <Eng>FMN</Eng>
+    <Az>TMK</Az>
+  </Translate>
+
+  <Translate ID="paramChM2">
+    <Rus>ЧМ-2</Rus>
+    <Eng>FM-2</Eng>
+    <Az>ÇM-2</Az>
+  </Translate>
+
+  <Translate ID="paramChM4">
+    <Rus>ЧМ-4</Rus>
+    <Eng>FM-4</Eng>
+    <Az>ÇM-4</Az>
+  </Translate>
+
+  <Translate ID="paramChM8">
+    <Rus>ЧМ-8</Rus>
+    <Eng>FM-8</Eng>
+    <Az>ÇM-8</Az>
+  </Translate>
+
+  <Translate ID="paramFMn">
+    <Rus>ФМн</Rus>
+    <Eng>PSK</Eng>
+    <Az>FMn</Az>
+  </Translate>
+
+  <Translate ID="paramFMn4">
+    <Rus>ФМн-4</Rus>
+    <Eng>PSK-4</Eng>
+    <Az>FMn-4</Az>
+  </Translate>
+
+  <Translate ID="paramFMn8">
+    <Rus>ФМн-8</Rus>
+    <Eng>PSK-8</Eng>
+    <Az>FMn-8</Az>
+  </Translate>
+
+  <Translate ID="paramZSh">
+    <Rus>ЗШ (КФМ)</Rus>
+    <Eng>BN (CPSK)</Eng>
+    <Az>@SKFM</Az>
+  </Translate>
+
+  <Translate ID="paramLChM">
+    <Rus>ЛЧМ</Rus>
+    <Eng>LFM</Eng>
+    <Az>@XTM</Az>
+  </Translate>
+
+  <!-- SMessages -->
+  <Translate ID="mesMessage">
+    <Rus>Сообщение!</Rus>
+    <Eng>Message!</Eng>
+    <Az>Məlumat!</Az>
+  </Translate>
+
+  <Translate ID="mesValuesMaxMin">
+    <Rus>Значение поля 'F мин.' должно быть меньше значения поля 'F макс.'!</Rus>
+    <Eng>Value of the field 'F min' must be less than value of the field 'F max'!</Eng>
+    <Az>'F min' sahəsində dəyəri sahəsində 'F Mak dəyərindən az olmalıdır.'!</Az>
+  </Translate>
+
+  <Translate ID="mesSector">
+    <Rus>Сектор </Rus>
+    <Eng>Sector </Eng>
+    <Az>Sektor</Az>
+  </Translate>
+
+  <Translate ID="mesAndRange">
+    <Rus> и диапазон </Rus>
+    <Eng> and band </Eng>
+    <Az> Diapozon</Az>
+  </Translate>
+
+  <Translate ID="mesContainSetSector">
+    <Rus> содержит значения заданного сектора!</Rus>
+    <Eng> contains the assigned sector value!</Eng>
+    <Az> </Az>
+  </Translate>
+
+  <Translate ID="mesRange">
+    <Rus>Диапазон </Rus>
+    <Eng>Band </Eng>
+    <Az>Diapozon </Az>
+  </Translate>
+
+  <Translate ID="mesCrossingRange">
+    <Rus> пересекается с заданным диапазоном! Объедините диапазоны или разбейте их на несколько!</Rus>
+    <Eng> crosses the assigned band! Join ranges or divide into several ones!</Eng>
+    <Az> verilmiş diapozonla kəsişir! Diapozonları cəmləyin və ya onları bölüşdürün!</Az>
+  </Translate>
+
+  <Translate ID="mesLetter8IRIN">
+    <Rus>В диапазоне литеры 8 осуществляется подавление IRIDIUM (INMARSAT)!</Rus>
+    <Eng>IRIDIUM (INMARSAT) jamming is performed in Letter 8 band!</Eng>
+    <Az>@8 literlərinin diapazonunda IRIDIUM (İNMARSAT) basdırılması həyata keçirilir!</Az>
+  </Translate>
+
+  <Translate ID="mesChangeValDeviationMin">
+    <Rus>Значение девиации изменено до минимального возможного значения! Девиация (+/-), кГц = </Rus>
+    <Eng>Deviation value has been changed to minimum possible value! Deviation (+/-), kHz = </Eng>
+    <Az>@Deviasiya dəyəri mümkün olan minimum dəyəri dəyişdirilir! Deviasiya (+/-), kHs = </Az>
+  </Translate>
+
+  <Translate ID="mesNavigationBroken">
+    <Rus>Будет нарушена навигация в радиусе 70 км! Выполнить команду?</Rus>
+    <Eng>Navigation within 70 km radius will be disrupted! Execute command?</Eng>
+    <Az>@70 km radiusda naviqasiya pozulacaq! İcra komanda?</Az>
+  </Translate>
+
+  <Translate ID="mesInBandLetterRESJamming">
+    <Rus>ИРИ для подавления уже имеются в диапазоне литеры </Rus>
+    <Eng>There are already RES to jam in the band of Letter </Eng>
+    <Az>@Yatırmaq üçün RŞM artıq literlər aralığında mövcuddur</Az>
+  </Translate>
+
+  <Translate ID="mesCountChannelsMax">
+    <Rus>Суммарное количество каналов превышает допустимое!</Rus>
+    <Eng>Total number of channels exceeds the limit!</Eng>
+    <Az>@Ümumi kanal sayı icazə verilən həddən çox olacaqdır</Az>
+  </Translate>
+
+  <Translate ID="mesUnableAddRecord">
+    <Rus>Невозможно добавить запись! Количество записей превысит допустимое!</Rus>
+    <Eng>Unable to add entry! The number of entries will exceed the limit!</Eng>
+    <Az>@Giriş əlavə etmək olmur! Qeydlərin sayı icazə verilən həddən çox olacaq!</Az>
+  </Translate>
+
+  <Translate ID="mesFreqBelongBand">
+    <Rus>Частота не принадлежит диапазону РП!</Rus>
+    <Eng>Frequency does not belong to the J band!</Eng>
+    <Az>@Tezlik RS diapazonuna aid deyil!</Az>
+  </Translate>
+
+  <Translate ID="mesFreqRestricted">
+    <Rus>Частота не может быть добавлена, так как запрещенная!</Rus>
+    <Eng>Frequency cannot be added as it is restricted!</Eng>
+    <Az>@Tezlik qadağan kimi əlavə edilə bilməz!</Az>
+  </Translate>
+
+  <Translate ID="mesBandBelongBand">
+    <Rus>Диапазон не принадлежит диапазону РП!</Rus>
+    <Eng>Band does not belong to the J band!</Eng>
+    <Az>@Diapazonu RS diapazonuna aid deyil!</Az>
+  </Translate>
+
+  <Translate ID="mesBandRestricted">
+    <Rus>Диапазон не может быть добавлен, так как запрещенный!</Rus>
+    <Eng>Band cannot be added as it is restricted!</Eng>
+    <Az>@Diapozon qadağan kimi əlavə edilə bilməz!</Az>
+  </Translate>
+
+  <Translate ID="mesMaxRESInLetter">
+    <Rus>Количество ИРИ в данной литере равно максимальному значению!</Rus>
+    <Eng>The number of RES in this letter is equal to maximum value!</Eng>
+    <Az>@Literlər İranın miqdarı maksimum dəyərə bərabərdir!</Az>
+  </Translate>
+
+  <!-- SHeaders -->
+  <Translate ID="headerNumAJS">
+    <Rus>№ АСП</Rus>
+    <Eng>№ AJS</Eng>
+    <Az>№ AMS</Az>
+  </Translate>
+
+  <Translate ID="headerNumSituation">
+    <Rus>№ Обст.</Rus>
+    <Eng>№ Situation</Eng>
+    <Az>№ Vəziyyət</Az>
+  </Translate>
+
+  <Translate ID="headerConnect">
+    <Rus>Подкл.</Rus>
+    <Eng>Connect</Eng>
+    <Az>Qoşulma</Az>
+  </Translate>
+
+  <Translate ID="headerIPaddress">
+    <Rus>Адрес IP</Rus>
+    <Eng>IP address</Eng>
+    <Az>İP ünvan</Az>
+  </Translate>
+
+  <Translate ID="headerPort">
+    <Rus>Порт</Rus>
+    <Eng>Port</Eng>
+    <Az>Port</Az>
+  </Translate>
+
+  <Translate ID="headerMode">
+    <Rus>Режим</Rus>
+    <Eng>Mode</Eng>
+    <Az>Rejim</Az>
+  </Translate>
+
+  <Translate ID="headerCallSign">
+    <Rus>Позывной</Rus>
+    <Eng>Call sign</Eng>
+    <Az>Çağırış adı</Az>
+  </Translate>
+
+  <Translate ID="headerRole">
+    <Rus>Роль</Rus>
+    <Eng>Role</Eng>
+    <Az>Rol</Az>
+  </Translate>
+
+  <Translate ID="headerType">
+    <Rus>Тип</Rus>
+    <Eng>Type</Eng>
+    <Az>Növ</Az>
+  </Translate>
+
+  <Translate ID="headerAntennaJ">
+    <Rus>Ант. РП, м</Rus>
+    <Eng>Ant. J, m</Eng>
+    <Az>Ant. RS, m</Az>
+  </Translate>
+
+  <Translate ID="headerAntennaRR">
+    <Rus>Ант. РР, м</Rus>
+    <Eng>Ant. RI, m</Eng>
+    <Az>@Ant. RK, m</Az>
+  </Translate>
+
+  <Translate ID="headerLatLon">
+    <Rus>Шир.,°  Долг.,°</Rus>
+    <Eng>Lat.,°  Long.,°</Eng>
+    <Az>Enlik.,° Uzunluq.,° </Az>
+  </Translate>
+
+  <Translate ID="headerAlt">
+    <Rus>Выс., м</Rus>
+    <Eng>Alt., m</Eng>
+    <Az>Hündürlük, m</Az>
+  </Translate>
+
+  <Translate ID="headerRRC1">
+    <Rus>РРС 1,°</Rus>
+    <Eng>RRC 1,°</Eng>
+    <Az>RRS 1,°</Az>
+  </Translate>
+
+  <Translate ID="headerRRC2">
+    <Rus>РРС 2,°</Rus>
+    <Eng>RRC 2,°</Eng>
+    <Az>RRS 2,°</Az>
+  </Translate>
+
+  <Translate ID="headerLPA1_3">
+    <Rus>ЛПА 1,3,°</Rus>
+    <Eng>LPA 1,3,°</Eng>
+    <Az>Loqoperiodik antena 1,3,°</Az>
+  </Translate>
+
+  <Translate ID="headerLPA2_4">
+    <Rus>ЛПА 2,4,°</Rus>
+    <Eng>LPA 2,4,°</Eng>
+    <Az>Loqoperiodik antena 1,3,°</Az>
+  </Translate>
+
+  <Translate ID="headerLPA5_10">
+    <Rus>ЛПА 5-10,°</Rus>
+    <Eng>LPA 5-10,°</Eng>
+    <Az>Loqoperiodik antena 5-10,°</Az>
+  </Translate>
+
+  <Translate ID="headerSignature">
+    <Rus>Подпись</Rus>
+    <Eng>Signature</Eng>
+    <Az>İmza</Az>
+  </Translate>
+
+  <Translate ID="headerSign">
+    <Rus>Знак</Rus>
+    <Eng>Sign</Eng>
+    <Az>@İşarə</Az>
+  </Translate>
+
+  <Translate ID="headerFreqMin">
+    <Rus>F мин., кГц</Rus>
+    <Eng>F min, kHz</Eng>
+    <Az>F min, kHz</Az>
+  </Translate>
+
+  <Translate ID="headerFreqMax">
+    <Rus>F макс., кГц</Rus>
+    <Eng>F max, kHz</Eng>
+    <Az>F max, kHz</Az>
+  </Translate>
+
+  <Translate ID="headerAngleMin">
+    <Rus>θ мин., °</Rus>
+    <Eng>θ min, °</Eng>
+    <Az>θ min, °</Az>
+  </Translate>
+
+  <Translate ID="headerAngleMax">
+    <Rus>θ макс., °</Rus>
+    <Eng>θ max, °</Eng>
+    <Az>θ max, °</Az>
+  </Translate>
+
+  <Translate ID="headerNote">
+    <Rus>Примечание</Rus>
+    <Eng>Note</Eng>
+    <Az>Qeyd</Az>
+  </Translate>
+
+  <Translate ID="headerDeltaF">
+    <Rus>Δf, кГц"</Rus>
+    <Eng>Δf, kHz</Eng>
+    <Az>Δf, kHz</Az>
+  </Translate>
+
+  <Translate ID="headerTime">
+    <Rus>Время</Rus>
+    <Eng>Time</Eng>
+    <Az>Vaxt</Az>
+  </Translate>
+
+  <Translate ID="headerStep">
+    <Rus>Шаг, кГц</Rus>
+    <Eng>Step, kHz</Eng>
+    <Az>Addım, kHz</Az>
+  </Translate>
+
+  <Translate ID="headerPulseWidth">
+    <Rus>Длит. имп., мс</Rus>
+    <Eng>Pulse width, ms</Eng>
+    <Az>İmpulsun davamiyyət müddəti, ms</Az>
+  </Translate>
+
+  <Translate ID="headerNumFreq">
+    <Rus>Кол. частот</Rus>
+    <Eng>Num. freq.</Eng>
+    <Az>Sayı tezlik</Az>
+  </Translate>
+
+  <Translate ID="headerJ_AJS">
+    <Rus>АСП РП</Rus>
+    <Eng>J AJS</Eng>
+    <Az>AMS RS</Az>
+  </Translate>
+
+  <Translate ID="headerBearing">
+    <Rus>θ, °</Rus>
+    <Eng>θ, °</Eng>
+    <Az>θ, °</Az>
+  </Translate>
+
+  <Translate ID="headerNum">
+    <Rus>№</Rus>
+    <Eng>№</Eng>
+    <Az>№</Az>
+  </Translate>
+
+  <Translate ID="headerRMSE">
+    <Rus>СКО, °</Rus>
+    <Eng>RMSE, °</Eng>
+    <Az>OKS,°</Az>
+  </Translate>
+
+  <Translate ID="headerLevel">
+    <Rus>U, дБ</Rus>
+    <Eng>U, dB</Eng>
+    <Az>U, dB</Az>
+  </Translate>
+
+  <Translate ID="headerDistance">
+    <Rus>S, м</Rus>
+    <Eng>S, m</Eng>
+    <Az>S, m</Az>
+  </Translate>
+
+  <Translate ID="headerRI_AJS">
+    <Rus>АСП РР</Rus>
+    <Eng>RI AJS</Eng>
+    <Az>ASM RK</Az>
+  </Translate>
+
+  <Translate ID="headerFreq">
+    <Rus>F, кГц</Rus>
+    <Eng>F, kHz</Eng>
+    <Az>F, kHz</Az>
+  </Translate>
+
+  <Translate ID="headerCount">
+    <Rus>Кол-во</Rus>
+    <Eng>Count</Eng>
+    <Az>sayı</Az>
+  </Translate>
+
+  <Translate ID="headerJammerParams">
+    <Rus>Параметры помехи</Rus>
+    <Eng>Jammer parameters</Eng>
+    <Az>Maneənin parametrləri</Az>
+  </Translate>
+
+  <Translate ID="headerSSR">
+    <Rus>ЕПО</Rus>
+    <Eng>SSR</Eng>
+    <Az>BBZ</Az>
+  </Translate>
+
+  <Translate ID="headerCtrl">
+    <Rus>КР</Rus>
+    <Eng>Ctrl</Eng>
+    <Az>Yoxlama</Az>
+  </Translate>
+
+  <Translate ID="headerJam">
+    <Rus>РП</Rus>
+    <Eng>Jam</Eng>
+    <Az>RS</Az>
+  </Translate>
+
+  <Translate ID="headerRad">
+    <Rus>Изл.</Rus>
+    <Eng>Rad</Eng>
+    <Az>şüa.</Az>
+  </Translate>
+
+  <Translate ID="headerLetters">
+    <Rus>Л</Rus>
+    <Eng>L</Eng>
+    <Az>L</Az>
+  </Translate>
+
+  <Translate ID="headerAJS">
+    <Rus>АСП</Rus>
+    <Eng>AJS</Eng>
+    <Az>ASM</Az>
+  </Translate>
+
+  <Translate ID="headerPriority">
+    <Rus>Пр.</Rus>
+    <Eng>Prio</Eng>
+    <Az>Üstünlük</Az>
+  </Translate>
+
+</Translation>

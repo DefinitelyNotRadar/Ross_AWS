@@ -59,13 +59,15 @@ namespace Ross.Map
             DrawSector(new Coord() { Latitude = 40, Longitude = 47}, 50);
         }
 
+        #region EvaTable
+
         public void ClearEvaTable()
         {
             evaTable.DeleteAllItems();
         }
 
         public void AddStationInEvaTable(Tabl tabl)
-        {
+        {           
             evaTable.AddNewItem(tabl);
         }
 
@@ -75,12 +77,17 @@ namespace Ross.Map
             evaTable.AddNewItem(newtabl);
         }
 
+        public Tabl GetItemFromEvaTable(int id)
+        {
+            return evaTable.GetModel(id);
+        }
     
         public SettingsControlForMap MapProperties
         {
             get => Properties;
             set => Properties = value;
         }
+        #endregion
 
         #region Map
 
@@ -115,7 +122,6 @@ namespace Ross.Map
         }
 
         #endregion
-
 
         #region Properties
 
@@ -271,6 +277,11 @@ namespace Ross.Map
                 default:
                     break;
             }
+        }
+
+        private void ToggleButton_31_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

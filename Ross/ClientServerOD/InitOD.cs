@@ -37,7 +37,7 @@ namespace Ross
 
         private void InitializeODConnection(SelectedStationModel selectedStationModel, string serverIp, int serverPort, byte serverAddress,int slaveId , Stations stations)
         {
-            selectedStationModel.SelectedConnectionObject = new GrpcClient(serverIp, serverPort, deadlineMs, clientAddress, serverAddress);
+            selectedStationModel.SelectedConnectionObject = new GrpcClient(serverIp.Replace(",","."), serverPort, deadlineMs, clientAddress, serverAddress);
             selectedStationModel.IdMaster = serverAddress;
             selectedStationModel.IdSlave = slaveId;
 

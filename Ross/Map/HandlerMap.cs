@@ -15,6 +15,27 @@ namespace Ross
     public partial class MainWindow : Window
     {
 
+     
+
+        private void ToggleButton_Map_Click(object sender, RoutedEventArgs e)
+        {
+            if (mapLayout.IsVisible)
+                mapLayout.Hide();
+            else
+            {
+                mapLayout.Show();
+                DrawAllObjects();
+               
+            }
+        }
+
+        private void MapLayout_Closing(object sender, CancelEventArgs e)
+        {
+            ToggleButton_Map.IsChecked = false;
+        }
+
+
+        #region Context Menu
         private void MapLayout_OnCoordControlPoinChanged(object sender, CoordEventArgs e)
         {
             Properties.Local.Common.Latitude = e.Data.Latitude;
@@ -25,87 +46,75 @@ namespace Ross
         {
             ucASP.SetCoordsASPToPG(e.Data);
         }
+        #endregion
 
 
+        #region Eva Table handler
 
         private void MapLayout_OnRadioJammingMode(object sender, Tabl e)
         {
             var IsSeccess = false;
-            if (e.Id == SelectedByConnectionTypeClient1.IdMaster || e.Id == SelectedByConnectionTypeClient1.IdSlave)
-                IsSeccess = SelectedByConnectionTypeClient1.SelectedConnectionObject.SendMode(2);
-            else IsSeccess = SelectedByConnectionTypeClient2.SelectedConnectionObject.SendMode(2);
+            foreach (var item in SelectedStationModels)
+            {
+                if ((e.Id == item.IdMaster || e.Id == item.IdSlave) && item.SelectedConnectionObject.IsConnected)
+                {
+                    IsSeccess = item.SelectedConnectionObject.SendMode(2);
+                    break;
+                }
+            }
 
             if (IsSeccess)
-            {
-                var newTabl = e.Clone();
-                mapLayout.SetStationInEvaTable(newTabl, e);
-            }
+                mapLayout.GetItemFromEvaTable(e.Id).ModASP = ModASP.Jumming;
         }
 
         private void MapLayout_OnRadioIntelligenceMode(object sender, Tabl e)
         {
             var IsSeccess = false;
-            if (e.Id == SelectedByConnectionTypeClient1.IdMaster || e.Id == SelectedByConnectionTypeClient1.IdSlave)
-                IsSeccess = SelectedByConnectionTypeClient1.SelectedConnectionObject.SendMode(1);
-            else IsSeccess = SelectedByConnectionTypeClient2.SelectedConnectionObject.SendMode(1);
+            foreach(var item in SelectedStationModels)
+            {
+                if ((e.Id == item.IdMaster || e.Id == item.IdSlave) && item.SelectedConnectionObject.IsConnected)
+                { 
+                    IsSeccess = item.SelectedConnectionObject.SendMode(1);
+                    break;
+                }
+            }
 
             if (IsSeccess)
-            {
-                var newTabl = e.Clone();
-                mapLayout.SetStationInEvaTable(newTabl, e);
-            }
+                e.ModASP = ModASP.RadioReconnaissance;
+                //mapLayout.GetItemFromEvaTable(e.Id).ModASP = ModASP.RadioReconnaissance;
         }
 
         private void MapLayout_OnPreparationMode(object sender, Tabl e)
         {
             var IsSeccess = false;
-            if (e.Id == SelectedByConnectionTypeClient1.IdMaster || e.Id == SelectedByConnectionTypeClient1.IdSlave)
-                IsSeccess = SelectedByConnectionTypeClient1.SelectedConnectionObject.SendMode(0);
-            else IsSeccess = SelectedByConnectionTypeClient2.SelectedConnectionObject.SendMode(0);
+            foreach (var item in SelectedStationModels)
+            {
+                if ((e.Id == item.IdMaster || e.Id == item.IdSlave) && item.SelectedConnectionObject.IsConnected)
+                {
+                    IsSeccess = item.SelectedConnectionObject.SendMode(0);
+                    break;
+                }
+            }
 
 
             if (IsSeccess)
-            {
-                var newTabl = e.Clone();
-                mapLayout.SetStationInEvaTable(newTabl, e);
-            }
+                mapLayout.GetItemFromEvaTable(e.Id).ModASP = ModASP.Preparation;
         }
 
         private void MapLayout_OnPoll(object sender, Tabl e)
         {
-            if (e.Id == SelectedByConnectionTypeClient1.IdMaster || e.Id == SelectedByConnectionTypeClient1.IdSlave)
-                    Poll_Station(SelectedByConnectionTypeClient1.SelectedConnectionObject);
-            else Poll_Station(SelectedByConnectionTypeClient2.SelectedConnectionObject);
-        }
-
-        private void ToggleButton_Map_Click(object sender, RoutedEventArgs e)
-        {
-            if (mapLayout.IsVisible)
-                mapLayout.Hide();
-            else
+            foreach (var item in SelectedStationModels)
             {
-                mapLayout.Show();
-                DrawAllObjects();
+                if ((e.Id == item.IdMaster || e.Id == item.IdSlave) && item.SelectedConnectionObject.IsConnected)
+                    Poll_Station(item.SelectedConnectionObject);
             }
         }
 
-        private void MapLayout_Closing(object sender, CancelEventArgs e)
-        {
-            ToggleButton_Map.IsChecked = false;
-        }
 
-        private void UpdateEvaTable()
-        {
-            Dispatcher.Invoke(() =>
-            {
-                mapLayout.ClearEvaTable();
-                foreach (var asp in lASP)
-                {
-                    Role roleStation = asp.Role == RoleStation.Master ? Role.Master : (asp.Role == RoleStation.Slave ? Role.Slave : Role.Single);  
-                    mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.Caption, Id = asp.Id, Role = roleStation, StateASP = asp.IsConnect == ModelsTablesDBLib.Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode }); 
-                }
-            });
-        }
+
+        #endregion
+
+        #region Draw
 
         private void DrawAllObjects()
         {
@@ -123,6 +132,18 @@ namespace Ross
 
             DrawAllFHSS();
         }
+
+
+        private void UpdateEvaTable()
+        {
+            mapLayout.ClearEvaTable();
+            foreach (var asp in lASP)
+            {
+                Role roleStation = asp.Role == RoleStation.Master ? Role.Master : (asp.Role == RoleStation.Slave ? Role.Slave : Role.Single);
+                mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.CallSign, Id = asp.Id, Role = roleStation, StateASP = asp.IsConnect == Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode });
+            }
+        }
+
 
         private void DrawAllASP()
         {
@@ -152,5 +173,6 @@ namespace Ross
             //foreach (var fhss in lSuppressFHSS)
             //    mapLayout.DrawSourceFHSS(fhss., DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
         }
+        #endregion
     }
 }

@@ -79,7 +79,7 @@
             <ToggleButton x:Name="ToggleButton_31" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
                           HorizontalAlignment="Center" Width="32" Height="32"
                           IsThreeState="False" Style="{StaticResource ToggleButton}" Content="З 1" FontSize="20"
-                          VerticalContentAlignment="Top" HorizontalContentAlignment="Center" />
+                          VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Checked="ToggleButton_31_Checked" />
             <ToggleButton x:Name="ToggleButton_32" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
                           HorizontalAlignment="Center" Width="32" Height="32"
                           IsThreeState="False" Style="{StaticResource ToggleButton}" Content="З 2" FontSize="20"

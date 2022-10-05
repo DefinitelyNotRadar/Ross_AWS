@@ -250,9 +250,6 @@
     <Reference Include="TempFWSControl">
       <HintPath>dll\TempFWSControl.dll</HintPath>
     </Reference>
-    <Reference Include="TransmissionLib">
-      <HintPath>dll\TransmissionLib.dll</HintPath>
-    </Reference>
     <Reference Include="UCRMap">
       <HintPath>dll\UCRMap.dll</HintPath>
     </Reference>
@@ -489,6 +486,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Languages\TranslatorTables\TranslatorTables.xml" />
     <Content Include="Resources\sqare_black.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -558,6 +556,12 @@
     <Content Include="Resources\station.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\OD\od_future\DataTransferServer\TransmissionLib\TransmissionLib.csproj">
+      <Project>{85273cbe-06d9-4251-a55c-4c259db89ce2}</Project>
+      <Name>TransmissionLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Grpc.Core.2.46.3\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.46.3\build\net45\Grpc.Core.targets')" />

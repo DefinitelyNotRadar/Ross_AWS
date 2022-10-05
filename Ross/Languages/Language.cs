@@ -29,7 +29,6 @@ namespace Ross
             if (dict != null)
             {
                 Resources.MergedDictionaries.Add(dict);
-                ucSuppressFWS.Resources.MergedDictionaries.Add(dict);
             }
         }
 

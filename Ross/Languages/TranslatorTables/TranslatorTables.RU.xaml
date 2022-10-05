@@ -3,6 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
+
     <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-105" Top="-5" Right="0" Bottom="0"/>
     <system:Double x:Key="PropertyGridMinWidthParamsFWS">200</system:Double>
     <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-90" Top="-5" Right="0" Bottom="0"/>
@@ -23,7 +24,7 @@
     <system:String x:Key="PropertyGridMaster">Ведущая</system:String>
     <system:String x:Key="PropertyGridSlave">Ведомая</system:String>
     <system:String x:Key="PropertyGridAutonomous">Автономная</system:String>
-    
+
     <!-- PropertyGrid ToolTip -->
     <system:String x:Key="PropertyGridToolTipLatitude">Широта</system:String>
     <system:String x:Key="PropertyGridToolTipLongitude">Долгота</system:String>
@@ -141,12 +142,12 @@
     <system:String x:Key="TabItemRF">ЗЧ</system:String>
     <system:String x:Key="TabItemIF">ВЧ</system:String>
     <system:String x:Key="TabItemKF">ИЧ</system:String>
-    
+
     <!-- StatusBar -->
-    <system:String x:Key="StatusBarCountAll">Всего:  </system:String>
-    <system:String x:Key="StatusBarCountActive">Активных:  </system:String>
-    <system:String x:Key="StatusBarCountImportant">Важных:  </system:String>
-    
+    <system:String x:Key="StatusBarCountAll">Всего:</system:String>
+    <system:String x:Key="StatusBarCountActive">Активных:</system:String>
+    <system:String x:Key="StatusBarCountImportant">Важных:</system:String>
+
     <!-- ToggleButtons UAV -->
     <system:String x:Key="ToggleButtonsUAV">БПЛА</system:String>
     <system:String x:Key="ToggleButtonsNAV">НАВ</system:String>

@@ -263,7 +263,7 @@ namespace Ross
             {
                 for (int i = 0; i < SelectedStationModels.Length; i++)
                 {
-                    if (SelectedStationModels[i].SelectedConnectionObject == null) continue;
+                    if (SelectedStationModels[i].SelectedConnectionObject == null || SelectedStationModels[i].SelectedConnectionObject.IsConnected == false) continue;
 
                     List<T> forStation = new List<T>();
                     

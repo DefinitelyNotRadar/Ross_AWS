@@ -143,12 +143,13 @@
     <system:String x:Key="TabItemKF">KF</system:String>
 
     <!-- StatusBar -->
-    <system:String x:Key="StatusBarCountAll">In all:  </system:String>
-    <system:String x:Key="StatusBarCountActive">Active:  </system:String>
-    <system:String x:Key="StatusBarCountImportant">Important:  </system:String>
+    <system:String x:Key="StatusBarCountAll">In all:</system:String>
+    <system:String x:Key="StatusBarCountActive">Active:</system:String>
+    <system:String x:Key="StatusBarCountImportant">Important:</system:String>
 
     <!-- ToggleButtons UAV -->
     <system:String x:Key="ToggleButtonsUAV">UAV</system:String>
     <system:String x:Key="ToggleButtonsNAV">NAV</system:String>
+
 
 </ResourceDictionary>
