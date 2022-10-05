@@ -127,6 +127,7 @@ namespace Ross
             {
                 if(item.SelectedConnectionObject != null && item.SelectedConnectionObject.IsConnected)
                     Poll_Station(item.SelectedConnectionObject);
+
             }
         }
     }

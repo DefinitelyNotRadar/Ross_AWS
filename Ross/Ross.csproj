@@ -250,6 +250,10 @@
     <Reference Include="TempFWSControl">
       <HintPath>dll\TempFWSControl.dll</HintPath>
     </Reference>
+    <Reference Include="TransmissionLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\TransmissionLib.dll</HintPath>
+    </Reference>
     <Reference Include="UCRMap">
       <HintPath>dll\UCRMap.dll</HintPath>
     </Reference>
@@ -564,6 +568,10 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <Import Project="..\packages\Grpc.Core.2.46.3\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.46.3\build\net45\Grpc.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -571,8 +579,4 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Grpc.Core.2.46.3\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grpc.Core.2.46.3\build\net45\Grpc.Core.targets'))" />
   </Target>
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
 </Project>
