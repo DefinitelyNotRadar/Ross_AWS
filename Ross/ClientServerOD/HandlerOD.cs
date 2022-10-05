@@ -118,12 +118,14 @@ namespace Ross
         private void ReadAntenasDirections(GrpcClient selectedStation)
         {
             var table = selectedStation?.GetAntennasDirection();
-            var directions = (table as Any).Unpack<TransmissionPackageGroza934.SectorsMessage>();
-            if (directions == null) return;
+            var directions = (table as Any).Unpack<TransmissionPackageGroza934.AntennasMessage>();
+            //в Lpa 10 элементов = 10 литер. 
+            //1=3,2=4, 5-9(есть варианты 5-7,5-10, 10)
+            //C
             Dispatcher.Invoke(() =>
-            {
-                //mapLayout.DrawSector(directions.)
-            });
+                {
+                    //mapLayout.DrawSector(directions.)
+                });
         }
 
         private void GrpcClient_OnGetTextMessage(object sender, string e)
