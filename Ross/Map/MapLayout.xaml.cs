@@ -22,7 +22,7 @@ using Ross.Map._EventArgs;
 using UIMapRast.Models;
 using WpfMapControl;
 using Brush = Mapsui.Styles.Brush;
-using Color = System.Windows.Media.Color;
+using Color = Mapsui.Styles.Color;
 using Languages = ModelsTablesDBLib.Languages;
 using LocalProperties = DLLSettingsControlPointForMap.Model.LocalProperties;
 using Pen = Mapsui.Styles.Pen;
@@ -42,7 +42,11 @@ namespace Ross.Map
 
         public EventHandler<CoordEventArgs> OnCoordControlPoinChanged;
         public EventHandler<CoordEventArgs> OnCoordASPPropertyGridSelecteted;
+        public EventHandler<List<Point>> OnPolygonLineOfSightChanged;
+        public EventHandler<EventArgs> OnNeedToRedrawMapJojects;
 
+
+        private List<Point> polygon = new List<Point>();
 
         public MapLayout()
         {
@@ -52,11 +56,11 @@ namespace Ross.Map
             LoadSettings();
             InitHotKeys();
 
-            DataContext = new MapViewModel();
+            DataContext = new MapViewModel(RastrMap.mapControl, polygon);
+
 
             mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,-130), scale, new Offset(0, 0));
-
-            DrawSector(new Coord() { Latitude = 40, Longitude = 47}, 50);
+            
         }
 
         #region EvaTable
@@ -198,6 +202,13 @@ namespace Ross.Map
         private MapObjectStyle mapObjectStyleStation;
         private double scale = 0.2;
 
+
+        public void DrawPolygonOfLineOfSight()
+        {
+            if (polygon.Count > 0)
+                RastrMap.mapControl.AddPolygon(polygon, new Color(124, 252, 0, 100));
+        }
+
         public void DrawSourceFWS(Coord point, ColorsForMap color)
         {
            var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
@@ -279,9 +290,9 @@ namespace Ross.Map
             }
         }
 
-        private void ToggleButton_31_Checked(object sender, RoutedEventArgs e)
+        private void ToggleButton_DownPanel_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            OnNeedToRedrawMapJojects(this, e);
         }
     }
 }

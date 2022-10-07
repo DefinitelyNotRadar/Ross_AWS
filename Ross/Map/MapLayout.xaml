@@ -7,6 +7,7 @@
         xmlns:prop="clr-namespace:DLLSettingsControlPointForMap;assembly=DLLSettingsControlPointForMap"
         xmlns:evaTable="clr-namespace:EvaTable;assembly=EvaTable"
         xmlns:converter="clr-namespace:Ross.Converters"
+        xmlns:t1="clr-namespace:LineOfSightZoneControl;assembly=LineOfSightZoneControl"
         mc:Ignorable="d" Background="#292929" Closing="Window_Closing" Title="Map">
 
     <Window.Resources>
@@ -33,6 +34,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="3*" />
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="{Binding CalculationJobHeight, Mode=TwoWay}" MaxHeight="900"/>
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
@@ -51,12 +54,34 @@
                                GetLine="EvaTable_OnGetLine"
         />
 
-        <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+        <Grid Grid.Column="4" Grid.Row="2">
+            <TabControl>
+                <TabItem Header="ЗПВ" >
+                    <Grid MaxWidth="550" HorizontalAlignment="Left">
+                        <t1:ZoneControl x:Name="ZoneControl" DataContext="{Binding ViewModelForTask1}" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Азимут">
+
+                </TabItem>
+                <TabItem Header="Маршрут" >
+
+                </TabItem>
+
+            </TabControl>
+        </Grid>
+        <GridSplitter x:Name="DownPanelSplitter" Grid.Column="4" Grid.Row="1" Background="#525151"
+                      ShowsPreview="False" Height="3"
+                      Visibility="{Binding ElementName= ToggleButton_DownPanel, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      HorizontalAlignment="Stretch" />
+        
+
+        <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
               Visibility="{Binding ElementName= ToggleButton_Setting, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
               MaxWidth="1000">
             <prop:SettingsControlForMap x:Name="Properties"  OnPathMapChanged="Properties_OnPathMapChanged" />
         </Grid>
-        <GridSplitter x:Name="SettingSplitter" Grid.Column="2" Background="#525151"
+        <GridSplitter x:Name="SettingSplitter" Grid.Column="2" Grid.RowSpan="3" Background="#525151"
                       ShowsPreview="False" Width="3"
                       Visibility="{Binding ElementName= ToggleButton_Setting, Path = IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
                       VerticalAlignment="Stretch" />
@@ -76,22 +101,15 @@
                        Stroke="{StaticResource ResourceKey=ControlActiveBorderBrush}" StrokeThickness="2"
                        VerticalAlignment="Bottom" Margin="2,0,3,0" RadiusX="1" RadiusY="1" />
 
-            <ToggleButton x:Name="ToggleButton_31" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
+            <ToggleButton x:Name="ToggleButton_DownPanel" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
                           HorizontalAlignment="Center" Width="32" Height="32"
-                          IsThreeState="False" Style="{StaticResource ToggleButton}" Content="З 1" FontSize="20"
-                          VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Checked="ToggleButton_31_Checked" />
-            <ToggleButton x:Name="ToggleButton_32" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
-                          HorizontalAlignment="Center" Width="32" Height="32"
-                          IsThreeState="False" Style="{StaticResource ToggleButton}" Content="З 2" FontSize="20"
-                          VerticalContentAlignment="Top" HorizontalContentAlignment="Center" />
-            <ToggleButton x:Name="ToggleButton_33" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
-                          HorizontalAlignment="Center" Width="32" Height="32"
-                          IsThreeState="False" Style="{StaticResource ToggleButton}" Content="З 3" FontSize="20"
-                          VerticalContentAlignment="Top" HorizontalContentAlignment="Center" />
+                          IsThreeState="False" Style="{StaticResource ToggleButton}"  FontSize="20"
+                          IsChecked="{Binding CalculationJobHeight, Mode=OneWayToSource, Converter={StaticResource BooleanToGridLengthConverter}}"
+                          VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Unchecked="ToggleButton_DownPanel_Unchecked"/>
 
         </StackPanel>
 
-        <Rectangle Grid.Row="0" Grid.Column="1" Fill="{StaticResource ResourceKey=ControlActiveBorderBrush}"
+        <Rectangle Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Fill="{StaticResource ResourceKey=ControlActiveBorderBrush}"
                    Stroke="{StaticResource ResourceKey=ControlActiveBorderBrush}" StrokeThickness="4"
                    VerticalAlignment="Stretch" />
 

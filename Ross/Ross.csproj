@@ -88,6 +88,9 @@
     <Reference Include="BruTile">
       <HintPath>dll\BruTile.dll</HintPath>
     </Reference>
+    <Reference Include="CalculationJobLib">
+      <HintPath>dll\CalculationJobLib.dll</HintPath>
+    </Reference>
     <Reference Include="ClassLibraryPeleng">
       <HintPath>dll\ClassLibraryPeleng.dll</HintPath>
     </Reference>
@@ -562,6 +565,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\CalculationTasks\Zone\LineOfSightZoneControl\LineOfSightZoneControl\LineOfSightZoneControl.csproj">
+      <Project>{d13cfd7c-0e28-4fb5-85cd-3bb63f91ad6f}</Project>
+      <Name>LineOfSightZoneControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\OD\od_future\DataTransferServer\TransmissionLib\TransmissionLib.csproj">
       <Project>{85273cbe-06d9-4251-a55c-4c259db89ce2}</Project>
       <Name>TransmissionLib</Name>

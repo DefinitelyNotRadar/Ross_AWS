@@ -131,6 +131,8 @@ namespace Ross
             DrawAllFWS();
 
             DrawAllFHSS();
+
+            mapLayout.DrawPolygonOfLineOfSight();
         }
 
 
@@ -172,6 +174,11 @@ namespace Ross
             //    mapLayout.DrawSourceFHSS(fhss., DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
             //foreach (var fhss in lSuppressFHSS)
             //    mapLayout.DrawSourceFHSS(fhss., DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
+        }
+
+        private void MapLayout_OnNeedToRedrawMapJojects(object sender, EventArgs e)
+        {
+            DrawAllObjects();
         }
         #endregion
     }
