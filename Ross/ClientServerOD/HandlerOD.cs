@@ -68,9 +68,9 @@ namespace Ross
                 ReadRecord(selectedStation.GetFwsElint(), NameTable.TempFWS);
                 ReadRecord(selectedStation.GetFhssElint(), NameTable.TableReconFHSS);
                 //ReadRecord(selectedStation.GetAsps(), NameTable.TableASP);
-                //ReadStationCoord(selectedStation);
-                //ReadAntenasDirections(selectedStation);
-                
+                ReadStationCoord(selectedStation);
+                ReadAntenasDirections(selectedStation);
+
 
             });
             task1.Start();
@@ -102,6 +102,32 @@ namespace Ross
             });
         }
 
+        //private void ReadAsp(object table, GrpcClient selectedStation)
+        //{
+        //    Dispatcher.Invoke(() =>
+        //        {
+        //            var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableASP).ListRecords;
+        //            var fromDB = clientDB?.Tables[NameTable.TableASP].Load<TableASP>();
+        //            var idList = fromDB.Select(t => t.Id).ToList();
+        //            foreach (var record in recordsToDB)
+        //            {
+        //                if (fromDB != null && idList.Contains(record.Id))
+        //                {
+        //                    var rec = fromDB.First(t => t.Id == record.Id);
+        //                    rec.
+        //                    clientDB?.Tables[NameTable.TableASP].Change(record);
+        //                }
+        //                else
+        //                {
+        //                    clientDB?.Tables[nameTable].Add(record);
+        //                }
+        //                //}
+        //            }
+
+        //        });
+
+        //}
+
         private void ReadStationCoord(GrpcClient selectedStation)
         {
             var table = selectedStation.GetCoordinates();
@@ -118,12 +144,14 @@ namespace Ross
         private void ReadAntenasDirections(GrpcClient selectedStation)
         {
             var table = selectedStation?.GetAntennasDirection();
-            var directions = (table as Any).Unpack<TransmissionPackageGroza934.SectorsMessage>();
-            if (directions == null) return;
+            var directions = (table as Any).Unpack<TransmissionPackageGroza934.AntennasMessage>();
+            //в Lpa 10 элементов = 10 литер. 
+            //1=3,2=4, 5-9(есть варианты 5-7,5-10, 10)
+            //C
             Dispatcher.Invoke(() =>
-            {
-                //mapLayout.DrawSector(directions.)
-            });
+                {
+                    //mapLayout.DrawSector(directions.)
+                });
         }
 
         private void GrpcClient_OnGetTextMessage(object sender, string e)
