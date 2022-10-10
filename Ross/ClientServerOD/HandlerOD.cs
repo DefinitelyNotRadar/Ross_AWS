@@ -150,28 +150,32 @@ namespace Ross
             //C
             Dispatcher.Invoke(() =>
                 {
-                    //mapLayout.DrawSector(directions.)
+                    mapLayout.DrawSector(lASP[0].Coordinates, directions.Lpa[0]);
                 });
         }
 
         private void GrpcClient_OnGetTextMessage(object sender, string e)
         {
             List<UserControl_Chat.Message> curMessages = new List<UserControl_Chat.Message>();
-            curMessages.Add(new UserControl_Chat.Message
-            {
-                MessageFiled = e,
-               // Id = curMessage.SenderId,
-                IsTransmited = true,
-                IsSendByMe = Roles.Received
 
-            });
-
-           
-            Dispatcher.Invoke(() =>
+            if (sender is GrpcClient grpcClient)
             {
-                chatBuble.SetMessage(curMessages[0].MessageFiled);
-                newWindow.curChat.DrawMessageToChat(curMessages);
-            });
+                curMessages.Add(new UserControl_Chat.Message
+                {
+                    MessageFiled = e,
+                    Id = grpcClient.ServerAddress,
+                    IsTransmited = true,
+                    IsSendByMe = Roles.Received
+
+                });
+
+
+                Dispatcher.Invoke(() =>
+                {
+                    chatBuble.SetMessage(curMessages[0].MessageFiled);
+                    newWindow.curChat.DrawMessageToChat(curMessages);
+                });
+            }
         }
 
      

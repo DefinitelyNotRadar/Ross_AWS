@@ -23,7 +23,5 @@ namespace Ross
             mapLayout.OnCoordControlPoinChanged += MapLayout_OnCoordControlPoinChanged;
             mapLayout.OnNeedToRedrawMapJojects += MapLayout_OnNeedToRedrawMapJojects;
         }
-
-    
     }
 }

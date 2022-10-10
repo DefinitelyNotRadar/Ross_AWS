@@ -43,7 +43,7 @@ namespace Ross
                     if(!ASPMember.ISOwn)
                     sideMenuList.Add(new StationClassForChat(ASPMember.Id, ASPMember.CallSign, true));
                 });
-                sideMenuList.Add(new StationClassForChat(0, "ПУ", true));
+                //sideMenuList.Add(new StationClassForChat(0, "ПУ", true));
                 curChat.UpdateSideMenuMembers(sideMenuList);
             }
             catch (Exception)

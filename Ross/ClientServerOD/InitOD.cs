@@ -29,14 +29,14 @@ namespace Ross
         private byte clientAddress = 255;
         private int deadlineMs = 10000;
 
-     
+
         private void InitializationAllConnections()
         {
             SelectedStationModels = new SelectedStationModel[2] { SelectedByConnectionTypeClient1, SelectedByConnectionTypeClient2 };
         }
 
         private void InitializeODConnection(SelectedStationModel selectedStationModel, string serverIp, int serverPort, byte serverAddress,int slaveId , Stations stations)
-        {
+        { 
             selectedStationModel.SelectedConnectionObject = new GrpcClient(serverIp.Replace(",","."), serverPort, deadlineMs, clientAddress, serverAddress);
             selectedStationModel.IdMaster = serverAddress;
             selectedStationModel.IdSlave = slaveId;

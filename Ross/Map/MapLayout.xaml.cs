@@ -265,7 +265,7 @@ namespace Ross.Map
 
         public void DrawSector(Coord point, int angle)
         {           
-               //RastrMap.ViewModel.DefinderJammingPoint.Add(new DefinderJammingPoint(0) { AntennaJamming = new List<Antenna> { new Antenna() { Radius = 3000, Direction = angle, Sector = 20, Active = true } } });
+            RastrMap.ViewModel.DefinderJammingPoint.Add(new DefinderJammingPoint(0) { AntennaJamming = new List<Antenna> { new Antenna() { Radius = 3000, Direction = angle, Sector = 20, Active = true } } });
         }
         #endregion
 
