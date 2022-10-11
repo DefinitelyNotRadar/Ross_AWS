@@ -1,6 +1,7 @@
 ﻿using Database934;
 using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
+using Mapsui.Styles;
 using ModelsTablesDBLib;
 using System;
 using System.Collections.Generic;
@@ -148,13 +149,25 @@ namespace Ross
             //в Lpa 10 элементов = 10 литер. 
             //1=3,2=4, 5-9(есть варианты 5-7,5-10, 10)
             //C
-            Dispatcher.Invoke(() =>
+
+                foreach (var asp in lASP)
                 {
-                    mapLayout.DrawSector(lASP[0].Coordinates, directions.Lpa[0]);
-                });
+                    if (asp.Id == selectedStation.ServerAddress)
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            mapLayout.DrawSector(asp.Coordinates, directions.Lpa[0], Color.Red);
+                            mapLayout.DrawSector(asp.Coordinates, directions.Lpa[1], Color.Orange);
+                            mapLayout.DrawSector(asp.Coordinates, directions.Lpa[4], Color.Blue);
+                            mapLayout.DrawSector(asp.Coordinates, directions.Lpa[9], Color.White);            
+                        });
+                    }
+                }
+
         }
 
         private void GrpcClient_OnGetTextMessage(object sender, string e)
+        
         {
             List<UserControl_Chat.Message> curMessages = new List<UserControl_Chat.Message>();
 

@@ -60,7 +60,8 @@ namespace Ross.Map
 
 
             mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,-130), scale, new Offset(0, 0));
-            
+
+           
         }
 
         #region EvaTable
@@ -263,10 +264,27 @@ namespace Ross.Map
         }
 
 
-        public void DrawSector(Coord point, int angle)
-        {           
-            RastrMap.ViewModel.DefinderJammingPoint.Add(new DefinderJammingPoint(0) { AntennaJamming = new List<Antenna> { new Antenna() { Radius = 3000, Direction = angle, Sector = 20, Active = true } } });
+        public void DrawSector(Coord point, int angle, Color color)
+        {
+            var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
+
+            angle = CheckAngle(angle);
+            var toAngle = CheckAngle(angle + 10);
+            var fromAngle = CheckAngle(angle - 10);
+            
+            var polygon = RastrMap.mapControl.CreateSectorPoints(p, fromAngle, toAngle, 4000);
+            RastrMap.mapControl.AddPolygon(polygon, color);
         }
+
+        private int CheckAngle(int angle)
+        {
+            if (angle < 0)
+                angle = 360 + angle;
+            if (angle > 360)
+                angle = angle - 360;
+            return angle;
+        }
+
         #endregion
 
         private void EvaTable_OnGetLine(Tabl tabl, UserControl1.StatusContextMenu menu)
