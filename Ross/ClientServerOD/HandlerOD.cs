@@ -21,6 +21,8 @@ namespace Ross
 {
     public partial class MainWindow : Window
     {
+        public event EventHandler<string> OnSendMessage;
+
         private void GrpcClient_ConnectionStateChanged1(object sender, bool e)
         {
             if (e)
@@ -214,6 +216,16 @@ namespace Ross
             //}
         }
 
-
+        public void Client_ConfirmLastMessage(int station)
+        {
+            try
+            {
+                var last = lChatMessages.Last(t => t.ReceiverAddress == station);
+                last.Status = ChatMessageStatus.Delivered;
+                clientDB?.Tables[NameTable.TableChat].Change(last);
+            }
+            catch
+            { }
+        }
     }
 }

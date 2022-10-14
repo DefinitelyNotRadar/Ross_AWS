@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ChatControl="clr-namespace:UserControl_Chat;assembly=UserControl_Chat"
-        xmlns:local="clr-namespace:Ross"
+        xmlns:local="clr-namespace:Ross" 
         mc:Ignorable="d" >
     <UserControl.InputBindings>
         <KeyBinding Key="Escape" Command="{x:Static local:CloseWindowCommand.Instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />

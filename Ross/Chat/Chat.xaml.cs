@@ -8,6 +8,8 @@ using UserControl_Chat;
 
 namespace Ross
 {
+    using System.Threading;
+
     /// <summary>
     /// Interaction logic for Chat.xaml
     /// </summary>
@@ -18,6 +20,7 @@ namespace Ross
             InitializeComponent();
         }
 
+        public event EventHandler<List<Message>> OnReturnApprovedMessages;
         List<StationClassForChat> sideMenuList;
 
         public void SetStations()
@@ -31,6 +34,7 @@ namespace Ross
             // += DrawMessageToChat;
             Events.OnGetStationsMessage += DrawMessageToChat;
             Events.OnSendStationsMessage += ReturnApprovedMessages;
+            //Events.OnClosingChat += HideWindow;
         }
 
         public void UpdateSideMenu(List<TableASP> ASPList)
@@ -44,7 +48,11 @@ namespace Ross
                     sideMenuList.Add(new StationClassForChat(ASPMember.Id, ASPMember.CallSign, true));
                 });
                 //sideMenuList.Add(new StationClassForChat(0, "ПУ", true));
-                curChat.UpdateSideMenuMembers(sideMenuList);
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
+                {
+                    curChat.UpdateSideMenuMembers(sideMenuList);
+                });
+                
             }
             catch (Exception)
             { }
@@ -62,12 +70,63 @@ namespace Ross
 
                 //curStationsMessage.IsTransmited = false;
             }
-            curChat.DrawMessageToChat(stationsMessages);
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
+            {
+                curChat.DrawMessageToChat(stationsMessages);
+            });
+
+            OnReturnApprovedMessages?.Invoke(this, stationsMessages);
         }
 
         public void DrawMessageToChat(List<Message> stationsMessages)
         {
-            curChat.DrawMessageToChat(stationsMessages);
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
+            {
+                curChat.DrawMessageToChat(stationsMessages);
+            });
+        }
+
+        //private void HideWindow()
+        //{
+        //    this.Visibility = Visibility.Hidden;
+        //}
+
+        //protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        //{
+        //    base.OnMouseLeftButtonDown(e);
+
+        //    // Begin dragging the window
+        //    this.DragMove();
+        //}
+
+        public void SetLanguage(Languages language)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            try
+            {
+                switch (language)
+                {
+                    case Languages.Eng:
+                        dict.Source = new Uri("/Ross;component/Languages/UIChat/StringResource.EN.xaml",
+                            UriKind.Relative);
+                        break;
+
+                    case Languages.Rus:
+                        dict.Source = new Uri("/Ross;component/Languages/UIChat/StringResource.RU.xaml",
+                            UriKind.Relative);
+                        break;
+
+
+                    default:
+                        dict.Source = new Uri("/Ross;component/Languages/UIChat/StringResource.EN.xaml",
+                            UriKind.Relative);
+                        break;
+                }
+
+                this.Resources.MergedDictionaries.Add(dict);
+            }
+            catch (Exception ex)
+            { }
         }
     }
 }

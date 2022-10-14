@@ -51,6 +51,7 @@ namespace Ross
             (clientDB.Tables[NameTable.TempFWS] as ITableAddRange<TempFWS>).OnAddRange += HandlerAddRangeFWS;
             (clientDB.Tables[NameTable.TableReconFHSS] as ITableAddRange<TableReconFHSS>).OnAddRange +=
                 HandlerAddRangeReconFHSS;
+            (clientDB.Tables[NameTable.TableChat] as ITableUpdate<TableChatMessage>).OnUpTable += HandlerUpdate_TableChat;
         }
 
        

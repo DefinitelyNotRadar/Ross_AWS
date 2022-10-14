@@ -6,6 +6,8 @@ using UserControl_Chat;
 
 namespace Ross
 {
+    using System.Linq;
+
     public partial class MainWindow
     {
         private Chat newWindow;
@@ -16,23 +18,57 @@ namespace Ross
             newWindow = new Chat();
             chatBuble = new Buble();
             newWindow.SetStations();
-            Events.OnDoActionWithMessage += Events_OnDoActionWithMessage;
+            //Events.OnDoActionWithMessage += Events_OnDoActionWithMessage;
+            newWindow.OnReturnApprovedMessages += NewWindow_OnReturnApprovedMessages;
         }
 
-        private void Events_OnDoActionWithMessage(List<Message> stationsMessages)
+        private void NewWindow_OnReturnApprovedMessages(object sender, List<Message> messages)
         {
-            foreach(var stationModel in SelectedStationModels)
+            try
             {
-                foreach (var mesage in stationsMessages)
+                var lastMessage = messages.Last();
+                ////TODO: not 255
+                //if (messages.Last().Id == 255)
+                //{
+                Cliant_SendMessage(lastMessage.MessageFiled, lastMessage.Id); //TODO: check
+                                                                              //  return;
+                                                                              //}
+                var result = SelectedStationModels.FirstOrDefault(t=>t.IdMaster == lastMessage.Id)?.SelectedConnectionObject.SendTextMessage(lastMessage.MessageFiled);
+
+                if (result == true)
                 {
-                    if(mesage.Id == stationModel.IdMaster || mesage.Id == stationModel.IdSlave)
-                    {
-                        stationModel.SelectedConnectionObject.SendTextMessage(mesage.MessageFiled);
-                    }
+                    Client_ConfirmLastMessage(lastMessage.Id);
                 }
+                //if (mesage.Id == stationModel.IdMaster || mesage.Id == stationModel.IdSlave)
+                //{
+                //    stationModel.SelectedConnectionObject.SendTextMessage(mesage.MessageFiled);
+                //}         
             }
-            
+            catch { }
         }
+
+
+        public void Cliant_SendMessage(object data, int receiver)
+        {
+            //TODO: исправить 255 на универсальное
+            var message = new TableChatMessage() { SenderAddress = clientAddress, ReceiverAddress = receiver, Time = DateTime.Now, Status = ChatMessageStatus.Sent, Text = data as string };
+            clientDB?.Tables[NameTable.TableChat]?.Add(message);
+            OnSendMessage?.Invoke(this, (string)data);
+        }
+        //private void Events_OnDoActionWithMessage(List<Message> stationsMessages)
+        //{
+        //    foreach(var stationModel in SelectedStationModels)
+        //    {
+        //        foreach (var mesage in stationsMessages)
+        //        {
+        //            if(mesage.Id == stationModel.IdMaster || mesage.Id == stationModel.IdSlave)
+        //            {
+        //                stationModel.SelectedConnectionObject.SendTextMessage(mesage.MessageFiled);
+        //            }
+        //        }
+        //    }
+
+        //}
 
         private void UpdateSideMenu(List<TableASP> ASPList)
         {

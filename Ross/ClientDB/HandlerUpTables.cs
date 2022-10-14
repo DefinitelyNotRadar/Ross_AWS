@@ -17,6 +17,8 @@ using TransmissionLib.GrpcTransmission;
 
 namespace Ross
 {
+    using UserControl_Chat;
+
     public partial class MainWindow : Window
     {
 
@@ -486,6 +488,29 @@ namespace Ross
 
             if (clientDB != null && clientDB.Tables != null)
                 await clientDB?.Tables[NameTable.GlobalProperties].AddAsync(arg);
+        }
+
+        private void HandlerUpdate_TableChat(object sender, TableEventArs<TableChatMessage> e)
+        {
+            try
+            {
+                lChatMessages = new List<TableChatMessage>(e.Table);
+                var messages = new List<UserControl_Chat.Message>();
+
+                messages = e.Table.OrderBy(t => t.Time).Select(s => new UserControl_Chat.Message()
+                                                                        {
+                                                                            Id = s.ReceiverAddress == this.clientAddress ? s.SenderAddress : s.ReceiverAddress,
+                                                                            MessageFiled = s.Text,
+                                                                            IsSendByMe = s.ReceiverAddress == this.clientAddress ? UserControl_Chat.Roles.Received : Roles.SentByMe,
+                                                                            IsTransmited = s.Status == ChatMessageStatus.Delivered,
+                                                                        }).ToList();
+
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
+                {
+                    newWindow.curChat.DrawMessageToChat(messages);
+                });
+            }
+            catch { }
         }
     }
 }

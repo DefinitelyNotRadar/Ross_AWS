@@ -44,6 +44,7 @@ namespace Ross
 
         // ИРИ ФРЧ РП
         public List<TableSuppressFWS> lSuppressFWS = new List<TableSuppressFWS>();
+        public List<TableChatMessage> lChatMessages = new List<TableChatMessage>();
 
         private int selectedASP = -2;
 
