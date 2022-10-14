@@ -14,6 +14,8 @@ using Mapsui.Geometries;
 using Mapsui.Styles;
 using WpfMapControl;
 using Point = Mapsui.Geometries.Point;
+using RouteControl;
+using RouteControl.Model;
 
 namespace Ross.Map
 {
@@ -143,8 +145,22 @@ namespace Ross.Map
         #endregion
 
         #region Task 2
+        private Route route;
+
+        public Route Route
+        {
+            get => route;
+            set
+            {
+                if (route == value) return;
+                route = value;
+                OnPropertyChanged();
+            }
+        }
 
 
+
+        
 
         #endregion
 

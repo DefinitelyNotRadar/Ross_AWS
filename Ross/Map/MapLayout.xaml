@@ -8,6 +8,7 @@
         xmlns:evaTable="clr-namespace:EvaTable;assembly=EvaTable"
         xmlns:converter="clr-namespace:Ross.Converters"
         xmlns:t1="clr-namespace:LineOfSightZoneControl;assembly=LineOfSightZoneControl"
+        xmlns:route="clr-namespace:RouteControl;assembly=RouteControl"
         mc:Ignorable="d" Background="#292929" Closing="Window_Closing" Title="Map">
 
     <Window.Resources>
@@ -65,7 +66,7 @@
 
                 </TabItem>
                 <TabItem Header="Маршрут" >
-
+                    <route:UserControl1></route:UserControl1>
                 </TabItem>
 
             </TabControl>
