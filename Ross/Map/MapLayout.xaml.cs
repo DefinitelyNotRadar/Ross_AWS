@@ -56,7 +56,7 @@ namespace Ross.Map
             LoadSettings();
             InitHotKeys();
 
-            DataContext = new MapViewModel(RastrMap.mapControl, polygon);
+            DataContext = new MapViewModel(RastrMap, polygon);
 
 
             mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,-130), scale, new Offset(0, 0));
@@ -102,13 +102,6 @@ namespace Ross.Map
         }
 
         #endregion 
-
-        private void Window_Closing(object sender, CancelEventArgs e)
-        {
-            Hide();
-            e.Cancel = true;
-        }
-
 
         #region Hot Keys
 
@@ -311,6 +304,12 @@ namespace Ross.Map
         private void ToggleButton_DownPanel_Unchecked(object sender, RoutedEventArgs e)
         {
             OnNeedToRedrawMapJojects(this, e);
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            Hide();
+            e.Cancel = true;
         }
     }
 }

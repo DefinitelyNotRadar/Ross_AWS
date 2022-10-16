@@ -26,7 +26,6 @@
                 <ResourceDictionary Source="Themes/ThemeBlue.xaml" />
                 <ResourceDictionary Source="Themes/icons.xaml" />
                 <ResourceDictionary Source="Themes/BrushesBlue.xaml" />
-                <ResourceDictionary Source="Themes/Core.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 

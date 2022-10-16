@@ -17,7 +17,6 @@
                 <ResourceDictionary Source="Theme/ThemeBlue.xaml" />
                 <ResourceDictionary Source="Theme/icons.xaml" />
                 <ResourceDictionary Source="Theme/BrushesBlue.xaml" />
-                <ResourceDictionary Source="Theme/Core.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converter:BooleanToGridLengthConverter x:Key="BooleanToGridLengthConverter"/>
@@ -66,7 +65,7 @@
 
                 </TabItem>
                 <TabItem Header="Маршрут" >
-                    <route:UserControl1></route:UserControl1>
+                    <route:UserControl1 DataContext="{Binding RouteViewModel}"></route:UserControl1>
                 </TabItem>
 
             </TabControl>
