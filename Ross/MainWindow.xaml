@@ -244,6 +244,7 @@
                 <TabControl x:Name="ASP" Grid.Column="0">
                     <TabItem Header="{DynamicResource TabItemAJS}">
                         <aspControl:UserControlASP x:Name="ucASP" 
+                            IsRoss="True"
                             ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"
                             StateOPU1="{Binding Local.ARD1.State, ElementName=basicProperties, Mode=OneWay}"
                             StateOPU2="{Binding Local.ARD2.State, ElementName=basicProperties, Mode=OneWay}"

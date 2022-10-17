@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ProjectTestTables"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
-
 
 
     <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-105" Top="-5" Right="0" Bottom="0"/>
@@ -24,7 +24,7 @@
     <system:String x:Key="PropertyGridMaster">Ведущая</system:String>
     <system:String x:Key="PropertyGridSlave">Ведомая</system:String>
     <system:String x:Key="PropertyGridAutonomous">Автономная</system:String>
-
+    
     <!-- PropertyGrid ToolTip -->
     <system:String x:Key="PropertyGridToolTipLatitude">Широта</system:String>
     <system:String x:Key="PropertyGridToolTipLongitude">Долгота</system:String>
@@ -70,6 +70,7 @@
     <system:String x:Key="ToolTip868">Подавление БПЛА диапазона 868 МГц</system:String>
     <system:String x:Key="ToolTip920">Подавление БПЛА диапазона 920 МГц</system:String>
     <system:String x:Key="ToolTip2_4">Подавление БПЛА диапазона 2400 МГц</system:String>
+    <system:String x:Key="ToolTip5_2">Подавление БПЛА диапазона 5200 МГц</system:String>
     <system:String x:Key="ToolTip5_8">Подавление БПЛА диапазона 5800 МГц</system:String>
     <system:String x:Key="ToolTipUAV">Подавление БПЛА всех диапазонов</system:String>
     <system:String x:Key="ToolTipNAV">Подавление навигации</system:String>
@@ -78,10 +79,13 @@
 
     <!-- Header -->
     <system:String x:Key="HeaderNumAJS">№ АСП</system:String>
+    <system:String x:Key="HeaderNumAJSMated">№ АСП сопряж.</system:String>
     <system:String x:Key="HeaderNumSituation">№ Обст.</system:String>
     <system:String x:Key="HeaderConnect">Подкл.</system:String>
     <system:String x:Key="HeaderIPaddress">Адрес IP</system:String>
     <system:String x:Key="HeaderPort">Порт</system:String>
+    <system:String x:Key="HeaderIPaddress3G4G">Адрес IP 3G/4G</system:String>
+    <system:String x:Key="HeaderPort3G4G">Порт 3G/4G</system:String>
     <system:String x:Key="HeaderMode">Режим</system:String>
     <system:String x:Key="HeaderCallSign">Позывной</system:String>
     <system:String x:Key="HeaderRole">Роль</system:String>
@@ -129,6 +133,12 @@
     <system:String x:Key="HeaderLetters">Л</system:String>
     <system:String x:Key="HeaderAJS">АСП</system:String>
     <system:String x:Key="HeaderPriority">Пр.</system:String>
+    <system:String x:Key="HeaderAzimuth">Азимут, °</system:String>
+    <system:String x:Key="HeaderRange">Дальность, м</system:String>
+    <system:String x:Key="HeaderClass">Класс</system:String>
+    <system:String x:Key="HeaderVelocity">Скорость, м/с</system:String>
+    <system:String x:Key="HeaderAspect">Курс, °</system:String>
+    <system:String x:Key="HeaderFlag">Признак</system:String>
 
     <!-- TabControl -->
     <system:String x:Key="TabItemAJS">АСП</system:String>
@@ -142,12 +152,12 @@
     <system:String x:Key="TabItemRF">ЗЧ</system:String>
     <system:String x:Key="TabItemIF">ВЧ</system:String>
     <system:String x:Key="TabItemKF">ИЧ</system:String>
-
+    
     <!-- StatusBar -->
-    <system:String x:Key="StatusBarCountAll">Всего:</system:String>
-    <system:String x:Key="StatusBarCountActive">Активных:</system:String>
-    <system:String x:Key="StatusBarCountImportant">Важных:</system:String>
-
+    <system:String x:Key="StatusBarCountAll">Всего:  </system:String>
+    <system:String x:Key="StatusBarCountActive">Активных:  </system:String>
+    <system:String x:Key="StatusBarCountImportant">Важных:  </system:String>
+    
     <!-- ToggleButtons UAV -->
     <system:String x:Key="ToggleButtonsUAV">БПЛА</system:String>
     <system:String x:Key="ToggleButtonsNAV">НАВ</system:String>
