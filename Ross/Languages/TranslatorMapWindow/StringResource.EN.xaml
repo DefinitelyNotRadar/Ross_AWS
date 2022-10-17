@@ -30,5 +30,6 @@
 
     <system:String x:Key="cntMenuSetPCPosition">Set PC position</system:String>
     <system:String x:Key="cntMenuSetPointPosition">Set point position</system:String>
-
+    <system:String x:Key="cntMenuSetRoutePoint">Set route point</system:String>
+    
 </ResourceDictionary>

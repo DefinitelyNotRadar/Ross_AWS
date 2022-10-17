@@ -19,6 +19,7 @@ using RouteControl.Model;
 using RouteControl.ViewModel;
 using UIMapRast;
 using Mapsui.Providers;
+using Mapsui.Projection;
 
 namespace Ross.Map
 {
@@ -169,19 +170,19 @@ namespace Ross.Map
             }
         }
 
-        public List<Point> PointsOfSelectedRoute { get; set; } = new List<Point>();
+     
 
         private void InitTask3()
         {
             RouteViewModel = new MainViewModel();
             RouteViewModel.PropertyChanged += Route_PropertyChanged;
-            RasterMapControl.MouseDoubleClick += RasterMapControl_MouseDoubleClick;
+            RasterMapControl.OnRoutePointPosition += RasterMapControl_OnRoutePointPosition; 
         }
 
-        private void RasterMapControl_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void RasterMapControl_OnRoutePointPosition(object sender, Location e)
         {
             if (RouteViewModel.SelectedItem != null)
-                RouteViewModel.SelectedItem.ListPoints.Add(new WayPoints() { Latitude = RasterMapControl.ClickCoordinate.Latitude, Longitude = RasterMapControl.ClickCoordinate.Longitude });
+                RouteViewModel.SelectedItem.ListPoints.Add(new WayPoints() { Latitude = e.Latitude, Longitude = e.Longitude, NumbPoint = RouteViewModel.SelectedItem.ListPoints.Count});
             else MessageBox.Show("Не выбран маршрут");
         }
 
@@ -192,23 +193,28 @@ namespace Ross.Map
 
         private void Route_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(RouteViewModel.SelectedItem) && RouteViewModel.SelectedItem.ListPoints.Count > 0)
+            if (RouteViewModel.SelectedItem != null)
             {
-                RouteViewModel.SelectedItem.ListPoints.CollectionChanged -= ListPoints_CollectionChanged;
-                RouteViewModel.SelectedItem.ListPoints.CollectionChanged += ListPoints_CollectionChanged;
-                DrawRoute();
+                if (e.PropertyName == nameof(RouteViewModel.SelectedItem) && RouteViewModel.SelectedItem.ListPoints != null)
+                {
+
+                    RouteViewModel.SelectedItem.ListPoints.CollectionChanged -= ListPoints_CollectionChanged;
+                    RouteViewModel.SelectedItem.ListPoints.CollectionChanged += ListPoints_CollectionChanged;
+                    DrawRoute();
+                }
             }
+            else RasterMapControl.mapControl.RemoveObject(PolilineRoute);
         }
 
         public void DrawRoute()
         {
-            RasterMapControl.mapControl.RemoveObject(PolilineRoute);
+            List<Point> PointsOfSelectedRoute  = new List<Point>();
 
-            PointsOfSelectedRoute.Clear();
+            RasterMapControl.mapControl.RemoveObject(PolilineRoute);
 
             foreach (var item in RouteViewModel.SelectedItem.ListPoints)
             {
-                PointsOfSelectedRoute.Add(new Point(item.Longitude, item.Latitude));
+                PointsOfSelectedRoute.Add(Mercator.FromLonLat(item.Longitude, item.Latitude));
             }
 
             if(RasterMapControl.mapControl.IsLoaded)

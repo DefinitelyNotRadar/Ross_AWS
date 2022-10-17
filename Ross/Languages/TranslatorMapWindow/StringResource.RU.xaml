@@ -31,5 +31,6 @@
 
     <system:String x:Key="cntMenuSetPCPosition">Установить позицию ПУ</system:String>
     <system:String x:Key="cntMenuSetPointPosition">Установить позицию пункта</system:String>
+    <system:String x:Key="cntMenuSetRoutePoint">Установить точку маршрута</system:String>
 
 </ResourceDictionary>
