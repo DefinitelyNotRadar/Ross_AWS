@@ -1,0 +1,165 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ProjectTestTables"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+
+    <Thickness x:Key="PropertyGridMarginParamsFWS" Left="-95" Top="-5" Right="0" Bottom="0"/>
+    <system:Double x:Key="PropertyGridMinWidthParamsFWS">200</system:Double>
+    <Thickness x:Key="PropertyGridMarginCoordFWS" Left="-80" Top="-5" Right="0" Bottom="0"/>
+    <system:Double x:Key="PropertyGridMinWidthCoordFWS">175</system:Double>
+    <Thickness x:Key="PropertyGridMarginCoordASP" Left="-165" Top="0" Right="0" Bottom="0"/>
+    <system:Double x:Key="PropertyGridMinWidthCoordASP">165</system:Double>
+    <system:Double x:Key="PropertyGridMinWidthRole">122</system:Double>
+
+    <!-- PropertyGrid -->
+    <system:String x:Key="PropertyGridLatitude">Enlik</system:String>
+    <system:String x:Key="PropertyGridLongitude">Uzunluq</system:String>
+    <system:String x:Key="PropertyGridAltitude">Hündürlük, m</system:String>
+    <system:String x:Key="PropertyGridLabelModulation">Modulyas. görünüşü</system:String>
+    <system:String x:Key="PropertyGridLabelManipulation">Manipulyasiya, µs</system:String>
+    <system:String x:Key="PropertyGridLabelManipulationLChM">@F tarama, Hs</system:String>
+    <system:String x:Key="PropertyGridLabelDuration">Şüalan. müddəti, ms</system:String>
+    <system:String x:Key="PropertyGridLabelDeviation">Zolağın eni, kHs</system:String>
+    <system:String x:Key="PropertyGridMaster">İdarə edə</system:String>
+    <system:String x:Key="PropertyGridSlave">İdarə olunan</system:String>
+    <system:String x:Key="PropertyGridAutonomous">avtonom</system:String>
+    
+    <!-- PropertyGrid ToolTip -->
+    <system:String x:Key="PropertyGridToolTipLatitude">Enlik</system:String>
+    <system:String x:Key="PropertyGridToolTipLongitude">Uzunluq</system:String>
+    <system:String x:Key="PropertyGridToolTipAltitude">Hündürlük</system:String>
+    <system:String x:Key="PropertyGridToolTipModulation">Modulyasiyanın görünüşü</system:String>
+    <system:String x:Key="PropertyGridToolTipManipulation">Manipulyasiya (Zolağın eni)</system:String>
+    <system:String x:Key="PropertyGridToolTipManipulationLChM">@Tarama tezlik</system:String>
+    <system:String x:Key="PropertyGridToolTipDeviation">Zolağın eni</system:String>
+    <system:String x:Key="PropertyGridToolTipDuration">Şüalanmanın müddəti</system:String>
+    <system:String x:Key="PropertyGridToolTipFreq">Tezlik</system:String>
+    <system:String x:Key="PropertyGridToolTipFreqMin">Aşağı tezlik.</system:String>
+    <system:String x:Key="PropertyGridToolTipFreqMax">Yüksək tezlik</system:String>
+    <system:String x:Key="PropertyGridToolTipThreshold">Hüdud</system:String>
+    <system:String x:Key="PropertyGridToolTipNetStep">Tor addımı</system:String>
+    <system:String x:Key="PropertyGridToolTipBearing">Pelenq</system:String>
+    <system:String x:Key="PropertyGridToolTipPriority">Üstünlük</system:String>
+
+
+
+    <!-- ToolTip -->
+    <system:String x:Key="ToolTipAdd">Əlavə etmək</system:String>
+    <system:String x:Key="ToolTipChange">Dəyişmək</system:String>
+    <system:String x:Key="ToolTipDelete">Silmək</system:String>
+    <system:String x:Key="ToolTipClear">Təmizləmək</system:String>
+    <system:String x:Key="ToolTipOpenTXT">@Mətn sənədi aç</system:String>
+    <system:String x:Key="ToolTipPrint">Çap</system:String>
+    <system:String x:Key="ToolTipDefaultValues">@Defolt dəyərlər</system:String>
+    <system:String x:Key="ToolTipAddFHSS_RS">RŞM-nə Rs</system:String>
+    <system:String x:Key="ToolTipAddFWS_RS">RŞM-nə Rs</system:String>
+    <system:String x:Key="ToolTipAddFWS_TD">RŞM-nə HB</system:String>
+    <system:String x:Key="ToolTipAddFWS_CRRD">RŞM-nə RQN1</system:String>
+    <system:String x:Key="ToolTipAddFWS_CRRD2">RŞM-nə RQN2</system:String>
+    <system:String x:Key="ToolTipExecBear">Pelenq icraçılığı</system:String>
+    <system:String x:Key="ToolTipQuasiBear">Eynivaxtlı pelenqlənənlərin</system:String>
+    <system:String x:Key="ToolTipFWS_TD">Hədəf bölgüsü</system:String>
+    <system:String x:Key="ToolTipFWS_TD_RS">@RŞM-nə HB RS</system:String>
+    <system:String x:Key="ToolTipRN">Radioşəbəkələr</system:String>
+    <system:String x:Key="ToolTipCC">Rabitə qovşağı</system:String>
+    <system:String x:Key="ToolTipIR">@IRIDIUM tipli peyk rabitəsinin susdurma</system:String>
+    <system:String x:Key="ToolTipIN">@INMARSAT (THURAYA) tipli peyk rabitəsinin susdurma</system:String>
+    <system:String x:Key="ToolTipGS">@GlobalStar tipli peyk rabitəsinin susdurma</system:String>
+    <system:String x:Key="ToolTip433">@PSUA diapozon 433 MHs susdurma</system:String>
+    <system:String x:Key="ToolTip868">@PSUA diapozon 868 MHs susdurma</system:String>
+    <system:String x:Key="ToolTip920">@PSUA diapozon 920 MHs susdurma</system:String>
+    <system:String x:Key="ToolTip2_4">@PSUA diapozon 2400 MHs susdurma</system:String>
+    <system:String x:Key="ToolTip5_2">@PSUA diapozon 5200 MHs susdurma</system:String>
+    <system:String x:Key="ToolTip5_8">@PSUA diapozon 5800 MHs susdurma</system:String>
+    <system:String x:Key="ToolTipUAV">@PSUA bütün diapozon susdurma</system:String>
+    <system:String x:Key="ToolTipNAV">@Naviqasiya susdurma</system:String>
+    <system:String x:Key="ToolTipSortActive">Yuxarıda aktivdir</system:String>
+
+
+    <!-- Header -->
+    <system:String x:Key="HeaderNumAJS">№ AMS</system:String>
+    <system:String x:Key="HeaderNumAJSMated">№ AMS Əlaqədar</system:String>
+    <system:String x:Key="HeaderNumSituation">№ Vəziyyət</system:String>
+    <system:String x:Key="HeaderConnect">Qoşuludur</system:String>
+    <system:String x:Key="HeaderIPaddress">İP ünvan</system:String>
+    <system:String x:Key="HeaderPort">Port</system:String>
+    <system:String x:Key="HeaderIPaddress3G4G">İP ünvan 3G/4G</system:String>
+    <system:String x:Key="HeaderPort3G4G">Port 3G/4G</system:String>
+    <system:String x:Key="HeaderMode">Rejim</system:String>
+    <system:String x:Key="HeaderCallSign">Çağırış adı</system:String>
+    <system:String x:Key="HeaderRole">Rol</system:String>
+    <system:String x:Key="HeaderType">Tip</system:String>
+    <system:String x:Key="HeaderModulation">Modulyasiya</system:String>
+    <system:String x:Key="HeaderAntennaJ">Ant. RK, m</system:String>
+    <system:String x:Key="HeaderAntennaRR">Ant. RS, m</system:String>
+    <system:String x:Key="HeaderLatLon">Enlik,  Uzaqlıq</system:String>
+    <system:String x:Key="HeaderAlt">Hünd., m</system:String>
+    <system:String x:Key="HeaderRRC1">RRS 1,°</system:String>
+    <system:String x:Key="HeaderRRC2">RRS 2,°</system:String>
+    <system:String x:Key="HeaderLPA1_3">LPA 1,3,°</system:String>
+    <system:String x:Key="HeaderLPA2_4">LPA 2,4,°</system:String>
+    <system:String x:Key="HeaderLPA5_7">LPA 5-7,°</system:String>
+    <system:String x:Key="HeaderLPA5_9">LPA 5-9,°</system:String>
+    <system:String x:Key="HeaderLPA10">LPA 10,°</system:String>
+    <system:String x:Key="HeaderBPSS">XSbl,°</system:String>
+    <system:String x:Key="HeaderLPA5_10">LPA 5-10,°</system:String>
+    <system:String x:Key="HeaderSignature">İmza</system:String>
+    <system:String x:Key="HeaderSign">İşarəsi</system:String>
+    <system:String x:Key="HeaderFreqMin">F min., kHs</system:String>
+    <system:String x:Key="HeaderFreqMax">F maks., kHs</system:String>
+    <system:String x:Key="HeaderAngleMin">θ min., °</system:String>
+    <system:String x:Key="HeaderAngleMax">θ maks., °</system:String>
+    <system:String x:Key="HeaderNote">Qeyd</system:String>
+    <system:String x:Key="HeaderDeltaF">Δf, kHs</system:String>
+    <system:String x:Key="HeaderTime">Vaxt</system:String>
+    <system:String x:Key="HeaderStep">Addım, kHz</system:String>
+    <system:String x:Key="HeaderPulseWidth">İmpulsun müddəti, ms</system:String>
+    <system:String x:Key="HeaderNumFreq">Sayı tezlik</system:String>
+    <system:String x:Key="HeaderJ_AJS">AMS RS</system:String>
+    <system:String x:Key="HeaderBearing">θ, °</system:String>
+    <system:String x:Key="HeaderNum">№</system:String>
+    <system:String x:Key="HeaderRMSE">OKS, °</system:String>
+    <system:String x:Key="HeaderLevel">U, dB</system:String>
+    <system:String x:Key="HeaderDistance">S, м</system:String>
+    <system:String x:Key="HeaderRI_AJS">AMS RK</system:String>
+    <system:String x:Key="HeaderFreq">F, kHs</system:String>
+    <system:String x:Key="HeaderCount">Sayı</system:String>
+    <system:String x:Key="HeaderJammerParams">Maneənin parametrləri</system:String>
+    <system:String x:Key="HeaderSSR">BBZ</system:String>
+    <system:String x:Key="HeaderCtrl">Yoxlama</system:String>
+    <system:String x:Key="HeaderJam">RS</system:String>
+    <system:String x:Key="HeaderRad">şüa.</system:String>
+    <system:String x:Key="HeaderLetters">L</system:String>
+    <system:String x:Key="HeaderAJS">AMS</system:String>
+    <system:String x:Key="HeaderPriority">Üstünlük</system:String>
+    <system:String x:Key="HeaderAzimuth">Azimut, °</system:String>
+    <system:String x:Key="HeaderRange">Uzaqlıq, m</system:String>
+    <system:String x:Key="HeaderClass">Sinif</system:String>
+    <system:String x:Key="HeaderVelocity">Sürət, m/s</system:String>
+    <system:String x:Key="HeaderAspect">Kurs, °</system:String>
+    <system:String x:Key="HeaderFlag">Əlamət</system:String>
+
+    <!-- TabControl -->
+    <system:String x:Key="TabItemAJS">AMS</system:String>
+    <system:String x:Key="TabItemRES_FF">RŞM FRT</system:String>
+    <system:String x:Key="TabItemRES_FF_TD">RŞM FRT HB</system:String>
+    <system:String x:Key="TabItemRES_FF_J">RŞM FRT RS</system:String>
+    <system:String x:Key="TabItemRES_FHSS">RŞM İTTK</system:String>
+    <system:String x:Key="TabItemRES_FHSS_J">RŞM İTTK RS</system:String>
+    <system:String x:Key="TabItemSB_RI">SD RK</system:String>
+    <system:String x:Key="TabItemSB_J">SD RS</system:String>
+    <system:String x:Key="TabItemRF">QT</system:String>
+    <system:String x:Key="TabItemIF">VT</system:String>
+    <system:String x:Key="TabItemKF">MT</system:String>
+    
+    <!-- StatusBar -->
+    <system:String x:Key="StatusBarCountAll">Cəmi:  </system:String>
+    <system:String x:Key="StatusBarCountActive">Aktiv:  </system:String>
+    <system:String x:Key="StatusBarCountImportant">Mühüm:  </system:String>
+
+    <!-- ToggleButtons UAV -->
+    <system:String x:Key="ToggleButtonsUAV">İHA</system:String>
+    <system:String x:Key="ToggleButtonsNAV">NAV</system:String>
+
+</ResourceDictionary>

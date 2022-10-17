@@ -31,8 +31,7 @@ namespace Ross
 
             TranslatorTables.LoadDictionary(Properties.Local.Common.Language);
             ucSRangesRecon.AddSRange(new TableSectorsRanges());
-
-            
+                      
             InitializationAllConnections();
             SetLocalProperties();
             InitializeMapLayout();

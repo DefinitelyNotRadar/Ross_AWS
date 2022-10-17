@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ProjectTestTables"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
@@ -69,6 +70,7 @@
     <system:String x:Key="ToolTip868">UAV jamming, 868 MHz range</system:String>
     <system:String x:Key="ToolTip920">UAV jamming, 920 MHz range</system:String>
     <system:String x:Key="ToolTip2_4">UAV jamming, 2400 MHz range</system:String>
+    <system:String x:Key="ToolTip5_2">UAV jamming, 5200 MHz range</system:String>
     <system:String x:Key="ToolTip5_8">UAV jamming, 5800 MHz range</system:String>
     <system:String x:Key="ToolTipUAV">UAV jamming, all ranges</system:String>
     <system:String x:Key="ToolTipNAV">Navigation jamming</system:String>
@@ -77,10 +79,13 @@
 
     <!-- Header -->
     <system:String x:Key="HeaderNumAJS">№ AJS</system:String>
+    <system:String x:Key="HeaderNumAJSMated">№ AJS Linked</system:String>
     <system:String x:Key="HeaderNumSituation">№ Situation</system:String>
     <system:String x:Key="HeaderConnect">Connect</system:String>
     <system:String x:Key="HeaderIPaddress">IP address</system:String>
     <system:String x:Key="HeaderPort">Port</system:String>
+    <system:String x:Key="HeaderIPaddress3G4G">IP address 3G/4G</system:String>
+    <system:String x:Key="HeaderPort3G4G">Port 3G/4G</system:String>
     <system:String x:Key="HeaderMode">Mode</system:String>
     <system:String x:Key="HeaderCallSign">Call sign</system:String>
     <system:String x:Key="HeaderRole">Role</system:String>
@@ -128,7 +133,13 @@
     <system:String x:Key="HeaderLetters">L</system:String>
     <system:String x:Key="HeaderAJS">AJS</system:String>
     <system:String x:Key="HeaderPriority">Prio</system:String>
-
+    <system:String x:Key="HeaderAzimuth">Azimuth, °</system:String>
+    <system:String x:Key="HeaderRange">Range, m</system:String>
+    <system:String x:Key="HeaderClass">Class</system:String>
+    <system:String x:Key="HeaderVelocity">Velocity, m/s</system:String>
+    <system:String x:Key="HeaderAspect">Aspect, °</system:String>
+    <system:String x:Key="HeaderFlag">Flag</system:String>
+    
     <!-- TabControl -->
     <system:String x:Key="TabItemAJS">AJS</system:String>
     <system:String x:Key="TabItemRES_FF">RES FF</system:String>
@@ -143,13 +154,12 @@
     <system:String x:Key="TabItemKF">KF</system:String>
 
     <!-- StatusBar -->
-    <system:String x:Key="StatusBarCountAll">In all:</system:String>
-    <system:String x:Key="StatusBarCountActive">Active:</system:String>
-    <system:String x:Key="StatusBarCountImportant">Important:</system:String>
+    <system:String x:Key="StatusBarCountAll">In all:  </system:String>
+    <system:String x:Key="StatusBarCountActive">Active:  </system:String>
+    <system:String x:Key="StatusBarCountImportant">Important:  </system:String>
 
     <!-- ToggleButtons UAV -->
     <system:String x:Key="ToggleButtonsUAV">UAV</system:String>
     <system:String x:Key="ToggleButtonsNAV">NAV</system:String>
-
 
 </ResourceDictionary>
