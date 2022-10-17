@@ -34,6 +34,7 @@ namespace Ross.Map
         {
             this.RasterMapControl = rasterMapControl;
             InitTask1(rasterMapControl.mapControl,  polygonReturn);
+            InitTask2();
             InitTask3();
         }
 
@@ -151,6 +152,39 @@ namespace Ross.Map
 
         #region Task 2
 
+        private AzimuthControl.ViewModel.MainViewModel azimuth;
+
+        public AzimuthControl.ViewModel.MainViewModel AzimuthViewModel
+        {
+            get => azimuth;
+            set
+            {
+                if (azimuth == value) return;
+                azimuth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void InitTask2()
+        {
+            AzimuthViewModel = new AzimuthControl.ViewModel.MainViewModel();
+            AzimuthViewModel.PropertyChanged += AzimuthViewModel_PropertyChanged;
+        }
+
+        private void AzimuthViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            DrawAzimuth();
+        }
+
+        public void DrawAzimuth()
+        {
+            foreach(var station in AzimuthViewModel.AzimuthCollection)
+            {
+                List<Point> azimuthLine = new List<Point>();
+                azimuthLine.Add(Mercator.FromLonLat(station.Longitude, station.Latitude));
+                RasterMapControl.mapControl.AddPolyline(azimuthLine);
+            }
+        }
 
         #endregion
 

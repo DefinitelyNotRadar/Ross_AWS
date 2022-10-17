@@ -82,6 +82,9 @@
     <Reference Include="AttentionControl">
       <HintPath>dll\AttentionControl.dll</HintPath>
     </Reference>
+    <Reference Include="AzimuthControl">
+      <HintPath>dll\AzimuthControl.dll</HintPath>
+    </Reference>
     <Reference Include="Bearing">
       <HintPath>dll\Bearing.dll</HintPath>
     </Reference>

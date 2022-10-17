@@ -7,8 +7,9 @@
         xmlns:prop="clr-namespace:DLLSettingsControlPointForMap;assembly=DLLSettingsControlPointForMap"
         xmlns:evaTable="clr-namespace:EvaTable;assembly=EvaTable"
         xmlns:converter="clr-namespace:Ross.Converters"
-        xmlns:t1="clr-namespace:LineOfSightZoneControl;assembly=LineOfSightZoneControl"
+        xmlns:zone="clr-namespace:LineOfSightZoneControl;assembly=LineOfSightZoneControl"
         xmlns:route="clr-namespace:RouteControl;assembly=RouteControl"
+        xmlns:azimuth="clr-namespace:AzimuthControl.View;assembly=AzimuthControl"
         mc:Ignorable="d" Background="#292929" Closing="Window_Closing" Title="Map">
 
     <Window.Resources>
@@ -58,11 +59,11 @@
             <TabControl>
                 <TabItem Header="ЗПВ" >
                     <Grid MaxWidth="550" HorizontalAlignment="Left">
-                        <t1:ZoneControl x:Name="ZoneControl" DataContext="{Binding ViewModelForTask1}" />
+                        <zone:ZoneControl x:Name="ZoneControl" DataContext="{Binding ViewModelForTask1}" />
                     </Grid>
                 </TabItem>
                 <TabItem Header="Азимут">
-
+                    <azimuth:UserControl1 DataContext="{Binding AzimuthViewModel}"></azimuth:UserControl1>
                 </TabItem>
                 <TabItem Header="Маршрут" >
                     <route:UserControl1 DataContext="{Binding RouteViewModel}"></route:UserControl1>
