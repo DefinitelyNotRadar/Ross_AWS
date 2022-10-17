@@ -169,32 +169,37 @@ namespace Ross
         }
 
         private void GrpcClient_OnGetTextMessage(object sender, string e)
-        
         {
-            List<UserControl_Chat.Message> curMessages = new List<UserControl_Chat.Message>();
+            //List<UserControl_Chat.Message> curMessages = new List<UserControl_Chat.Message>();
 
-            if (sender is GrpcClient grpcClient)
-            {
-                curMessages.Add(new UserControl_Chat.Message
-                {
-                    MessageFiled = e,
-                    Id = grpcClient.ServerAddress,
-                    IsTransmited = true,
-                    IsSendByMe = Roles.Received
+            //if (sender is GrpcClient grpcClient)
+            //{
+            //    curMessages.Add(new UserControl_Chat.Message
+            //    {
+            //        MessageFiled = e,
+            //        Id = grpcClient.ServerAddress,
+            //        IsTransmited = true,
+            //        IsSendByMe = Roles.Received
 
-                });
+            //    });
 
 
-                Dispatcher.Invoke(() =>
-                {
-                    chatBuble.SetMessage(curMessages[0].MessageFiled);
-                    newWindow.curChat.DrawMessageToChat(curMessages);
-                });
-            }
+            //    Dispatcher.Invoke(() =>
+            //    {
+            //        chatBuble.SetMessage(curMessages[0].MessageFiled);
+            //        newWindow.curChat.DrawMessageToChat(curMessages);
+            //    });
+
+            //    var message = new TableChatMessage() { SenderAddress = (sender as GrpcClient).ServerAddress, ReceiverAddress = clientAddress, Time = DateTime.Now, Status = ChatMessageStatus.Delivered, Text = e };
+            //    clientDB?.Tables[NameTable.TableChat]?.Add(message);
+            //}
+            newWindow.DrawReceivedMessage((sender as GrpcClient).ServerAddress, e);
+            var message = new TableChatMessage() { SenderAddress = (sender as GrpcClient).ServerAddress, ReceiverAddress = clientAddress, Time = DateTime.Now, Status = ChatMessageStatus.Delivered, Text = e };
+            clientDB?.Tables[NameTable.TableChat]?.Add(message);
         }
 
-     
-       
+
+
 
         private void EdServer_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -220,6 +225,8 @@ namespace Ross
         {
             try
             {
+                newWindow.ConfirmSentMessage(station);
+
                 var last = lChatMessages.Last(t => t.ReceiverAddress == station);
                 last.Status = ChatMessageStatus.Delivered;
                 clientDB?.Tables[NameTable.TableChat].Change(last);

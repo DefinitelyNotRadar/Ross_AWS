@@ -63,7 +63,7 @@ namespace Ross
         {
             foreach (Message curStationsMessage in stationsMessages)
             {
-                curStationsMessage.IsTransmited = true;
+                //curStationsMessage.IsTransmited = true;
                 curStationsMessage.SenderName = curStationsMessage.SenderName;
                 curStationsMessage.MessageFontSize = 20;
                 curStationsMessage.SenderNameFontSize = 15;
@@ -76,6 +76,25 @@ namespace Ross
             });
 
             OnReturnApprovedMessages?.Invoke(this, stationsMessages);
+        }
+
+        public void DrawReceivedMessage(int address, string message)
+        {
+            List<Message> curMessages = new List<Message>();
+            curMessages.Add(new Message
+                                {
+                                    MessageFiled = message,
+                                    Id = address,
+                                    IsTransmited = true,
+                                    IsSendByMe = Roles.Received
+
+                                });
+
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
+                {
+                    curChat.DrawMessageToChat(curMessages);
+                });
+
         }
 
         public void DrawMessageToChat(List<Message> stationsMessages)
@@ -128,5 +147,14 @@ namespace Ross
             catch (Exception ex)
             { }
         }
+
+        public void ConfirmSentMessage(int NumJammer)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
+                {
+                    curChat.ConfirmMessage(new Message() { Id = NumJammer });
+                });
+        }
+
     }
 }
