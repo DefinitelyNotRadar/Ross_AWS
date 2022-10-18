@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Management.Instrumentation;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -61,7 +62,7 @@ namespace Ross.Map
 
             mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,-130), scale, new Offset(0, 0));
 
-           
+       
         }
 
         #region EvaTable
@@ -92,6 +93,29 @@ namespace Ross.Map
             get => Properties;
             set => Properties = value;
         }
+
+
+        private void EvaTable_OnGetLine(Tabl tabl, UserControl1.StatusContextMenu menu)
+        {
+            switch (menu)
+            {
+                case UserControl1.StatusContextMenu.StatusSurvey:
+                    OnPoll(this, tabl);
+                    break;
+                case UserControl1.StatusContextMenu.PreparationMode:
+                    OnPreparationMode(this, tabl);
+                    break;
+                case UserControl1.StatusContextMenu.RadioIntelligenceMode:
+                    OnRadioIntelligenceMode(this, tabl);
+                    break;
+                case UserControl1.StatusContextMenu.JammingMode:
+                    OnRadioJammingMode(this, tabl);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         #endregion
 
         #region Map
@@ -254,19 +278,23 @@ namespace Ross.Map
         {
             var p = Mercator.FromLonLat(point.Longitude, point.Latitude);        
             RastrMap.mapControl.AddMapObject(mapObjectStyleStation, text, p);
+
         }
 
 
-        public void DrawSector(Coord point, int angle, Color color)
+        public void DrawSector(Coord point, int angle, bool isActive, Color color, int id)
         {
-            var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
+            DefinderJammingPoint definderJammingPoint = RastrMap.DefinderJammingPoint.Where(x=> x.ID == id).FirstOrDefault();
 
-            angle = CheckAngle(angle);
-            var toAngle = CheckAngle(angle + 10);
-            var fromAngle = CheckAngle(angle - 10);
-            
-            var polygon = RastrMap.mapControl.CreateSectorPoints(p, fromAngle, toAngle, 4000);
-            RastrMap.mapControl.AddPolygon(polygon, color);
+            var antena = new Antenna();
+            antena.Sector = angle;
+            antena.Active = isActive;
+            antena.Radius = 3000;
+            antena.BrushAntenna = color;
+            definderJammingPoint.AntennaDefinder.Add(antena);
+
+
+            RastrMap.UpdateDFP(definderJammingPoint);
         }
 
         private int CheckAngle(int angle)
@@ -280,26 +308,6 @@ namespace Ross.Map
 
         #endregion
 
-        private void EvaTable_OnGetLine(Tabl tabl, UserControl1.StatusContextMenu menu)
-        {
-            switch (menu)
-            {
-                case UserControl1.StatusContextMenu.StatusSurvey:
-                    OnPoll(this, tabl);
-                    break;
-                case UserControl1.StatusContextMenu.PreparationMode:
-                    OnPreparationMode(this, tabl);
-                    break;
-                case UserControl1.StatusContextMenu.RadioIntelligenceMode:
-                    OnRadioIntelligenceMode(this, tabl);
-                    break;
-                case UserControl1.StatusContextMenu.JammingMode:
-                    OnRadioJammingMode(this, tabl);
-                    break;
-                default:
-                    break;
-            }
-        }
 
         private void ToggleButton_DownPanel_Unchecked(object sender, RoutedEventArgs e)
         {

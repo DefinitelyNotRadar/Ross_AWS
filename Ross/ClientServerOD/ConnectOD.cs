@@ -14,7 +14,7 @@ namespace Ross
     {
         private void GrpcServer_ButServerClick(object sender, RoutedEventArgs e)
         {
-            UpdateSelectedStationModel(lASP);
+            //UpdateSelectedStationModel(lASP);
 
             Task.Factory.StartNew(() =>
             {
@@ -25,7 +25,7 @@ namespace Ross
 
         private void GrpcServer2_ButServerClick(object sender, RoutedEventArgs e)
         {
-            UpdateSelectedStationModel(lASP);
+            //UpdateSelectedStationModel(lASP);
 
             Task.Factory.StartNew(() =>
             {
