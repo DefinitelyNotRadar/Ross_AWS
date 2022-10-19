@@ -73,6 +73,7 @@ namespace Ross
                 //ReadRecord(selectedStation.GetAsps(), NameTable.TableASP);
                 ReadStationCoord(selectedStation);
                 ReadAntenasDirections(selectedStation);
+                SynchronizeTime(selectedStation);
 
 
             });
@@ -233,6 +234,14 @@ namespace Ross
             }
             catch
             { }
+        }
+
+        public void SynchronizeTime(GrpcClient selectedStation)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
+                {
+                    selectedStation?.SendLocalTime(DateTime.Now);
+                });
         }
     }
 }
