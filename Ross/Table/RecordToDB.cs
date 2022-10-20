@@ -13,6 +13,8 @@ using ValuesCorrectLib;
 
 namespace Ross
 {
+    using TransmissionLib.GrpcTransmission;
+
     public partial class MainWindow
     {
         // АСП
@@ -583,14 +585,16 @@ namespace Ross
         {
             try
             {
-                float bearing = await ExternalExBearing2(e.FreqKHz / 1000d, e.Deviation / 1000d);
-                //bearing = 15f;
-                if (bearing != -1)
+                var answer = Client_GetExecutiveDF(SelectedStationModels.First(t => t.SelectedConnectionObject.ServerAddress == PropNumberASP.SelectedASPforListQ).SelectedConnectionObject, PropNumberASP.SelectedASPforListQ, e.FreqKHz, e.Deviation);
+                
+                if (answer == null) return;
+
+                if (answer.Value.OwnBearing != -1 || answer.Value.Frequency != 0)
                 {
-                    int ind = (e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.NumberASP == PropNumberASP.SelectedASPforListQ));
+                    int ind = (e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.NumberASP == answer.Value.StationId));
                     if (ind != -1)
                     {
-                        e.ListJamDirect[ind].JamDirect.Bearing = bearing;
+                        e.ListJamDirect[ind].JamDirect.Bearing = answer.Value.OwnBearing;
                         clientDB.Tables[NameTable.TableReconFWS].Change(e);
                     }
                 }
@@ -603,75 +607,79 @@ namespace Ross
 
         private async void UcReconFWS_OnGetKvBear(object sender, TableReconFWS e)
         {
-            int PhAvCount = 3;
-            int PlAvCount = 3;
+            try
+            {
+                var answer = this.Client_GetQuasiSimultaneousDF(SelectedStationModels.First(t => t.SelectedConnectionObject.ServerAddress == PropNumberASP.SelectedASPforListQ).SelectedConnectionObject, PropNumberASP.SelectedASPforListQ, e.FreqKHz, e.Deviation);
 
-            //PhAvCount = (basicProperties.Global.NumberAveragingPhase <= 0) ? PhAvCount : basicProperties.Global.NumberAveragingPhase;
-            //PlAvCount = (basicProperties.Global.NumberAveragingBearing <= 0) ? PlAvCount : basicProperties.Global.NumberAveragingBearing;
+                if (answer == null) return;
 
-            //var answer = await dsp.QuasiSimultaneouslyDF((int)(e.FreqKHz - e.Deviation), (int)(e.FreqKHz + e.Deviation), (byte)PhAvCount, (byte)PlAvCount);
-            //if (answer != null)
-            //{
-            //    e.FreqKHz = (answer.Source.Frequency == 0) ? e.FreqKHz : answer.Source.Frequency / 10d;
-            //    e.Deviation = answer.Source.Bandwidth / 10f;
-            //    e.Coordinates = new Coord
-            //    {
-            //        Latitude = answer.Source.Latitude,
-            //        Longitude = answer.Source.Longitude,
-            //        Altitude = answer.Source.Altitude,
-            //    };
-            //    e.Type = answer.Source.Modulation;
+                
+                e.FreqKHz = (answer.Value.Frequency == 0) ? e.FreqKHz : answer.Value.Frequency / 10d; //TODO: зачем деление?
+                //e.Deviation = e.Deviation; // / 10f TODO:мб передавать и ширину полосы от сервера
+                //e.Coordinates = new Coord
+                //{
+                //    Latitude = answer.Source.Latitude,
+                //    Longitude = answer.Source.Longitude,
+                //    Altitude = answer.Source.Altitude,
+                //};
+                //e.Type = answer.Source.Modulation;
 
-            //    int indOwnASP = (e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.IsOwn == true));
-            //    if (indOwnASP != -1)
-            //    {
-            //        e.ListJamDirect[indOwnASP].JamDirect.Bearing = (answer.Source.Direction == -1) ? answer.Source.Direction : answer.Source.Direction / 10f;
-            //        e.ListJamDirect[indOwnASP].JamDirect.Level = Convert.ToInt16((-1) * answer.Source.Amplitude);
-            //        e.ListJamDirect[indOwnASP].JamDirect.Std = answer.Source.StandardDeviation / 10f;
-            //    }
+                int indOwnASP = (e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.IsOwn == true));
+                if (indOwnASP != -1)
+                {
+                    e.ListJamDirect[indOwnASP].JamDirect.Bearing = (answer.Value.OwnBearing == -1) ? answer.Value.OwnBearing : answer.Value.OwnBearing / 10f;
+                    //e.ListJamDirect[indOwnASP].JamDirect.Level = Convert.ToInt16((-1) * answer.Source.Amplitude);
+                    //e.ListJamDirect[indOwnASP].JamDirect.Std = answer.Source.StandardDeviation / 10f;
+                }
 
-            //    for (int i = 0; i < answer.LinkedStationResults.Count(); i++)
-            //    {
-            //        int ind = e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.NumberASP == answer.LinkedStationResults[i].StationId);
-            //        if (ind != -1)
-            //        {
-            //            var tempJamDirect = new TableJamDirect();
-            //            tempJamDirect.ID = e.ListJamDirect[ind].ID;
-            //            tempJamDirect.JamDirect = new JamDirect();
+                var matedPairNum = this.lASP.First(t => t.Id == answer.Value.StationId).MatedStationNumber;
+                //for (int i = 0; i < answer.LinkedStationResults.Count(); i++)
+                //{
+                    int ind = e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.NumberASP == matedPairNum);
+                    if (ind != -1)
+                    {
+                        var tempJamDirect = new TableJamDirect();
+                        tempJamDirect.ID = e.ListJamDirect[ind].ID;
+                        tempJamDirect.JamDirect = new JamDirect();
 
-            //            tempJamDirect.JamDirect.IsOwn = false;
-            //            tempJamDirect.JamDirect.NumberASP = answer.LinkedStationResults[i].StationId;
+                        tempJamDirect.JamDirect.IsOwn = false;
+                        tempJamDirect.JamDirect.NumberASP = matedPairNum;
 
-            //            tempJamDirect.JamDirect.Bearing = (short)(answer.LinkedStationResults[i].Direction);
+                        tempJamDirect.JamDirect.Bearing = (short)answer.Value.MatedBearing;
 
-            //            tempJamDirect.JamDirect.Level = e.ListJamDirect[indOwnASP].JamDirect.Level;
-            //            tempJamDirect.JamDirect.Std = e.ListJamDirect[indOwnASP].JamDirect.Std;
+                        tempJamDirect.JamDirect.Level = e.ListJamDirect[indOwnASP].JamDirect.Level;
+                        tempJamDirect.JamDirect.Std = e.ListJamDirect[indOwnASP].JamDirect.Std;
 
-            //            tempJamDirect.JamDirect.DistanceKM = e.ListJamDirect[indOwnASP].JamDirect.DistanceKM;
+                        tempJamDirect.JamDirect.DistanceKM = e.ListJamDirect[indOwnASP].JamDirect.DistanceKM;
 
-            //            e.ListJamDirect[ind] = tempJamDirect;
-            //        }
-            //        else
-                    //{
-                    //    var tempJamDirect = new TableJamDirect();
-                    //    tempJamDirect.JamDirect = new JamDirect();
+                        e.ListJamDirect[ind] = tempJamDirect;
+                    }
+                    else
+                    {
+                        var tempJamDirect = new TableJamDirect();
+                        tempJamDirect.JamDirect = new JamDirect();
 
-                    //    tempJamDirect.JamDirect.IsOwn = false;
-                    //    tempJamDirect.JamDirect.NumberASP = answer.LinkedStationResults[i].StationId;
+                        tempJamDirect.JamDirect.IsOwn = false;
+                        tempJamDirect.JamDirect.NumberASP = matedPairNum;
 
-                    //    tempJamDirect.JamDirect.Bearing = (short)(answer.LinkedStationResults[i].Direction);
+                        tempJamDirect.JamDirect.Bearing = (short)answer.Value.MatedBearing;
 
-                    //    tempJamDirect.JamDirect.Level = e.ListJamDirect[indOwnASP].JamDirect.Level;
-                    //    tempJamDirect.JamDirect.Std = e.ListJamDirect[indOwnASP].JamDirect.Std;
+                        tempJamDirect.JamDirect.Level = e.ListJamDirect[indOwnASP].JamDirect.Level;
+                        tempJamDirect.JamDirect.Std = e.ListJamDirect[indOwnASP].JamDirect.Std;
 
-                    //    tempJamDirect.JamDirect.DistanceKM = e.ListJamDirect[indOwnASP].JamDirect.DistanceKM;
+                        tempJamDirect.JamDirect.DistanceKM = e.ListJamDirect[indOwnASP].JamDirect.DistanceKM;
 
-                    //    e.ListJamDirect.Add(tempJamDirect);
-                    //}
+                        e.ListJamDirect.Add(tempJamDirect);
+                    }
                 //}
 
                 clientDB.Tables[NameTable.TableReconFWS].Change(e);
-            //}
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
         }
 
         private void UcReconFWS_OnSendFreqCRRD(object sender, TempFWS e)

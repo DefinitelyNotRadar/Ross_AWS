@@ -19,6 +19,8 @@ using NameTable = ModelsTablesDBLib.NameTable;
 
 namespace Ross
 {
+    using DataTransferModels.DB;
+
     public partial class MainWindow : Window
     {
         public event EventHandler<string> OnSendMessage;
@@ -68,7 +70,8 @@ namespace Ross
             {
                 //if (!selectedStation.Ping("ROSS")) return;
 
-                ReadRecord(selectedStation.GetFwsElint(), NameTable.TempFWS);
+                //ReadRecord(selectedStation.GetFwsElint(), NameTable.TempFWS);
+                ReadRecord(selectedStation.GetFwsElintDistribution(), NameTable.TableReconFWS);
                 ReadRecord(selectedStation.GetFhssElint(), NameTable.TableReconFHSS);
                 //ReadRecord(selectedStation.GetAsps(), NameTable.TableASP);
                 ReadStationCoord(selectedStation);
@@ -242,6 +245,16 @@ namespace Ross
                 {
                     selectedStation?.SendLocalTime(DateTime.Now);
                 });
+        }
+
+        public ExecutiveDF? Client_GetExecutiveDF(GrpcClient selectedStation, int stationId, double frequency, float band)
+        {
+            return selectedStation?.GetExecutiveDF(stationId, frequency, band);
+        }
+
+        public QuasiSimultaneousDF? Client_GetQuasiSimultaneousDF(GrpcClient selectedStation, int stationId, double frequency, float band)
+        {
+            return selectedStation?.GetQuasiSimultaneousDF(stationId, frequency, band);
         }
     }
 }
