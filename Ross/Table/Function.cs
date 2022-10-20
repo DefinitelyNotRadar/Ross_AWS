@@ -252,7 +252,7 @@ namespace Ross
             PropLocalCRRD.CRRD1 = localProperties.ARONE1.State;
             PropLocalCRRD.CRRD2 = localProperties.ARONE2.State;
 
-            ucTempFWS.ButtonsCRRDVisible();
+           // ucTempFWS.ButtonsCRRDVisible();
             //ucReconFWS.ButtonsCRRDVisible();
             ucSuppressFWS.ButtonsCRRDVisible();
         }

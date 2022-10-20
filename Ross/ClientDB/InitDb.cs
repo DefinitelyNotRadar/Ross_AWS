@@ -30,7 +30,6 @@ namespace Ross
                 HandlerUpdate_TableFreqImportant;
             (clientDB.Tables[NameTable.TableFreqKnown] as ITableUpdate<TableFreqKnown>).OnUpTable +=
                 HandlerUpdate_TableFreqKnown;
-            (clientDB.Tables[NameTable.TempFWS] as ITableUpdate<TempFWS>).OnUpTable += HandlerUpdate_TempWFS;
             (clientDB.Tables[NameTable.GlobalProperties] as ITableUpdate<GlobalProperties>).OnUpTable +=
                 HandlerUpdate_GlobalProperties;
             (clientDB.Tables[NameTable.TableSuppressFWS] as ITableUpdate<TableSuppressFWS>).OnUpTable +=
@@ -43,15 +42,16 @@ namespace Ross
              HandlerUpdate_TableFHSSExcludedFreq;
             (clientDB.Tables[NameTable.TableReconFHSS] as ITableUpdate<TableReconFHSS>).OnUpTable +=
                 HandlerUpdate_TableReconFHSS;
-            (clientDB.Tables[NameTable.TempGNSS] as ITableUpdate<TempGNSS>).OnUpTable += HandlerUpdate_TempGNSS;
-
-            (clientDB.Tables[NameTable.TempFWS] as ITableUpRecord<TempFWS>).OnChangeRecord += HandlerChangeFWS;
-
-            (clientDB.Tables[NameTable.TempFWS] as ITableUpRecord<TempFWS>).OnAddRecord += HandlerAddFWS;
-            (clientDB.Tables[NameTable.TempFWS] as ITableAddRange<TempFWS>).OnAddRange += HandlerAddRangeFWS;
+            (clientDB.Tables[NameTable.TempGNSS] as ITableUpdate<TempGNSS>).OnUpTable += 
+                HandlerUpdate_TempGNSS;
+            (clientDB.Tables[NameTable.TableReconFWS] as ITableUpdate<TableReconFWS>).OnUpTable += 
+                HandlerUpdate_TableReconFWS;
+            (clientDB.Tables[NameTable.TableReconFWS] as ITableAddRange<TableReconFWS>).OnAddRange += 
+                HandlerAddRangeReconFWS;
             (clientDB.Tables[NameTable.TableReconFHSS] as ITableAddRange<TableReconFHSS>).OnAddRange +=
                 HandlerAddRangeReconFHSS;
-            (clientDB.Tables[NameTable.TableChat] as ITableUpdate<TableChatMessage>).OnUpTable += HandlerUpdate_TableChat;
+            (clientDB.Tables[NameTable.TableChat] as ITableUpdate<TableChatMessage>).OnUpTable += 
+                HandlerUpdate_TableChat;
         }
 
        

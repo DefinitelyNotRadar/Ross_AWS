@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using ClientDataBase;
 using ClientDataBase.Exceptions;
+using Formation_RN_RD_CC;
 using ModelsTablesDBLib;
 using TableEvents;
 using TableOperations;
@@ -25,6 +26,9 @@ namespace Ross
 
         // ИРИ ФРЧ ЦР
         public List<TableReconFWS> lReconFWS = new List<TableReconFWS>();
+
+        public List<SRNet> lUS = new List<SRNet>(); // Узлы связи 
+        public List<SRNet> lRS = new List<SRNet>(); // Радиосети
 
         public List<TableSourceFHSS> lSourceFHSS = new List<TableSourceFHSS>();
 
@@ -602,72 +606,72 @@ namespace Ross
             int PhAvCount = 3;
             int PlAvCount = 3;
 
-            PhAvCount = (basicProperties.Global.NumberAveragingPhase <= 0) ? PhAvCount : basicProperties.Global.NumberAveragingPhase;
-            PlAvCount = (basicProperties.Global.NumberAveragingBearing <= 0) ? PlAvCount : basicProperties.Global.NumberAveragingBearing;
+            //PhAvCount = (basicProperties.Global.NumberAveragingPhase <= 0) ? PhAvCount : basicProperties.Global.NumberAveragingPhase;
+            //PlAvCount = (basicProperties.Global.NumberAveragingBearing <= 0) ? PlAvCount : basicProperties.Global.NumberAveragingBearing;
 
-            var answer = await dsp.QuasiSimultaneouslyDF((int)(e.FreqKHz - e.Deviation), (int)(e.FreqKHz + e.Deviation), (byte)PhAvCount, (byte)PlAvCount);
-            if (answer != null)
-            {
-                e.FreqKHz = (answer.Source.Frequency == 0) ? e.FreqKHz : answer.Source.Frequency / 10d;
-                e.Deviation = answer.Source.Bandwidth / 10f;
-                e.Coordinates = new Coord
-                {
-                    Latitude = answer.Source.Latitude,
-                    Longitude = answer.Source.Longitude,
-                    Altitude = answer.Source.Altitude,
-                };
-                e.Type = answer.Source.Modulation;
+            //var answer = await dsp.QuasiSimultaneouslyDF((int)(e.FreqKHz - e.Deviation), (int)(e.FreqKHz + e.Deviation), (byte)PhAvCount, (byte)PlAvCount);
+            //if (answer != null)
+            //{
+            //    e.FreqKHz = (answer.Source.Frequency == 0) ? e.FreqKHz : answer.Source.Frequency / 10d;
+            //    e.Deviation = answer.Source.Bandwidth / 10f;
+            //    e.Coordinates = new Coord
+            //    {
+            //        Latitude = answer.Source.Latitude,
+            //        Longitude = answer.Source.Longitude,
+            //        Altitude = answer.Source.Altitude,
+            //    };
+            //    e.Type = answer.Source.Modulation;
 
-                int indOwnASP = (e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.IsOwn == true));
-                if (indOwnASP != -1)
-                {
-                    e.ListJamDirect[indOwnASP].JamDirect.Bearing = (answer.Source.Direction == -1) ? answer.Source.Direction : answer.Source.Direction / 10f;
-                    e.ListJamDirect[indOwnASP].JamDirect.Level = Convert.ToInt16((-1) * answer.Source.Amplitude);
-                    e.ListJamDirect[indOwnASP].JamDirect.Std = answer.Source.StandardDeviation / 10f;
-                }
+            //    int indOwnASP = (e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.IsOwn == true));
+            //    if (indOwnASP != -1)
+            //    {
+            //        e.ListJamDirect[indOwnASP].JamDirect.Bearing = (answer.Source.Direction == -1) ? answer.Source.Direction : answer.Source.Direction / 10f;
+            //        e.ListJamDirect[indOwnASP].JamDirect.Level = Convert.ToInt16((-1) * answer.Source.Amplitude);
+            //        e.ListJamDirect[indOwnASP].JamDirect.Std = answer.Source.StandardDeviation / 10f;
+            //    }
 
-                for (int i = 0; i < answer.LinkedStationResults.Count(); i++)
-                {
-                    int ind = e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.NumberASP == answer.LinkedStationResults[i].StationId);
-                    if (ind != -1)
-                    {
-                        var tempJamDirect = new TableJamDirect();
-                        tempJamDirect.ID = e.ListJamDirect[ind].ID;
-                        tempJamDirect.JamDirect = new JamDirect();
+            //    for (int i = 0; i < answer.LinkedStationResults.Count(); i++)
+            //    {
+            //        int ind = e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.NumberASP == answer.LinkedStationResults[i].StationId);
+            //        if (ind != -1)
+            //        {
+            //            var tempJamDirect = new TableJamDirect();
+            //            tempJamDirect.ID = e.ListJamDirect[ind].ID;
+            //            tempJamDirect.JamDirect = new JamDirect();
 
-                        tempJamDirect.JamDirect.IsOwn = false;
-                        tempJamDirect.JamDirect.NumberASP = answer.LinkedStationResults[i].StationId;
+            //            tempJamDirect.JamDirect.IsOwn = false;
+            //            tempJamDirect.JamDirect.NumberASP = answer.LinkedStationResults[i].StationId;
 
-                        tempJamDirect.JamDirect.Bearing = (short)(answer.LinkedStationResults[i].Direction);
+            //            tempJamDirect.JamDirect.Bearing = (short)(answer.LinkedStationResults[i].Direction);
 
-                        tempJamDirect.JamDirect.Level = e.ListJamDirect[indOwnASP].JamDirect.Level;
-                        tempJamDirect.JamDirect.Std = e.ListJamDirect[indOwnASP].JamDirect.Std;
+            //            tempJamDirect.JamDirect.Level = e.ListJamDirect[indOwnASP].JamDirect.Level;
+            //            tempJamDirect.JamDirect.Std = e.ListJamDirect[indOwnASP].JamDirect.Std;
 
-                        tempJamDirect.JamDirect.DistanceKM = e.ListJamDirect[indOwnASP].JamDirect.DistanceKM;
+            //            tempJamDirect.JamDirect.DistanceKM = e.ListJamDirect[indOwnASP].JamDirect.DistanceKM;
 
-                        e.ListJamDirect[ind] = tempJamDirect;
-                    }
-                    else
-                    {
-                        var tempJamDirect = new TableJamDirect();
-                        tempJamDirect.JamDirect = new JamDirect();
+            //            e.ListJamDirect[ind] = tempJamDirect;
+            //        }
+            //        else
+                    //{
+                    //    var tempJamDirect = new TableJamDirect();
+                    //    tempJamDirect.JamDirect = new JamDirect();
 
-                        tempJamDirect.JamDirect.IsOwn = false;
-                        tempJamDirect.JamDirect.NumberASP = answer.LinkedStationResults[i].StationId;
+                    //    tempJamDirect.JamDirect.IsOwn = false;
+                    //    tempJamDirect.JamDirect.NumberASP = answer.LinkedStationResults[i].StationId;
 
-                        tempJamDirect.JamDirect.Bearing = (short)(answer.LinkedStationResults[i].Direction);
+                    //    tempJamDirect.JamDirect.Bearing = (short)(answer.LinkedStationResults[i].Direction);
 
-                        tempJamDirect.JamDirect.Level = e.ListJamDirect[indOwnASP].JamDirect.Level;
-                        tempJamDirect.JamDirect.Std = e.ListJamDirect[indOwnASP].JamDirect.Std;
+                    //    tempJamDirect.JamDirect.Level = e.ListJamDirect[indOwnASP].JamDirect.Level;
+                    //    tempJamDirect.JamDirect.Std = e.ListJamDirect[indOwnASP].JamDirect.Std;
 
-                        tempJamDirect.JamDirect.DistanceKM = e.ListJamDirect[indOwnASP].JamDirect.DistanceKM;
+                    //    tempJamDirect.JamDirect.DistanceKM = e.ListJamDirect[indOwnASP].JamDirect.DistanceKM;
 
-                        e.ListJamDirect.Add(tempJamDirect);
-                    }
-                }
+                    //    e.ListJamDirect.Add(tempJamDirect);
+                    //}
+                //}
 
                 clientDB.Tables[NameTable.TableReconFWS].Change(e);
-            }
+            //}
         }
 
         private void UcReconFWS_OnSendFreqCRRD(object sender, TempFWS e)
@@ -690,19 +694,19 @@ namespace Ross
                 List<TableSectorsRanges> listSRangeSuppr = await clientDB.Tables[NameTable.TableSectorsRangesSuppr].LoadAsync<TableSectorsRanges>();
                 List<TableFreqSpec> listSpecFreqForbidden = await clientDB.Tables[NameTable.TableFreqForbidden].LoadAsync<TableFreqSpec>();
                 lReconFWS = await clientDB.Tables[NameTable.TableReconFWS].LoadAsync<TableReconFWS>();
-                listDistrib = IRI_Distribution.ClassTargetDistribution.Distribution(lASP, listSRangeSuppr, listSpecFreqForbidden, lReconFWS, basicProperties.Global.NumberIri); //Distribution(lASP, lSRangeSuppr, lSpecFreqForbidden, lReconFWS, basicProperties.Global.NumberIri);
+                //listDistrib = IRI_Distribution.ClassTargetDistribution.Distribution(lASP, listSRangeSuppr, listSpecFreqForbidden, lReconFWS, basicProperties.Global.NumberIri); //Distribution(lASP, lSRangeSuppr, lSpecFreqForbidden, lReconFWS, basicProperties.Global.NumberIri);
 
-                for (int i = 0; i < listDistrib.Count; i++)
-                {
+                //for (int i = 0; i < listDistrib.Count; i++)
+                //{
 
-                    for (int j = 0; j < listDistrib[i].ListJamDirect.Count; j++)
-                    {
-                        listDistrib[i].ListJamDirect[j].ID = 0;
-                    }
-                }
+                //    for (int j = 0; j < listDistrib[i].ListJamDirect.Count; j++)
+                //    {
+                //        listDistrib[i].ListJamDirect[j].ID = 0;
+                //    }
+                //}
 
-                if (listDistrib.Count != 0)
-                    clientDB.Tables[NameTable.TableReconFWS].AddRange(listDistrib);
+                //if (listDistrib.Count != 0)
+                //    clientDB.Tables[NameTable.TableReconFWS].AddRange(listDistrib);
             }
             catch (Exception ex)
             {
