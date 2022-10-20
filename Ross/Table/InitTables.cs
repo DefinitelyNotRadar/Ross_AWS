@@ -1,5 +1,6 @@
 ﻿using ModelsTablesDBLib;
 using System;
+using TableEvents;
 
 namespace Ross
 {
@@ -64,17 +65,20 @@ namespace Ross
             ucSRangesSuppr.OnIsWindowPropertyOpen += UcSRangesSuppr_OnIsWindowPropertyOpen;
             ucSRangesSuppr.OnAddTableToReport += OnAddTableToReport;
 
-            // Таблица ИРИ ФРЧ
-            ucTempFWS.OnDeleteRecord += UcTemsFWS_OnDeleteRecord;
-            ucTempFWS.OnClearRecords += OnClearRecords;
-            ucTempFWS.OnAddFWS_RS += UcTemsFWS_OnAddFWS_RS;
-            ucTempFWS.OnAddFWS_TD += UcTemsFWS_OnAddFWS_TD;
-            ucTempFWS.OnSelectedRow += UcTemsFWS_OnSelectedRow;
-            ucTempFWS.OnGetExecBear += UcTemsFWS_OnGetExecBear;
-            ucTempFWS.OnGetKvBear += UcTemsFWS_OnGetKvBear;
-            ucTempFWS.OnSendFreqCRRD += UcTemsFWS_OnSendFreqCRRD;
-            ucTempFWS.OnSendFreqCRRD2 += UcTemsFWS_OnSendFreqCRRD2;
-            ucTempFWS.OnAddTableToReport += OnAddTableToReport;
+            // Таблица ИРИ ФРЧ ЦР
+            ucReconFWS.OnDeleteRecord += new EventHandler<TableEvent>(OnDeleteRecord);
+            ucReconFWS.OnClearRecords += new EventHandler<NameTable>(OnClearRecords);
+            ucReconFWS.OnAddFWS_RS += new EventHandler<TableSuppressFWS>(UcReconFWS_OnAddFWS_RS);
+            ucReconFWS.OnGetExecBear += new EventHandler<TableReconFWS>(UcReconFWS_OnGetExecBear);
+            ucReconFWS.OnGetKvBear += new EventHandler<TableReconFWS>(UcReconFWS_OnGetKvBear);
+            ucReconFWS.OnSendFreqCRRD += new EventHandler<TempFWS>(UcReconFWS_OnSendFreqCRRD);
+            ucReconFWS.OnSendFreqCRRD2 += new EventHandler<TempFWS>(UcReconFWS_OnSendFreqCRRD2);
+            ucReconFWS.OnClickTDistribution += new EventHandler(UcReconFWS_OnClickTDistribution);
+            ucReconFWS.OnSendFWS_TD_RS += new EventHandler<List<TableSuppressFWS>>(UcReconFWS_OnSendFWS_TD_RS);
+            ucReconFWS.OnClickUS += new EventHandler<bool>(UcReconFWS_OnClickUS);
+            ucReconFWS.OnClickRS += new EventHandler<bool>(UcReconFWS_OnClickRS);
+            ucReconFWS.OnAddTableToReport += new EventHandler<TableEventReport>(OnAddTableToReport);
+            ucReconFWS.OnSelectedASPSuppr += new EventHandler<TableReconFWS>(UcReconFWS_OnSelectedASPSuppr);
 
             // Таблица ИРИ ФРЧ РП
             ucSuppressFWS.OnAddRecord += OnAddRecord;

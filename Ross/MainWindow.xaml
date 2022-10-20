@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:ControlConnect="clr-namespace:WPFControlConnection;assembly=WPFControlConnection"
-        xmlns:TempFWSControl="clr-namespace:TempFWSControl;assembly=TempFWSControl"
-        xmlns:SuppressFHSSControl="clr-namespace:SuppressFHSSControl;assembly=SuppressFHSSControl"
+        xmlns:ReconFWSControl="clr-namespace:ReconFWSControl;assembly=ReconFWSControl"
         xmlns:ReconFHSSControl="clr-namespace:ReconFHSSControl;assembly=ReconFHSSControl"
+        xmlns:SuppressFHSSControl="clr-namespace:SuppressFHSSControl;assembly=SuppressFHSSControl"
         xmlns:suppressFwsControl="clr-namespace:SuppressFWSControl;assembly=SuppressFWSControl"
         xmlns:sectorsRangesControl="clr-namespace:SectorsRangesControl;assembly=SectorsRangesControl"
         xmlns:specFreqControl="clr-namespace:SpecFreqControl;assembly=SpecialFrequenciesControl"
@@ -197,8 +197,8 @@
                 </Grid.ColumnDefinitions>
 
                 <TabControl>
-                    <TabItem Header="{DynamicResource TabItemRES_FF}">
-                        <TempFWSControl:UserControlTempFWS x:Name="ucTempFWS"
+                    <TabItem Header="{DynamicResource TabItemRES_FF_TD}">
+                        <ReconFWSControl:UserControlReconFWS x:Name="ucReconFWS"
                             ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FF_J}">

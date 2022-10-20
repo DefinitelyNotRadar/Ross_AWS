@@ -106,58 +106,97 @@ namespace Ross
 
         }
 
-        private void HandlerUpdate_TempWFS(object sender, TableEventArs<TempFWS> e)
-        {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
-            {
-                ucTempFWS.UpdateTempFWS(e.Table,
-                    lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
-                ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
-                    .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
-            });
+        //private void HandlerUpdate_TempWFS(object sender, TableEventArs<TempFWS> e)
+        //{
+        //    Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+        //    {
+        //        ucTempFWS.UpdateTempFWS(e.Table,
+        //            lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
+        //        ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
+        //            .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
+        //    });
 
+        //}
+
+        //private void HandlerChangeFWS(object sender, TempFWS e)
+        //{
+        //    Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+        //    {
+        //        ucTempFWS.ChangeTempFWS(e.Id, e);
+        //        ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
+        //            .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
+
+        //        DrawAllObjects();
+        //    });
+        //}
+
+        //private void HandlerAddFWS(object sender, TempFWS e)
+        //{
+        //    Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+        //    {
+        //        ucTempFWS.AddTempFWSs(new List<TempFWS> { e },
+        //            lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
+        //        ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
+        //            .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
+
+        //        DrawAllObjects();
+        //    });
+        //}
+
+        //private void HandlerAddRangeFWS(object sender, TableEventArs<TempFWS> e)
+        //{
+        //    Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+        //    {
+        //        if (e.Table.Count > 0)
+        //        {
+        //            ucTempFWS.AddTempFWSs(ExcludeKnownForbiddenFreqs(e.Table),
+        //                lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
+
+        //            ucTempFWS.ColorFreqImportantForbidden(
+        //                lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList(),
+        //                lSpecFreqForbidden.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
+        //            ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
+        //                .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
+        //        }
+        //    });
+        //}
+
+
+        private void HandlerUpdate_TableReconFWS(object sender, TableEventArs<TableReconFWS> e)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
+            {
+                lReconFWS = e.Table;
+                ucReconFWS.UpdateReconFWS(lReconFWS);
+                ucReconFWS.UpdateASPRP(lASP, lReconFWS);
+            });
         }
 
-        private void HandlerChangeFWS(object sender, TempFWS e)
+        private void HandlerAddRangeReconFWS(object sender, TableEventArs<TableReconFWS> e)
         {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
             {
-                ucTempFWS.ChangeTempFWS(e.Id, e);
-                ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
-                    .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
-
-                DrawAllObjects();
-            });
-        }
-
-        private void HandlerAddFWS(object sender, TempFWS e)
-        {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
-            {
-                ucTempFWS.AddTempFWSs(new List<TempFWS> { e },
-                    lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
-                ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
-                    .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
-
-                DrawAllObjects();
-            });
-        }
-
-        private void HandlerAddRangeFWS(object sender, TableEventArs<TempFWS> e)
-        {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
-            {
-                if (e.Table.Count > 0)
+                ///////////////////////////////////////////
+                //lReconFWS = e.Table;
+                //lReconFWS.AddRange(e.Table);
+                //ucReconFWS.AddReconFWSs(lReconFWS);
+                ///////////////////////////////////////////
+                for (int i = 0; i < e.Table.Count; i++)
                 {
-                    ucTempFWS.AddTempFWSs(ExcludeKnownForbiddenFreqs(e.Table),
-                        lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
-
-                    ucTempFWS.ColorFreqImportantForbidden(
-                        lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList(),
-                        lSpecFreqForbidden.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
-                    ucTempFWS.AddToStatusBarCountFI(lSpecFreqImportant
-                        .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList().Count);
+                    int ind = lReconFWS.FindIndex(x => x.Id == e.Table[i].Id);
+                    if (ind != -1)
+                    {
+                        lReconFWS[ind] = e.Table[i];
+                    }
                 }
+                //ucReconFWS.AddReconFWSs(e.Table);
+                ucReconFWS.UpdateReconFWS(lReconFWS);
+                ucReconFWS.UpdateASPRP(lASP, lReconFWS);
+                ///////////////////////////////////////////
+                //lReconFWS = e.Table;
+                //ucReconFWS.UpdateReconFWS(lReconFWS);
+                //ucReconFWS.UpdateASPRP(lASP, lReconFWS);
+
             });
         }
 
@@ -358,8 +397,8 @@ namespace Ross
                     .LoadAsync<TableFHSSReconExcluded>();
                 ucReconFHSS.UpdateTableFHSSReconExcluded(lFHSSReconExcluded);
 
-                ucTempFWS.UpdateTempFWS(await clientDB.Tables[NameTable.TempFWS].LoadAsync<TempFWS>(),
-                    lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
+                //ucTempFWS.UpdateTempFWS(await clientDB.Tables[NameTable.TempFWS].LoadAsync<TempFWS>(),
+                //    lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
 
                 var arg = (await clientDB.Tables[NameTable.GlobalProperties].LoadAsync<GlobalProperties>())
                     .FirstOrDefault();

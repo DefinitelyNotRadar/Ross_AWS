@@ -548,5 +548,214 @@ namespace Ross
                     break;
             }
         }
+
+
+        private void UcReconFWS_OnAddFWS_RS(object sender, TableSuppressFWS e)
+        {
+            if (PropNumberASP.SelectedNumASP > 0)
+            {
+                e.NumberASP = PropNumberASP.SelectedNumASP;
+
+                // Проверка возможности добавления в таблицу---------------------------------------------------
+                string sMessage = IsUpdateTableSuppressFWS(e, false);
+                if (sMessage == string.Empty)
+                {
+                    clientDB.Tables[NameTable.TableSuppressFWS].Add(e);
+                }
+                else
+                {
+                    MessageBox.Show(sMessage, SMessages.mesMessage, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                // --------------------------------------------------------------------------------------------
+            }
+        }
+
+        private void UcReconFWS_OnSelectedASPSuppr(object sender, TableReconFWS e)
+        {
+            clientDB.Tables[NameTable.TableReconFWS].Change(e);
+        }
+
+        private async void UcReconFWS_OnGetExecBear(object sender, TableReconFWS e)
+        {
+            try
+            {
+                float bearing = await ExternalExBearing2(e.FreqKHz / 1000d, e.Deviation / 1000d);
+                //bearing = 15f;
+                if (bearing != -1)
+                {
+                    int ind = (e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.NumberASP == PropNumberASP.SelectedASPforListQ));
+                    if (ind != -1)
+                    {
+                        e.ListJamDirect[ind].JamDirect.Bearing = bearing;
+                        clientDB.Tables[NameTable.TableReconFWS].Change(e);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private async void UcReconFWS_OnGetKvBear(object sender, TableReconFWS e)
+        {
+            int PhAvCount = 3;
+            int PlAvCount = 3;
+
+            PhAvCount = (basicProperties.Global.NumberAveragingPhase <= 0) ? PhAvCount : basicProperties.Global.NumberAveragingPhase;
+            PlAvCount = (basicProperties.Global.NumberAveragingBearing <= 0) ? PlAvCount : basicProperties.Global.NumberAveragingBearing;
+
+            var answer = await dsp.QuasiSimultaneouslyDF((int)(e.FreqKHz - e.Deviation), (int)(e.FreqKHz + e.Deviation), (byte)PhAvCount, (byte)PlAvCount);
+            if (answer != null)
+            {
+                e.FreqKHz = (answer.Source.Frequency == 0) ? e.FreqKHz : answer.Source.Frequency / 10d;
+                e.Deviation = answer.Source.Bandwidth / 10f;
+                e.Coordinates = new Coord
+                {
+                    Latitude = answer.Source.Latitude,
+                    Longitude = answer.Source.Longitude,
+                    Altitude = answer.Source.Altitude,
+                };
+                e.Type = answer.Source.Modulation;
+
+                int indOwnASP = (e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.IsOwn == true));
+                if (indOwnASP != -1)
+                {
+                    e.ListJamDirect[indOwnASP].JamDirect.Bearing = (answer.Source.Direction == -1) ? answer.Source.Direction : answer.Source.Direction / 10f;
+                    e.ListJamDirect[indOwnASP].JamDirect.Level = Convert.ToInt16((-1) * answer.Source.Amplitude);
+                    e.ListJamDirect[indOwnASP].JamDirect.Std = answer.Source.StandardDeviation / 10f;
+                }
+
+                for (int i = 0; i < answer.LinkedStationResults.Count(); i++)
+                {
+                    int ind = e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.NumberASP == answer.LinkedStationResults[i].StationId);
+                    if (ind != -1)
+                    {
+                        var tempJamDirect = new TableJamDirect();
+                        tempJamDirect.ID = e.ListJamDirect[ind].ID;
+                        tempJamDirect.JamDirect = new JamDirect();
+
+                        tempJamDirect.JamDirect.IsOwn = false;
+                        tempJamDirect.JamDirect.NumberASP = answer.LinkedStationResults[i].StationId;
+
+                        tempJamDirect.JamDirect.Bearing = (short)(answer.LinkedStationResults[i].Direction);
+
+                        tempJamDirect.JamDirect.Level = e.ListJamDirect[indOwnASP].JamDirect.Level;
+                        tempJamDirect.JamDirect.Std = e.ListJamDirect[indOwnASP].JamDirect.Std;
+
+                        tempJamDirect.JamDirect.DistanceKM = e.ListJamDirect[indOwnASP].JamDirect.DistanceKM;
+
+                        e.ListJamDirect[ind] = tempJamDirect;
+                    }
+                    else
+                    {
+                        var tempJamDirect = new TableJamDirect();
+                        tempJamDirect.JamDirect = new JamDirect();
+
+                        tempJamDirect.JamDirect.IsOwn = false;
+                        tempJamDirect.JamDirect.NumberASP = answer.LinkedStationResults[i].StationId;
+
+                        tempJamDirect.JamDirect.Bearing = (short)(answer.LinkedStationResults[i].Direction);
+
+                        tempJamDirect.JamDirect.Level = e.ListJamDirect[indOwnASP].JamDirect.Level;
+                        tempJamDirect.JamDirect.Std = e.ListJamDirect[indOwnASP].JamDirect.Std;
+
+                        tempJamDirect.JamDirect.DistanceKM = e.ListJamDirect[indOwnASP].JamDirect.DistanceKM;
+
+                        e.ListJamDirect.Add(tempJamDirect);
+                    }
+                }
+
+                clientDB.Tables[NameTable.TableReconFWS].Change(e);
+            }
+        }
+
+        private void UcReconFWS_OnSendFreqCRRD(object sender, TempFWS e)
+        {
+            //AroneConnetion.FrequencyFromPanorama(e.FreqKHz / 1000d);
+
+            SendFreqToCRRD1(e.FreqKHz / 1000d);
+        }
+
+        private void UcReconFWS_OnSendFreqCRRD2(object sender, TempFWS e)
+        {
+            SendFreqToCRRD2(e.FreqKHz / 1000d);
+        }
+
+        private async void UcReconFWS_OnClickTDistribution(object sender, EventArgs e)
+        {
+            try
+            {
+                List<TableReconFWS> listDistrib = new List<TableReconFWS>();
+                List<TableSectorsRanges> listSRangeSuppr = await clientDB.Tables[NameTable.TableSectorsRangesSuppr].LoadAsync<TableSectorsRanges>();
+                List<TableFreqSpec> listSpecFreqForbidden = await clientDB.Tables[NameTable.TableFreqForbidden].LoadAsync<TableFreqSpec>();
+                lReconFWS = await clientDB.Tables[NameTable.TableReconFWS].LoadAsync<TableReconFWS>();
+                listDistrib = IRI_Distribution.ClassTargetDistribution.Distribution(lASP, listSRangeSuppr, listSpecFreqForbidden, lReconFWS, basicProperties.Global.NumberIri); //Distribution(lASP, lSRangeSuppr, lSpecFreqForbidden, lReconFWS, basicProperties.Global.NumberIri);
+
+                for (int i = 0; i < listDistrib.Count; i++)
+                {
+
+                    for (int j = 0; j < listDistrib[i].ListJamDirect.Count; j++)
+                    {
+                        listDistrib[i].ListJamDirect[j].ID = 0;
+                    }
+                }
+
+                if (listDistrib.Count != 0)
+                    clientDB.Tables[NameTable.TableReconFWS].AddRange(listDistrib);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //catch { }
+        }
+
+        private void UcReconFWS_OnSendFWS_TD_RS(object sender, List<TableSuppressFWS> e)
+        {
+            lSuppressFWS = e;
+            clientDB.Tables[NameTable.TableSuppressFWS].Clear();
+            clientDB.Tables[NameTable.TableSuppressFWS].AddRange(lSuppressFWS);
+        }
+
+        private async void UcReconFWS_OnClickRS(object sender, bool e)
+        {
+            try
+            {
+                if (e)
+                {
+                    //lRS = new List<SRNet>();
+                    lReconFWS = await clientDB.Tables[NameTable.TableReconFWS].LoadAsync<TableReconFWS>();
+                    lRS = ClassFormation_RN_RD_CC.Organization_RNet(lReconFWS, 0, 0, 0);
+                    //ClassFormation_RN_RD_CC.Organization_RNet(lASP, lReconFWS, 0, 0, 0, ref lRS);
+                    ucReconFWS.UpdateRS(lRS);
+                }
+                else
+                {
+                    ucReconFWS.ClearRS(lUS);
+                }
+            }
+            catch { }
+        }
+
+        private async void UcReconFWS_OnClickUS(object sender, bool e)
+        {
+            try
+            {
+                if (e)
+                {
+                    //lUS = new List<SRNet>();
+                    lReconFWS = await clientDB.Tables[NameTable.TableReconFWS].LoadAsync<TableReconFWS>();
+                    lUS = ClassFormation_RN_RD_CC.Organization_Communication(lReconFWS, 0, 0);
+                    //ClassFormation_RN_RD_CC.Organization_Communication(lASP, lReconFWS, 0, 0, ref lUS);
+                    ucReconFWS.UpdateUS(lUS);
+                }
+                else
+                {
+                    ucReconFWS.ClearUS(lRS);
+                }
+            }
+            catch { }
+        }
     }
 }
