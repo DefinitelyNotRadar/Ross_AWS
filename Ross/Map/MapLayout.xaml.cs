@@ -62,7 +62,7 @@ namespace Ross.Map
 
             mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,-130), scale, new Offset(0, 0));
 
-       
+            //DrawSector(new Coord() { Latitude=40, Longitude=47}, 10, true, Color.Green, 1);
         }
 
         #region EvaTable
@@ -285,14 +285,16 @@ namespace Ross.Map
         public void DrawSector(Coord point, int angle, bool isActive, Color color, int id)
         {
             DefinderJammingPoint definderJammingPoint = RastrMap.DefinderJammingPoint.Where(x=> x.ID == id).FirstOrDefault();
+            if (definderJammingPoint == null)
+                definderJammingPoint = new DefinderJammingPoint(id);
 
             var antena = new Antenna();
             antena.Sector = angle;
             antena.Active = isActive;
             antena.Radius = 3000;
             antena.BrushAntenna = color;
-            definderJammingPoint.AntennaDefinder.Add(antena);
 
+            definderJammingPoint.AntennaDefinder.Add(antena);
 
             RastrMap.UpdateDFP(definderJammingPoint);
         }
