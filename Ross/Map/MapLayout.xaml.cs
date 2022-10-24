@@ -14,12 +14,14 @@ using System.Windows.Threading;
 using DLLSettingsControlPointForMap;
 using DLLSettingsControlPointForMap.Model;
 using EvaTable;
+using Google.Protobuf.Collections;
 using Mapsui.Geometries;
 using Mapsui.Projection;
 using Mapsui.Styles;
 using ModelsTablesDBLib;
 using Ross.JSON;
 using Ross.Map._EventArgs;
+using TransmissionPackageGroza934;
 using UIMapRast.Models;
 using WpfMapControl;
 using Brush = Mapsui.Styles.Brush;
@@ -62,7 +64,7 @@ namespace Ross.Map
 
             mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,-130), scale, new Offset(0, 0));
 
-            //DrawSector(new Coord() { Latitude=40, Longitude=47}, 10, true, Color.Green, 1);
+            
         }
 
         #region EvaTable
@@ -201,9 +203,14 @@ namespace Ross.Map
 
                 RastrMap.UpdatePC(controlPost);
 
+                DrawSector(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }, new AntennasMessage(), 1);
+
                 OnCoordControlPoinChanged(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
             }
-            catch { }
+            catch (Exception ex)
+            { 
+            
+            }
         }
 
         private void RastrMap_OnOnPointPosition(object sender, Location e)
@@ -282,20 +289,46 @@ namespace Ross.Map
         }
 
 
-        public void DrawSector(Coord point, int angle, bool isActive, Color color, int id)
+        public void DrawSector(Coord point, AntennasMessage antennasMessage, int id)
         {
             DefinderJammingPoint definderJammingPoint = RastrMap.DefinderJammingPoint.Where(x=> x.ID == id).FirstOrDefault();
             if (definderJammingPoint == null)
                 definderJammingPoint = new DefinderJammingPoint(id);
 
-            var antena = new Antenna();
-            antena.Sector = angle;
-            antena.Active = isActive;
-            antena.Radius = 3000;
-            antena.BrushAntenna = color;
+            definderJammingPoint.Coordinate = new WGSCoordinate { Latitude = point.Latitude, Longitude = point.Longitude, Altitude = (float)point.Altitude};
+            for (int i = 0; i < 8; i++ )
+            {
+                var antena = new Antenna();
 
-            definderJammingPoint.AntennaDefinder.Add(antena);
+                try
+                {                    
+                    antena.Sector = 20;
+                    antena.Direction = antennasMessage.Lpa[i];
+                    antena.BrushAntenna = Color.Green;
+                    antena.PenAntenna = new Pen(Color.Green, 2);
+                    antena.Active = true;
+                    RastrMap.ListRangesParam.Add( new RangesParam(10, 100000, 0, 255, 0));
+                }
+                catch(ArgumentOutOfRangeException ex)
+                {
+                    antena.Sector = 0;
+                    antena.Direction = 0;
+                    antena.BrushAntenna = Color.Transparent;
+                    antena.PenAntenna = new Pen(Color.Transparent, 0);
+                    antena.Active = true;
+                    RastrMap.ListRangesParam.Add(new RangesParam(10, 100000, 0, 0, 0));
+                }
 
+                
+                antena.Radius = 10000;
+
+                definderJammingPoint.AntennaDefinder.Add(antena);
+                definderJammingPoint.AntennaJamming.Add(antena);
+                
+            }
+
+            RastrMap.rasterViewModel.DefinderJammingPoint.Clear();
+            RastrMap.rasterViewModel.DefinderJammingPoint.Add(definderJammingPoint);
             RastrMap.UpdateDFP(definderJammingPoint);
         }
 
