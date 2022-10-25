@@ -17,14 +17,11 @@ namespace Ross
         private ConnectionTypeServerOD connectionType1;
         private ConnectionTypeServerOD connectionType2;
         private ConnectionStates connectionStates = ConnectionStates.Disconnected;
-        private ConnectionStates[] connectionStatesGrpcServer;
         private ConnectionStates connectionStatesGrpcServer1 = ConnectionStates.Disconnected;
         private ConnectionStates connectionStatesGrpcServer2 = ConnectionStates.Disconnected;
 
         public MainWindowViewSize()
         {
-            connectionStatesGrpcServer =
-                new ConnectionStates[2] { ConnectionStates.Disconnected, ConnectionStates.Disconnected };
             InitMarkSizeWnd();
         }
 
@@ -87,7 +84,6 @@ namespace Ross
                 OnPropertyChanged();
             }
         }
-
 
         public SizeValue sizeChat { get; set; } = new SizeValue() { Current = 0, Visible = false};
         public SizeValue sizeSetting { get; set; } = new SizeValue() { Current = 0, Visible = false};

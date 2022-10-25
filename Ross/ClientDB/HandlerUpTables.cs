@@ -473,22 +473,25 @@ namespace Ross
 
             foreach (var tableASP in tableASPs)
             {
-                var oldStation = SelectedStationModels.FirstOrDefault(t => t.IdMaster == tableASP.Id);
-                if((oldStation == null && tableASP.Role == RoleStation.Master) || (oldStation != null && (oldStation.SelectedConnectionObject.ServerIp != tableASP.AddressIP || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)))
+                if (tableASP.Role == RoleStation.Slave)
                 {
-                    InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, (byte)tableASP.Id, 0, (Stations)j); 
+                    continue;
+                }
+
+                var oldStation = SelectedStationModels.FirstOrDefault(t => t.IdMaster == tableASP.Id);
+                if(oldStation == null || (oldStation != null && (oldStation.SelectedConnectionObject.ServerIp != tableASP.AddressIP || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)))
+                {
+                    InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, tableASP.AddressIp3G4G, tableASP.AddressPort3G4G, (byte)tableASP.Id, tableASP.MatedStationNumber, (Stations)j); 
                     Task.Factory.StartNew(() =>
                     {
                         ConnectionStates connectionStates = IsChosenConnectionConnected(SelectedStationModels[j]);
-                        Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer1 = connectionStates); //TODO:change for uniq
+                        if(j==0) Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer1 = connectionStates); 
+                        else Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer2 = connectionStates);
                     });
                     
                 }
 
-                if (tableASP.Role == RoleStation.Master)
-                {
-                    j++;
-                }
+                j++;
 
                 if (j == SelectedStationModels.Length) return;
                //TODO: if list. count == 0
