@@ -36,7 +36,8 @@ namespace Ross
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
             {
                 mainWindowViewSize.ConnectionStatesDB = WPFControlConnection.ConnectionStates.Disconnected;
-                  clientDB = null;
+                DeinitClientDB();
+                clientDB = null;
             });
         }
 

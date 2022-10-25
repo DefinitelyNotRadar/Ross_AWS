@@ -71,9 +71,12 @@ namespace Ross
                 //if (!selectedStation.Ping("ROSS")) return;
 
                 //ReadRecord(selectedStation.GetFwsElint(), NameTable.TempFWS);
+                ReadAsp(selectedStation.GetAsps(), selectedStation);
+
+                Task.Delay(1000);
                 ReadRecord(selectedStation.GetFwsElintDistribution(), NameTable.TableReconFWS);
                 ReadRecord(selectedStation.GetFhssElint(), NameTable.TableReconFHSS);
-                //ReadRecord(selectedStation.GetAsps(), NameTable.TableASP);
+                
                 ReadStationCoord(selectedStation);
                 ReadAntenasDirections(selectedStation);
                 SynchronizeTime(selectedStation);
@@ -109,31 +112,48 @@ namespace Ross
             });
         }
 
-        //private void ReadAsp(object table, GrpcClient selectedStation)
-        //{
-        //    Dispatcher.Invoke(() =>
-        //        {
-        //            var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableASP).ListRecords;
-        //            var fromDB = clientDB?.Tables[NameTable.TableASP].Load<TableASP>();
-        //            var idList = fromDB.Select(t => t.Id).ToList();
-        //            foreach (var record in recordsToDB)
-        //            {
-        //                if (fromDB != null && idList.Contains(record.Id))
-        //                {
-        //                    var rec = fromDB.First(t => t.Id == record.Id);
-        //                    rec.
-        //                    clientDB?.Tables[NameTable.TableASP].Change(record);
-        //                }
-        //                else
-        //                {
-        //                    clientDB?.Tables[nameTable].Add(record);
-        //                }
-        //                //}
-        //            }
+        private void ReadAsp(object table, GrpcClient selectedStation)
+        {
+            Dispatcher.Invoke(() =>
+                {
+                    var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableASP).ToList<TableASP>();
+                    var fromDB = clientDB?.Tables[NameTable.TableASP].Load<TableASP>();
+                    var idList = fromDB.Select(t => t.Id).ToList();
+                    foreach (var record in recordsToDB)
+                    {
+                        //var convRec = record as TableASP;
+                        if (fromDB != null && idList.Contains(record.Id))
+                        {
+                            var rec = fromDB.First(t => t.Id == record.Id);
+                            rec.MatedStationNumber = record.MatedStationNumber;
+                            rec.Coordinates = record.Coordinates;
+                            rec.Mode = record.Mode;
+                            //Letters?
+                            rec.Role = record.Role;
+                            rec.LPA10 = record.LPA10;
+                            rec.LPA13 = record.LPA13;
+                            rec.LPA24 = record.LPA24;
+                            rec.LPA510 = record.LPA510;
+                            rec.LPA57 = record.LPA57;
+                            rec.LPA59 = record.LPA59;
+                            rec.BPSS = record.BPSS;
+                            rec.AntHeightRec = record.AntHeightRec;
+                            rec.AntHeightSup = record.AntHeightSup;
+                            rec.RRS1 = record.RRS1;
+                            rec.RRS2 = record.RRS2;
+                            rec.Sectors = record.Sectors;
+                            clientDB?.Tables[NameTable.TableASP].Change(rec);
+                        }
+                        else
+                        {
+                            clientDB?.Tables[NameTable.TableASP].Add(record);
+                        }
+                        //}
+                    }
 
-        //        });
+                });
 
-        //}
+        }
 
         private void ReadStationCoord(GrpcClient selectedStation)
         {

@@ -19,6 +19,8 @@ namespace Ross
 {
     using UserControl_Chat;
 
+    using WPFControlConnection;
+
     public partial class MainWindow : Window
     {
 
@@ -40,6 +42,11 @@ namespace Ross
                 ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
 
             });
+            
+
+            
+            
+            
         }
 
         private void HandlerUpdate_TableSectorRangesRecon(object sender, TableEventArs<TableSectorsRangesRecon> e)
@@ -465,19 +472,38 @@ namespace Ross
             int j = 0;
 
             foreach (var tableASP in tableASPs)
-            {              
-                //if (tableASP.SlaveId >= 0)
+            {
+                var oldStation = SelectedStationModels.FirstOrDefault(t => t.IdMaster == tableASP.Id);
+                if((oldStation == null && tableASP.Role == RoleStation.Master) || (oldStation != null && (oldStation.SelectedConnectionObject.ServerIp != tableASP.AddressIP || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)))
                 {
-                    //  SelectedByConnectionTypeClient1.IdSlave = tableASP.SlaveId;
-
-                    InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, (byte)tableASP.Id, 0, (Stations)j);
+                    InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, (byte)tableASP.Id, 0, (Stations)j); 
+                    Task.Factory.StartNew(() =>
+                    {
+                        ConnectionStates connectionStates = IsChosenConnectionConnected(SelectedStationModels[j]);
+                        Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer1 = connectionStates); //TODO:change for uniq
+                    });
+                    
                 }
-                //else if(tableASP.SlaveId == -1)
-                //{
-                //    SelectedByConnectionTypeClient1.IdMaster = tableASP.Id;
-                //}
-                j++;
+
+                if (tableASP.Role == RoleStation.Master)
+                {
+                    j++;
+                }
+
                 if (j == SelectedStationModels.Length) return;
+               //TODO: if list. count == 0
+                ////if (tableASP.SlaveId >= 0)
+                //{
+                //    //  SelectedByConnectionTypeClient1.IdSlave = tableASP.SlaveId;
+
+                //    InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, (byte)tableASP.Id, 0, (Stations)j);
+                //}
+                ////else if(tableASP.SlaveId == -1)
+                ////{
+                ////    SelectedByConnectionTypeClient1.IdMaster = tableASP.Id;
+                ////}
+                //j++;
+                //if (j == SelectedStationModels.Length) return;
             }
         }
 
