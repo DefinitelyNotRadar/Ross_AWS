@@ -38,7 +38,7 @@ namespace Ross
                 //UpdateTableASP4MainPanel(lASP);
                 DrawAllObjects();
                 ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
-      
+
             });
         }
 
@@ -169,6 +169,7 @@ namespace Ross
                 lReconFWS = e.Table;
                 ucReconFWS.UpdateReconFWS(lReconFWS);
                 ucReconFWS.UpdateASPRP(lASP, lReconFWS);
+                DrawAllObjects();
             });
         }
 
@@ -196,7 +197,7 @@ namespace Ross
                 //lReconFWS = e.Table;
                 //ucReconFWS.UpdateReconFWS(lReconFWS);
                 //ucReconFWS.UpdateASPRP(lASP, lReconFWS);
-
+                DrawAllObjects();
             });
         }
 
@@ -224,6 +225,7 @@ namespace Ross
 
 
                 SendToEachStation<TableSuppressFWS>(e.Table, NameTable.TableSuppressFWS);
+
                 DrawAllObjects();
             });
         }
@@ -240,6 +242,7 @@ namespace Ross
                 var listTempSuppressFWS = e.Table;
                 ucSuppressFWS.UpdateRadioJamState(listTempSuppressFWS);
                 //UpdateRadioJamStateStructForBRZ(listTempSuppressFWS);
+
             });
         }
 

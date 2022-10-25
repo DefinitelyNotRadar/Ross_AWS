@@ -21,7 +21,7 @@ namespace Ross
             mapLayout.OnRadioJammingMode += MapLayout_OnRadioJammingMode;
             mapLayout.OnCoordASPPropertyGridSelecteted += MapLayout_OnCoordASPPropertyGridSelecteted;
             mapLayout.OnCoordControlPoinChanged += MapLayout_OnCoordControlPoinChanged;
-            mapLayout.OnNeedToRedrawMapJojects += MapLayout_OnNeedToRedrawMapJojects;
+            mapLayout.OnNeedToRedrawMapObjects += MapLayout_OnNeedToRedrawMapJojects;
         }
     }
 }

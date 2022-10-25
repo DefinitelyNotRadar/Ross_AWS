@@ -46,8 +46,8 @@ namespace Ross.Map
         public EventHandler<CoordEventArgs> OnCoordControlPoinChanged;
         public EventHandler<CoordEventArgs> OnCoordASPPropertyGridSelecteted;
         public EventHandler<List<Point>> OnPolygonLineOfSightChanged;
-        public EventHandler<EventArgs> OnNeedToRedrawMapJojects;
-
+        public EventHandler<EventArgs> OnNeedToRedrawMapObjects;
+        public MapViewModel MapViewModel;
 
         private List<Point> polygon = new List<Point>();
 
@@ -59,7 +59,8 @@ namespace Ross.Map
             LoadSettings();
             InitHotKeys();
 
-            DataContext = new MapViewModel(RastrMap, polygon);
+            MapViewModel = new MapViewModel(RastrMap, polygon);
+            DataContext = MapViewModel;
 
 
             mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,-130), scale, new Offset(0, 0));
@@ -188,6 +189,8 @@ namespace Ross.Map
 
         #endregion
 
+        #region Context menu item
+
         private void RastrMap_OnOnPCPosition(object sender, Location e)
         {
             try
@@ -203,7 +206,7 @@ namespace Ross.Map
 
                 RastrMap.UpdatePC(controlPost);
 
-                DrawSector(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }, new AntennasMessage(), 1);
+                //DrawSector(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }, new AntennasMessage(), 1);
 
                 OnCoordControlPoinChanged(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
             }
@@ -218,6 +221,7 @@ namespace Ross.Map
            OnCoordASPPropertyGridSelecteted(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
         }
 
+        #endregion
 
         #region Draw
 
@@ -329,7 +333,6 @@ namespace Ross.Map
 
             RastrMap.rasterViewModel.DefinderJammingPoint.Clear();
             RastrMap.rasterViewModel.DefinderJammingPoint.Add(definderJammingPoint);
-            RastrMap.UpdateDFP(definderJammingPoint);
         }
 
         private int CheckAngle(int angle)
@@ -343,10 +346,14 @@ namespace Ross.Map
 
         #endregion
 
+        public StatusBarModel GetStatusBarModel()
+        {
+            return MapViewModel.StatusBar;
+        }
 
         private void ToggleButton_DownPanel_Unchecked(object sender, RoutedEventArgs e)
         {
-            OnNeedToRedrawMapJojects(this, e);
+            OnNeedToRedrawMapObjects(this, e);
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)

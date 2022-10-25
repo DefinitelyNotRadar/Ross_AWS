@@ -20,6 +20,7 @@ using RouteControl.ViewModel;
 using UIMapRast;
 using Mapsui.Providers;
 using Mapsui.Projection;
+using ModelsTablesDBLib;
 
 namespace Ross.Map
 {
@@ -28,6 +29,7 @@ namespace Ross.Map
         private StatusBarModel statusBar = new StatusBarModel();
         private GridLength settingsControlWidth = new GridLength(0, GridUnitType.Pixel);
         private GridLength calculationJobHeight = new GridLength(0, GridUnitType.Pixel);
+        private List<TableASP> tableASPs = new List<TableASP>();
 
 
         public MapViewModel(MapControl rasterMapControl,  List<Point> polygonReturn)
@@ -41,12 +43,12 @@ namespace Ross.Map
         public StatusBarModel StatusBar
         {
             get => statusBar;
-            set
-            {
-                if (statusBar == value) return;
-                statusBar = value;
-                OnPropertyChanged();
-            }
+            //set
+            //{
+            //    if (statusBar == value) return;
+            //    statusBar = value;
+            //    OnPropertyChanged();
+            //}
         }
 
         public GridLength SettingsControlWidth
@@ -71,6 +73,11 @@ namespace Ross.Map
             }
         }
 
+        public List<TableASP> ASPCollection
+        {
+            get => tableASPs;
+            
+        }
 
         #region Task 1
 

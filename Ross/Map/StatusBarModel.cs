@@ -48,7 +48,7 @@ namespace Ross.Map
             }
         }
 
-        public double RESFUSSTDValue
+        public double RESFHSSTDValue
         {
             get => rESFUSSTDValue;
             set
@@ -59,7 +59,7 @@ namespace Ross.Map
             }
         }
 
-        public double RESFUSSJValue
+        public double RESFHSSJValue
         {
             get => rESFUSSJValue;
             set

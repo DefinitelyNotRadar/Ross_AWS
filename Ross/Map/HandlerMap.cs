@@ -153,6 +153,7 @@ namespace Ross
             {
                 mapLayout.DrawStation(asp.Coordinates, asp.Caption);
             }
+            mapLayout.GetStatusBarModel().AJSValue = lASP.Count;
         }
 
         private void DrawAllFWS()
@@ -161,6 +162,9 @@ namespace Ross
                 mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
             foreach (var fws in lSuppressFWS)
                 mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
+
+            mapLayout.GetStatusBarModel().RESFWSTDValue = lReconFWS.Count;
+            mapLayout.GetStatusBarModel().RESFWSJValue = lSuppressFWS.Count;
         }
 
         private void DrawAllFHSS()
@@ -169,6 +173,9 @@ namespace Ross
             {
                 mapLayout.DrawSourceFHSS(fhss.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
             }
+
+            mapLayout.GetStatusBarModel().RESFHSSTDValue = lReconFHSS.Count;
+            mapLayout.GetStatusBarModel().RESFHSSJValue = lSuppressFHSS.Count;
 
             //foreach (var fhss in lReconFHSS)
             //    mapLayout.DrawSourceFHSS(fhss., DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
