@@ -477,7 +477,7 @@ namespace Ross
                 {
                     continue;
                 }
-
+                j++;
                 var oldStation = SelectedStationModels.FirstOrDefault(t => t.IdMaster == tableASP.Id);
                 if(oldStation == null || (oldStation != null && (oldStation.SelectedConnectionObject.ServerIp != tableASP.AddressIP || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)))
                 {
@@ -485,13 +485,13 @@ namespace Ross
                     Task.Factory.StartNew(() =>
                     {
                         ConnectionStates connectionStates = IsChosenConnectionConnected(SelectedStationModels[j]);
-                        if(j==0) Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer1 = connectionStates); 
+                        if(j==1) Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer1 = connectionStates); 
                         else Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer2 = connectionStates);
                     });
                     
                 }
 
-                j++;
+                
 
                 if (j == SelectedStationModels.Length) return;
                //TODO: if list. count == 0
