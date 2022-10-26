@@ -121,38 +121,66 @@ namespace Ross
                     var idList = fromDB.Select(t => t.Id).ToList();
                     foreach (var record in recordsToDB)
                     {
-                        //var convRec = record as TableASP;
                         if (fromDB != null && idList.Contains(record.Id))
                         {
                             var rec = fromDB.First(t => t.Id == record.Id);
-                            rec.MatedStationNumber = record.MatedStationNumber;
-                            rec.Coordinates = record.Coordinates;
-                            rec.Mode = record.Mode;
-                            //Letters?
-                            rec.Role = record.Role;
-                            rec.LPA10 = record.LPA10;
-                            rec.LPA13 = record.LPA13;
-                            rec.LPA24 = record.LPA24;
-                            rec.LPA510 = record.LPA510;
-                            rec.LPA57 = record.LPA57;
-                            rec.LPA59 = record.LPA59;
-                            rec.BPSS = record.BPSS;
-                            rec.AntHeightRec = record.AntHeightRec;
-                            rec.AntHeightSup = record.AntHeightSup;
-                            rec.RRS1 = record.RRS1;
-                            rec.RRS2 = record.RRS2;
-                            rec.Sectors = record.Sectors;
+                            ConvertAspToRoss(rec, record, recordsToDB);
                             clientDB?.Tables[NameTable.TableASP].Change(rec);
                         }
                         else
                         {
-                            clientDB?.Tables[NameTable.TableASP].Add(record);
+                            var newRec = new TableASP();
+                            ConvertAspToRoss(newRec, record, recordsToDB);
+                            clientDB?.Tables[NameTable.TableASP].Add(newRec);
                         }
-                        //}
                     }
 
                 });
 
+        }
+
+        private void ConvertAspToRoss(TableASP old, TableASP updated, IList<TableASP> updatedAsps)
+        {
+            old.Id = updated.Id;
+            old.IdMission = updated.IdMission;
+            old.MatedStationNumber = ChoosePairStation(updated, updatedAsps);
+            old.Coordinates = updated.Coordinates;
+            old.Mode = updated.Mode;
+            old.Letters = updated.Letters;
+            old.Role = updated.Role;
+            old.LPA10 = updated.LPA10;
+            old.LPA13 = updated.LPA13;
+            old.LPA24 = updated.LPA24;
+            old.LPA510 = updated.LPA510;
+            old.LPA57 = updated.LPA57;
+            old.LPA59 = updated.LPA59;
+            old.BPSS = updated.BPSS;
+            old.AntHeightRec = updated.AntHeightRec;
+            old.AntHeightSup = updated.AntHeightSup;
+            old.RRS1 = updated.RRS1;
+            old.RRS2 = updated.RRS2;
+            old.Sectors = updated.Sectors;
+            old.CallSign = updated.CallSign;
+            //return old;
+        }
+
+        private int ChoosePairStation(TableASP asp, IList<TableASP> asps)
+        {
+            TableASP mated;
+            switch (asp.Role)
+            {
+                case RoleStation.Master:
+                    mated = asps.FirstOrDefault(t => t.Role == RoleStation.Slave);
+                    break;
+                case RoleStation.Slave:
+                    mated = asps.FirstOrDefault(t => t.Role == RoleStation.Master);
+                    break;
+                default:
+                    mated = default;
+                    break;
+            }
+
+            return mated.Equals(default(TableASP)) ? 0 : mated.Id;
         }
 
         private void ReadStationCoord(GrpcClient selectedStation)

@@ -35,7 +35,7 @@ namespace Ross
             SelectedStationModels = new SelectedStationModel[2] { SelectedByConnectionTypeClient1, SelectedByConnectionTypeClient2 };
         }
 
-        private void InitializeODConnection(SelectedStationModel selectedStationModel, string serverIp, int serverPort, string serverIp3G, int serverPort3G, byte serverAddress, int slaveId, Stations stations)
+        private void InitializeODConnection(SelectedStationModel selectedStationModel, string serverIp, int serverPort, string serverIp3G, int serverPort3G, int serverAddress, int slaveId, Stations stations)
         {
             selectedStationModel.IdMaster = serverAddress;
             selectedStationModel.IdSlave = slaveId;
