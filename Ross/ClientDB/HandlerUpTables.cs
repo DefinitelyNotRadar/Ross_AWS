@@ -273,9 +273,9 @@ namespace Ross
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
             {
-                var lFHSSExcludedFreq = e.Table;
+                lFHSSExcludedFreq = e.Table;
                 ucSuppressFHSS.UpdateFHSSExcludedFreq(lFHSSExcludedFreq);
-
+                //SendToEachStation(e.Table, NameTable.TableFHSSExcludedFreq);
 
                 //var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFHSSExcludedFreq);
                 //SelectedByConnectionTypeClient1.SelectedConnectionObject.SendFhssJamming(obj);
@@ -604,8 +604,10 @@ namespace Ross
                                                                             IsTransmited = s.Status == ChatMessageStatus.Delivered,
                                                                         }).ToList();
 
+                
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
                 {
+                    newWindow.curChat.ClearChatHistory(GetSideMenu());
                     newWindow.curChat.DrawMessageToChat(messages);
                 });
             }

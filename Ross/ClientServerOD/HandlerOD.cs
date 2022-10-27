@@ -54,8 +54,7 @@ namespace Ross
                 var rec = this.lASP.Find(t => t.Id == client.ServerAddress).Clone();
                 if (rec == null) return;
                 rec.IsConnect = e ? Led.Green : Led.Empty;
-                //ChangeASP(int id, TableASP replaceASP)
-                //this.clientDB?.Tables[NameTable.TableASP].ChangeAsync(rec);
+
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
                 {
                     ucASP.ChangeASP(rec.Id, rec);
@@ -108,15 +107,13 @@ namespace Ross
         {
             Task task1 = new Task(() =>
             {
-                //if (!selectedStation.Ping("ROSS")) return;
-
-                //ReadRecord(selectedStation.GetFwsElint(), NameTable.TempFWS);
                 ReadAsp(selectedStation.GetAsps(), selectedStation);
 
                 Task.Delay(1000);
                 ReadRecord(selectedStation.GetFwsElintDistribution(), NameTable.TableReconFWS);
                 ReadRecord(selectedStation.GetFhssElint(), NameTable.TableReconFHSS);
                 ReadRecord(selectedStation.GetFwsJamming(), NameTable.TempSuppressFWS);
+                ReadRecord(selectedStation.GetFhssJamming(), NameTable.TempSuppressFHSS);
                 ReadStationCoord(selectedStation);
                 ReadAntenasDirections(selectedStation);
                 SynchronizeTime(selectedStation);
@@ -125,18 +122,21 @@ namespace Ross
             task1.Start();
         }
 
-        //private int tempFWSCounter = 0;
+
         private void ReadRecord(object table, NameTable nameTable)
         {
             //TODO: переделать под несколько станций
             Dispatcher.Invoke(() =>
-            { //TODO:удалять по Id станции
+            { 
+                if (nameTable == NameTable.TempSuppressFWS || nameTable == NameTable.TempSuppressFHSS)
+                {
+                    OnClearRecordsByFilter(this, nameTable);
+                }
+
                 var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(nameTable).ListRecords;
                 var fromDB = clientDB?.Tables[nameTable].Load<AbstractCommonTable>().Select(t=>t.Id).ToList();
                 foreach(var record in recordsToDB)
                 {
-                    //foreach(var tableItem in fromDB)
-                    //{
                     if(fromDB != null && fromDB.Contains(record.Id))
                     {
                         clientDB?.Tables[nameTable].Change(record);
@@ -145,7 +145,6 @@ namespace Ross
                     {
                         clientDB?.Tables[nameTable].Add(record);
                     }
-                    //}
                 }
                 
             });
@@ -201,7 +200,6 @@ namespace Ross
             old.RRS2 = updated.RRS2;
             old.Sectors = updated.Sectors;
             old.CallSign = updated.CallSign;
-            //return old;
         }
 
         private int ChoosePairStation(TableASP asp, IList<TableASP> asps)

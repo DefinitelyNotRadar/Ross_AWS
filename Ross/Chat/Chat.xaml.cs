@@ -21,7 +21,7 @@ namespace Ross
         }
 
         public event EventHandler<List<Message>> OnReturnApprovedMessages;
-        List<StationClassForChat> sideMenuList;
+        public List<StationClassForChat> SideMenuList;
 
         public void SetStations()
         {
@@ -41,16 +41,16 @@ namespace Ross
         {
             try
             {
-                sideMenuList = new List<StationClassForChat>();
+                SideMenuList = new List<StationClassForChat>();
                 ASPList.ForEach(ASPMember =>
                 {
-                    if(!ASPMember.ISOwn)
-                    sideMenuList.Add(new StationClassForChat(ASPMember.Id, ASPMember.CallSign, true));
+                    if(!ASPMember.ISOwn && ASPMember.Role != RoleStation.Slave)
+                        SideMenuList.Add(new StationClassForChat(ASPMember.Id, ASPMember.CallSign, true));
                 });
                 //sideMenuList.Add(new StationClassForChat(0, "ПУ", true));
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
                 {
-                    curChat.UpdateSideMenuMembers(sideMenuList);
+                    curChat.UpdateSideMenuMembers(SideMenuList);
                 });
                 
             }

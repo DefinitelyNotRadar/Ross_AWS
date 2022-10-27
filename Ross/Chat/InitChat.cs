@@ -75,8 +75,11 @@ namespace Ross
             newWindow.UpdateSideMenu(ASPList);
         }
 
+        private List<int> GetSideMenu()
+        {
+            return newWindow.SideMenuList.Select(t=>t.Id).ToList();
+        }
 
-       
 
 
     }
