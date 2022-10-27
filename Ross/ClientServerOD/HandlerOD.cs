@@ -42,6 +42,27 @@ namespace Ross
                     mainWindowViewSize.ConnectionStatesGrpcServer1 = WPFControlConnection.ConnectionStates.Disconnected;
                 });
             }
+
+
+            this.ChangeAspConnectionStatus(sender as GrpcClient, e);
+        }
+
+        private void ChangeAspConnectionStatus(GrpcClient client, bool e)
+        {
+            try
+            {
+                var rec = this.lASP.Find(t => t.Id == client.ServerAddress).Clone();
+                if (rec == null) return;
+                rec.IsConnect = e ? Led.Green : Led.Empty;
+                //ChangeASP(int id, TableASP replaceASP)
+                //this.clientDB?.Tables[NameTable.TableASP].ChangeAsync(rec);
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                {
+                    ucASP.ChangeASP(rec.Id, rec);
+                });
+            }
+            catch(Exception ex)
+            {}
         }
 
         private void GrpcClient_ConnectionStateChanged2(object sender, bool e)
@@ -61,6 +82,7 @@ namespace Ross
                     mainWindowViewSize.ConnectionStatesGrpcServer2 = WPFControlConnection.ConnectionStates.Disconnected;
                 });
             }
+            this.ChangeAspConnectionStatus(sender as GrpcClient, e);
         }
 
 
@@ -80,7 +102,6 @@ namespace Ross
                 ReadStationCoord(selectedStation);
                 ReadAntenasDirections(selectedStation);
                 SynchronizeTime(selectedStation);
-
 
             });
             task1.Start();
@@ -117,7 +138,8 @@ namespace Ross
             Dispatcher.Invoke(() =>
                 {
                     var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableASP).ToList<TableASP>();
-                    var fromDB = clientDB?.Tables[NameTable.TableASP].Load<TableASP>();
+                    //var fromDB = clientDB?.Tables[NameTable.TableASP].Load<TableASP>();
+                    var fromDB = this.lASP;
                     var idList = fromDB.Select(t => t.Id).ToList();
                     foreach (var record in recordsToDB)
                     {

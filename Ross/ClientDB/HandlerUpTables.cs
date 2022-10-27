@@ -40,7 +40,6 @@ namespace Ross
                 //UpdateTableASP4MainPanel(lASP);
                 DrawAllObjects();
                 ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
-
             });
             
 
@@ -469,7 +468,7 @@ namespace Ross
 
         private void UpdateSelectedStationModel(List<TableASP> tableASPs)
         {
-            int j = 0;
+            int j = -1;
 
             foreach (var tableASP in tableASPs)
             {
@@ -479,21 +478,24 @@ namespace Ross
                 }
                 j++;
                 var oldStation = SelectedStationModels.FirstOrDefault(t => t.IdMaster == tableASP.Id);
-                if(oldStation == null || (oldStation != null && (oldStation.SelectedConnectionObject.ServerIp != tableASP.AddressIP || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)))
+
+                
+                if (oldStation == null || (oldStation != null && (oldStation.SelectedConnectionObject.ServerIp != tableASP.AddressIP || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)))
                 {
+                    SelectedStationModels[j].SelectedConnectionObject?.ShutDown();
                     InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, tableASP.AddressIp3G4G, tableASP.AddressPort3G4G, (byte)tableASP.Id, tableASP.MatedStationNumber, (Stations)j); 
                     Task.Factory.StartNew(() =>
                     {
                         ConnectionStates connectionStates = IsChosenConnectionConnected(SelectedStationModels[j]);
-                        if(j==1) Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer1 = connectionStates); 
+                        if(j==0) Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer1 = connectionStates); 
                         else Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer2 = connectionStates);
                     });
                     
                 }
 
-                
+                ChangeAspConnectionStatus(SelectedStationModels[j].SelectedConnectionObject, SelectedStationModels[j].SelectedConnectionObject.IsConnected);
 
-                if (j == SelectedStationModels.Length) return;
+                if (j == SelectedStationModels.Length-2) return;
                //TODO: if list. count == 0
                 ////if (tableASP.SlaveId >= 0)
                 //{

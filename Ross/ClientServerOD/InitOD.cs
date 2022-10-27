@@ -68,7 +68,7 @@ namespace Ross
                         CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Viper2);
                         break;
                 }
-                CommonPartInitialization1(SelectedByConnectionTypeClient2.SelectedConnectionObject);
+                CommonPartInitialization2(SelectedByConnectionTypeClient2.SelectedConnectionObject);
             }
         }
 
