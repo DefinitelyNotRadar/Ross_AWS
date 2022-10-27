@@ -65,6 +65,24 @@ namespace Ross
             {}
         }
 
+        //private void ChangeAspMode(GrpcClient client, byte mode)
+        //{
+        //    try
+        //    {
+        //        var rec = this.lASP.Find(t => t.Id == client.ServerAddress).Clone();
+        //        if (rec == null) return;
+        //        rec.Mode = mode;
+        //        //ChangeASP(int id, TableASP replaceASP)
+        //        //this.clientDB?.Tables[NameTable.TableASP].ChangeAsync(rec);
+        //        Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+        //        {
+        //            ucASP.ChangeASP(rec.Id, rec);
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    { }
+        //}
+
         private void GrpcClient_ConnectionStateChanged2(object sender, bool e)
         {
             if (e)
@@ -98,7 +116,7 @@ namespace Ross
                 Task.Delay(1000);
                 ReadRecord(selectedStation.GetFwsElintDistribution(), NameTable.TableReconFWS);
                 ReadRecord(selectedStation.GetFhssElint(), NameTable.TableReconFHSS);
-                
+                ReadRecord(selectedStation.GetFwsJamming(), NameTable.TempSuppressFWS);
                 ReadStationCoord(selectedStation);
                 ReadAntenasDirections(selectedStation);
                 SynchronizeTime(selectedStation);
@@ -112,7 +130,7 @@ namespace Ross
         {
             //TODO: переделать под несколько станций
             Dispatcher.Invoke(() =>
-            {
+            { //TODO:удалять по Id станции
                 var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(nameTable).ListRecords;
                 var fromDB = clientDB?.Tables[nameTable].Load<AbstractCommonTable>().Select(t=>t.Id).ToList();
                 foreach(var record in recordsToDB)
