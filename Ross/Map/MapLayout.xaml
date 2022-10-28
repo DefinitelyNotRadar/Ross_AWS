@@ -49,7 +49,7 @@
                         OnPCPosition="RastrMap_OnOnPCPosition"
                         OnPointPosition="RastrMap_OnOnPointPosition"/>
 
-        <evaTable:UserControl1  x:Name="evaTable" Grid.Column="4" Grid.Row="0" Width="430" Height="400"
+        <evaTable:UserControl1  x:Name="evaTable" Grid.Column="4" Grid.Row="0" Width="430" Height="140"
                                Margin="3,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                                BorderBrush="Transparent" Visibility="{Binding IsVisibleEvaTable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                GetLine="EvaTable_OnGetLine"

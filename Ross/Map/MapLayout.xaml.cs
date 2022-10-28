@@ -206,7 +206,7 @@ namespace Ross.Map
 
                 RastrMap.UpdatePC(controlPost);
 
-                //DrawSector(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }, new AntennasMessage(), 1);
+               // DrawSector(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }, new AntennasMessage(), 1);
 
                 OnCoordControlPoinChanged(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
             }
@@ -306,7 +306,7 @@ namespace Ross.Map
 
                 try
                 {                    
-                    antena.Sector = 20;
+                    antena.Sector = 30;
                     antena.Direction = antennasMessage.Lpa[i];
                     antena.BrushAntenna = Color.Green;
                     antena.PenAntenna = new Pen(Color.Green, 2);
@@ -315,8 +315,8 @@ namespace Ross.Map
                 }
                 catch(ArgumentOutOfRangeException ex)
                 {
-                    antena.Sector = 0;
-                    antena.Direction = 0;
+                    antena.Sector = 30;
+                    antena.Direction = 90;
                     antena.BrushAntenna = Color.Transparent;
                     antena.PenAntenna = new Pen(Color.Transparent, 0);
                     antena.Active = true;
@@ -345,6 +345,13 @@ namespace Ross.Map
         }
 
         #endregion
+
+        public void SetASP(List<TableASP> tableASPs)
+        {
+            MapViewModel.ASPCollection.Clear();
+            foreach (var item in tableASPs)
+                MapViewModel.ASPCollection.Add(item);
+        }
 
         public StatusBarModel GetStatusBarModel()
         {

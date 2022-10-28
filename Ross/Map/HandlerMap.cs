@@ -154,6 +154,7 @@ namespace Ross
                 mapLayout.DrawStation(asp.Coordinates, asp.Caption);
             }
             mapLayout.GetStatusBarModel().AJSValue = lASP.Count;
+            mapLayout.SetASP(lASP);
         }
 
         private void DrawAllFWS()

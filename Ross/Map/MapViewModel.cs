@@ -21,6 +21,7 @@ using UIMapRast;
 using Mapsui.Providers;
 using Mapsui.Projection;
 using ModelsTablesDBLib;
+using System.Collections.ObjectModel;
 
 namespace Ross.Map
 {
@@ -29,7 +30,7 @@ namespace Ross.Map
         private StatusBarModel statusBar = new StatusBarModel();
         private GridLength settingsControlWidth = new GridLength(0, GridUnitType.Pixel);
         private GridLength calculationJobHeight = new GridLength(0, GridUnitType.Pixel);
-        private List<TableASP> tableASPs = new List<TableASP>();
+        private ObservableCollection<TableASP> tableASPs = new ObservableCollection<TableASP>();
 
 
         public MapViewModel(MapControl rasterMapControl,  List<Point> polygonReturn)
@@ -73,7 +74,7 @@ namespace Ross.Map
             }
         }
 
-        public List<TableASP> ASPCollection
+        public ObservableCollection<TableASP> ASPCollection
         {
             get => tableASPs;
             
@@ -176,6 +177,14 @@ namespace Ross.Map
         {
             AzimuthViewModel = new AzimuthControl.ViewModel.MainViewModel();
             AzimuthViewModel.PropertyChanged += AzimuthViewModel_PropertyChanged;
+            tableASPs.CollectionChanged += TableASPs_CollectionChanged;
+        }
+
+        private void TableASPs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            AzimuthViewModel.AzimuthCollection.Clear();
+            foreach (var asp in ASPCollection)
+                AzimuthViewModel.AzimuthCollection.Add(new AzimuthControl.Model.Azimuth() { Latitude = asp.Coordinates.Latitude, Longitude = asp.Coordinates.Longitude, NumJammer = asp.Id });
         }
 
         private void AzimuthViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -185,12 +194,18 @@ namespace Ross.Map
 
         public void DrawAzimuth()
         {
-            foreach(var station in AzimuthViewModel.AzimuthCollection)
+            
+            foreach (var azimuth in AzimuthViewModel.AzimuthCollection)
             {
                 List<Point> azimuthLine = new List<Point>();
-                azimuthLine.Add(Mercator.FromLonLat(station.Longitude, station.Latitude));
-                RasterMapControl.mapControl.AddPolyline(azimuthLine);
+                azimuthLine.Add(Mercator.FromLonLat(86.448, 175.34585));
+                azimuthLine.Add(Mercator.FromLonLat(AzimuthViewModel.UserLongitude, AzimuthViewModel.UserLatitude));
+                azimuthLine.Add(Mercator.FromLonLat(azimuth.Longitude, azimuth.Latitude));
+
+                RasterMapControl.mapControl.AddPolyline(azimuthLine, Color.Green);
             }
+
+           
         }
 
         #endregion
@@ -199,6 +214,10 @@ namespace Ross.Map
 
         private MainViewModel route;
         private Feature PolilineRoute;
+
+        private MapObjectStyle mapObjectStyle_Part;
+        private MapObjectStyle mapObjectStyle_Finish;
+        private const string partOfPath = @"\Resources\";
 
         public MainViewModel RouteViewModel
         {
@@ -217,7 +236,9 @@ namespace Ross.Map
         {
             RouteViewModel = new MainViewModel();
             RouteViewModel.PropertyChanged += Route_PropertyChanged;
-            RasterMapControl.OnRoutePointPosition += RasterMapControl_OnRoutePointPosition; 
+            RasterMapControl.OnRoutePointPosition += RasterMapControl_OnRoutePointPosition;
+            mapObjectStyle_Part = RasterMapControl.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "StartPoint.png", 0.27);
+            mapObjectStyle_Finish = RasterMapControl.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "StopPoint.png", 0.02);
         }
 
         private void RasterMapControl_OnRoutePointPosition(object sender, Location e)
@@ -255,10 +276,15 @@ namespace Ross.Map
 
             foreach (var item in RouteViewModel.SelectedItem.ListPoints)
             {
-                PointsOfSelectedRoute.Add(Mercator.FromLonLat(item.Longitude, item.Latitude));
+                var p = Mercator.FromLonLat(item.Longitude, item.Latitude);
+                
+                PointsOfSelectedRoute.Add(p);
+                RasterMapControl.mapControl.AddMapObject(mapObjectStyle_Part,"",p);
             }
+   
+            RasterMapControl.mapControl.AddMapObject(mapObjectStyle_Finish, "", PointsOfSelectedRoute.Last());
 
-            if(RasterMapControl.mapControl.IsLoaded)
+            if (RasterMapControl.mapControl.IsLoaded)
                 PolilineRoute = RasterMapControl.mapControl.AddPolyline(PointsOfSelectedRoute);
         }
 

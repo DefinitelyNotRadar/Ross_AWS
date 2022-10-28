@@ -544,6 +544,12 @@
     <Resource Include="Languages\TranslatorMapWindow\Translation.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\StartPoint.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\StopPoint.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\triangle_red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
