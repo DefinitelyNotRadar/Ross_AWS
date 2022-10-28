@@ -495,7 +495,7 @@ namespace Ross
 
                 ChangeAspConnectionStatus(SelectedStationModels[j].SelectedConnectionObject, SelectedStationModels[j].SelectedConnectionObject.IsConnected);
 
-                if (j == SelectedStationModels.Length-2) return;
+                if (j == SelectedStationModels.Length-1) return;
                //TODO: if list. count == 0
                 ////if (tableASP.SlaveId >= 0)
                 //{

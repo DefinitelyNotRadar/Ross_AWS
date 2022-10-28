@@ -51,7 +51,8 @@ namespace Ross
         {
             try
             {
-                var rec = this.lASP.Find(t => t.Id == client.ServerAddress).Clone();
+                //var findRec = 
+                var rec = this.lASP.Find(t => t.Id == client.ServerAddress)?.Clone();
                 if (rec == null) return;
                 rec.IsConnect = e ? Led.Green : Led.Empty;
 

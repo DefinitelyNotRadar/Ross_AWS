@@ -37,7 +37,7 @@ namespace Ross
             InitializeMapLayout();
 
             ChangeLanguage(Properties.Local.Common.Language);
-            InitChat();
+            
             InitTables();
 
             SetLanguageTables(Properties.Local.Common.Language);
@@ -46,6 +46,8 @@ namespace Ross
             mainWindowViewSize = new MainWindowViewSize();
             mainWindowViewSize.PropertyChanged += MainWindowViewSize_PropertyChanged;
             DataContext = mainWindowViewSize;
+            
+            InitChat();
         }
 
         private byte ViewCoordToByte(string viewCoord)
