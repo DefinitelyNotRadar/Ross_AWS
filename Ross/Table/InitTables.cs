@@ -23,7 +23,7 @@ namespace Ross
             ucSpecFreqForbidden.OnAddRecord += OnAddRecord;
             ucSpecFreqForbidden.OnChangeRecord += OnChangeRecord;
             ucSpecFreqForbidden.OnDeleteRecord += OnDeleteRecord;
-            ucSpecFreqForbidden.OnClearRecords += OnClearRecords;            
+            //ucSpecFreqForbidden.OnClearRecords += OnClearRecords;            
             ucSpecFreqForbidden.OnClearRecords += OnClearRecordsByFilter;
             ucSpecFreqForbidden.OnIsWindowPropertyOpen += UcSpecFreqForbidden_OnIsWindowPropertyOpen;
             ucSpecFreqForbidden.OnAddTableToReport += OnAddTableToReport;
@@ -32,7 +32,7 @@ namespace Ross
             ucSpecFreqImportant.OnAddRecord += OnAddRecord;
             ucSpecFreqImportant.OnChangeRecord += OnChangeRecord;
             ucSpecFreqImportant.OnDeleteRecord += OnDeleteRecord;
-            ucSpecFreqImportant.OnClearRecords += OnClearRecords;
+            //ucSpecFreqImportant.OnClearRecords += OnClearRecords;
             ucSpecFreqImportant.OnClearRecords += OnClearRecordsByFilter;
             ucSpecFreqImportant.OnIsWindowPropertyOpen += UcSpecFreqImportant_OnIsWindowPropertyOpen;
             ucSpecFreqImportant.OnAddTableToReport += OnAddTableToReport;
@@ -41,7 +41,7 @@ namespace Ross
             ucSpecFreqKnown.OnAddRecord += OnAddRecord;
             ucSpecFreqKnown.OnChangeRecord += OnChangeRecord;
             ucSpecFreqKnown.OnDeleteRecord += OnDeleteRecord;
-            ucSpecFreqKnown.OnClearRecords += OnClearRecords;
+            //ucSpecFreqKnown.OnClearRecords += OnClearRecords;
             ucSpecFreqKnown.OnClearRecords += OnClearRecordsByFilter;
             ucSpecFreqKnown.OnIsWindowPropertyOpen += UcSpecFreqKnown_OnIsWindowPropertyOpen;
             ucSpecFreqKnown.OnAddTableToReport += OnAddTableToReport;
@@ -50,7 +50,7 @@ namespace Ross
             ucSRangesRecon.OnAddRecord += OnAddRecord;
             ucSRangesRecon.OnChangeRecord += OnChangeRecord;
             ucSRangesRecon.OnDeleteRecord += OnDeleteRecord;
-            ucSRangesRecon.OnClearRecords += OnClearRecords;
+            //ucSRangesRecon.OnClearRecords += OnClearRecords;
             ucSRangesRecon.OnClearRecords += OnClearRecordsByFilter;
             ucSRangesRecon.OnLoadDefaultSRanges += UcSRangesRecon_OnLoadDefaultSRanges;
             ucSRangesRecon.OnIsWindowPropertyOpen += UcSRangesRecon_OnIsWindowPropertyOpen;
@@ -60,7 +60,7 @@ namespace Ross
             ucSRangesSuppr.OnAddRecord += OnAddRecord;
             ucSRangesSuppr.OnChangeRecord += OnChangeRecord;
             ucSRangesSuppr.OnDeleteRecord += OnDeleteRecord;
-            ucSRangesSuppr.OnClearRecords += OnClearRecords;
+            //ucSRangesSuppr.OnClearRecords += OnClearRecords;
             ucSRangesSuppr.OnClearRecords += OnClearRecordsByFilter;
             ucSRangesSuppr.OnLoadDefaultSRanges += UcSRangesSuppr_OnLoadDefaultSRanges;
             ucSRangesSuppr.OnIsWindowPropertyOpen += UcSRangesSuppr_OnIsWindowPropertyOpen;
@@ -85,7 +85,7 @@ namespace Ross
             ucSuppressFWS.OnAddRecord += OnAddRecord;
             ucSuppressFWS.OnChangeRecord += OnChangeRecord;
             ucSuppressFWS.OnDeleteRecord += OnDeleteRecord;
-            ucSuppressFWS.OnClearRecords += OnClearRecords;
+            //ucSuppressFWS.OnClearRecords += OnClearRecords;
             ucSuppressFWS.OnClearRecords += OnClearRecordsByFilter;
             ucSuppressFWS.OnDeleteRange += UcSuppressFWS_OnDeleteRange;
             ucSuppressFWS.OnAddRange += UcSuppressFWS_OnAddRange;
