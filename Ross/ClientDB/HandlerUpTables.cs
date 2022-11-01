@@ -480,7 +480,7 @@ namespace Ross
                 var oldStation = SelectedStationModels.FirstOrDefault(t => t.IdMaster == tableASP.Id);
 
                 
-                if (oldStation == null || (oldStation != null && (oldStation.SelectedConnectionObject.ServerIp != tableASP.AddressIP || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)))
+                if (oldStation == null || (oldStation != null && (oldStation.SelectedConnectionObject.ServerIp.Replace(',', '.') != tableASP.AddressIP.Replace(',','.') || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)))
                 {
                     SelectedStationModels[j].SelectedConnectionObject?.ShutDown();
                     InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, tableASP.AddressIp3G4G, tableASP.AddressPort3G4G, (byte)tableASP.Id, tableASP.MatedStationNumber, (Stations)j); 
