@@ -596,7 +596,8 @@ namespace Ross
                 //lChatMessages = new List<TableChatMessage>(e.Table);
                 var messages = new List<UserControl_Chat.Message>();
 
-                messages = e.OrderBy(t => t.Time).Select(s => new UserControl_Chat.Message()
+                messages = e.OrderBy(t => t.Time).Where(t=>GetSideMenu().Contains(t.Id))
+                    .Select(s => new UserControl_Chat.Message()
                                                                         {
                                                                             Id = s.ReceiverAddress == this.clientAddress ? s.SenderAddress : s.ReceiverAddress,
                                                                             MessageFiled = s.Text,

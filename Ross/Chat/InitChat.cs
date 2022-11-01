@@ -27,27 +27,41 @@ namespace Ross
         {
             try
             {
-                var lastMessage = messages.Last();
-                ////TODO: not 255
-                //if (messages.Last().Id == 255)
-                //{
-                //Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
-                //    {
-                        Cliant_SendMessage(lastMessage.MessageFiled, lastMessage.Id); //TODO: check
-                        //  return;
-                        //}
-                        var result = SelectedStationModels.FirstOrDefault(t => t.IdMaster == lastMessage.Id)?.SelectedConnectionObject?.SendTextMessage(lastMessage.MessageFiled);
+                foreach (var message in messages)
+                {
+                    if(!GetSideMenu().Contains(message.Id))
+                        continue;
 
-                        if (result == true)
-                        {
-                            Client_ConfirmLastMessage(lastMessage.Id);
-                        }
-                    //});
+                    Cliant_SendMessage(message.MessageFiled, message.Id); //TODO: check
+                    
+                    var result = SelectedStationModels.FirstOrDefault(t => t.IdMaster == message.Id)?.SelectedConnectionObject?.SendTextMessage(message.MessageFiled);
+
+                    if (result == true)
+                    {
+                        Client_ConfirmLastMessage(message.Id);
+                    }
+                }
+                //var lastMessage = messages.Last();
+                //////TODO: not 255
+                ////if (messages.Last().Id == 255)
+                ////{
+                ////Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
+                ////    {
+                //        Cliant_SendMessage(lastMessage.MessageFiled, lastMessage.Id); //TODO: check
+                //        //  return;
+                //        //}
+                //        var result = SelectedStationModels.FirstOrDefault(t => t.IdMaster == lastMessage.Id)?.SelectedConnectionObject?.SendTextMessage(lastMessage.MessageFiled);
+
+                //        if (result == true)
+                //        {
+                //            Client_ConfirmLastMessage(lastMessage.Id);
+                //        }
+                //    //});
                 
-                //if (mesage.Id == stationModel.IdMaster || mesage.Id == stationModel.IdSlave)
-                //{
-                //    stationModel.SelectedConnectionObject.SendTextMessage(mesage.MessageFiled);
-                //}         
+                ////if (mesage.Id == stationModel.IdMaster || mesage.Id == stationModel.IdSlave)
+                ////{
+                ////    stationModel.SelectedConnectionObject.SendTextMessage(mesage.MessageFiled);
+                ////}         
             }
             catch { }
         }

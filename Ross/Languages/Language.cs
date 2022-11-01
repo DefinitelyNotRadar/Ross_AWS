@@ -170,6 +170,39 @@ namespace Ross
             }
         }
 
+        private void SetLanguageChat(Languages languages)
+        {
+            var dict = new ResourceDictionary();
+            try
+            {
+                switch (languages)
+                {
+                    case Languages.Eng:
+                        dict.Source = new Uri("/Ross;component/Languages/UIChat/StringResource.EN.xaml",
+                            UriKind.Relative);
+                        mapLayout.Properties.Local.Common.Language = DLLSettingsControlPointForMap.Model.Languages.EN;
+
+                        break;
+                    case Languages.Rus:
+                        dict.Source = new Uri("/Ross;component/Languages/UIChat/StringResource.RU.xaml",
+                            UriKind.Relative);
+                        mapLayout.Properties.Local.Common.Language = DLLSettingsControlPointForMap.Model.Languages.RU;
+                        break;
+                    default:
+                        dict.Source = new Uri("/Ross;component/Languages/UIChat/StringResource.RU.xaml",
+                            UriKind.Relative);
+                        Properties.Local.Common.Language = Languages.Rus;
+                        mapLayout.Properties.Local.Common.Language = DLLSettingsControlPointForMap.Model.Languages.RU;
+                        break;
+                }
+
+                Resources.MergedDictionaries.Add(dict);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
 
         private void Properties_OnLanguageChange(object sender, Languages e)
         {
@@ -182,6 +215,7 @@ namespace Ross
             SetLanguageConnectionPanel(e);
             SetLanguageMapLayout(e);
             SetLanguageMainWindow(e);
+            SetLanguageChat(e);
         }
 
         private void UcSRangesRecon_OnIsWindowPropertyOpen(object sender, SectorsRangesProperty e)
