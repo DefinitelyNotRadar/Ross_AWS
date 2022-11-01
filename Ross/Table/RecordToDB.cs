@@ -159,7 +159,7 @@ namespace Ross
             try
             {
                 if (selectedASP > 0)
-                    (clientDB.Tables[nameTable] as IDependentAsp).ClearByFilter(selectedASP);
+                    (clientDB?.Tables[nameTable] as IDependentAsp)?.ClearByFilter(selectedASP);
             }
             catch (Exception)
             {

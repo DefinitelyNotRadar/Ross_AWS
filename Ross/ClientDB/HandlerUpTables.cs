@@ -19,6 +19,8 @@ namespace Ross
 {
     using UserControl_Chat;
 
+    using WPFControlConnection;
+
     public partial class MainWindow : Window
     {
 
@@ -38,8 +40,12 @@ namespace Ross
                 //UpdateTableASP4MainPanel(lASP);
                 DrawAllObjects();
                 ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
-
             });
+            
+
+            
+            
+            
         }
 
         private void HandlerUpdate_TableSectorRangesRecon(object sender, TableEventArs<TableSectorsRangesRecon> e)
@@ -267,9 +273,9 @@ namespace Ross
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
             {
-                var lFHSSExcludedFreq = e.Table;
+                lFHSSExcludedFreq = e.Table;
                 ucSuppressFHSS.UpdateFHSSExcludedFreq(lFHSSExcludedFreq);
-
+                //SendToEachStation(e.Table, NameTable.TableFHSSExcludedFreq);
 
                 //var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFHSSExcludedFreq);
                 //SelectedByConnectionTypeClient1.SelectedConnectionObject.SendFhssJamming(obj);
@@ -462,22 +468,47 @@ namespace Ross
 
         private void UpdateSelectedStationModel(List<TableASP> tableASPs)
         {
-            int j = 0;
+            int j = -1;
 
             foreach (var tableASP in tableASPs)
-            {              
-                //if (tableASP.SlaveId >= 0)
+            {
+                if (tableASP.Role == RoleStation.Slave)
                 {
-                    //  SelectedByConnectionTypeClient1.IdSlave = tableASP.SlaveId;
-
-                    InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, (byte)tableASP.Id, 0, (Stations)j);
+                    continue;
                 }
-                //else if(tableASP.SlaveId == -1)
-                //{
-                //    SelectedByConnectionTypeClient1.IdMaster = tableASP.Id;
-                //}
                 j++;
-                if (j == SelectedStationModels.Length) return;
+                var oldStation = SelectedStationModels.FirstOrDefault(t => t.IdMaster == tableASP.Id);
+
+                
+                if (oldStation == null || (oldStation != null && (oldStation.SelectedConnectionObject.ServerIp != tableASP.AddressIP || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)))
+                {
+                    SelectedStationModels[j].SelectedConnectionObject?.ShutDown();
+                    InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, tableASP.AddressIp3G4G, tableASP.AddressPort3G4G, (byte)tableASP.Id, tableASP.MatedStationNumber, (Stations)j); 
+                    Task.Factory.StartNew(() =>
+                    {
+                        ConnectionStates connectionStates = IsChosenConnectionConnected(SelectedStationModels[j]);
+                        if(j==0) Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer1 = connectionStates); 
+                        else Dispatcher.Invoke(() => mainWindowViewSize.ConnectionStatesGrpcServer2 = connectionStates);
+                    });
+                    
+                }
+
+                ChangeAspConnectionStatus(SelectedStationModels[j].SelectedConnectionObject, SelectedStationModels[j].SelectedConnectionObject.IsConnected);
+
+                if (j == SelectedStationModels.Length-1) return;
+               //TODO: if list. count == 0
+                ////if (tableASP.SlaveId >= 0)
+                //{
+                //    //  SelectedByConnectionTypeClient1.IdSlave = tableASP.SlaveId;
+
+                //    InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, (byte)tableASP.Id, 0, (Stations)j);
+                //}
+                ////else if(tableASP.SlaveId == -1)
+                ////{
+                ////    SelectedByConnectionTypeClient1.IdMaster = tableASP.Id;
+                ////}
+                //j++;
+                //if (j == SelectedStationModels.Length) return;
             }
         }
 
@@ -565,7 +596,8 @@ namespace Ross
                 //lChatMessages = new List<TableChatMessage>(e.Table);
                 var messages = new List<UserControl_Chat.Message>();
 
-                messages = e.OrderBy(t => t.Time).Select(s => new UserControl_Chat.Message()
+                messages = e.OrderBy(t => t.Time).Where(t=>GetSideMenu().Contains(t.Id))
+                    .Select(s => new UserControl_Chat.Message()
                                                                         {
                                                                             Id = s.ReceiverAddress == this.clientAddress ? s.SenderAddress : s.ReceiverAddress,
                                                                             MessageFiled = s.Text,
@@ -573,8 +605,10 @@ namespace Ross
                                                                             IsTransmited = s.Status == ChatMessageStatus.Delivered,
                                                                         }).ToList();
 
+                
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
                 {
+                    newWindow.curChat.ClearChatHistory(GetSideMenu());
                     newWindow.curChat.DrawMessageToChat(messages);
                 });
             }

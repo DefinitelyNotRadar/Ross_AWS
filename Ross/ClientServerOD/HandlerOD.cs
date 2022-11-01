@@ -42,7 +42,46 @@ namespace Ross
                     mainWindowViewSize.ConnectionStatesGrpcServer1 = WPFControlConnection.ConnectionStates.Disconnected;
                 });
             }
+
+
+            this.ChangeAspConnectionStatus(sender as GrpcClient, e);
         }
+
+        private void ChangeAspConnectionStatus(GrpcClient client, bool e)
+        {
+            try
+            {
+                //var findRec = 
+                var rec = this.lASP.Find(t => t.Id == client.ServerAddress)?.Clone();
+                if (rec == null) return;
+                rec.IsConnect = e ? Led.Green : Led.Empty;
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                {
+                    ucASP.ChangeASP(rec.Id, rec);
+                });
+            }
+            catch(Exception ex)
+            {}
+        }
+
+        //private void ChangeAspMode(GrpcClient client, byte mode)
+        //{
+        //    try
+        //    {
+        //        var rec = this.lASP.Find(t => t.Id == client.ServerAddress).Clone();
+        //        if (rec == null) return;
+        //        rec.Mode = mode;
+        //        //ChangeASP(int id, TableASP replaceASP)
+        //        //this.clientDB?.Tables[NameTable.TableASP].ChangeAsync(rec);
+        //        Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+        //        {
+        //            ucASP.ChangeASP(rec.Id, rec);
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    { }
+        //}
 
         private void GrpcClient_ConnectionStateChanged2(object sender, bool e)
         {
@@ -61,6 +100,7 @@ namespace Ross
                     mainWindowViewSize.ConnectionStatesGrpcServer2 = WPFControlConnection.ConnectionStates.Disconnected;
                 });
             }
+            this.ChangeAspConnectionStatus(sender as GrpcClient, e);
         }
 
 
@@ -68,33 +108,36 @@ namespace Ross
         {
             Task task1 = new Task(() =>
             {
-                //if (!selectedStation.Ping("ROSS")) return;
+                ReadAsp(selectedStation.GetAsps(), selectedStation);
 
-                //ReadRecord(selectedStation.GetFwsElint(), NameTable.TempFWS);
+                Task.Delay(1000);
                 ReadRecord(selectedStation.GetFwsElintDistribution(), NameTable.TableReconFWS);
                 ReadRecord(selectedStation.GetFhssElint(), NameTable.TableReconFHSS);
-                //ReadRecord(selectedStation.GetAsps(), NameTable.TableASP);
+                ReadRecord(selectedStation.GetFwsJamming(), NameTable.TempSuppressFWS);
+                ReadRecord(selectedStation.GetFhssJamming(), NameTable.TempSuppressFHSS);
                 ReadStationCoord(selectedStation);
                 ReadAntenasDirections(selectedStation);
                 SynchronizeTime(selectedStation);
-
 
             });
             task1.Start();
         }
 
-        //private int tempFWSCounter = 0;
+
         private void ReadRecord(object table, NameTable nameTable)
         {
             //TODO: переделать под несколько станций
             Dispatcher.Invoke(() =>
-            {
+            { 
+                if (nameTable == NameTable.TempSuppressFWS || nameTable == NameTable.TempSuppressFHSS)
+                {
+                    OnClearRecordsByFilter(this, nameTable);
+                }
+
                 var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(nameTable).ListRecords;
                 var fromDB = clientDB?.Tables[nameTable].Load<AbstractCommonTable>().Select(t=>t.Id).ToList();
                 foreach(var record in recordsToDB)
                 {
-                    //foreach(var tableItem in fromDB)
-                    //{
                     if(fromDB != null && fromDB.Contains(record.Id))
                     {
                         clientDB?.Tables[nameTable].Change(record);
@@ -103,37 +146,81 @@ namespace Ross
                     {
                         clientDB?.Tables[nameTable].Add(record);
                     }
-                    //}
                 }
                 
             });
         }
 
-        //private void ReadAsp(object table, GrpcClient selectedStation)
-        //{
-        //    Dispatcher.Invoke(() =>
-        //        {
-        //            var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableASP).ListRecords;
-        //            var fromDB = clientDB?.Tables[NameTable.TableASP].Load<TableASP>();
-        //            var idList = fromDB.Select(t => t.Id).ToList();
-        //            foreach (var record in recordsToDB)
-        //            {
-        //                if (fromDB != null && idList.Contains(record.Id))
-        //                {
-        //                    var rec = fromDB.First(t => t.Id == record.Id);
-        //                    rec.
-        //                    clientDB?.Tables[NameTable.TableASP].Change(record);
-        //                }
-        //                else
-        //                {
-        //                    clientDB?.Tables[nameTable].Add(record);
-        //                }
-        //                //}
-        //            }
+        private void ReadAsp(object table, GrpcClient selectedStation)
+        {
+            Dispatcher.Invoke(() =>
+                {
+                    var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableASP).ToList<TableASP>();
+                    //var fromDB = clientDB?.Tables[NameTable.TableASP].Load<TableASP>();
+                    var fromDB = this.lASP;
+                    var idList = fromDB.Select(t => t.Id).ToList();
+                    foreach (var record in recordsToDB)
+                    {
+                        if (fromDB != null && idList.Contains(record.Id))
+                        {
+                            var rec = fromDB.First(t => t.Id == record.Id);
+                            ConvertAspToRoss(rec, record, recordsToDB);
+                            clientDB?.Tables[NameTable.TableASP].Change(rec);
+                        }
+                        else
+                        {
+                            var newRec = new TableASP();
+                            ConvertAspToRoss(newRec, record, recordsToDB);
+                            clientDB?.Tables[NameTable.TableASP].Add(newRec);
+                        }
+                    }
 
-        //        });
+                });
 
-        //}
+        }
+
+        private void ConvertAspToRoss(TableASP old, TableASP updated, IList<TableASP> updatedAsps)
+        {
+            old.Id = updated.Id;
+            old.IdMission = updated.IdMission;
+            old.MatedStationNumber = ChoosePairStation(updated, updatedAsps);
+            old.Coordinates = updated.Coordinates;
+            old.Mode = updated.Mode;
+            old.Letters = updated.Letters;
+            old.Role = updated.Role;
+            old.LPA10 = updated.LPA10;
+            old.LPA13 = updated.LPA13;
+            old.LPA24 = updated.LPA24;
+            old.LPA510 = updated.LPA510;
+            old.LPA57 = updated.LPA57;
+            old.LPA59 = updated.LPA59;
+            old.BPSS = updated.BPSS;
+            old.AntHeightRec = updated.AntHeightRec;
+            old.AntHeightSup = updated.AntHeightSup;
+            old.RRS1 = updated.RRS1;
+            old.RRS2 = updated.RRS2;
+            old.Sectors = updated.Sectors;
+            old.CallSign = updated.CallSign;
+        }
+
+        private int ChoosePairStation(TableASP asp, IList<TableASP> asps)
+        {
+            TableASP mated;
+            switch (asp.Role)
+            {
+                case RoleStation.Master:
+                    mated = asps.FirstOrDefault(t => t.Role == RoleStation.Slave);
+                    break;
+                case RoleStation.Slave:
+                    mated = asps.FirstOrDefault(t => t.Role == RoleStation.Master);
+                    break;
+                default:
+                    mated = default;
+                    break;
+            }
+
+            return mated.Equals(default(TableASP)) ? 0 : mated.Id;
+        }
 
         private void ReadStationCoord(GrpcClient selectedStation)
         {

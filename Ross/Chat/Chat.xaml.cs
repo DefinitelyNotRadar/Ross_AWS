@@ -1,6 +1,7 @@
 ﻿using ModelsTablesDBLib;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,7 +22,7 @@ namespace Ross
         }
 
         public event EventHandler<List<Message>> OnReturnApprovedMessages;
-        List<StationClassForChat> sideMenuList;
+        public List<StationClassForChat> SideMenuList;
 
         public void SetStations()
         {
@@ -41,16 +42,16 @@ namespace Ross
         {
             try
             {
-                sideMenuList = new List<StationClassForChat>();
+                SideMenuList = new List<StationClassForChat>();
                 ASPList.ForEach(ASPMember =>
                 {
-                    if(!ASPMember.ISOwn)
-                    sideMenuList.Add(new StationClassForChat(ASPMember.Id, ASPMember.CallSign, true));
+                    if(!ASPMember.ISOwn && ASPMember.Role != RoleStation.Slave)
+                        SideMenuList.Add(new StationClassForChat(ASPMember.Id, ASPMember.CallSign, true));
                 });
                 //sideMenuList.Add(new StationClassForChat(0, "ПУ", true));
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
                 {
-                    curChat.UpdateSideMenuMembers(sideMenuList);
+                    curChat.UpdateSideMenuMembers(SideMenuList);
                 });
                 
             }
@@ -61,21 +62,24 @@ namespace Ross
 
         private void ReturnApprovedMessages(List<Message> stationsMessages)
         {
+            var foWork = new List<Message>();
             foreach (Message curStationsMessage in stationsMessages)
             {
+                if(SideMenuList.FirstOrDefault(t=>t.Id == curStationsMessage.Id)== null)
+                    continue;
                 //curStationsMessage.IsTransmited = true;
                 curStationsMessage.SenderName = curStationsMessage.SenderName;
                 curStationsMessage.MessageFontSize = 20;
                 curStationsMessage.SenderNameFontSize = 15;
-
+                foWork.Add(curStationsMessage);
                 //curStationsMessage.IsTransmited = false;
             }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
             {
-                curChat.DrawMessageToChat(stationsMessages);
+                curChat.DrawMessageToChat(foWork);
             });
 
-            OnReturnApprovedMessages?.Invoke(this, stationsMessages);
+            OnReturnApprovedMessages?.Invoke(this, foWork);
         }
 
         public void DrawReceivedMessage(int address, string message)

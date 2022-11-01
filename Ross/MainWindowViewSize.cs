@@ -85,7 +85,6 @@ namespace Ross
             }
         }
 
-
         public SizeValue sizeChat { get; set; } = new SizeValue() { Current = 0, Visible = false};
         public SizeValue sizeSetting { get; set; } = new SizeValue() { Current = 0, Visible = false};
         public SizeValue sizeTopTable { get; set; }

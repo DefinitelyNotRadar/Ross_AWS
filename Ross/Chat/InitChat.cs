@@ -7,6 +7,7 @@ using UserControl_Chat;
 namespace Ross
 {
     using System.Linq;
+    using System.Threading;
 
     public partial class MainWindow
     {
@@ -26,26 +27,45 @@ namespace Ross
         {
             try
             {
-                var lastMessage = messages.Last();
-                ////TODO: not 255
-                //if (messages.Last().Id == 255)
-                //{
-                Cliant_SendMessage(lastMessage.MessageFiled, lastMessage.Id); //TODO: check
-                                                                              //  return;
-                                                                              //}
-                var result = SelectedStationModels.FirstOrDefault(t=>t.IdMaster == lastMessage.Id)?.SelectedConnectionObject.SendTextMessage(lastMessage.MessageFiled);
-
-                if (result == true)
+                foreach (var message in messages)
                 {
-                    Client_ConfirmLastMessage(lastMessage.Id);
+                    if(!GetSideMenu().Contains(message.Id))
+                        continue;
+
+                    Cliant_SendMessage(message.MessageFiled, message.Id); //TODO: check
+                    
+                    var result = SelectedStationModels.FirstOrDefault(t => t.IdMaster == message.Id)?.SelectedConnectionObject?.SendTextMessage(message.MessageFiled);
+
+                    if (result == true)
+                    {
+                        Client_ConfirmLastMessage(message.Id);
+                    }
                 }
-                //if (mesage.Id == stationModel.IdMaster || mesage.Id == stationModel.IdSlave)
-                //{
-                //    stationModel.SelectedConnectionObject.SendTextMessage(mesage.MessageFiled);
-                //}         
+                //var lastMessage = messages.Last();
+                //////TODO: not 255
+                ////if (messages.Last().Id == 255)
+                ////{
+                ////Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
+                ////    {
+                //        Cliant_SendMessage(lastMessage.MessageFiled, lastMessage.Id); //TODO: check
+                //        //  return;
+                //        //}
+                //        var result = SelectedStationModels.FirstOrDefault(t => t.IdMaster == lastMessage.Id)?.SelectedConnectionObject?.SendTextMessage(lastMessage.MessageFiled);
+
+                //        if (result == true)
+                //        {
+                //            Client_ConfirmLastMessage(lastMessage.Id);
+                //        }
+                //    //});
+                
+                ////if (mesage.Id == stationModel.IdMaster || mesage.Id == stationModel.IdSlave)
+                ////{
+                ////    stationModel.SelectedConnectionObject.SendTextMessage(mesage.MessageFiled);
+                ////}         
             }
             catch { }
         }
+
 
 
         public void Cliant_SendMessage(object data, int receiver)
@@ -53,7 +73,7 @@ namespace Ross
             //TODO: исправить 255 на универсальное
             var message = new TableChatMessage() { SenderAddress = clientAddress, ReceiverAddress = receiver, Time = DateTime.Now, Status = ChatMessageStatus.Sent, Text = data as string };
             clientDB?.Tables[NameTable.TableChat]?.Add(message);
-            OnSendMessage?.Invoke(this, (string)data);
+            //OnSendMessage?.Invoke(this, (string)data);
         }
         //private void Events_OnDoActionWithMessage(List<Message> stationsMessages)
         //{
@@ -75,8 +95,11 @@ namespace Ross
             newWindow.UpdateSideMenu(ASPList);
         }
 
+        private List<int> GetSideMenu()
+        {
+            return newWindow.SideMenuList.Select(t=>t.Id).ToList();
+        }
 
-       
 
 
     }
