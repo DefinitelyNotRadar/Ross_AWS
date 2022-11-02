@@ -16,8 +16,8 @@
     <system:String x:Key="contentRESFWSJ">ИРИ ФРЧ РП: </system:String>
     <system:String x:Key="toolTipRESFWSJ">Источник радио излучения ФРЧ РП@(расшифровать)@</system:String>
 
-    <system:String x:Key="contentRESFUSSTD">ИРИ ППРЧ ЦР: </system:String>
-    <system:String x:Key="toolTipRESFUSSTD">Источник радио излучения ППРЧ ЦР@(расшифровать)@</system:String>
+    <system:String x:Key="contentRESFUSSTD">ИРИ ППРЧ: </system:String>
+    <system:String x:Key="toolTipRESFUSSTD">Источник радио излучения ППРЧ@(расшифровать)@</system:String>
 
     <system:String x:Key="contentRESFUSSJ">ИРИ ППРЧ РП: </system:String>
     <system:String x:Key="toolTipRESFUSSJ">Источник радио излучения ППРЧ РП@(расшифровать)@</system:String>
