@@ -290,28 +290,6 @@ namespace Ross
         }
 
 
-
-
-        private void EdServer_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            //switch (e.PropertyName)
-            //{
-            //    case nameof(Properties.Local.EdServer.Viper1):
-                    
-            //        break;
-            //    case nameof(Properties.Local.EdServer.Robustel1):
-                    
-            //        break;
-            //    case nameof(Properties.Local.EdServer.Viper2):
-                    
-            //        break;
-            //    case nameof(Properties.Local.EdServer.Robustel2):
-                    
-            //        break;
-
-            //}
-        }
-
         public void Client_ConfirmLastMessage(int station)
         {
             try

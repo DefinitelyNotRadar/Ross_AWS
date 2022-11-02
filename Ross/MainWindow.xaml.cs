@@ -81,7 +81,6 @@ namespace Ross
                 Properties.Local = SerializerJSON.Deserialize<ControlProperties.LocalProperties>("LocalProperties");
                 Properties.Local.Common.PropertyChanged += Properties_OnPropertyChanged;
                 Properties.Local.Common.IsVisibleAZ = false;
-                Properties.Local.EdServer.PropertyChanged += EdServer_PropertyChanged;
             }
             catch (Exception ex)
             {

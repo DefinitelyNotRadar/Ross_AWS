@@ -46,11 +46,9 @@ namespace Ross
                 {
                     case ConnectionTypeServerOD.Robustel_3G_4G:
                         selectedStationModel.SelectedConnectionObject = new GrpcClient(serverIp3G.Replace(",", "."), serverPort3G, deadlineMs, clientAddress, serverAddress);
-                        CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Robustel1);
                         break;
                     default:
                         selectedStationModel.SelectedConnectionObject = new GrpcClient(serverIp.Replace(",", "."), serverPort, deadlineMs, clientAddress, serverAddress);
-                        CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Viper1);
                         break;
                 }
                 CommonPartInitialization1(SelectedByConnectionTypeClient1.SelectedConnectionObject);
@@ -61,11 +59,9 @@ namespace Ross
                 {
                     case ConnectionTypeServerOD.Robustel_3G_4G:
                         selectedStationModel.SelectedConnectionObject = new GrpcClient(serverIp3G.Replace(",", "."), serverPort3G, deadlineMs, clientAddress, serverAddress);
-                        CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Robustel2);
                         break;
                     default:
                         selectedStationModel.SelectedConnectionObject = new GrpcClient(serverIp.Replace(",", "."), serverPort, deadlineMs, clientAddress, serverAddress);
-                        CreateEndPointObject(selectedStationModel, Properties.Local.EdServer.Viper2);
                         break;
                 }
                 CommonPartInitialization2(SelectedByConnectionTypeClient2.SelectedConnectionObject);
@@ -113,12 +109,6 @@ namespace Ross
         //        CommonPartInitialization1(SelectedByConnectionTypeClient2.SelectedConnectionObject);
         //    }
         //}
-
-        private void CreateEndPointObject(SelectedStationModel selectedStationModel,ControlProperties.EndPointConnection endPointConnection)
-        {
-            selectedStationModel.IpAddress_interior = endPointConnection.IpAddress;
-            selectedStationModel.Port_interior = endPointConnection.Port;
-        }
       
         private void CommonPartInitialization1(GrpcClient grpcClient)
         {
