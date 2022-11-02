@@ -126,8 +126,7 @@
     <Reference Include="Errors">
       <HintPath>dll\Errors.dll</HintPath>
     </Reference>
-    <Reference Include="EvaTable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EvaTable">
       <HintPath>dll\EvaTable.dll</HintPath>
     </Reference>
     <Reference Include="Formation_RN_RD_CC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
