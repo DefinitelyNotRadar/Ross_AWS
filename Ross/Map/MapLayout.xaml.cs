@@ -50,6 +50,9 @@ namespace Ross.Map
         public MapViewModel MapViewModel;
 
         private List<Point> polygon = new List<Point>();
+      
+
+
 
         public MapLayout()
         {
@@ -206,7 +209,7 @@ namespace Ross.Map
 
                 RastrMap.UpdatePC(controlPost);
 
-               // DrawSector(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }, new AntennasMessage(), 1);
+                DrawSectors(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }, new AntennasMessage() , 1);
 
                 OnCoordControlPoinChanged(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
             }
@@ -230,6 +233,22 @@ namespace Ross.Map
         private MapObjectStyle mapObjectStyleTriangle;
         private MapObjectStyle mapObjectStyleStation;
         private double scale = 0.2;
+        private float sectorAngle = 30;
+        private int sectorRadius = 20000;
+        private readonly Color[] colors = new Color[10]
+        {
+            Color.FromArgb(90, 255,102,102),
+            Color.FromArgb(90, 255,178,102),
+            Color.FromArgb(90, 255,255,102),
+            Color.FromArgb(90, 178,255,102),
+            Color.FromArgb(90, 102,255,102),
+            Color.FromArgb(90, 102,255,178),
+            Color.FromArgb(90, 102,255,255),
+            Color.FromArgb(90, 102,178,255),
+            Color.FromArgb(90, 102,102,255),
+            Color.FromArgb(90, 178,102,255),
+        };
+
 
 
         public void DrawPolygonOfLineOfSight()
@@ -292,44 +311,31 @@ namespace Ross.Map
 
         }
 
-
-        public void DrawSector(Coord point, AntennasMessage antennasMessage, int id)
+      
+        public void DrawSectors(Coord point, AntennasMessage antennasMessage, int id)
         {
             DefinderJammingPoint definderJammingPoint = RastrMap.DefinderJammingPoint.Where(x=> x.ID == id).FirstOrDefault();
             if (definderJammingPoint == null)
                 definderJammingPoint = new DefinderJammingPoint(id);
 
             definderJammingPoint.Coordinate = new WGSCoordinate { Latitude = point.Latitude, Longitude = point.Longitude, Altitude = (float)point.Altitude};
-            for (int i = 0; i < 8; i++ )
+
+            for (int i = 0; i < antennasMessage.Lpa.Count; i++)
             {
                 var antena = new Antenna();
+                antena.Sector = sectorAngle;
+                antena.Radius = sectorRadius;
+                antena.Direction = antennasMessage.Lpa[i];
+                antena.BrushAntenna = colors[i];
+                antena.PenAntenna = new Pen(colors[i], 2);
+                antena.Active = true;
+                RastrMap.ListRangesParam.Add(new RangesParam(10, 100000, 0, 255, 0));
 
-                try
-                {                    
-                    antena.Sector = 30;
-                    antena.Direction = antennasMessage.Lpa[i];
-                    antena.BrushAntenna = Color.Green;
-                    antena.PenAntenna = new Pen(Color.Green, 2);
-                    antena.Active = true;
-                    RastrMap.ListRangesParam.Add( new RangesParam(10, 100000, 0, 255, 0));
-                }
-                catch(ArgumentOutOfRangeException ex)
-                {
-                    antena.Sector = 30;
-                    antena.Direction = 90;
-                    antena.BrushAntenna = Color.Transparent;
-                    antena.PenAntenna = new Pen(Color.Transparent, 0);
-                    antena.Active = true;
-                    RastrMap.ListRangesParam.Add(new RangesParam(10, 100000, 0, 0, 0));
-                }
 
-                
-                antena.Radius = 10000;
 
                 definderJammingPoint.AntennaDefinder.Add(antena);
                 definderJammingPoint.AntennaJamming.Add(antena);
-                
-            }
+            }         
 
             RastrMap.rasterViewModel.DefinderJammingPoint.Clear();
             RastrMap.rasterViewModel.DefinderJammingPoint.Add(definderJammingPoint);
