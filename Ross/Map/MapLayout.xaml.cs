@@ -209,8 +209,6 @@ namespace Ross.Map
 
                 RastrMap.UpdatePC(controlPost);
 
-                DrawSectors(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }, new AntennasMessage() , 1);
-
                 OnCoordControlPoinChanged(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
             }
             catch (Exception ex)

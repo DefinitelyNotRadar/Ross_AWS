@@ -249,10 +249,7 @@ namespace Ross
                     {
                         Dispatcher.Invoke(() =>
                         {
-                            //mapLayout.DrawSectors(asp.Coordinates, directions.Lpa[0], Color.Red);
-                            //mapLayout.DrawSectors(asp.Coordinates, directions.Lpa[1], Color.Orange);
-                            //mapLayout.DrawSectors(asp.Coordinates, directions.Lpa[4], Color.Blue);
-                            //mapLayout.DrawSectors(asp.Coordinates, directions.Lpa[9], Color.White);            
+                            mapLayout.DrawSectors(asp.Coordinates, directions, 0);       
                         });
                     }
                 }
