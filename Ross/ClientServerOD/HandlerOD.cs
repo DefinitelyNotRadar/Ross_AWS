@@ -128,17 +128,20 @@ namespace Ross
         {
             //TODO: переделать под несколько станций
             Dispatcher.Invoke(() =>
-            { 
+            {
                 if (nameTable == NameTable.TempSuppressFWS || nameTable == NameTable.TempSuppressFHSS)
                 {
                     OnClearRecordsByFilter(this, nameTable);
                 }
 
+                if (table == null)
+                    return;
+
                 var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(nameTable).ListRecords;
-                var fromDB = clientDB?.Tables[nameTable].Load<AbstractCommonTable>().Select(t=>t.Id).ToList();
-                foreach(var record in recordsToDB)
+                var fromDB = clientDB?.Tables[nameTable].Load<AbstractCommonTable>().Select(t => t.Id).ToList();
+                foreach (var record in recordsToDB)
                 {
-                    if(fromDB != null && fromDB.Contains(record.Id))
+                    if (fromDB != null && fromDB.Contains(record.Id))
                     {
                         clientDB?.Tables[nameTable].Change(record);
                     }
@@ -147,35 +150,37 @@ namespace Ross
                         clientDB?.Tables[nameTable].Add(record);
                     }
                 }
-                
+
             });
         }
 
         private void ReadAsp(object table, GrpcClient selectedStation)
         {
             Dispatcher.Invoke(() =>
-                {
-                    var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableASP).ToList<TableASP>();
-                    //var fromDB = clientDB?.Tables[NameTable.TableASP].Load<TableASP>();
-                    var fromDB = this.lASP;
-                    var idList = fromDB.Select(t => t.Id).ToList();
-                    foreach (var record in recordsToDB)
-                    {
-                        if (fromDB != null && idList.Contains(record.Id))
-                        {
-                            var rec = fromDB.First(t => t.Id == record.Id);
-                            ConvertAspToRoss(rec, record, recordsToDB);
-                            clientDB?.Tables[NameTable.TableASP].Change(rec);
-                        }
-                        else
-                        {
-                            var newRec = new TableASP();
-                            ConvertAspToRoss(newRec, record, recordsToDB);
-                            clientDB?.Tables[NameTable.TableASP].Add(newRec);
-                        }
-                    }
+            {
+                if (table == null)
+                    return;
 
-                });
+                var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableASP).ToList<TableASP>();
+                var fromDB = this.lASP;
+                var idList = fromDB.Select(t => t.Id).ToList();
+                foreach (var record in recordsToDB)
+                {
+                    if (fromDB != null && idList.Contains(record.Id))
+                    {
+                        var rec = fromDB.First(t => t.Id == record.Id);
+                        ConvertAspToRoss(rec, record, recordsToDB);
+                        clientDB?.Tables[NameTable.TableASP].Change(rec);
+                    }
+                    else
+                    {
+                        var newRec = new TableASP();
+                        ConvertAspToRoss(newRec, record, recordsToDB);
+                        clientDB?.Tables[NameTable.TableASP].Add(newRec);
+                    }
+                }
+
+            });
 
         }
 

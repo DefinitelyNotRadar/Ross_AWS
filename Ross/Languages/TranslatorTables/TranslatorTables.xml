@@ -13,6 +13,12 @@
     <Eng>General</Eng>
     <Az>Ümumi</Az>
   </Translate>
+  
+  <Translate ID="Misc">
+    <Rus>Общие</Rus>
+    <Eng>General</Eng>
+    <Az>Ümumi</Az>
+  </Translate>
 
   <Translate ID="Диапазон">
     <Rus>Диапазон</Rus>

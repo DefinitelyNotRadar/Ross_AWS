@@ -9,6 +9,13 @@ using SuppressFWSControl;
 
 namespace Ross
 {
+    using System.Collections.Generic;
+    using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
+    using System.Xml;
+
+    using ValuesCorrectLib;
+
     public partial class MainWindow : Window
     {
         public string GetResourceTitle(string key)
@@ -180,19 +187,15 @@ namespace Ross
                     case Languages.Eng:
                         dict.Source = new Uri("/Ross;component/Languages/UIChat/StringResource.EN.xaml",
                             UriKind.Relative);
-                        mapLayout.Properties.Local.Common.Language = DLLSettingsControlPointForMap.Model.Languages.EN;
 
                         break;
                     case Languages.Rus:
                         dict.Source = new Uri("/Ross;component/Languages/UIChat/StringResource.RU.xaml",
                             UriKind.Relative);
-                        mapLayout.Properties.Local.Common.Language = DLLSettingsControlPointForMap.Model.Languages.RU;
                         break;
                     default:
                         dict.Source = new Uri("/Ross;component/Languages/UIChat/StringResource.RU.xaml",
                             UriKind.Relative);
-                        Properties.Local.Common.Language = Languages.Rus;
-                        mapLayout.Properties.Local.Common.Language = DLLSettingsControlPointForMap.Model.Languages.RU;
                         break;
                 }
 
@@ -212,6 +215,7 @@ namespace Ross
         private void ChangeLanguage(Languages e)
         {
             SetLanguageTables(e);
+            TranslatorTables.LoadDictionary(e);
             SetLanguageConnectionPanel(e);
             SetLanguageMapLayout(e);
             SetLanguageMainWindow(e);
@@ -245,22 +249,23 @@ namespace Ross
 
         private void UcASP_OnIsWindowPropertyOpen(object sender, ASPProperty e)
         {
-            e.SetLanguagePropertyGrid(Properties.Local.Common.Language);
+            e.SetLanguagePropertyGrid(Properties.Local.Common.Language, GetTableLanguageDict(Properties.Local.Common.Language));
         }
 
         private void UcSuppressFHSS_OnIsWindowPropertyOpen(object sender, SuppressFHSSProperty e)
         {
-            e.SetLanguagePropertyGrid(Properties.Local.Common.Language);
+            e.SetLanguagePropertyGrid(Properties.Local.Common.Language, GetTableLanguageDict(Properties.Local.Common.Language));
         }
 
         private void UcSuppressFHSS_OnIsWindowPropertyOpenExc(object sender, ExcludedFreqProperty e)
         {
-            e.SetLanguagePropertyGrid(Properties.Local.Common.Language);
+            e.SetLanguagePropertyGrid(Properties.Local.Common.Language, GetTableLanguageDict(Properties.Local.Common.Language));
         }
 
         private void UcSuppressFWS_OnIsWindowPropertyOpen(object sender, SuppressFWSProperty e)
         {
-            e.SetLanguagePropertyGrid(Properties.Local.Common.Language);
+            e.SetLanguagePropertyGrid(Properties.Local.Common.Language, GetTableLanguageDict(Properties.Local.Common.Language));
         }
+        
     }
 }
