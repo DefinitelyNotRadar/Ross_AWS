@@ -492,6 +492,8 @@ namespace Ross
                     });
                     
                 }
+                else if(oldStation.IdSlave != tableASP.MatedStationNumber)
+                    SelectedStationModels[j].IdSlave = tableASP.MatedStationNumber;
 
                 ChangeAspConnectionStatus(SelectedStationModels[j].SelectedConnectionObject, SelectedStationModels[j].SelectedConnectionObject.IsConnected);
 
