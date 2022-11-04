@@ -142,7 +142,7 @@
                        VerticalAlignment="Bottom" Margin="2,0,3,0" RadiusX="1" RadiusY="1" />
 
             <Button x:Name="ToggleButton_Poll" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
-                          HorizontalAlignment="Center" Width="32" Height="32" FontSize="15"
+                          HorizontalAlignment="Center" Width="32" Height="32" FontSize="15" Style="{DynamicResource Button}"
                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="ToggleButton_Poll_Click"
                             >
                 <Path Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" Fill="{StaticResource ControlForegroundWhite}" Data="{StaticResource refreshStyle0}" />

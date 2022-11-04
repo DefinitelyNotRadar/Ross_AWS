@@ -233,11 +233,20 @@ namespace Ross
             var coord = (table as Any).Unpack<TransmissionPackageGroza934.CoordMessage>();
             if (coord == null) return;
 
+
+            foreach (var asp in lASP)
+            {
+                if (asp.Id == selectedStation.ServerAddress)
+                {
+                    asp.Coordinates = new Coord() { Latitude = coord.Latitude, Longitude = coord.Longitude };
+                }
+                clientDB?.Tables[NameTable.TableASP].Change(asp);
+            }
+
             Dispatcher.Invoke(() =>
             {
                 mapLayout.DrawStation(new Coord() { Latitude = coord.Latitude, Longitude = coord.Longitude});
             });
-
         }
 
         private void ReadAntenasDirections(GrpcClient selectedStation)
