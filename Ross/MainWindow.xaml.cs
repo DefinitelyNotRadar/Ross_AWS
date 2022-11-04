@@ -81,6 +81,7 @@ namespace Ross
                 Properties.Local = SerializerJSON.Deserialize<ControlProperties.LocalProperties>("LocalProperties");
                 Properties.Local.Common.PropertyChanged += Properties_OnPropertyChanged;
                 Properties.Local.Common.IsVisibleAZ = false;
+                endPoint = Properties.Local.DbServer.IpAddress + ":" + Properties.Local.DbServer.Port;
             }
             catch (Exception ex)
             {
@@ -94,6 +95,7 @@ namespace Ross
         {
             if (e.PropertyName == nameof(Properties.Local.Common.AccessARM))
                 mapLayout.MapProperties.Local.Common.Access = (AccessTypes)(byte)Properties.Local.Common.AccessARM;
+            endPoint = Properties.Local.DbServer.IpAddress + ":" + Properties.Local.DbServer.Port;
         }
 
 
@@ -113,10 +115,10 @@ namespace Ross
         {
             clientDB?.Disconnect();
             clientDB = null;
-            grpcClientViper1?.ShutDown();
-            grpcClient_3G_4G1?.ShutDown();
-            grpcClientViper2?.ShutDown();
-            grpcClient_3G_4G2?.ShutDown();
+            grpcClientViper1?.AbortConnection();
+            grpcClient_3G_4G1?.AbortConnection();
+            grpcClientViper2?.AbortConnection();
+            grpcClient_3G_4G2?.AbortConnection();
 
             System.Windows.Threading.Dispatcher.ExitAllFrames();
         }

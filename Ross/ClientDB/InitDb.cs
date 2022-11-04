@@ -7,7 +7,7 @@ namespace Ross
 {
     public partial class MainWindow
     {
-        private readonly string endPoint = "127.0.0.1:8302";
+        private string endPoint = "127.0.0.1:8302";
         private ClientDB clientDB;
 
 
