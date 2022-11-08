@@ -104,61 +104,69 @@ namespace Ross
         }
 
 
-        private void Poll_Station(GrpcClient selectedStation)
+        private async void Poll_Station(GrpcClient selectedStation)
         {
-            Task task1 = new Task(() =>
-            {
-                ReadAsp(selectedStation.GetAsps(), selectedStation);
+            //Task task1 = new Task(() =>
+            //    {
 
-                Task.Delay(1000);
-                ReadRecord(selectedStation.GetFwsElintDistribution(), NameTable.TableReconFWS);
-                ReadRecord(selectedStation.GetFhssElint(), NameTable.TableReconFHSS);
-                ReadRecord(selectedStation.GetFwsJamming(), NameTable.TempSuppressFWS);
-                ReadRecord(selectedStation.GetFhssJamming(), NameTable.TempSuppressFHSS);
-                ReadStationCoord(selectedStation);
-                ReadAntenasDirections(selectedStation);
-                SynchronizeTime(selectedStation);
-
-            });
-            task1.Start();
+            //});
+            //task1.Start();
+            await PollStation(selectedStation).ConfigureAwait(false);
         }
 
 
-        private void ReadRecord(object table, NameTable nameTable)
+        private async Task PollStation(GrpcClient selectedStation)
         {
-            //TODO: переделать под несколько станций
-            Dispatcher.Invoke(() =>
-            {
-                if (nameTable == NameTable.TempSuppressFWS || nameTable == NameTable.TempSuppressFHSS)
-                {
-                    OnClearRecordsByFilter(this, nameTable);
-                }
+            if (selectedStation == null) return;
 
-                if (table == null)
-                    return;
+            await ReadAsp(await selectedStation.GetAsps().ConfigureAwait(false), selectedStation).ConfigureAwait(false);
 
-                var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(nameTable).ListRecords;
-                var fromDB = clientDB?.Tables[nameTable].Load<AbstractCommonTable>().Select(t => t.Id).ToList();
-                foreach (var record in recordsToDB)
-                {
-                    if (fromDB != null && fromDB.Contains(record.Id))
-                    {
-                        clientDB?.Tables[nameTable].Change(record);
-                    }
-                    else
-                    {
-                        clientDB?.Tables[nameTable].Add(record);
-                    }
-                }
+            Task.Delay(1000);
 
-            });
+            await ReadRecord(await selectedStation.GetFwsElintDistribution().ConfigureAwait(false), NameTable.TableReconFWS);
+            await ReadRecord(await selectedStation.GetFhssElint().ConfigureAwait(false), NameTable.TableReconFHSS);
+            await ReadRecord(await selectedStation.GetFwsJamming().ConfigureAwait(false), NameTable.TempSuppressFWS);
+            await ReadRecord(await selectedStation.GetFhssJamming().ConfigureAwait(false), NameTable.TempSuppressFHSS);
+            await ReadStationCoord(selectedStation).ConfigureAwait(false);
+            await ReadAntenasDirections(selectedStation).ConfigureAwait(false);
+            await SynchronizeTime(selectedStation).ConfigureAwait(false);
+
+            //TODO: try continueWith
         }
 
-        private void ReadAsp(object table, GrpcClient selectedStation)
+        private async Task ReadRecord(object table, NameTable nameTable)
         {
-            Dispatcher.Invoke(() =>
+            //TODO: переделать под несколько станций?
+
+            if (nameTable == NameTable.TempSuppressFWS || nameTable == NameTable.TempSuppressFHSS)
             {
-                if (table == null)
+                OnClearRecordsByFilter(this, nameTable);
+            }
+
+            if (table == null || clientDB == null)
+                return;
+
+            var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(nameTable).ListRecords;
+            var loadDB = await clientDB.Tables[nameTable].LoadAsync<AbstractCommonTable>().ConfigureAwait(false);
+            var fromDB = loadDB.Select(t => t.Id).ToList();
+            foreach (var record in recordsToDB)
+            {
+                if (fromDB != null && fromDB.Contains(record.Id))
+                {
+                    await clientDB.Tables[nameTable].ChangeAsync(record).ConfigureAwait(false);
+                }
+                else
+                {
+                    await clientDB.Tables[nameTable].AddAsync(record).ConfigureAwait(false);
+                }
+            }
+        }
+
+        private async Task ReadAsp(object table, GrpcClient selectedStation)
+        {
+            //Dispatcher.Invoke(() =>
+            //{
+                if (table == null || clientDB == null)
                     return;
 
                 var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableASP).ToList<TableASP>();
@@ -170,17 +178,17 @@ namespace Ross
                     {
                         var rec = fromDB.First(t => t.Id == record.Id);
                         ConvertAspToRoss(rec, record, recordsToDB);
-                        clientDB?.Tables[NameTable.TableASP].Change(rec);
+                        await clientDB.Tables[NameTable.TableASP].ChangeAsync(rec).ConfigureAwait(false);
                     }
                     else
                     {
                         var newRec = new TableASP();
                         ConvertAspToRoss(newRec, record, recordsToDB);
-                        clientDB?.Tables[NameTable.TableASP].Add(newRec);
+                        await clientDB.Tables[NameTable.TableASP].AddAsync(newRec).ConfigureAwait(false);
                     }
                 }
 
-            });
+            //});
 
         }
 
@@ -227,10 +235,11 @@ namespace Ross
             return mated.Equals(default(TableASP)) ? 0 : mated.Id;
         }
 
-        private void ReadStationCoord(GrpcClient selectedStation)
+        private async Task ReadStationCoord(GrpcClient selectedStation)
         {
-            var table = selectedStation.GetCoordinates();
+            var table = await selectedStation.GetCoordinates().ConfigureAwait(false);
             var coord = (table as Any).Unpack<TransmissionPackageGroza934.CoordMessage>();
+
             if (coord == null) return;
 
 
@@ -240,7 +249,11 @@ namespace Ross
                 {
                     asp.Coordinates = new Coord() { Latitude = coord.Latitude, Longitude = coord.Longitude };
                 }
-                clientDB?.Tables[NameTable.TableASP].Change(asp);
+
+                if (clientDB != null)
+                {
+                    await clientDB.Tables[NameTable.TableASP].ChangeAsync(asp).ConfigureAwait(false);
+                }
             }
 
             Dispatcher.Invoke(() =>
@@ -249,9 +262,9 @@ namespace Ross
             });
         }
 
-        private void ReadAntenasDirections(GrpcClient selectedStation)
+        private async Task ReadAntenasDirections(GrpcClient selectedStation)
         {
-            var table = selectedStation?.GetAntennasDirection();
+            var table = await selectedStation.GetAntennasDirection().ConfigureAwait(false);
             var directions = (table as Any).Unpack<TransmissionPackageGroza934.AntennasMessage>();
             //в Lpa 10 элементов = 10 литер. 
             //1=3,2=4, 5-9(есть варианты 5-7,5-10, 10)
@@ -270,7 +283,7 @@ namespace Ross
 
         }
 
-        private void GrpcClient_OnGetTextMessage(object sender, string e)
+        private async void GrpcClient_OnGetTextMessage(object sender, string e)
         {
             //List<UserControl_Chat.Message> curMessages = new List<UserControl_Chat.Message>();
 
@@ -295,42 +308,53 @@ namespace Ross
             //    var message = new TableChatMessage() { SenderAddress = (sender as GrpcClient).ServerAddress, ReceiverAddress = clientAddress, Time = DateTime.Now, Status = ChatMessageStatus.Delivered, Text = e };
             //    clientDB?.Tables[NameTable.TableChat]?.Add(message);
             //}
-            newWindow.DrawReceivedMessage((sender as GrpcClient).ServerAddress, e);
+            Dispatcher.Invoke(() =>
+            {
+                newWindow.DrawReceivedMessage((sender as GrpcClient).ServerAddress, e);
+            });
+
+            if (clientDB == null) return;
             var message = new TableChatMessage() { SenderAddress = (sender as GrpcClient).ServerAddress, ReceiverAddress = clientAddress, Time = DateTime.Now, Status = ChatMessageStatus.Delivered, Text = e };
-            clientDB?.Tables[NameTable.TableChat]?.Add(message);
+            await clientDB.Tables[NameTable.TableChat].AddAsync(message).ConfigureAwait(false);
         }
 
 
-        public void Client_ConfirmLastMessage(int station)
+        public async Task Client_ConfirmLastMessage(int station)
         {
             try
             {
-                newWindow.ConfirmSentMessage(station);
+                Dispatcher.Invoke(() =>
+                {
+                    newWindow.ConfirmSentMessage(station);
+                });
+                
 
+                if (clientDB == null) return;
+
+                await Task.Delay(100); //TODO: придумать что-то поуниверсальней
                 var last = lChatMessages.Last(t => t.ReceiverAddress == station);
                 last.Status = ChatMessageStatus.Delivered;
-                clientDB?.Tables[NameTable.TableChat].Change(last);
+                await clientDB.Tables[NameTable.TableChat].ChangeAsync(last).ConfigureAwait(false);
             }
             catch
             { }
         }
 
-        public void SynchronizeTime(GrpcClient selectedStation)
+        public async Task SynchronizeTime(GrpcClient selectedStation)
         {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
-                {
-                    selectedStation?.SendLocalTime(DateTime.Now);
-                });
+             await selectedStation.SendLocalTime(DateTime.Now).ConfigureAwait(false);
         }
 
-        public ExecutiveDF? Client_GetExecutiveDF(GrpcClient selectedStation, int stationId, double frequency, float band)
+        public async Task<ExecutiveDF?> Client_GetExecutiveDF(GrpcClient selectedStation, int stationId, double frequency, float band)
         {
-            return selectedStation?.GetExecutiveDF(stationId, frequency, band);
+            var result = await selectedStation.GetExecutiveDF(stationId, frequency, band).ConfigureAwait(false);
+            return result;
         }
 
-        public QuasiSimultaneousDF? Client_GetQuasiSimultaneousDF(GrpcClient selectedStation, int stationId, double frequency, float band)
+        public async Task<QuasiSimultaneousDF?> Client_GetQuasiSimultaneousDF(GrpcClient selectedStation, int stationId, double frequency, float band)
         {
-            return selectedStation?.GetQuasiSimultaneousDF(stationId, frequency, band);
+            var result = await selectedStation.GetQuasiSimultaneousDF(stationId, frequency, band).ConfigureAwait(false);
+            return result;
         }
     }
 }

@@ -1,13 +1,12 @@
 ﻿using ModelsTablesDBLib;
 using System;
 using System.Collections.Generic;
-using System.Windows;
 using UserControl_Chat;
 
 namespace Ross
 {
     using System.Linq;
-    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class MainWindow
     {
@@ -23,7 +22,7 @@ namespace Ross
             newWindow.OnReturnApprovedMessages += NewWindow_OnReturnApprovedMessages;
         }
 
-        private void NewWindow_OnReturnApprovedMessages(object sender, List<Message> messages)
+        private async void NewWindow_OnReturnApprovedMessages(object sender, List<Message> messages)
         {
             try
             {
@@ -32,13 +31,17 @@ namespace Ross
                     if(!GetSideMenu().Contains(message.Id))
                         continue;
 
-                    Cliant_SendMessage(message.MessageFiled, message.Id); //TODO: check
-                    
-                    var result = SelectedStationModels.FirstOrDefault(t => t.IdMaster == message.Id)?.SelectedConnectionObject?.SendTextMessage(message.MessageFiled);
+                    await Cliant_SendMessage(message.MessageFiled, message.Id); //TODO: check
 
-                    if (result == true)
+                    var server = SelectedStationModels.FirstOrDefault(t => t.IdMaster == message.Id);
+                    if (server != null && server.SelectedConnectionObject != null)
                     {
-                        Client_ConfirmLastMessage(message.Id);
+                        var result = await server.SelectedConnectionObject.SendTextMessage(message.MessageFiled).ConfigureAwait(false);
+
+                        if (result)
+                        {
+                            await Client_ConfirmLastMessage(message.Id).ConfigureAwait(false);
+                        }
                     }
                 }
                 //var lastMessage = messages.Last();
@@ -68,11 +71,14 @@ namespace Ross
 
 
 
-        public void Cliant_SendMessage(object data, int receiver)
+        public async Task Cliant_SendMessage(object data, int receiver)
         {
+            if (this.clientDB == null)
+                return;
+
             //TODO: исправить 255 на универсальное
             var message = new TableChatMessage() { SenderAddress = clientAddress, ReceiverAddress = receiver, Time = DateTime.Now, Status = ChatMessageStatus.Sent, Text = data as string };
-            clientDB?.Tables[NameTable.TableChat]?.Add(message);
+            await clientDB.Tables[NameTable.TableChat].AddAsync(message).ConfigureAwait(false);
             //OnSendMessage?.Invoke(this, (string)data);
         }
         //private void Events_OnDoActionWithMessage(List<Message> stationsMessages)

@@ -51,14 +51,14 @@ namespace Ross
 
         #region Eva Table handler
 
-        private void MapLayout_OnRadioJammingMode(object sender, Tabl e)
+        private async void MapLayout_OnRadioJammingMode(object sender, Tabl e)
         {
             var IsSeccess = false;
             foreach (var item in SelectedStationModels)
             {
                 if ((e.Id == item.IdMaster || e.Id == item.IdSlave) && item.SelectedConnectionObject.IsConnected)
                 {
-                    IsSeccess = item.SelectedConnectionObject.SendMode(2);
+                    IsSeccess = await item.SelectedConnectionObject.SendMode(2).ConfigureAwait(false);
                     break;
                 }
             }
@@ -67,14 +67,14 @@ namespace Ross
                 mapLayout.GetItemFromEvaTable(e.Id).ModASP = ModASP.Jumming;
         }
 
-        private void MapLayout_OnRadioIntelligenceMode(object sender, Tabl e)
+        private async void MapLayout_OnRadioIntelligenceMode(object sender, Tabl e)
         {
             var IsSeccess = false;
             foreach(var item in SelectedStationModels)
             {
                 if ((e.Id == item.IdMaster || e.Id == item.IdSlave) && item.SelectedConnectionObject.IsConnected)
                 { 
-                    IsSeccess = item.SelectedConnectionObject.SendMode(1);
+                    IsSeccess = await item.SelectedConnectionObject.SendMode(1).ConfigureAwait(false);
                     break;
                 }
             }
@@ -84,14 +84,14 @@ namespace Ross
                 //mapLayout.GetItemFromEvaTable(e.Id).ModASP = ModASP.RadioReconnaissance;
         }
 
-        private void MapLayout_OnPreparationMode(object sender, Tabl e)
+        private async void MapLayout_OnPreparationMode(object sender, Tabl e)
         {
             var IsSeccess = false;
             foreach (var item in SelectedStationModels)
             {
                 if ((e.Id == item.IdMaster || e.Id == item.IdSlave) && item.SelectedConnectionObject.IsConnected)
                 {
-                    IsSeccess = item.SelectedConnectionObject.SendMode(0);
+                    IsSeccess = await item.SelectedConnectionObject.SendMode(0).ConfigureAwait(false);
                     break;
                 }
             }

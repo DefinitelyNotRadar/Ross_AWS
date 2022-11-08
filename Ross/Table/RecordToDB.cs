@@ -585,7 +585,7 @@ namespace Ross
         {
             try
             {
-                var answer = Client_GetExecutiveDF(SelectedStationModels.First(t => t.SelectedConnectionObject.ServerAddress == PropNumberASP.SelectedASPforListQ).SelectedConnectionObject, PropNumberASP.SelectedASPforListQ, e.FreqKHz, e.Deviation);
+                var answer = await Client_GetExecutiveDF(SelectedStationModels.First(t => t.SelectedConnectionObject.ServerAddress == PropNumberASP.SelectedASPforListQ).SelectedConnectionObject, PropNumberASP.SelectedASPforListQ, e.FreqKHz, e.Deviation).ConfigureAwait(false);
                 
                 if (answer == null) return;
 
@@ -609,7 +609,7 @@ namespace Ross
         {
             try
             {
-                var answer = this.Client_GetQuasiSimultaneousDF(SelectedStationModels.First(t => t.SelectedConnectionObject.ServerAddress == PropNumberASP.SelectedASPforListQ).SelectedConnectionObject, PropNumberASP.SelectedASPforListQ, e.FreqKHz, e.Deviation);
+                var answer = await this.Client_GetQuasiSimultaneousDF(SelectedStationModels.First(t => t.SelectedConnectionObject.ServerAddress == PropNumberASP.SelectedASPforListQ).SelectedConnectionObject, PropNumberASP.SelectedASPforListQ, e.FreqKHz, e.Deviation).ConfigureAwait(false);
 
                 if (answer == null) return;
 

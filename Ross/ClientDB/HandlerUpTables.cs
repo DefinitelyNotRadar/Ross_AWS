@@ -307,7 +307,7 @@ namespace Ross
             });
         }
 
-        private void SendToEachStation<T>(List<T> list, NameTable nameTable) where T : AbstractDependentASP
+        private async Task SendToEachStation<T>(List<T> list, NameTable nameTable) where T : AbstractDependentASP
         {
             try
             {
@@ -331,25 +331,25 @@ namespace Ross
                     switch (nameTable)
                     {
                         case NameTable.TableSuppressFWS:
-                            SelectedStationModels[i].SelectedConnectionObject.SendFwsJamming(obj);
+                            await SelectedStationModels[i].SelectedConnectionObject.SendFwsJamming(obj).ConfigureAwait(false);
                             break;
                         case NameTable.TableSuppressFHSS:
-                            SelectedStationModels[i].SelectedConnectionObject.SendFhssJamming(obj);
+                            await SelectedStationModels[i].SelectedConnectionObject.SendFhssJamming(obj).ConfigureAwait(false);
                             break;
                         case NameTable.TableFreqKnown:
-                            SelectedStationModels[i].SelectedConnectionObject.SendTableFreqKnown(obj);
+                            await SelectedStationModels[i].SelectedConnectionObject.SendTableFreqKnown(obj).ConfigureAwait(false);
                             break;
                         case NameTable.TableFreqForbidden:
-                            SelectedStationModels[i].SelectedConnectionObject.SendTableFreqForbidden(obj);
+                            await SelectedStationModels[i].SelectedConnectionObject.SendTableFreqForbidden(obj).ConfigureAwait(false);
                             break;
                         case NameTable.TableFreqImportant:
-                            SelectedStationModels[i].SelectedConnectionObject.SendTableFreqImportant(obj);
+                            await SelectedStationModels[i].SelectedConnectionObject.SendTableFreqImportant(obj).ConfigureAwait(false);
                             break;
                         case NameTable.TableSectorsRangesRecon:
-                            SelectedStationModels[i].SelectedConnectionObject.SendSectorsRangesElint(obj);
+                            await SelectedStationModels[i].SelectedConnectionObject.SendSectorsRangesElint(obj).ConfigureAwait(false);
                             break;
                         case NameTable.TableSectorsRangesSuppr:
-                            SelectedStationModels[i].SelectedConnectionObject.SendSectorsRangesJamming(obj);
+                            await SelectedStationModels[i].SelectedConnectionObject.SendSectorsRangesJamming(obj).ConfigureAwait(false);
                             break;
                     }
 
@@ -598,7 +598,8 @@ namespace Ross
                 //lChatMessages = new List<TableChatMessage>(e.Table);
                 var messages = new List<UserControl_Chat.Message>();
 
-                messages = e.OrderBy(t => t.Time).Where(t=>GetSideMenu().Contains(t.Id))
+                var chatIds = GetSideMenu();
+                messages = e.OrderBy(t => t.Time).Where(t=> chatIds.Contains(t.ReceiverAddress) || chatIds.Contains(t.SenderAddress))
                     .Select(s => new UserControl_Chat.Message()
                                                                         {
                                                                             Id = s.ReceiverAddress == this.clientAddress ? s.SenderAddress : s.ReceiverAddress,
@@ -610,7 +611,7 @@ namespace Ross
                 
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (ThreadStart)delegate ()
                 {
-                    newWindow.curChat.ClearChatHistory(GetSideMenu());
+                    newWindow.curChat.ClearChatHistory(chatIds);
                     newWindow.curChat.DrawMessageToChat(messages);
                 });
             }
