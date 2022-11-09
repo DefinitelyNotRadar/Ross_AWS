@@ -69,7 +69,18 @@ namespace Ross
 
         private void MainWindowViewSize_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            //UpdateSelectedStationModel(lASP);
+            if(e.PropertyName.Equals("SelectedConnectionType1"))
+            {
+                UpdateSelectedStationModel(lASP);
+            }
+
+            if (e.PropertyName.Equals("SelectedConnectionType2"))
+            {
+                UpdateSelectedStationModel(lASP);
+            }
+
+
+            //
         }
 
         #region Properties
@@ -115,21 +126,15 @@ namespace Ross
         {
             clientDB?.Disconnect();
             clientDB = null;
-            grpcClientViper1?.AbortConnection();
-            grpcClient_3G_4G1?.AbortConnection();
-            grpcClientViper2?.AbortConnection();
-            grpcClient_3G_4G2?.AbortConnection();
-
             System.Windows.Threading.Dispatcher.ExitAllFrames();
         }
 
-        private void ToggleButton_Poll_Click(object sender, RoutedEventArgs e)
+        private async void ToggleButton_Poll_Click(object sender, RoutedEventArgs e)
         {
             foreach (var item in SelectedStationModels)
             {
                 if(item.SelectedConnectionObject != null && item.SelectedConnectionObject.IsConnected)
-                    Poll_Station(item.SelectedConnectionObject);
-
+                    await Poll_Station(item.SelectedConnectionObject);
             }
         }
     }

@@ -41,6 +41,9 @@ namespace Ross
                 DrawAllObjects();
                 //ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
                 //ucReconFWS.UpdateASPRP(lASP, lReconFWS);
+
+
+
             });
             
 
@@ -374,7 +377,6 @@ namespace Ross
                 ucASP.UpdateASPs(lASP);
                 UpdateSideMenu(lASP);
                 UpdateSelectedStationModel(lASP);
-                ConnectedGrpcClients();
                 //UpdateTableASP4MainPanel(lASP);
 
                 lSRangeRecon = await clientDB.Tables[NameTable.TableSectorsRangesRecon].LoadAsync<TableSectorsRanges>();
@@ -485,9 +487,10 @@ namespace Ross
                 var oldStation = SelectedStationModels.FirstOrDefault(t => t.IdMaster == tableASP.Id);
 
                 
-                if (oldStation == null || (oldStation != null && (oldStation.SelectedConnectionObject.ServerIp.Replace(',', '.') != tableASP.AddressIP.Replace(',','.') || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)))
+                if (oldStation == null || (oldStation != null && oldStation.SelectedConnectionObject != null && (oldStation.SelectedConnectionObject.ServerIp.Replace(',', '.') != tableASP.AddressIP.Replace(',','.') || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)
+                    || (oldStation.SelectedConnectionObject.ServerIp.Replace(',', '.') != tableASP.AddressIp3G4G.Replace(',', '.') || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort3G4G)))
                 {
-                    SelectedStationModels[j].SelectedConnectionObject?.ShutDown();
+                    SelectedStationModels[j].SelectedConnectionObject?.AbortConnection();
                     InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, tableASP.AddressIp3G4G, tableASP.AddressPort3G4G, (byte)tableASP.Id, tableASP.MatedStationNumber, (Stations)j); 
                     Task.Factory.StartNew(() =>
                     {
@@ -504,26 +507,6 @@ namespace Ross
 
                 if (j == SelectedStationModels.Length-1) return;
                //TODO: if list. count == 0
-                ////if (tableASP.SlaveId >= 0)
-                //{
-                //    //  SelectedByConnectionTypeClient1.IdSlave = tableASP.SlaveId;
-
-                //    InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, (byte)tableASP.Id, 0, (Stations)j);
-                //}
-                ////else if(tableASP.SlaveId == -1)
-                ////{
-                ////    SelectedByConnectionTypeClient1.IdMaster = tableASP.Id;
-                ////}
-                //j++;
-                //if (j == SelectedStationModels.Length) return;
-            }
-        }
-
-        private void ConnectedGrpcClients()
-        {
-            foreach(var station in SelectedStationModels)
-            {
-                //station.SelectedConnectionObject?.Connect();
             }
         }
 

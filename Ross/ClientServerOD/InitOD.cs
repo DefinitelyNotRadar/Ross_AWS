@@ -21,10 +21,6 @@ namespace Ross
         private SelectedStationModel SelectedByConnectionTypeClient1 = new SelectedStationModel();
         private SelectedStationModel SelectedByConnectionTypeClient2 = new SelectedStationModel();
 
-        private GrpcClient grpcClientViper1;
-        private GrpcClient grpcClient_3G_4G1;
-        private GrpcClient grpcClientViper2;
-        private GrpcClient grpcClient_3G_4G2;
 
         private byte clientAddress = 255;
         private int deadlineMs = 10000;
@@ -42,6 +38,7 @@ namespace Ross
 
             if (stations == Stations.StationsPair1 || stations == Stations.SinglStation1)
             {
+                RemoveHandlers1(selectedStationModel.SelectedConnectionObject);
                 switch (mainWindowViewSize.SelectedConnectionType1)
                 {
                     case ConnectionTypeServerOD.Robustel_3G_4G:
@@ -55,6 +52,7 @@ namespace Ross
             }
             else
             {
+                RemoveHandlers2(selectedStationModel.SelectedConnectionObject);
                 switch (mainWindowViewSize.SelectedConnectionType2)
                 {
                     case ConnectionTypeServerOD.Robustel_3G_4G:
@@ -122,6 +120,19 @@ namespace Ross
             grpcClient.ConnectionStateChanged += GrpcClient_ConnectionStateChanged2;
         }
 
-      
+
+        private void RemoveHandlers1(GrpcClient grpcClient)
+        {
+            if (grpcClient == null) return;
+            grpcClient.OnTextMessageReceived -= GrpcClient_OnGetTextMessage;
+            grpcClient.ConnectionStateChanged -= GrpcClient_ConnectionStateChanged1;
+        }
+
+        private void RemoveHandlers2(GrpcClient grpcClient)
+        {
+            if (grpcClient == null) return;
+            grpcClient.OnTextMessageReceived -= GrpcClient_OnGetTextMessage;
+            grpcClient.ConnectionStateChanged -= GrpcClient_ConnectionStateChanged2;
+        }
     }
 }

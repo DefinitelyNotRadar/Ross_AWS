@@ -66,7 +66,7 @@ namespace Ross.Map
             DataContext = MapViewModel;
 
 
-            mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,-130), scale, new Offset(0, 0));
+            mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,0), scale, new Offset(0, 0));
 
             
         }
@@ -310,42 +310,34 @@ namespace Ross.Map
         }
 
       
-        public void DrawSectors(Coord point, AntennasMessage antennasMessage, int id)
+        public void DrawSectors(Coord point, short[] lpa, int id)
         {
             DefinderJammingPoint definderJammingPoint = RastrMap.DefinderJammingPoint.Where(x=> x.ID == id).FirstOrDefault();
             if (definderJammingPoint == null)
+            {
                 definderJammingPoint = new DefinderJammingPoint(id);
+                RastrMap.rasterViewModel.DefinderJammingPoint.Add(definderJammingPoint);
+            }
 
             definderJammingPoint.Coordinate = new WGSCoordinate { Latitude = point.Latitude, Longitude = point.Longitude, Altitude = (float)point.Altitude};
 
-            for (int i = 0; i < antennasMessage.Lpa.Count; i++)
+            for (int i = 0; i < lpa.Length; i++)
             {
                 var antena = new Antenna();
                 antena.Sector = sectorAngle;
                 antena.Radius = sectorRadius;
-                antena.Direction = antennasMessage.Lpa[i];
+                antena.Direction = lpa[i];
                 antena.BrushAntenna = colors[i];
                 antena.PenAntenna = new Pen(colors[i], 2);
                 antena.Active = true;
                 RastrMap.ListRangesParam.Add(new RangesParam(10, 100000, 0, 255, 0));
 
 
-
                 definderJammingPoint.AntennaDefinder.Add(antena);
                 definderJammingPoint.AntennaJamming.Add(antena);
-            }         
+            }
 
-            RastrMap.rasterViewModel.DefinderJammingPoint.Clear();
-            RastrMap.rasterViewModel.DefinderJammingPoint.Add(definderJammingPoint);
-        }
-
-        private int CheckAngle(int angle)
-        {
-            if (angle < 0)
-                angle = 360 + angle;
-            if (angle > 360)
-                angle = angle - 360;
-            return angle;
+            RastrMap.UpdateDFP(RastrMap.rasterViewModel.DefinderJammingPoint);
         }
 
         #endregion

@@ -121,12 +121,12 @@ namespace Ross
             }
         }
 
-        private void MapLayout_OnPoll(object sender, Tabl e)
+        private async void MapLayout_OnPoll(object sender, Tabl e)
         {
             foreach (var item in SelectedStationModels)
             {
                 if ((e.Id == item.IdMaster || e.Id == item.IdSlave) && item.SelectedConnectionObject.IsConnected)
-                    Poll_Station(item.SelectedConnectionObject);
+                   await Poll_Station(item.SelectedConnectionObject);
             }
         }
 
@@ -138,7 +138,7 @@ namespace Ross
 
         private void DrawAllObjects()
         {
-            if (this.mapLayout == null) return;   
+            if (this.mapLayout == null) return;
             UpdateEvaTable();
 
             if (this.mapLayout.RastrMap == null || this.mapLayout.RastrMap.mapControl == null || !mapLayout.RastrMap.IsLoaded) return;
@@ -146,61 +146,59 @@ namespace Ross
             if (mapLayout.RastrMap.mapControl.MapObjects.Count > 0
                 || mapLayout.RastrMap.mapControl.PolyObjects.Count > 0)
             {
-                Dispatcher.Invoke(DispatcherPriority.Normal, (ThreadStart)delegate
-                    {
-                        mapLayout?.RastrMap?.mapControl.RemoveAllObjects();
-                    });
+                mapLayout?.RastrMap?.mapControl.RemoveAllObjects();
             }
 
-            
+
 
             DrawAllASP();
+
+            DrawSectors();
 
             DrawAllFWS();
 
             DrawAllFHSS();
 
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
-                {
-                    mapLayout.DrawPolygonOfLineOfSight();
-                });
-           
+
+            mapLayout.DrawPolygonOfLineOfSight();
+
         }
 
 
         private void UpdateEvaTable()
         {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
-                {
+
                     mapLayout.ClearEvaTable();
                     foreach (var asp in lASP)
                     {
                         Role roleStation = asp.Role == RoleStation.Master ? Role.Master : (asp.Role == RoleStation.Slave ? Role.Slave : Role.Single);
                         mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.CallSign, Id = asp.Id, Role = roleStation, StateASP = asp.IsConnect == Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode, Letters = asp.Letters });
                     }
-                });
-           
+          
+        }
+
+        private void DrawSectors()
+        {
+            foreach (var asp in lASP)
+            {                
+                    mapLayout.DrawSectors(asp.Coordinates, new short[5] {asp.LPA10, asp.LPA13, asp.LPA24, asp.LPA510, asp.LPA59}, 0);
+            }
+
         }
 
 
         private void DrawAllASP()
         {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
-                {
                     foreach (var asp in lASP)
                     {
                         mapLayout.DrawStation(asp.Coordinates, asp.Caption);
                     }
                     mapLayout.GetStatusBarModel().AJSValue = lASP.Count;
-                    mapLayout.SetASP(lASP);
-                });
-            
+                    mapLayout.SetASP(lASP);  
         }
 
         private void DrawAllFWS()
         {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
-                {
                     foreach (var fws in lReconFWS)
                         mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
                     foreach (var fws in lSuppressFWS)
@@ -208,14 +206,10 @@ namespace Ross
 
                     mapLayout.GetStatusBarModel().RESFWSTDValue = lReconFWS.Count;
                     mapLayout.GetStatusBarModel().RESFWSJValue = lSuppressFWS.Count;
-                });
-            
         }
 
         private void DrawAllFHSS()
         {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
-                {
                     foreach (var fhss in lSourceFHSS)
                     {
                         mapLayout.DrawSourceFHSS(fhss.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
@@ -223,8 +217,6 @@ namespace Ross
 
                     mapLayout.GetStatusBarModel().RESFHSSTDValue = lReconFHSS.Count;
                     mapLayout.GetStatusBarModel().RESFHSSJValue = lSuppressFHSS.Count;
-                });
-            
 
             //foreach (var fhss in lReconFHSS)
             //    mapLayout.DrawSourceFHSS(fhss., DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);

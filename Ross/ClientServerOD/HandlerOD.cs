@@ -104,7 +104,7 @@ namespace Ross
         }
 
 
-        private async void Poll_Station(GrpcClient selectedStation)
+        private async Task Poll_Station(GrpcClient selectedStation)
         {
             //Task task1 = new Task(() =>
             //    {
@@ -121,12 +121,24 @@ namespace Ross
 
             await ReadAsp(await selectedStation.GetAsps().ConfigureAwait(false), selectedStation).ConfigureAwait(false);
 
-            Task.Delay(1000);
+            await Task.Delay(1000);
 
             await ReadRecord(await selectedStation.GetFwsElintDistribution().ConfigureAwait(false), NameTable.TableReconFWS);
+
+            await Task.Delay(1000);
+
             await ReadRecord(await selectedStation.GetFhssElint().ConfigureAwait(false), NameTable.TableReconFHSS);
+
+            await Task.Delay(1000);
+
             await ReadRecord(await selectedStation.GetFwsJamming().ConfigureAwait(false), NameTable.TempSuppressFWS);
+
+            await Task.Delay(1000);
+
             await ReadRecord(await selectedStation.GetFhssJamming().ConfigureAwait(false), NameTable.TempSuppressFHSS);
+
+            await Task.Delay(1000);
+
             //await ReadStationCoord(selectedStation).ConfigureAwait(false);
             //await ReadAntenasDirections(selectedStation).ConfigureAwait(false);
             await SynchronizeTime(selectedStation).ConfigureAwait(false);
@@ -269,18 +281,6 @@ namespace Ross
             //в Lpa 10 элементов = 10 литер. 
             //1=3,2=4, 5-9(есть варианты 5-7,5-10, 10)
             //C
-
-                foreach (var asp in lASP)
-                {
-                    if (asp.Id == selectedStation.ServerAddress)
-                    {
-                        Dispatcher.Invoke(() =>
-                        {
-                            mapLayout.DrawSectors(asp.Coordinates, directions, 0);       
-                        });
-                    }
-                }
-
         }
 
         private async void GrpcClient_OnGetTextMessage(object sender, string e)
