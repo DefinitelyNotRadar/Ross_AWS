@@ -33,12 +33,14 @@ namespace Ross
 
         private void HandlerDisconnect_ClientDb(object sender, ClientEventArgs e)
         {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
-            {
+            //Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+            //{
                 mainWindowViewSize.ConnectionStatesDB = WPFControlConnection.ConnectionStates.Disconnected;
-                DeinitClientDB();
-                clientDB = null;
-            });
+                
+            //});
+            
+            DeinitClientDB();
+            clientDB = null;
         }
 
         private void HandlerConnect_ClientDb(object sender, ClientEventArgs e)

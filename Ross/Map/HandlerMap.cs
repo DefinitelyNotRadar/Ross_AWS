@@ -12,6 +12,11 @@ using System.Windows;
 
 namespace Ross
 {
+    using System.Threading;
+    using System.Windows.Threading;
+
+    using TableEvents;
+
     public partial class MainWindow : Window
     {
 
@@ -64,7 +69,12 @@ namespace Ross
             }
 
             if (IsSeccess)
-                mapLayout.GetItemFromEvaTable(e.Id).ModASP = ModASP.Jumming;
+            {
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                    {
+                        e.ModASP = ModASP.Jumming;
+                    });
+            }
         }
 
         private async void MapLayout_OnRadioIntelligenceMode(object sender, Tabl e)
@@ -80,8 +90,14 @@ namespace Ross
             }
 
             if (IsSeccess)
-                e.ModASP = ModASP.RadioReconnaissance;
-                //mapLayout.GetItemFromEvaTable(e.Id).ModASP = ModASP.RadioReconnaissance;
+            {
+                Dispatcher.BeginInvoke( DispatcherPriority.Normal,(ThreadStart)delegate
+                    {
+                        e.ModASP = ModASP.RadioReconnaissance;
+                    });
+            }
+
+            //mapLayout.GetItemFromEvaTable(e.Id).ModASP = ModASP.RadioReconnaissance;
         }
 
         private async void MapLayout_OnPreparationMode(object sender, Tabl e)
@@ -96,9 +112,13 @@ namespace Ross
                 }
             }
 
-
             if (IsSeccess)
-                mapLayout.GetItemFromEvaTable(e.Id).ModASP = ModASP.Preparation;
+            {
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                    {
+                        e.ModASP = ModASP.Preparation;
+                    });
+            }
         }
 
         private void MapLayout_OnPoll(object sender, Tabl e)
@@ -123,8 +143,16 @@ namespace Ross
 
             if (this.mapLayout.RastrMap == null || this.mapLayout.RastrMap.mapControl == null || !mapLayout.RastrMap.IsLoaded) return;
 
-            if(mapLayout.RastrMap.mapControl.MapObjects.Count > 0 || mapLayout.RastrMap.mapControl.PolyObjects.Count > 0)
-                mapLayout?.RastrMap?.mapControl.RemoveAllObjects();
+            if (mapLayout.RastrMap.mapControl.MapObjects.Count > 0
+                || mapLayout.RastrMap.mapControl.PolyObjects.Count > 0)
+            {
+                Dispatcher.Invoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                    {
+                        mapLayout?.RastrMap?.mapControl.RemoveAllObjects();
+                    });
+            }
+
+            
 
             DrawAllASP();
 
@@ -132,51 +160,71 @@ namespace Ross
 
             DrawAllFHSS();
 
-            mapLayout.DrawPolygonOfLineOfSight();
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                {
+                    mapLayout.DrawPolygonOfLineOfSight();
+                });
+           
         }
 
 
         private void UpdateEvaTable()
         {
-            mapLayout.ClearEvaTable();
-            foreach (var asp in lASP)
-            {
-                Role roleStation = asp.Role == RoleStation.Master ? Role.Master : (asp.Role == RoleStation.Slave ? Role.Slave : Role.Single);
-                mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.CallSign, Id = asp.Id, Role = roleStation, StateASP = asp.IsConnect == Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode, Letters = asp.Letters});
-            }
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                {
+                    mapLayout.ClearEvaTable();
+                    foreach (var asp in lASP)
+                    {
+                        Role roleStation = asp.Role == RoleStation.Master ? Role.Master : (asp.Role == RoleStation.Slave ? Role.Slave : Role.Single);
+                        mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.CallSign, Id = asp.Id, Role = roleStation, StateASP = asp.IsConnect == Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode, Letters = asp.Letters });
+                    }
+                });
+           
         }
 
 
         private void DrawAllASP()
         {
-            foreach(var asp in lASP)
-            {
-                mapLayout.DrawStation(asp.Coordinates, asp.Caption);
-            }
-            mapLayout.GetStatusBarModel().AJSValue = lASP.Count;
-            mapLayout.SetASP(lASP);
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                {
+                    foreach (var asp in lASP)
+                    {
+                        mapLayout.DrawStation(asp.Coordinates, asp.Caption);
+                    }
+                    mapLayout.GetStatusBarModel().AJSValue = lASP.Count;
+                    mapLayout.SetASP(lASP);
+                });
+            
         }
 
         private void DrawAllFWS()
         {
-            foreach (var fws in lReconFWS)
-                mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
-            foreach (var fws in lSuppressFWS)
-                mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                {
+                    foreach (var fws in lReconFWS)
+                        mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
+                    foreach (var fws in lSuppressFWS)
+                        mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
 
-            mapLayout.GetStatusBarModel().RESFWSTDValue = lReconFWS.Count;
-            mapLayout.GetStatusBarModel().RESFWSJValue = lSuppressFWS.Count;
+                    mapLayout.GetStatusBarModel().RESFWSTDValue = lReconFWS.Count;
+                    mapLayout.GetStatusBarModel().RESFWSJValue = lSuppressFWS.Count;
+                });
+            
         }
 
         private void DrawAllFHSS()
         {
-            foreach(var fhss in lSourceFHSS)
-            {
-                mapLayout.DrawSourceFHSS(fhss.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
-            }
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                {
+                    foreach (var fhss in lSourceFHSS)
+                    {
+                        mapLayout.DrawSourceFHSS(fhss.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
+                    }
 
-            mapLayout.GetStatusBarModel().RESFHSSTDValue = lReconFHSS.Count;
-            mapLayout.GetStatusBarModel().RESFHSSJValue = lSuppressFHSS.Count;
+                    mapLayout.GetStatusBarModel().RESFHSSTDValue = lReconFHSS.Count;
+                    mapLayout.GetStatusBarModel().RESFHSSJValue = lSuppressFHSS.Count;
+                });
+            
 
             //foreach (var fhss in lReconFHSS)
             //    mapLayout.DrawSourceFHSS(fhss., DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);

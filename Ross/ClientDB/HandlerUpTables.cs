@@ -33,13 +33,14 @@ namespace Ross
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
             {
-                lASP = e.Table;
+                lASP = new List<TableASP>(e.Table);
                 ucASP.UpdateASPs(lASP);
                 UpdateSideMenu(lASP);
                 UpdateSelectedStationModel(lASP);
                 //UpdateTableASP4MainPanel(lASP);
                 DrawAllObjects();
-                ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
+                //ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
+                //ucReconFWS.UpdateASPRP(lASP, lReconFWS);
             });
             
 
@@ -194,6 +195,10 @@ namespace Ross
                     if (ind != -1)
                     {
                         lReconFWS[ind] = e.Table[i];
+                    }
+                    else
+                    {
+                        lReconFWS.Add(e.Table[i]);
                     }
                 }
                 //ucReconFWS.AddReconFWSs(e.Table);

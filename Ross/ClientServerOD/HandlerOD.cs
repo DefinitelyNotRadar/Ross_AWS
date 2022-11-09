@@ -127,8 +127,8 @@ namespace Ross
             await ReadRecord(await selectedStation.GetFhssElint().ConfigureAwait(false), NameTable.TableReconFHSS);
             await ReadRecord(await selectedStation.GetFwsJamming().ConfigureAwait(false), NameTable.TempSuppressFWS);
             await ReadRecord(await selectedStation.GetFhssJamming().ConfigureAwait(false), NameTable.TempSuppressFHSS);
-            await ReadStationCoord(selectedStation).ConfigureAwait(false);
-            await ReadAntenasDirections(selectedStation).ConfigureAwait(false);
+            //await ReadStationCoord(selectedStation).ConfigureAwait(false);
+            //await ReadAntenasDirections(selectedStation).ConfigureAwait(false);
             await SynchronizeTime(selectedStation).ConfigureAwait(false);
 
             //TODO: try continueWith

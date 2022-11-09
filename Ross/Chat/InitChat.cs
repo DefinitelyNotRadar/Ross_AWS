@@ -6,7 +6,9 @@ using UserControl_Chat;
 namespace Ross
 {
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
+    using System.Windows.Threading;
 
     public partial class MainWindow
     {
@@ -98,7 +100,11 @@ namespace Ross
 
         private void UpdateSideMenu(List<TableASP> ASPList)
         {
-            newWindow.UpdateSideMenu(ASPList);
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                {
+                    newWindow.UpdateSideMenu(ASPList);
+                });
+            
         }
 
         private List<int> GetSideMenu()
