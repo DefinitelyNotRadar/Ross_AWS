@@ -12,10 +12,13 @@ namespace Ross.Models
     public class SelectedStationModel: INotifyPropertyChanged
     {
         private GrpcClient selectedConnectionObject;
+        private ConnectionTypeServerOD connectionType;
         private int id_master;
         private int id_slave;
-        private string ipAddress;
-        private int port;
+        private string ipAddress = " ";
+        private int port = 0;
+        private string ipAddress_3G4G = " ";
+        private int port_3G4G = 0;
 
         public GrpcClient SelectedConnectionObject
         {
@@ -25,6 +28,17 @@ namespace Ross.Models
                 if(selectedConnectionObject != null)
                     if (selectedConnectionObject.Equals(value)) return;
                 selectedConnectionObject = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ConnectionTypeServerOD ConnectionTypeServerOD
+        {
+            get => connectionType;
+            set
+            {
+                if (connectionType == value) return;
+                connectionType = value;
                 OnPropertyChanged();
             }
         }
@@ -69,6 +83,29 @@ namespace Ross.Models
             {
                 if(port == value) return;
                 port = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public string IpAddress_interior_3G4G
+        {
+            get => ipAddress_3G4G;
+            set
+            {
+                if (ipAddress_3G4G == value) return;
+                ipAddress_3G4G = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Port_interior_3G4G
+        {
+            get => port_3G4G;
+            set
+            {
+                if (port_3G4G == value) return;
+                port_3G4G = value;
                 OnPropertyChanged();
             }
         }

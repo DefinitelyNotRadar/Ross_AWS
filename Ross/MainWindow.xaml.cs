@@ -71,12 +71,12 @@ namespace Ross
         {
             if(e.PropertyName.Equals("SelectedConnectionType1"))
             {
-                UpdateSelectedStationModel(lASP);
+                UpdateSelectedStationModel(lASP, true);
             }
 
             if (e.PropertyName.Equals("SelectedConnectionType2"))
             {
-                UpdateSelectedStationModel(lASP);
+                UpdateSelectedStationModel(lASP, true);
             }
 
 

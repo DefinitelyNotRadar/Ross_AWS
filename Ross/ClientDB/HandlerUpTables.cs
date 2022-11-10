@@ -36,7 +36,7 @@ namespace Ross
                 lASP = new List<TableASP>(e.Table);
                 ucASP.UpdateASPs(lASP);
                 UpdateSideMenu(lASP);
-                UpdateSelectedStationModel(lASP);
+                UpdateSelectedStationModel(lASP, false);
                 //UpdateTableASP4MainPanel(lASP);
                 DrawAllObjects();
                 //ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
@@ -288,6 +288,7 @@ namespace Ross
                 //var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFHSSExcludedFreq);
                 //SelectedByConnectionTypeClient1.SelectedConnectionObject.SendFhssJamming(obj);
                 //SelectedByConnectionTypeClient2.SelectedConnectionObject?.SendFhssJamming(obj);
+                DrawAllObjects();
             });
         }
 
@@ -376,7 +377,7 @@ namespace Ross
                 lASP = await clientDB.Tables[NameTable.TableASP].LoadAsync<TableASP>();
                 ucASP.UpdateASPs(lASP);
                 UpdateSideMenu(lASP);
-                UpdateSelectedStationModel(lASP);
+                UpdateSelectedStationModel(lASP, false);
                 //UpdateTableASP4MainPanel(lASP);
 
                 lSRangeRecon = await clientDB.Tables[NameTable.TableSectorsRangesRecon].LoadAsync<TableSectorsRanges>();
@@ -473,7 +474,7 @@ namespace Ross
             }
         }
 
-        private void UpdateSelectedStationModel(List<TableASP> tableASPs)
+        private void UpdateSelectedStationModel(List<TableASP> tableASPs, bool IsHardwareChanged)
         {
             int j = -1;
 
@@ -487,8 +488,8 @@ namespace Ross
                 var oldStation = SelectedStationModels.FirstOrDefault(t => t.IdMaster == tableASP.Id);
 
                 
-                if (oldStation == null || (oldStation != null && oldStation.SelectedConnectionObject != null && (oldStation.SelectedConnectionObject.ServerIp.Replace(',', '.') != tableASP.AddressIP.Replace(',','.') || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort)
-                    || (oldStation.SelectedConnectionObject.ServerIp.Replace(',', '.') != tableASP.AddressIp3G4G.Replace(',', '.') || oldStation.SelectedConnectionObject.ServerPort != tableASP.AddressPort3G4G)))
+                if (IsHardwareChanged || oldStation == null || (oldStation != null && oldStation.SelectedConnectionObject != null && ((oldStation.IpAddress_interior.Replace(',', '.') != tableASP.AddressIP.Replace(',','.') || oldStation.Port_interior != tableASP.AddressPort)
+                    || (oldStation.IpAddress_interior_3G4G.Replace(',', '.') != tableASP.AddressIp3G4G.Replace(',', '.') || oldStation.Port_interior_3G4G != tableASP.AddressPort3G4G))))
                 {
                     SelectedStationModels[j].SelectedConnectionObject?.AbortConnection();
                     InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, tableASP.AddressIp3G4G, tableASP.AddressPort3G4G, (byte)tableASP.Id, tableASP.MatedStationNumber, (Stations)j); 

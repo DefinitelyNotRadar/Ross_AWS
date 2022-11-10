@@ -35,9 +35,15 @@ namespace Ross
         {
             selectedStationModel.IdMaster = serverAddress;
             selectedStationModel.IdSlave = slaveId;
+            selectedStationModel.IpAddress_interior = serverIp;
+            selectedStationModel.Port_interior = serverPort;
+            selectedStationModel.IpAddress_interior_3G4G = serverIp3G;
+            selectedStationModel.Port_interior_3G4G = serverPort3G;
+            
 
             if (stations == Stations.StationsPair1 || stations == Stations.SinglStation1)
             {
+                selectedStationModel.ConnectionTypeServerOD = mainWindowViewSize.SelectedConnectionType1;
                 RemoveHandlers1(selectedStationModel.SelectedConnectionObject);
                 switch (mainWindowViewSize.SelectedConnectionType1)
                 {
@@ -52,6 +58,7 @@ namespace Ross
             }
             else
             {
+                selectedStationModel.ConnectionTypeServerOD = mainWindowViewSize.SelectedConnectionType2;
                 RemoveHandlers2(selectedStationModel.SelectedConnectionObject);
                 switch (mainWindowViewSize.SelectedConnectionType2)
                 {
