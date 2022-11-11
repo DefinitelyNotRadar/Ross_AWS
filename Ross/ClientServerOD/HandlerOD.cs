@@ -59,6 +59,7 @@ namespace Ross
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
                 {
                     ucASP.ChangeASP(rec.Id, rec);
+                    UpdateEvaTableConnection(rec);
                 });
             }
             catch(Exception ex)
@@ -266,6 +267,7 @@ namespace Ross
                 {
                     await clientDB.Tables[NameTable.TableASP].ChangeAsync(asp).ConfigureAwait(false);
                 }
+
             }
 
             Dispatcher.Invoke(() =>

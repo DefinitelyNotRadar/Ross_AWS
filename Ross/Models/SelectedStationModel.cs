@@ -12,7 +12,7 @@ namespace Ross.Models
     public class SelectedStationModel: INotifyPropertyChanged
     {
         private GrpcClient selectedConnectionObject;
-        private ConnectionTypeServerOD connectionType;
+        private ConnectionTypeServerOD connectionType = ConnectionTypeServerOD.Viper_Radio;
         private int id_master;
         private int id_slave;
         private string ipAddress = " ";

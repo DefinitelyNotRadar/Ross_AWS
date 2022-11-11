@@ -36,9 +36,9 @@ namespace Ross
                 lASP = new List<TableASP>(e.Table);
                 ucASP.UpdateASPs(lASP);
                 UpdateSideMenu(lASP);
+                DrawAllObjects();
                 UpdateSelectedStationModel(lASP, false);
                 //UpdateTableASP4MainPanel(lASP);
-                DrawAllObjects();
                 //ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
                 //ucReconFWS.UpdateASPRP(lASP, lReconFWS);
 
@@ -486,10 +486,12 @@ namespace Ross
                 }
                 j++;
                 var oldStation = SelectedStationModels.FirstOrDefault(t => t.IdMaster == tableASP.Id);
-
                 
-                if (IsHardwareChanged || oldStation == null || (oldStation != null && oldStation.SelectedConnectionObject != null && ((oldStation.IpAddress_interior.Replace(',', '.') != tableASP.AddressIP.Replace(',','.') || oldStation.Port_interior != tableASP.AddressPort)
-                    || (oldStation.IpAddress_interior_3G4G.Replace(',', '.') != tableASP.AddressIp3G4G.Replace(',', '.') || oldStation.Port_interior_3G4G != tableASP.AddressPort3G4G))))
+                if (IsHardwareChanged || oldStation == null || (oldStation != null && oldStation.SelectedConnectionObject != null &&
+                    (oldStation.ConnectionTypeServerOD != ConnectionTypeServerOD.Robustel_3G_4G && 
+                    (oldStation.IpAddress_interior.Replace(',', '.') != tableASP.AddressIP.Replace(',','.') || oldStation.Port_interior != tableASP.AddressPort)
+                    || (oldStation.ConnectionTypeServerOD == ConnectionTypeServerOD.Robustel_3G_4G && 
+                    (oldStation.IpAddress_interior_3G4G.Replace(',', '.') != tableASP.AddressIp3G4G.Replace(',', '.') || oldStation.Port_interior_3G4G != tableASP.AddressPort3G4G)))))
                 {
                     SelectedStationModels[j].SelectedConnectionObject?.AbortConnection();
                     InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, tableASP.AddressIp3G4G, tableASP.AddressPort3G4G, (byte)tableASP.Id, tableASP.MatedStationNumber, (Stations)j); 

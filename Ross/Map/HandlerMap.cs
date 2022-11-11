@@ -173,17 +173,38 @@ namespace Ross
                     {
                         Role roleStation = asp.Role == RoleStation.Master ? Role.Master : (asp.Role == RoleStation.Slave ? Role.Slave : Role.Single);
                         mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.CallSign, Id = asp.Id, Role = roleStation, StateASP = asp.IsConnect == Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode, Letters = asp.Letters });
+                
                     }
           
         }
 
+        
+
+        private void UpdateEvaTableConnection(TableASP asp)
+        {
+            var newStation = ConvertToEvaTable(asp);
+            var old = mapLayout.GetItemFromEvaTable(asp.Id);
+
+            if (old == null) return;
+
+            mapLayout.SetStationInEvaTable(newStation, old);
+        }
+
+        private Tabl ConvertToEvaTable(TableASP asp)
+        {
+            Tabl tabl = new Tabl() { Name = asp.CallSign, Id = asp.Id, StateASP = asp.IsConnect == Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode, Letters = asp.Letters };
+            tabl.Role = asp.Role == RoleStation.Master ? Role.Master : (asp.Role == RoleStation.Slave ? Role.Slave : Role.Single);
+            return tabl;
+        }
+
         private void DrawSectors()
         {
-            foreach (var asp in lASP)
-            {                
-                    mapLayout.DrawSectors(asp.Coordinates, new short[5] {asp.LPA10, asp.LPA13, asp.LPA24, asp.LPA510, asp.LPA59}, 0);
-            }
+            mapLayout.ClearSectors();
 
+            for (int i = 0; i < lASP.Count; i++)
+            {
+                mapLayout.DrawSectors(lASP[i].Coordinates, new short[5] { lASP[i].LPA10, lASP[i].LPA13, lASP[i].LPA24, lASP[i].LPA510, lASP[i].LPA59 }, i);
+            }
         }
 
 

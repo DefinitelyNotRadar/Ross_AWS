@@ -235,16 +235,16 @@ namespace Ross.Map
         private int sectorRadius = 20000;
         private readonly Color[] colors = new Color[10]
         {
-            Color.FromArgb(90, 255,102,102),
-            Color.FromArgb(90, 255,178,102),
-            Color.FromArgb(90, 255,255,102),
-            Color.FromArgb(90, 178,255,102),
-            Color.FromArgb(90, 102,255,102),
-            Color.FromArgb(90, 102,255,178),
-            Color.FromArgb(90, 102,255,255),
-            Color.FromArgb(90, 102,178,255),
-            Color.FromArgb(90, 102,102,255),
-            Color.FromArgb(90, 178,102,255),
+            Color.FromArgb(120, 255,102,102),
+            Color.FromArgb(120, 255,178,102),
+            Color.FromArgb(120, 255,255,102),
+            Color.FromArgb(120, 178,255,102),
+            Color.FromArgb(120, 102,255,102),
+            Color.FromArgb(120, 102,255,178),
+            Color.FromArgb(120, 102,255,255),
+            Color.FromArgb(120, 102,178,255),
+            Color.FromArgb(120, 102,102,255),
+            Color.FromArgb(120, 178,102,255),
         };
 
 
@@ -309,7 +309,13 @@ namespace Ross.Map
 
         }
 
-      
+        public void ClearSectors()
+        {
+            RastrMap.DefinderJammingPoint.Clear();
+
+            RastrMap.UpdateDFP(RastrMap.DefinderJammingPoint);
+        }
+
         public void DrawSectors(Coord point, short[] lpa, int id)
         {
             DefinderJammingPoint definderJammingPoint = RastrMap.DefinderJammingPoint.Where(x=> x.ID == id).FirstOrDefault();
