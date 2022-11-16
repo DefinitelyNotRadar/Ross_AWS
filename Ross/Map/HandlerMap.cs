@@ -131,6 +131,15 @@ namespace Ross
         }
 
 
+        private void MapLayout_OnTableItemDoubleClicked(object sender, Tabl e)
+        {
+            foreach(var item in lASP)
+            {
+                if (e.Id == item.Id)
+                    mapLayout.NavigateTo(item.Coordinates);
+            }
+            
+        }
 
         #endregion
 

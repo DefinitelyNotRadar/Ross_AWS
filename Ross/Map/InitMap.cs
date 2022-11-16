@@ -1,4 +1,5 @@
-﻿using Ross.Map;
+﻿using EvaTable;
+using Ross.Map;
 using Ross.Map._EventArgs;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace Ross
             mapLayout.OnCoordASPPropertyGridSelecteted += MapLayout_OnCoordASPPropertyGridSelecteted;
             mapLayout.OnCoordControlPoinChanged += MapLayout_OnCoordControlPoinChanged;
             mapLayout.OnNeedToRedrawMapObjects += MapLayout_OnNeedToRedrawMapJojects;
+            mapLayout.OnTableItemDoubleClicked += MapLayout_OnTableItemDoubleClicked;
         }
+
     }
 }

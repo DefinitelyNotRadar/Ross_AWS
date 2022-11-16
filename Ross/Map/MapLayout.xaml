@@ -52,7 +52,7 @@
         <evaTable:UserControl1  x:Name="evaTable" Grid.Column="4" Grid.Row="0" Width="540" Height="140"
                                Margin="3,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                                BorderBrush="Transparent" Visibility="{Binding IsVisibleEvaTable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                               GetLine="EvaTable_OnGetLine"
+                               GetLine="EvaTable_OnGetLine" ChangeFocusLine="evaTable_ChangeFocusLine"
         />
 
         <Grid Grid.Column="4" Grid.Row="2">

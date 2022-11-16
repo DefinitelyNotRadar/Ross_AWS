@@ -42,6 +42,7 @@ namespace Ross.Map
         public EventHandler<Tabl> OnRadioIntelligenceMode;
         public EventHandler<Tabl> OnRadioJammingMode;
         public EventHandler<Tabl> OnPoll;
+        public EventHandler<Tabl> OnTableItemDoubleClicked;
 
         public EventHandler<CoordEventArgs> OnCoordControlPoinChanged;
         public EventHandler<CoordEventArgs> OnCoordASPPropertyGridSelecteted;
@@ -98,6 +99,15 @@ namespace Ross.Map
         {
             get => Properties;
             set => Properties = value;
+        }
+
+
+
+        private void evaTable_ChangeFocusLine(Tabl tabl, UserControl1.StatusContextMenu menu)
+        {
+
+            OnTableItemDoubleClicked?.Invoke(this, tabl);
+
         }
 
 
@@ -245,6 +255,11 @@ namespace Ross.Map
         };
 
 
+        public void NavigateTo(Coord point)
+        {
+            var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
+            RastrMap.mapControl.NavigateTo(p);
+        }
 
         public void DrawRoss(WGSCoordinate wGSCoordinate)
         {
@@ -375,5 +390,6 @@ namespace Ross.Map
             Hide();
             e.Cancel = true;
         }
+
     }
 }
