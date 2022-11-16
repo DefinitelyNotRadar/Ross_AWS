@@ -326,6 +326,8 @@
     <Compile Include="Converters\HelpClasses\EnumHelper.cs" />
     <Compile Include="Converters\EnumToCollectionConverter .cs" />
     <Compile Include="Converters\HelpClasses\ValueDescription.cs" />
+    <Compile Include="CyclePoll\CyclePollTimer.cs" />
+    <Compile Include="CyclePoll\CycleTimeWork.cs" />
     <Compile Include="Map\EventArgs\CoordEventArgs.cs" />
     <Compile Include="Map\HandlerMap.cs" />
     <Compile Include="Map\InitMap.cs" />

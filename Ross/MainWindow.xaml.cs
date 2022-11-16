@@ -48,6 +48,7 @@ namespace Ross
             DataContext = mainWindowViewSize;
             
             InitChat();
+            CyclePollTimerInitialize();
         }
 
         private byte ViewCoordToByte(string viewCoord)

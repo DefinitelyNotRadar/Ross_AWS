@@ -20,21 +20,27 @@ namespace Ross.Models
         private string ipAddress_3G4G = " ";
         private int port_3G4G = 0;
 
+        private readonly object locker = new object();
+
+
         public GrpcClient SelectedConnectionObject
         {
-            get => selectedConnectionObject;
+            get { lock (locker) { return selectedConnectionObject; } }
             set
             {
-                if(selectedConnectionObject != null)
-                    if (selectedConnectionObject.Equals(value)) return;
-                selectedConnectionObject = value;
-                OnPropertyChanged();
+                lock (locker)
+                {
+                    if (selectedConnectionObject != null)
+                        if (selectedConnectionObject.Equals(value)) return;
+                    selectedConnectionObject = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
         public ConnectionTypeServerOD ConnectionTypeServerOD
         {
-            get => connectionType;
+            get { lock (locker) { return connectionType; } }
             set
             {
                 if (connectionType == value) return;
@@ -45,7 +51,7 @@ namespace Ross.Models
 
         public int IdMaster
         {
-            get => id_master;
+            get {lock (locker) { return id_master; } }
             set
             {
                 if(id_master == value) return;
@@ -56,7 +62,7 @@ namespace Ross.Models
 
         public int IdSlave
         {
-            get => id_slave;
+            get { lock (locker) { return id_slave; } }
             set
             {
                 if (id_slave == value) return;
@@ -67,7 +73,7 @@ namespace Ross.Models
 
         public string IpAddress_interior
         {
-            get => ipAddress;
+            get { lock (locker) { return ipAddress; } }
             set
             {
                 if(ipAddress == value) return;
@@ -78,7 +84,7 @@ namespace Ross.Models
 
         public int Port_interior
         {
-            get => port;
+            get { lock (locker) { return port; } }
             set
             {
                 if(port == value) return;
@@ -90,7 +96,7 @@ namespace Ross.Models
 
         public string IpAddress_interior_3G4G
         {
-            get => ipAddress_3G4G;
+            get { lock (locker) { return ipAddress_3G4G; } }
             set
             {
                 if (ipAddress_3G4G == value) return;
@@ -101,7 +107,7 @@ namespace Ross.Models
 
         public int Port_interior_3G4G
         {
-            get => port_3G4G;
+            get { lock (locker) { return port_3G4G; } }
             set
             {
                 if (port_3G4G == value) return;

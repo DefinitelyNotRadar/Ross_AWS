@@ -150,6 +150,7 @@ namespace Ross
             }
 
 
+            DrawRoss();
 
             DrawAllASP();
 
@@ -165,20 +166,25 @@ namespace Ross
         }
 
 
+
+
         private void UpdateEvaTable()
         {
 
-                    mapLayout.ClearEvaTable();
-                    foreach (var asp in lASP)
-                    {
-                        Role roleStation = asp.Role == RoleStation.Master ? Role.Master : (asp.Role == RoleStation.Slave ? Role.Slave : Role.Single);
-                        mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.CallSign, Id = asp.Id, Role = roleStation, StateASP = asp.IsConnect == Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode, Letters = asp.Letters });
+            mapLayout.ClearEvaTable();
+            foreach (var asp in lASP)
+            {
+                Role roleStation = asp.Role == RoleStation.Master ? Role.Master : (asp.Role == RoleStation.Slave ? Role.Slave : Role.Single);
+                mapLayout.AddStationInEvaTable(new Tabl() { Name = asp.CallSign, Id = asp.Id, Role = roleStation, StateASP = asp.IsConnect == Led.Green ? StateASP.On : StateASP.Off, ModASP = (ModASP)asp.Mode, Letters = asp.Letters });
                 
-                    }
+            }
           
         }
 
-        
+        private void DrawRoss()
+        {
+            mapLayout.DrawRoss(new UIMapRast.Models.WGSCoordinate() { Latitude = Properties.Local.Common.Latitude, Longitude = Properties.Local.Common.Longitude });
+        }
 
         private void UpdateEvaTableConnection(TableASP asp)
         {
@@ -210,12 +216,12 @@ namespace Ross
 
         private void DrawAllASP()
         {
-                    foreach (var asp in lASP)
-                    {
-                        mapLayout.DrawStation(asp.Coordinates, asp.Caption);
-                    }
-                    mapLayout.GetStatusBarModel().AJSValue = lASP.Count;
-                    mapLayout.SetASP(lASP);  
+            foreach (var asp in lASP)
+            {
+                mapLayout.DrawStation(asp.Coordinates, asp.Caption);
+            }
+            mapLayout.GetStatusBarModel().AJSValue = lASP.Count;
+            mapLayout.SetASP(lASP);  
         }
 
         private void DrawAllFWS()

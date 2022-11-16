@@ -107,11 +107,6 @@ namespace Ross
 
         private async Task Poll_Station(GrpcClient selectedStation)
         {
-            //Task task1 = new Task(() =>
-            //    {
-
-            //});
-            //task1.Start();
             await PollStation(selectedStation).ConfigureAwait(false);
         }
 

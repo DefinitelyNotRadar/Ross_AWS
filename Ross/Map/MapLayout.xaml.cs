@@ -204,10 +204,7 @@ namespace Ross.Map
                     Longitude = Math.Round(e.Longitude, 6)
                 };
 
-                ControlPost controlPost = new ControlPost(0);
-                controlPost.Coordinate = coord;
-
-                RastrMap.UpdatePC(controlPost);
+                DrawRoss(coord);
 
                 OnCoordControlPoinChanged(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
             }
@@ -248,6 +245,14 @@ namespace Ross.Map
         };
 
 
+
+        public void DrawRoss(WGSCoordinate wGSCoordinate)
+        {
+            ControlPost controlPost = new ControlPost(0);
+            controlPost.Coordinate = wGSCoordinate;
+
+            RastrMap.UpdatePC(controlPost);
+        }
 
         public void DrawPolygonOfLineOfSight()
         {
