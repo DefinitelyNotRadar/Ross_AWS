@@ -172,10 +172,6 @@ namespace Ross.Map
         {
             Properties.Local.Common.CoordinateSystem = GeographicCoordinateSystem.CK42;
             Properties.Local.Common.CoordinateView = CoordView.Dd;
-            Properties.Local.ColorsMap.ColorIRIFUSS = ColorsForMap.Yellow;
-            Properties.Local.ColorsMap.ColorIRIFWS = ColorsForMap.Yellow;
-            Properties.Local.ColorsMap.ColorSectorRI = ColorsForMap.Yellow;
-            Properties.Local.ColorsMap.ColorSectorRJ = ColorsForMap.Yellow;
         }
 
 

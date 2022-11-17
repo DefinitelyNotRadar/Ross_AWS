@@ -214,6 +214,8 @@ namespace Ross.Map
 
         private MainViewModel route;
         private Feature PolilineRoute;
+        private List<IMapObject> FlagsObjects;
+        private IMapObject FinishFlagObject;
 
         private MapObjectStyle mapObjectStyle_Part;
         private MapObjectStyle mapObjectStyle_Finish;
@@ -238,7 +240,7 @@ namespace Ross.Map
             RouteViewModel.PropertyChanged += Route_PropertyChanged;
             RasterMapControl.OnRoutePointPosition += RasterMapControl_OnRoutePointPosition;
             mapObjectStyle_Part = RasterMapControl.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "StartPoint.png", 0.27);
-            mapObjectStyle_Finish = RasterMapControl.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "StopPoint.png", 0.02);
+            mapObjectStyle_Finish = RasterMapControl.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "StopPoint.png", 0.07);
         }
 
         private void RasterMapControl_OnRoutePointPosition(object sender, Location e)
@@ -270,19 +272,26 @@ namespace Ross.Map
 
         public void DrawRoute()
         {
-            List<Point> PointsOfSelectedRoute  = new List<Point>();
-
+            if(FlagsObjects != null)
+                foreach(var flag in FlagsObjects)
+                    RasterMapControl.mapControl.RemoveObject(flag);
             RasterMapControl.mapControl.RemoveObject(PolilineRoute);
+            RasterMapControl.mapControl.RemoveObject(FinishFlagObject);
+
+            List<Point> PointsOfSelectedRoute = new List<Point>();
+            FlagsObjects = new List<IMapObject>();
 
             foreach (var item in RouteViewModel.SelectedItem.ListPoints)
             {
                 var p = Mercator.FromLonLat(item.Longitude, item.Latitude);
                 
                 PointsOfSelectedRoute.Add(p);
-                RasterMapControl.mapControl.AddMapObject(mapObjectStyle_Part,"",p);
+               FlagsObjects.Add(RasterMapControl.mapControl.AddMapObject(mapObjectStyle_Part,"",p));
             }
-   
-            RasterMapControl.mapControl.AddMapObject(mapObjectStyle_Finish, "", PointsOfSelectedRoute.Last());
+
+            if (FlagsObjects != null && FlagsObjects.Count > 0)
+                RasterMapControl.mapControl.RemoveObject(FlagsObjects.Last());
+            FinishFlagObject = RasterMapControl.mapControl.AddMapObject(mapObjectStyle_Finish, "", PointsOfSelectedRoute.Last());
 
             if (RasterMapControl.mapControl.IsLoaded)
                 PolilineRoute = RasterMapControl.mapControl.AddPolyline(PointsOfSelectedRoute);

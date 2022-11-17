@@ -70,7 +70,7 @@ namespace Ross
 
             if (IsSeccess)
             {
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                _ = Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
                     {
                         e.ModASP = ModASP.Jumming;
                     });

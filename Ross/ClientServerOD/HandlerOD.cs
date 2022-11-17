@@ -167,6 +167,7 @@ namespace Ross
                 {
                     await clientDB.Tables[nameTable].AddAsync(record).ConfigureAwait(false);
                 }
+                await Task.Delay(200);
             }
         }
 
