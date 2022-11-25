@@ -378,7 +378,6 @@ namespace Ross
                 ucASP.UpdateASPs(lASP);
                 UpdateSideMenu(lASP);
                 UpdateSelectedStationModel(lASP, false);
-                //UpdateTableASP4MainPanel(lASP);
 
                 lSRangeRecon = await clientDB.Tables[NameTable.TableSectorsRangesRecon].LoadAsync<TableSectorsRanges>();
                 lSRangeSuppr = await clientDB.Tables[NameTable.TableSectorsRangesSuppr].LoadAsync<TableSectorsRanges>();
@@ -404,6 +403,10 @@ namespace Ross
                 ucSuppressFWS.UpdateSuppressFWS(lSuppressFWS.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP)
                     .ToList());
 
+                lReconFWS = await clientDB.Tables[NameTable.TableReconFWS].LoadAsync<TableReconFWS>();
+                ucReconFWS.UpdateReconFWS(lReconFWS);
+                ucReconFWS.UpdateASPRP(lASP, lReconFWS);
+
 
                 lReconFHSS = await clientDB.Tables[NameTable.TableReconFHSS].LoadAsync<TableReconFHSS>();
                 ucReconFHSS.UpdateReconFHSS(lReconFHSS);
@@ -414,16 +417,12 @@ namespace Ross
                     .LoadAsync<TableFHSSReconExcluded>();
                 ucReconFHSS.UpdateTableFHSSReconExcluded(lFHSSReconExcluded);
 
-                //ucTempFWS.UpdateTempFWS(await clientDB.Tables[NameTable.TempFWS].LoadAsync<TempFWS>(),
-                //    lSpecFreqImportant.Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList());
 
                 var arg = (await clientDB.Tables[NameTable.GlobalProperties].LoadAsync<GlobalProperties>())
                     .FirstOrDefault();
                 Properties.Global = arg;
 
 
-                //UpdateGlobalProperties4MainPanel(arg);
-                //UpdateGlobalProperties4LeftRIButtons(arg);
                 UpdateRanges(arg);
 
                 lSuppressFHSS = (await clientDB.Tables[NameTable.TableSuppressFHSS].LoadAsync<TableSuppressFHSS>())
