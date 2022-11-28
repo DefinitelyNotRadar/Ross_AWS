@@ -702,19 +702,19 @@ namespace Ross
                 List<TableSectorsRanges> listSRangeSuppr = await clientDB.Tables[NameTable.TableSectorsRangesSuppr].LoadAsync<TableSectorsRanges>();
                 List<TableFreqSpec> listSpecFreqForbidden = await clientDB.Tables[NameTable.TableFreqForbidden].LoadAsync<TableFreqSpec>();
                 lReconFWS = await clientDB.Tables[NameTable.TableReconFWS].LoadAsync<TableReconFWS>();
-                //listDistrib = IRI_Distribution.ClassTargetDistribution.Distribution(lASP, listSRangeSuppr, listSpecFreqForbidden, lReconFWS, basicProperties.Global.NumberIri); //Distribution(lASP, lSRangeSuppr, lSpecFreqForbidden, lReconFWS, basicProperties.Global.NumberIri);
+                listDistrib = IRI_Distribution.ClassTargetDistribution.Distribution(lASP, listSRangeSuppr, listSpecFreqForbidden, lReconFWS, Properties.Global.NumberIri); //Distribution(lASP, lSRangeSuppr, lSpecFreqForbidden, lReconFWS, basicProperties.Global.NumberIri);
 
-                //for (int i = 0; i < listDistrib.Count; i++)
-                //{
+                for (int i = 0; i < listDistrib.Count; i++)
+                {
 
-                //    for (int j = 0; j < listDistrib[i].ListJamDirect.Count; j++)
-                //    {
-                //        listDistrib[i].ListJamDirect[j].ID = 0;
-                //    }
-                //}
+                    for (int j = 0; j < listDistrib[i].ListJamDirect.Count; j++)
+                    {
+                        listDistrib[i].ListJamDirect[j].ID = 0;
+                    }
+                }
 
-                //if (listDistrib.Count != 0)
-                //    clientDB.Tables[NameTable.TableReconFWS].AddRange(listDistrib);
+                if (listDistrib.Count != 0)
+                    clientDB.Tables[NameTable.TableReconFWS].AddRange(listDistrib);
             }
             catch (Exception ex)
             {
@@ -736,10 +736,8 @@ namespace Ross
             {
                 if (e)
                 {
-                    //lRS = new List<SRNet>();
                     lReconFWS = await clientDB.Tables[NameTable.TableReconFWS].LoadAsync<TableReconFWS>();
                     lRS = ClassFormation_RN_RD_CC.Organization_RNet(lReconFWS, 0, 0, 0);
-                    //ClassFormation_RN_RD_CC.Organization_RNet(lASP, lReconFWS, 0, 0, 0, ref lRS);
                     ucReconFWS.UpdateRS(lRS);
                 }
                 else
@@ -756,10 +754,8 @@ namespace Ross
             {
                 if (e)
                 {
-                    //lUS = new List<SRNet>();
                     lReconFWS = await clientDB.Tables[NameTable.TableReconFWS].LoadAsync<TableReconFWS>();
                     lUS = ClassFormation_RN_RD_CC.Organization_Communication(lReconFWS, 0, 0);
-                    //ClassFormation_RN_RD_CC.Organization_Communication(lASP, lReconFWS, 0, 0, ref lUS);
                     ucReconFWS.UpdateUS(lUS);
                 }
                 else

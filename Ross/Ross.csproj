@@ -157,6 +157,9 @@
     <Reference Include="InheritorsException">
       <HintPath>dll\InheritorsException.dll</HintPath>
     </Reference>
+    <Reference Include="IRI_Distribution">
+      <HintPath>dll\IRI_Distribution.dll</HintPath>
+    </Reference>
     <Reference Include="Lib">
       <HintPath>dll\Lib.dll</HintPath>
     </Reference>
