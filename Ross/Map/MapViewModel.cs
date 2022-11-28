@@ -246,7 +246,11 @@ namespace Ross.Map
         private void RasterMapControl_OnRoutePointPosition(object sender, Location e)
         {
             if (RouteViewModel.SelectedItem != null)
-                RouteViewModel.SelectedItem.ListPoints.Add(new WayPoints() { Latitude = e.Latitude, Longitude = e.Longitude, NumbPoint = RouteViewModel.SelectedItem.ListPoints.Count});
+            { 
+                RouteViewModel.SelectedItem.ListPoints.Add(new WayPoints() { Latitude = e.Latitude, Longitude = e.Longitude, NumbPoint = RouteViewModel.SelectedItem.ListPoints.Count });
+                RouteViewModel.SelectedItem = RouteViewModel.SelectedItem;
+            }
+
             else MessageBox.Show("Не выбран маршрут");
         }
 
@@ -291,7 +295,8 @@ namespace Ross.Map
 
             if (FlagsObjects != null && FlagsObjects.Count > 0)
                 RasterMapControl.mapControl.RemoveObject(FlagsObjects.Last());
-            FinishFlagObject = RasterMapControl.mapControl.AddMapObject(mapObjectStyle_Finish, "", PointsOfSelectedRoute.Last());
+            if(PointsOfSelectedRoute.Count > 0)
+                FinishFlagObject = RasterMapControl.mapControl.AddMapObject(mapObjectStyle_Finish, "", PointsOfSelectedRoute.Last());
 
             if (RasterMapControl.mapControl.IsLoaded)
                 PolilineRoute = RasterMapControl.mapControl.AddPolyline(PointsOfSelectedRoute);
