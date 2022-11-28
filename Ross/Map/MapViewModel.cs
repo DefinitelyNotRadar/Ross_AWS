@@ -106,6 +106,12 @@ namespace Ross.Map
             viewModelForTask1 = new ViewModel(rasterMapControl);
             viewModelForTask1.PropertyChanged += ViewModelForTask1_PropertyChanged;
             viewModelForTask1.ReturnModel.PropertyChanged += ReturnModel_PropertyChanged;
+            tableASPs.CollectionChanged += TableASPs_CollectionChanged1;
+        }
+
+        private void TableASPs_CollectionChanged1(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            //viewModelForTask1.LineOfSightModel.
         }
 
         private void ViewModelForTask1_PropertyChanged(object sender, PropertyChangedEventArgs e)

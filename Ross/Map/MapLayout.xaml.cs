@@ -138,7 +138,25 @@ namespace Ross.Map
 
         public void TranslateMapLayout(Languages languages)
         {
-            
+            switch(languages)
+            {
+                case Languages.Rus:
+                    ZoneControl.SetLanguage(LineOfSightZoneControl.Models.Languages.RU);
+                    RouteControl.UpdateLanguage("Rus");
+                    AzimuthControl.UpdateLanguage("Rus");
+                    break;
+                case Languages.Eng:
+                    ZoneControl.SetLanguage(LineOfSightZoneControl.Models.Languages.EN);
+                    RouteControl.UpdateLanguage("Eng");
+                    AzimuthControl.UpdateLanguage("Eng");
+                    break;
+                default:
+                    ZoneControl.SetLanguage(LineOfSightZoneControl.Models.Languages.RU);
+                    RouteControl.UpdateLanguage("Rus");
+                    AzimuthControl.UpdateLanguage("Rus");
+                    break;
+            }
+
         }
 
         #endregion 
@@ -184,11 +202,6 @@ namespace Ross.Map
             catch
             {
             }
-        }
-
-        private void Properties_OnLanguageChanged(object sender, Languages e)
-        {
-            TranslateMapLayout(e);
         }
 
         private void Properties_OnPathMapChanged(object sender, PathMap e)

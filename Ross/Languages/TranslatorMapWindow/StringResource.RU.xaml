@@ -33,4 +33,9 @@
     <system:String x:Key="cntMenuSetPointPosition">Установить позицию пункта</system:String>
     <system:String x:Key="cntMenuSetRoutePoint">Установить точку маршрута</system:String>
 
+
+    <system:String x:Key="headerZPV">ЗПВ</system:String>
+    <system:String x:Key="headerAzimuth">Азимут</system:String>
+    <system:String x:Key="headerRoute">Маршрут</system:String>
+
 </ResourceDictionary>

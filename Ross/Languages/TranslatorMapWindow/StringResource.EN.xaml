@@ -31,5 +31,11 @@
     <system:String x:Key="cntMenuSetPCPosition">Set PC position</system:String>
     <system:String x:Key="cntMenuSetPointPosition">Set point position</system:String>
     <system:String x:Key="cntMenuSetRoutePoint">Set route point</system:String>
-    
+
+
+    <system:String x:Key="headerZPV">@@@2</system:String>
+    <system:String x:Key="headerAzimuth">Azimuth</system:String>
+    <system:String x:Key="headerRoute">Route</system:String>
+
+
 </ResourceDictionary>

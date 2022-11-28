@@ -169,7 +169,7 @@ namespace Ross
                         mapLayout.Properties.Local.Common.Language = DLLSettingsControlPointForMap.Model.Languages.RU;
                         break;
                 }
-
+                mapLayout.TranslateMapLayout(languages);
                 mapLayout.Resources.MergedDictionaries.Add(dict);
             }
             catch (Exception ex)

@@ -57,16 +57,16 @@
 
         <Grid Grid.Column="4" Grid.Row="2">
             <TabControl>
-                <TabItem Header="ЗПВ" >
-                    <Grid MaxWidth="550" HorizontalAlignment="Left">
+                <TabItem Header="{DynamicResource headerZPV}" >
+                    <Grid MaxWidth="950" HorizontalAlignment="Left">
                         <zone:ZoneControl x:Name="ZoneControl" DataContext="{Binding ViewModelForTask1}" />
                     </Grid>
                 </TabItem>
-                <TabItem Header="Азимут">
-                    <azimuth:UserControl1 DataContext="{Binding AzimuthViewModel}"></azimuth:UserControl1>
+                <TabItem Header="{DynamicResource headerAzimuth}">
+                    <azimuth:UserControl1 x:Name="AzimuthControl" DataContext="{Binding AzimuthViewModel}"></azimuth:UserControl1>
                 </TabItem>
-                <TabItem Header="Маршрут" >
-                    <route:UserControl1 DataContext="{Binding RouteViewModel}"></route:UserControl1>
+                <TabItem Header="{DynamicResource headerRoute}" >
+                    <route:UserControl1 x:Name="RouteControl" DataContext="{Binding RouteViewModel}"></route:UserControl1>
                 </TabItem>
 
             </TabControl>
