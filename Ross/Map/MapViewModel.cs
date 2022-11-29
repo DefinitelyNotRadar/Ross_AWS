@@ -187,6 +187,12 @@ namespace Ross.Map
 
         private AzimuthControl.ViewModel.MainViewModel azimuth;
 
+        private MapObjectStyle mapObjectUserPoint;
+
+        private List<Feature> AzimuthLists = new List<Feature>();
+        private List<IMapObject> TextAzimuths = new List<IMapObject>();
+        private IMapObject UserPoint;
+
         public AzimuthControl.ViewModel.MainViewModel AzimuthViewModel
         {
             get => azimuth;
@@ -200,6 +206,8 @@ namespace Ross.Map
 
         public void InitTask2()
         {
+            mapObjectUserPoint = RasterMapControl.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "StartPoint.png", 0.2);
+
             AzimuthViewModel = new AzimuthControl.ViewModel.MainViewModel();
             AzimuthViewModel.PropertyChanged += AzimuthViewModel_PropertyChanged;
             tableASPs.CollectionChanged += TableASPs_CollectionChanged;
@@ -219,18 +227,28 @@ namespace Ross.Map
 
         public void DrawAzimuth()
         {
-            
+
+            foreach(var mapObj in AzimuthLists)
+                RasterMapControl.mapControl.RemoveObject(mapObj);
+            foreach (var mapObj in TextAzimuths)
+                RasterMapControl.mapControl.RemoveObject(mapObj);
+            RasterMapControl.mapControl.RemoveObject(UserPoint);
+
+            var userPoint = Mercator.FromLonLat(AzimuthViewModel.UserLongitude, AzimuthViewModel.UserLatitude);          
+            UserPoint = RasterMapControl.mapControl.AddMapObject(mapObjectUserPoint, "", userPoint);
+
             foreach (var azimuth in AzimuthViewModel.AzimuthCollection)
             {
                 List<Point> azimuthLine = new List<Point>();
-                azimuthLine.Add(Mercator.FromLonLat(86.448, 175.34585));
-                azimuthLine.Add(Mercator.FromLonLat(AzimuthViewModel.UserLongitude, AzimuthViewModel.UserLatitude));
-                azimuthLine.Add(Mercator.FromLonLat(azimuth.Longitude, azimuth.Latitude));
+                
+                var aspPoint = Mercator.FromLonLat(azimuth.Longitude, azimuth.Latitude);
 
-                RasterMapControl.mapControl.AddPolyline(azimuthLine, Color.Green);
+                azimuthLine.Add(userPoint);
+                azimuthLine.Add(aspPoint);
+
+                AzimuthLists.Add(RasterMapControl.mapControl.AddPolyline(azimuthLine, Color.Green));
+                TextAzimuths.Add(RasterMapControl.mapControl.AddMapObject(new MapObjectStyle(new SymbolStyle()), new LabelStyle() { Text = azimuth.AzimuthValue.ToString() }, new Point((userPoint.X + aspPoint.X)/2, (userPoint.Y + aspPoint.Y) / 2)));
             }
-
-           
         }
 
         #endregion
