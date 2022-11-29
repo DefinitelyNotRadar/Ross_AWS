@@ -111,7 +111,11 @@ namespace Ross.Map
 
         private void TableASPs_CollectionChanged1(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            //viewModelForTask1.LineOfSightModel.
+            var list = new ObservableCollection<string>();
+
+            foreach (var asp in ASPCollection)
+                list.Add("ASP " + asp.Id.ToString());
+            viewModelForTask1.ComboBoxItems = list;
         }
 
         private void ViewModelForTask1_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -141,6 +145,21 @@ namespace Ross.Map
                     RasterMapControl.mapControl.AddPolygon(polygon, greenColor);
                 }                        
             }
+            else if(e.PropertyName.Equals(nameof(viewModelForTask1.ComboBoxSelectedItem)))
+            {
+                foreach(var asp in ASPCollection)
+                {
+                    int id = 0;
+                    int.TryParse(viewModelForTask1.ComboBoxSelectedItem.ToString().Substring(4, 1), out id);
+                    if (asp.Id == id)
+                    {
+                        viewModelForTask1.LineOfSightModel.ZoneCenter.Latitude = asp.Coordinates.Latitude;
+                        viewModelForTask1.LineOfSightModel.ZoneCenter.Longitude = asp.Coordinates.Longitude;
+                        viewModelForTask1.LineOfSightModel.ZoneCenter.Height = asp.Coordinates.Altitude;
+                    }
+                }
+            }
+
         }
 
         private void ReturnModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
