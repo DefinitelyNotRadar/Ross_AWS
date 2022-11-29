@@ -43,8 +43,8 @@ namespace Ross
         #region Context Menu
         private void MapLayout_OnCoordControlPoinChanged(object sender, CoordEventArgs e)
         {
-            Properties.Local.Common.Latitude = e.Data.Latitude;
-            Properties.Local.Common.Longitude = e.Data.Longitude;
+            Properties.Local.Common.Latitude = Math.Round(e.Data.Latitude, 6);
+            Properties.Local.Common.Longitude = Math.Round(e.Data.Longitude,6);
         }
 
         private void MapLayout_OnCoordASPPropertyGridSelecteted(object sender, CoordEventArgs e)
