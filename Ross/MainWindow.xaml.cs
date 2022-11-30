@@ -39,6 +39,7 @@ namespace Ross
             ChangeLanguage(Properties.Local.Common.Language);
             
             InitTables();
+            UpdateButtonsCRRD();
 
             SetLanguageTables(Properties.Local.Common.Language);
             PropViewCoords.ViewCoords = ViewCoordToByte(Properties.Local.CoordinatesProperty.View);
@@ -108,6 +109,7 @@ namespace Ross
             if (e.PropertyName == nameof(Properties.Local.Common.AccessARM))
                 mapLayout.MapProperties.Local.Common.Access = (AccessTypes)(byte)Properties.Local.Common.AccessARM;
             endPoint = Properties.Local.DbServer.IpAddress + ":" + Properties.Local.DbServer.Port;
+            UpdateButtonsCRRD();
         }
 
 

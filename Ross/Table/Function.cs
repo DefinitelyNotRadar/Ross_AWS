@@ -247,13 +247,12 @@ namespace Ross
             //ucSuppressFHSS.ChangeFreqHeaderMHz_kHz();
         }
 
-        private void UpdateButtonsCRRD(LocalProperties localProperties)
+        private void UpdateButtonsCRRD()
         {
-            PropLocalCRRD.CRRD1 = localProperties.ARONE1.State;
-            PropLocalCRRD.CRRD2 = localProperties.ARONE2.State;
+            PropLocalCRRD.CRRD1 = false;
+            PropLocalCRRD.CRRD2 = false;
 
-           // ucTempFWS.ButtonsCRRDVisible();
-            //ucReconFWS.ButtonsCRRDVisible();
+            ucReconFWS.ButtonsCRRDVisible();
             ucSuppressFWS.ButtonsCRRDVisible();
         }
 
