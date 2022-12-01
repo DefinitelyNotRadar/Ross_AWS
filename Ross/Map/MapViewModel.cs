@@ -211,6 +211,12 @@ namespace Ross.Map
             AzimuthViewModel = new AzimuthControl.ViewModel.MainViewModel();
             AzimuthViewModel.PropertyChanged += AzimuthViewModel_PropertyChanged;
             tableASPs.CollectionChanged += TableASPs_CollectionChanged;
+            AzimuthViewModel.ClearCommand = new AzimuthControl.Command.RelayCommand(obj => 
+            {
+                ClearAzimuthDrawings();
+                AzimuthViewModel.UserLatitude = 0;
+                AzimuthViewModel.UserLongitude = 0;
+            });
         }
 
         private void TableASPs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -228,11 +234,7 @@ namespace Ross.Map
         public void DrawAzimuth()
         {
 
-            foreach(var mapObj in AzimuthLists)
-                RasterMapControl.mapControl.RemoveObject(mapObj);
-            foreach (var mapObj in TextAzimuths)
-                RasterMapControl.mapControl.RemoveObject(mapObj);
-            RasterMapControl.mapControl.RemoveObject(UserPoint);
+            ClearAzimuthDrawings();
 
             var userPoint = Mercator.FromLonLat(AzimuthViewModel.UserLongitude, AzimuthViewModel.UserLatitude);          
             UserPoint = RasterMapControl.mapControl.AddMapObject(mapObjectUserPoint, "", userPoint);
@@ -249,6 +251,15 @@ namespace Ross.Map
                 AzimuthLists.Add(RasterMapControl.mapControl.AddPolyline(azimuthLine, Color.Green));
                 TextAzimuths.Add(RasterMapControl.mapControl.AddMapObject(new MapObjectStyle(new SymbolStyle()), new LabelStyle() { Text = azimuth.AzimuthValue.ToString() }, new Point((userPoint.X + aspPoint.X)/2, (userPoint.Y + aspPoint.Y) / 2)));
             }
+        }
+
+        public void ClearAzimuthDrawings()
+        {
+            foreach (var mapObj in AzimuthLists)
+                RasterMapControl.mapControl.RemoveObject(mapObj);
+            foreach (var mapObj in TextAzimuths)
+                RasterMapControl.mapControl.RemoveObject(mapObj);
+            RasterMapControl.mapControl.RemoveObject(UserPoint);
         }
 
         #endregion
