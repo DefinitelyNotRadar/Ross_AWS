@@ -491,10 +491,31 @@ namespace Ross
 
         private async void UcSuppressFWS_OnGetExecBear(object sender, TableSuppressFWS e)
         {
-            var bearing = await ExternalExBearing2(e.FreqKHz.Value / 1000d, 0);
-            //bearing = 15f;
-            e.Bearing = bearing;
-            clientDB.Tables[NameTable.TableSuppressFWS].Change(e);
+            //var bearing = await ExternalExBearing2(e.FreqKHz.Value / 1000d, 0);
+            ////bearing = 15f;
+            //e.Bearing = bearing;
+            //clientDB.Tables[NameTable.TableSuppressFWS].Change(e);
+
+            try
+            {
+                var answer = await Client_GetExecutiveDF(SelectedStationModels.First(t => t.SelectedConnectionObject.ServerAddress == PropNumberASP.SelectedASPforListQ).SelectedConnectionObject, PropNumberASP.SelectedASPforListQ, e.FreqKHz.Value, 0).ConfigureAwait(false);
+
+                if (answer == null) return;
+
+                if (answer.Value.OwnBearing != -1 || answer.Value.Frequency != 0)
+                {
+                    //int ind = (e.FindIndex(x => x.JamDirect.NumberASP == answer.Value.StationId));
+                    //if (ind != -1)
+                    //{
+                        e.Bearing = answer.Value.OwnBearing;
+                        clientDB.Tables[NameTable.TableReconFWS].Change(e);
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public async Task<float> ExternalExBearing2(double freqMHz, double freqWidthMHz)
