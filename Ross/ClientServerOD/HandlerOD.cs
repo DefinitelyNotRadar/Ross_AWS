@@ -241,6 +241,9 @@ namespace Ross
                     break;
             }
 
+            if (mated == null)
+                return 0;
+
             return mated.Equals(default(TableASP)) ? 0 : mated.Id;
         }
 

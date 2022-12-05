@@ -246,13 +246,13 @@ namespace Ross
 
         private void DrawAllFHSS()
         {
-                    foreach (var fhss in lSourceFHSS)
-                    {
-                        mapLayout.DrawSourceFHSS(fhss.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
-                    }
+            foreach (var fhss in lSourceFHSS)
+            {
+                mapLayout.DrawSourceFHSS(fhss.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
+            }
 
-                    mapLayout.GetStatusBarModel().RESFHSSTDValue = lReconFHSS.Count;
-                    mapLayout.GetStatusBarModel().RESFHSSJValue = lSuppressFHSS.Count;
+            mapLayout.GetStatusBarModel().RESFHSSTDValue = lReconFHSS.Count;
+            mapLayout.GetStatusBarModel().RESFHSSJValue = lSuppressFHSS.Count;
 
             //foreach (var fhss in lReconFHSS)
             //    mapLayout.DrawSourceFHSS(fhss., DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
