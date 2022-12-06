@@ -82,7 +82,8 @@
     <Reference Include="AttentionControl">
       <HintPath>dll\AttentionControl.dll</HintPath>
     </Reference>
-    <Reference Include="AzimuthControl">
+    <Reference Include="AzimuthControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\AzimuthControl.dll</HintPath>
     </Reference>
     <Reference Include="Bearing">

@@ -170,8 +170,7 @@ namespace Ross
             DrawAllFHSS();
 
 
-            mapLayout.DrawPolygonOfLineOfSight();
-
+            mapLayout.DrawTasks();
         }
 
 

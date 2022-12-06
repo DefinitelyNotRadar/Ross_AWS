@@ -278,12 +278,6 @@ namespace Ross.Map
             RastrMap.UpdatePC(controlPost);
         }
 
-        public void DrawPolygonOfLineOfSight()
-        {
-            if (polygon.Count > 0)
-                RastrMap.mapControl.AddPolygon(polygon, new Color(124, 252, 0, 100));
-        }
-
         public void DrawSourceFWS(Coord point, ColorsForMap color)
         {
            var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
@@ -375,6 +369,14 @@ namespace Ross.Map
             RastrMap.UpdateDFP(RastrMap.rasterViewModel.DefinderJammingPoint);
         }
 
+
+        public void DrawTasks()
+        {
+            MapViewModel.DrawAzimuth();
+            MapViewModel.DrawRoute();
+            if (polygon.Count > 0)
+                RastrMap.mapControl.AddPolygon(polygon, new Color(124, 252, 0, 100));
+        }
         #endregion
 
         public void SetASP(List<TableASP> tableASPs)

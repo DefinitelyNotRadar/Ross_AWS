@@ -59,7 +59,7 @@ namespace Ross
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
                 {
                     ucASP.ChangeASP(rec.Id, rec);
-                    UpdateEvaTableConnection(rec);
+                    //UpdateEvaTableConnection(rec);
                 });
             }
             catch(Exception ex)

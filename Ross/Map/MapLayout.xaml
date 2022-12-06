@@ -57,18 +57,17 @@
 
         <Grid Grid.Column="4" Grid.Row="2">
             <TabControl>
-                <TabItem Header="{DynamicResource headerZPV}" >
-                    <Grid MaxWidth="950" HorizontalAlignment="Left">
-                        <zone:ZoneControl x:Name="ZoneControl" DataContext="{Binding ViewModelForTask1}" />
-                    </Grid>
-                </TabItem>
                 <TabItem Header="{DynamicResource headerAzimuth}">
                     <azimuth:UserControl1 x:Name="AzimuthControl" DataContext="{Binding AzimuthViewModel}"></azimuth:UserControl1>
                 </TabItem>
                 <TabItem Header="{DynamicResource headerRoute}" >
                     <route:UserControl1 x:Name="RouteControl" DataContext="{Binding RouteViewModel}"></route:UserControl1>
                 </TabItem>
-
+                <TabItem Header="{DynamicResource headerZPV}" Visibility="Collapsed">
+                    <Grid MaxWidth="950" HorizontalAlignment="Left" Visibility="Collapsed">
+                        <zone:ZoneControl x:Name="ZoneControl" DataContext="{Binding ViewModelForTask1}" Visibility="Collapsed"/>
+                    </Grid>
+                </TabItem>
             </TabControl>
         </Grid>
         <GridSplitter x:Name="DownPanelSplitter" Grid.Column="4" Grid.Row="1" Background="#525151"
