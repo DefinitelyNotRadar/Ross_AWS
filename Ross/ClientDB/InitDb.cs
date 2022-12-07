@@ -36,6 +36,7 @@ namespace Ross
             (clientDB.Tables[NameTable.TableReconFWS] as ITableAddRange<TableReconFWS>).OnAddRange += HandlerAddRangeReconFWS;
             (clientDB.Tables[NameTable.TableReconFHSS] as ITableAddRange<TableReconFHSS>).OnAddRange += HandlerAddRangeReconFHSS;
             (clientDB.Tables[NameTable.TableChat] as ITableUpdate<TableChatMessage>).OnUpTable += HandlerUpdate_TableChat;
+            (clientDB.Tables[NameTable.TableRoute] as ITableUpdate<TableRoute>).OnUpTable += HandlerUpdate_TableRoute;
         }
 
         private void DeinitClientDB()
@@ -60,6 +61,7 @@ namespace Ross
             (clientDB.Tables[NameTable.TableReconFWS] as ITableAddRange<TableReconFWS>).OnAddRange -= HandlerAddRangeReconFWS;
             (clientDB.Tables[NameTable.TableReconFHSS] as ITableAddRange<TableReconFHSS>).OnAddRange -= HandlerAddRangeReconFHSS;
             (clientDB.Tables[NameTable.TableChat] as ITableUpdate<TableChatMessage>).OnUpTable -= HandlerUpdate_TableChat;
+            (clientDB.Tables[NameTable.TableRoute] as ITableUpdate<TableRoute>).OnUpTable -= HandlerUpdate_TableRoute;
         }
 
     }

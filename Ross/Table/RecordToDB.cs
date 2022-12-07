@@ -103,7 +103,7 @@ namespace Ross
                 ucSuppressFHSS.UpdateSuppressFHSS(lSuppressFHSS);
 
                 lTableRoute = await (clientDB.Tables[NameTable.TableRoute]).LoadAsync<TableRoute>();
-
+                mapLayout.SetRoute(lTableRoute);
                
             }
             catch (ExceptionClient exeptClient)

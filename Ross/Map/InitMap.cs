@@ -26,6 +26,9 @@ namespace Ross
             mapLayout.OnNeedToRedrawMapObjects += MapLayout_OnNeedToRedrawMapJojects;
             mapLayout.OnTableItemDoubleClicked += MapLayout_OnTableItemDoubleClicked;
             mapLayout.RouteChanged += MapLayout_RouteChanged;
+            mapLayout.RouteDeleted += MapLayout_RouteDeleted;
+            mapLayout.RouteClear += MapLayout_RouteClear;
         }
+
     }
 }

@@ -55,7 +55,52 @@ namespace Ross
 
         private void MapLayout_RouteChanged(object sender, Route e)
         {
-           // clientDB?.Tables[NameTable.TableRoute].Add(new);
+            bool isRouteExist = false;
+            foreach (var route in lTableRoute)
+            {
+                if (route.Caption.Equals(e.Name))
+                {
+                    List<CoordRoute> coordRoutes = new List<CoordRoute>();
+                    foreach (var point in e.ListPoints)
+                    {
+                        coordRoutes.Add(new CoordRoute() { Coordinates = new Coord() { Latitude = point.Latitude, Longitude = point.Longitude } });
+                    }
+
+                    route.Caption = e.Name;
+                    route.ListCoordinates = coordRoutes;
+                    clientDB?.Tables[NameTable.TableRoute].Change(route);
+                    isRouteExist = true;
+                }
+            }
+
+            if(!isRouteExist)
+            {
+                List<CoordRoute> coordRoutes = new List<CoordRoute>();
+                foreach (var point in e.ListPoints)
+                {
+                    coordRoutes.Add(new CoordRoute() { Coordinates = new Coord() { Latitude = point.Latitude, Longitude = point.Longitude } });
+                }
+                clientDB?.Tables[NameTable.TableRoute].Add(new TableRoute() { Caption = e.Name, ListCoordinates = coordRoutes});
+            }
+
+        }
+
+
+        private void MapLayout_RouteDeleted(object sender, Route e)
+        {
+            foreach (var route in lTableRoute)
+            {
+                if (route.Caption.Equals(e.Name))
+                {
+                    clientDB?.Tables[NameTable.TableRoute].Delete(route);
+                }
+            }        
+        }
+
+
+        private void MapLayout_RouteClear(object sender, Route e)
+        {
+            clientDB?.Tables[NameTable.TableRoute].Clear();
         }
 
         #endregion

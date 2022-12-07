@@ -316,6 +316,16 @@ namespace Ross
             });
         }
 
+
+        private void HandlerUpdate_TableRoute(object sender, TableEventArs<TableRoute> e)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+            {
+                lTableRoute = e.Table;
+            });
+        }
+
+
         private async Task SendToEachStation<T>(List<T> list, NameTable nameTable) where T : AbstractDependentASP
         {
             try
@@ -431,6 +441,9 @@ namespace Ross
                 lFHSSExcludedFreq = await clientDB.Tables[NameTable.TableFHSSExcludedFreq]
                     .LoadAsync<TableFHSSExcludedFreq>();
                 ucSuppressFHSS.UpdateFHSSExcludedFreq(lFHSSExcludedFreq);
+
+                lTableRoute = await clientDB.Tables[NameTable.TableRoute].LoadAsync<TableRoute>();
+                mapLayout.SetRoute(lTableRoute);
 
                 try
                 {

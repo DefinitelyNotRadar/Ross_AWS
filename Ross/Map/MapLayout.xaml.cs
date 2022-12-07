@@ -59,6 +59,17 @@ namespace Ross.Map
             set => mapViewModel.OnRouteChanged = value;
         }
 
+        public EventHandler<Route> RouteDeleted
+        {
+            get => mapViewModel.OnRouteDelete;
+            set => mapViewModel.OnRouteDelete = value;
+        }
+
+        public EventHandler<Route> RouteClear
+        {
+            get => mapViewModel.OnRouteClear;
+            set => mapViewModel.OnRouteClear = value;
+        }
 
         public MapLayout()
         {
@@ -390,25 +401,45 @@ namespace Ross.Map
 
         public void SetRoute(List<TableRoute> tableRoutes)
         {
-            Route exRoute;
-            foreach (var route in tableRoutes)
+            try
             {
-                exRoute = mapViewModel.RouteViewModel.RouteCollection.First(t => t.NumbRoute == route.Id);
-
-                if (exRoute == null)
-                { 
-                    mapViewModel.RouteViewModel.RouteCollection.Add(new RouteControl.Model.Route()); 
-                }
-                else
+                Route exRoute;
+                foreach (var route in tableRoutes)
                 {
+                    exRoute = mapViewModel.RouteViewModel.RouteCollection.FirstOrDefault(t => t.Name.Equals(route.Caption));
 
-                    exRoute.Name = route.Caption;
-                    exRoute.ListPoints = new ObservableCollection<WayPoints>();
-                    foreach(var point in route.ListCoordinates)
+                    if (exRoute == null)
                     {
-                        exRoute.ListPoints.Add(new WayPoints() { Latitude = point.Coordinates.Latitude, Longitude = point.Coordinates.Longitude });
+                        var list = new ObservableCollection<WayPoints>();
+
+                        foreach (var point in route.ListCoordinates)
+                        {
+                            list.Add(new WayPoints() {NumbPoint = route.ListCoordinates.IndexOf(point), Latitude = point.Coordinates.Latitude, Longitude = point.Coordinates.Longitude });
+                        }
+
+                        var newRoute = new Route();
+                        newRoute.Name = route.Caption;
+                        newRoute.NumbRoute = route.Id;
+                        newRoute.ListPoints = list;
+                        mapViewModel.RouteViewModel.RouteCollection.Add(newRoute);
                     }
+                    else
+                    {
+
+                        exRoute.Name = route.Caption;
+                        exRoute.NumbRoute = route.Id;
+                        exRoute.ListPoints = new ObservableCollection<WayPoints>();
+                        foreach (var point in route.ListCoordinates)
+                        {
+                            exRoute.ListPoints.Add(new WayPoints() { NumbPoint = route.ListCoordinates.IndexOf(point), Latitude = point.Coordinates.Latitude, Longitude = point.Coordinates.Longitude });
+                        }
+                    }
+
                 }
+
+                mapViewModel.RouteViewModel.UpdateRoutes();
+            }catch (Exception ex)
+            {
 
             }
         }

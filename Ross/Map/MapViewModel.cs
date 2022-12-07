@@ -22,6 +22,7 @@ using Mapsui.Providers;
 using Mapsui.Projection;
 using ModelsTablesDBLib;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace Ross.Map
 {
@@ -277,6 +278,8 @@ namespace Ross.Map
         private const string partOfPath = @"\Resources\";
 
         public EventHandler<Route> OnRouteChanged;
+        public EventHandler<Route> OnRouteDelete;
+        public EventHandler<Route> OnRouteClear;
 
         public MainViewModel RouteViewModel
         {
@@ -295,9 +298,21 @@ namespace Ross.Map
         {
             RouteViewModel = new MainViewModel();
             RouteViewModel.PropertyChanged += Route_PropertyChanged;
+            RouteViewModel.RouteCollection.CollectionChanged += RouteCollection_PropertyChanged;
             RasterMapControl.OnRoutePointPosition += RasterMapControl_OnRoutePointPosition;
+            
             mapObjectStyle_Part = RasterMapControl.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "StartPoint.png", 0.27);
             mapObjectStyle_Finish = RasterMapControl.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "StopPoint.png", 0.07);
+        }
+
+        private void RouteCollection_PropertyChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Remove )
+                foreach(var item in e.OldItems)
+                    if(item is Route route)
+                        OnRouteDelete?.Invoke(this, route);
+            if (e.Action == NotifyCollectionChangedAction.Reset)
+                        OnRouteClear?.Invoke(this, null);
         }
 
         private void RasterMapControl_OnRoutePointPosition(object sender, Location e)
@@ -326,9 +341,13 @@ namespace Ross.Map
                     RouteViewModel.SelectedItem.ListPoints.CollectionChanged -= ListPoints_CollectionChanged;
                     RouteViewModel.SelectedItem.ListPoints.CollectionChanged += ListPoints_CollectionChanged;
                     DrawRoute();
+                    OnRouteChanged?.Invoke(this, RouteViewModel.SelectedItem);
                 }
             }
-            else RasterMapControl.mapControl.RemoveObject(PolilineRoute);
+            else 
+            { 
+                ClearRoute();
+            }
         }
 
         public void DrawRoute()
@@ -358,9 +377,6 @@ namespace Ross.Map
 
             if (RasterMapControl.mapControl.IsLoaded)
                 PolilineRoute = RasterMapControl.mapControl.AddPolyline(PointsOfSelectedRoute);
-
-
-            OnRouteChanged?.Invoke(this, RouteViewModel.SelectedItem);
         }
 
         private void ClearRoute()
