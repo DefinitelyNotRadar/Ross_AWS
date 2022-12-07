@@ -105,7 +105,7 @@
                           HorizontalAlignment="Center" Width="32" Height="32"
                           IsThreeState="False" Style="{StaticResource ToggleButton}"  FontSize="20"
                           IsChecked="{Binding CalculationJobHeight, Mode=OneWayToSource, Converter={StaticResource BooleanToGridLengthConverter}}"
-                          VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Unchecked="ToggleButton_DownPanel_Unchecked">
+                          VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Unchecked="ToggleButton_DownPanel_Unchecked" Checked="ToggleButton_DownPanel_Checked">
                 
                 <Path Width="20" Height="20" Margin="0,4,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" Fill="{StaticResource ControlForegroundWhite}" Data="{StaticResource calculatorStyle0}" />
             </ToggleButton>

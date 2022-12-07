@@ -436,5 +436,9 @@ namespace Ross.Map
             e.Cancel = true;
         }
 
+        private void ToggleButton_DownPanel_Checked(object sender, RoutedEventArgs e)
+        {
+            OnNeedToRedrawMapObjects(this, e);
+        }
     }
 }
