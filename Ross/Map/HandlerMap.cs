@@ -12,6 +12,7 @@ using System.Windows;
 
 namespace Ross
 {
+    using RouteControl.Model;
     using System.Threading;
     using System.Windows.Threading;
 
@@ -51,6 +52,12 @@ namespace Ross
         {
             ucASP.SetCoordsASPToPG(e.Data);
         }
+
+        private void MapLayout_RouteChanged(object sender, Route e)
+        {
+           // clientDB?.Tables[NameTable.TableRoute].Add(new);
+        }
+
         #endregion
 
 

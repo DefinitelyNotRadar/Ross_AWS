@@ -1,6 +1,7 @@
 ﻿using EvaTable;
 using Ross.Map;
 using Ross.Map._EventArgs;
+using RouteControl.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Ross
             mapLayout.OnCoordControlPoinChanged += MapLayout_OnCoordControlPoinChanged;
             mapLayout.OnNeedToRedrawMapObjects += MapLayout_OnNeedToRedrawMapJojects;
             mapLayout.OnTableItemDoubleClicked += MapLayout_OnTableItemDoubleClicked;
+            mapLayout.RouteChanged += MapLayout_RouteChanged;
         }
-
     }
 }

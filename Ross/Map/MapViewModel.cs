@@ -233,6 +233,7 @@ namespace Ross.Map
 
         public void DrawAzimuth()
         {
+            if (AzimuthViewModel.UserLongitude == 0 || AzimuthViewModel.UserLongitude == 0) return;
 
             ClearAzimuthDrawings();
 
@@ -274,6 +275,8 @@ namespace Ross.Map
         private MapObjectStyle mapObjectStyle_Part;
         private MapObjectStyle mapObjectStyle_Finish;
         private const string partOfPath = @"\Resources\";
+
+        public EventHandler<Route> OnRouteChanged;
 
         public MainViewModel RouteViewModel
         {
@@ -330,14 +333,14 @@ namespace Ross.Map
 
         public void DrawRoute()
         {
-            if(FlagsObjects != null)
-                foreach(var flag in FlagsObjects)
-                    RasterMapControl.mapControl.RemoveObject(flag);
-            RasterMapControl.mapControl.RemoveObject(PolilineRoute);
-            RasterMapControl.mapControl.RemoveObject(FinishFlagObject);
+            if (RouteViewModel.SelectedItem == null || RouteViewModel.SelectedItem.ListPoints == null) return;
+
+            ClearRoute();
 
             List<Point> PointsOfSelectedRoute = new List<Point>();
             FlagsObjects = new List<IMapObject>();
+
+
 
             foreach (var item in RouteViewModel.SelectedItem.ListPoints)
             {
@@ -349,11 +352,28 @@ namespace Ross.Map
 
             if (FlagsObjects != null && FlagsObjects.Count > 0)
                 RasterMapControl.mapControl.RemoveObject(FlagsObjects.Last());
+
             if(PointsOfSelectedRoute.Count > 0)
                 FinishFlagObject = RasterMapControl.mapControl.AddMapObject(mapObjectStyle_Finish, "", PointsOfSelectedRoute.Last());
 
             if (RasterMapControl.mapControl.IsLoaded)
                 PolilineRoute = RasterMapControl.mapControl.AddPolyline(PointsOfSelectedRoute);
+
+
+            OnRouteChanged?.Invoke(this, RouteViewModel.SelectedItem);
+        }
+
+        private void ClearRoute()
+        {
+            if (FlagsObjects != null)
+                foreach (var flag in FlagsObjects)
+                    RasterMapControl.mapControl.RemoveObject(flag);
+
+            if (PolilineRoute != null)
+                RasterMapControl.mapControl.RemoveObject(PolilineRoute);
+
+            if(FinishFlagObject != null)
+                RasterMapControl.mapControl.RemoveObject(FinishFlagObject);
         }
 
 

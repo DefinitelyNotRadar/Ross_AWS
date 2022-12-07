@@ -21,6 +21,7 @@ using Mapsui.Styles;
 using ModelsTablesDBLib;
 using Ross.JSON;
 using Ross.Map._EventArgs;
+using RouteControl.Model;
 using TransmissionPackageGroza934;
 using UIMapRast.Models;
 using WpfMapControl;
@@ -48,11 +49,15 @@ namespace Ross.Map
         public EventHandler<CoordEventArgs> OnCoordASPPropertyGridSelecteted;
         public EventHandler<List<Point>> OnPolygonLineOfSightChanged;
         public EventHandler<EventArgs> OnNeedToRedrawMapObjects;
-        public MapViewModel MapViewModel;
+        public MapViewModel mapViewModel;
 
         private List<Point> polygon = new List<Point>();
       
-
+        public EventHandler<Route> RouteChanged
+        {
+            get => mapViewModel.OnRouteChanged;
+            set => mapViewModel.OnRouteChanged = value;
+        }
 
 
         public MapLayout()
@@ -63,8 +68,8 @@ namespace Ross.Map
             LoadSettings();
             InitHotKeys();
 
-            MapViewModel = new MapViewModel(RastrMap, polygon);
-            DataContext = MapViewModel;
+            mapViewModel = new MapViewModel(RastrMap, polygon);
+            DataContext = mapViewModel;
 
 
             mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,0), scale, new Offset(0, 0));
@@ -372,23 +377,52 @@ namespace Ross.Map
 
         public void DrawTasks()
         {
-            MapViewModel.DrawAzimuth();
-            MapViewModel.DrawRoute();
+            if (ToggleButton_DownPanel.IsChecked == true)
+            {
+                mapViewModel.DrawAzimuth();
+                mapViewModel.DrawRoute();
+            }
             if (polygon.Count > 0)
                 RastrMap.mapControl.AddPolygon(polygon, new Color(124, 252, 0, 100));
         }
         #endregion
 
+
+        public void SetRoute(List<TableRoute> tableRoutes)
+        {
+            Route exRoute;
+            foreach (var route in tableRoutes)
+            {
+                exRoute = mapViewModel.RouteViewModel.RouteCollection.First(t => t.NumbRoute == route.Id);
+
+                if (exRoute == null)
+                { 
+                    mapViewModel.RouteViewModel.RouteCollection.Add(new RouteControl.Model.Route()); 
+                }
+                else
+                {
+
+                    exRoute.Name = route.Caption;
+                    exRoute.ListPoints = new ObservableCollection<WayPoints>();
+                    foreach(var point in route.ListCoordinates)
+                    {
+                        exRoute.ListPoints.Add(new WayPoints() { Latitude = point.Coordinates.Latitude, Longitude = point.Coordinates.Longitude });
+                    }
+                }
+
+            }
+        }
+
         public void SetASP(List<TableASP> tableASPs)
         {
-            MapViewModel.ASPCollection.Clear();
+            mapViewModel.ASPCollection.Clear();
             foreach (var item in tableASPs)
-                MapViewModel.ASPCollection.Add(item);
+                mapViewModel.ASPCollection.Add(item);
         }
 
         public StatusBarModel GetStatusBarModel()
         {
-            return MapViewModel.StatusBar;
+            return mapViewModel.StatusBar;
         }
 
         private void ToggleButton_DownPanel_Unchecked(object sender, RoutedEventArgs e)

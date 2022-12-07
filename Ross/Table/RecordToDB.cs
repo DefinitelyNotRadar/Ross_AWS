@@ -52,6 +52,8 @@ namespace Ross
         public List<TableSuppressFWS> lSuppressFWS = new List<TableSuppressFWS>();
         public List<TableChatMessage> lChatMessages = new List<TableChatMessage>();
 
+        public List<TableRoute> lTableRoute = new List<TableRoute>();
+
         private int selectedASP = -2;
 
         /// <summary>
@@ -99,6 +101,10 @@ namespace Ross
                 lSuppressFHSS = await (clientDB.Tables[NameTable.TableSuppressFHSS] as IDependentAsp)
                     .LoadByFilterAsync<TableSuppressFHSS>(id);
                 ucSuppressFHSS.UpdateSuppressFHSS(lSuppressFHSS);
+
+                lTableRoute = await (clientDB.Tables[NameTable.TableRoute]).LoadAsync<TableRoute>();
+
+               
             }
             catch (ExceptionClient exeptClient)
             {
