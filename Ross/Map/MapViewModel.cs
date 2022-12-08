@@ -154,6 +154,8 @@ namespace Ross.Map
                     int.TryParse(viewModelForTask1.ComboBoxSelectedItem.ToString().Substring(4, 1), out id);
                     if (asp.Id == id)
                     {
+                        if (asp.Coordinates.Latitude <= -90 || asp.Coordinates.Latitude >= 90 || asp.Coordinates.Longitude <= -180 || asp.Coordinates.Longitude >= 180)
+                            continue;
                         viewModelForTask1.LineOfSightModel.ZoneCenter.Latitude = asp.Coordinates.Latitude;
                         viewModelForTask1.LineOfSightModel.ZoneCenter.Longitude = asp.Coordinates.Longitude;
                         viewModelForTask1.LineOfSightModel.ZoneCenter.Height = asp.Coordinates.Altitude;

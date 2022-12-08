@@ -269,6 +269,8 @@ namespace Ross
 
             for (int i = 0; i < lASP.Count; i++)
             {
+                if (lASP[i].Coordinates.Latitude <= -90 || lASP[i].Coordinates.Latitude >= 90 || lASP[i].Coordinates.Longitude <= -180 || lASP[i].Coordinates.Longitude >= 180)
+                    continue;
                 mapLayout.DrawSectors(lASP[i].Coordinates, new short[5] { lASP[i].LPA10, lASP[i].LPA13, lASP[i].LPA24, lASP[i].LPA510, lASP[i].LPA59 }, i);
             }
         }
@@ -278,6 +280,8 @@ namespace Ross
         {
             foreach (var asp in lASP)
             {
+                if (asp.Coordinates.Latitude <= -90 || asp.Coordinates.Latitude >= 90 || asp.Coordinates.Longitude <= -180 || asp.Coordinates.Longitude >= 180)
+                    continue;
                 mapLayout.DrawStation(asp.Coordinates, asp.Caption);
             }
             mapLayout.GetStatusBarModel().AJSValue = lASP.Count;
@@ -286,10 +290,19 @@ namespace Ross
 
         private void DrawAllFWS()
         {
-                    foreach (var fws in lReconFWS)
-                        mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
-                    foreach (var fws in lSuppressFWS)
-                        mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
+            foreach (var fws in lReconFWS)
+            {
+                if (fws.Coordinates.Latitude <= -90 || fws.Coordinates.Latitude >= 90 || fws.Coordinates.Longitude <= -180 || fws.Coordinates.Longitude >= 180)
+                    continue;
+                mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
+            }
+
+            foreach (var fws in lSuppressFWS)
+            {
+                if (fws.Coordinates.Latitude <= -90 || fws.Coordinates.Latitude >= 90 || fws.Coordinates.Longitude <= -180 || fws.Coordinates.Longitude >= 180)
+                    continue;
+                mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
+            }
 
                     mapLayout.GetStatusBarModel().RESFWSTDValue = lReconFWS.Count;
                     mapLayout.GetStatusBarModel().RESFWSJValue = lSuppressFWS.Count;
@@ -299,6 +312,8 @@ namespace Ross
         {
             foreach (var fhss in lSourceFHSS)
             {
+                if (fhss.Coordinates.Latitude <= -90 || fhss.Coordinates.Latitude >= 90 || fhss.Coordinates.Longitude <= -180 || fhss.Coordinates.Longitude >= 180)
+                    continue;
                 mapLayout.DrawSourceFHSS(fhss.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
             }
 
