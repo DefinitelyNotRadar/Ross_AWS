@@ -486,7 +486,7 @@ namespace Ross
             }
         }
 
-        private void UpdateSelectedStationModel(List<TableASP> tableASPs, bool IsHardwareChanged)
+        private async void UpdateSelectedStationModel(List<TableASP> tableASPs, bool IsHardwareChanged)
         {
             int j = -1;
 
@@ -505,7 +505,11 @@ namespace Ross
                     || (oldStation.ConnectionTypeServerOD == ConnectionTypeServerOD.Robustel_3G_4G && 
                     (oldStation.IpAddress_interior_3G4G.Replace(',', '.') != tableASP.AddressIp3G4G.Replace(',', '.') || oldStation.Port_interior_3G4G != tableASP.AddressPort3G4G)))))
                 {
-                    SelectedStationModels[j].SelectedConnectionObject?.AbortConnection();
+                    if (SelectedStationModels[j].SelectedConnectionObject != null)
+                    {
+                        await SelectedStationModels[j].SelectedConnectionObject.AbortConnection().ConfigureAwait(false);
+                    }
+
                     InitializeODConnection(SelectedStationModels[j], tableASP.AddressIP, tableASP.AddressPort, tableASP.AddressIp3G4G, tableASP.AddressPort3G4G, (byte)tableASP.Id, tableASP.MatedStationNumber, (Stations)j); 
                     Task.Factory.StartNew(() =>
                     {
