@@ -46,6 +46,7 @@
                         PathMapTile="{Binding ElementName=Properties, Path=Local.PathMap.FolderMapTiles, Mode=TwoWay}"
                         PathMap="{Binding ElementName=Properties, Path=Local.PathMap.FileMap, Mode=TwoWay}"
                         PathMatrix="{Binding ElementName=Properties, Path=Local.PathMap.FileDTEDElevation, Mode=TwoWay}" 
+                        VsbElevationButton="Collapsed"
                         OnPCPosition="RastrMap_OnOnPCPosition"
                         OnPointPosition="RastrMap_OnOnPointPosition"/>
 
