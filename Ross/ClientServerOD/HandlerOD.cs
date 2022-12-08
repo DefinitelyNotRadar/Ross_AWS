@@ -119,11 +119,13 @@ namespace Ross
 
             await Task.Delay(1000);
 
-            await ReadRecord(await selectedStation.GetFwsElintDistribution().ConfigureAwait(false), NameTable.TableReconFWS);
+            //await ReadRecord(await selectedStation.GetFwsElintDistribution().ConfigureAwait(false), NameTable.TableReconFWS);
+            await ReadRecordFWS(await selectedStation.GetFwsElintDistribution().ConfigureAwait(false));
 
             await Task.Delay(1000);
 
-            await ReadRecord(await selectedStation.GetFhssElint().ConfigureAwait(false), NameTable.TableReconFHSS);
+            //await ReadRecord(await selectedStation.GetFhssElint().ConfigureAwait(false), NameTable.TableReconFHSS);
+            await ReadRecordFHSS(await selectedStation.GetFhssElint().ConfigureAwait(false));
 
             await Task.Delay(1000);
 
@@ -170,6 +172,120 @@ namespace Ross
                 await Task.Delay(200);
             }
         }
+
+        private object locker = new object();
+
+        private async Task ReadRecordFWS(object table)
+        {
+            if (table == null || clientDB == null)
+                return;
+
+            var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableReconFWS).ToList<TableReconFWS>();
+            var loadDB = await clientDB.Tables[NameTable.TableReconFWS].LoadAsync<TableReconFWS>().ConfigureAwait(false);
+            //var fromDB = loadDB.Select(t => t.Id).ToList();
+            foreach (var record in recordsToDB)
+            {
+                record.Id = 0;
+                if (record.ListJamDirect.Count != 0)
+                {
+                    foreach (var jamDirect in record.ListJamDirect)
+                    {
+                        jamDirect.ID = 0;
+                    }
+                }
+                //foreach (var record in table)
+                //{
+                if (loadDB.Any(r => record.FreqKHz == r.FreqKHz && record.Time == r.Time))
+                    continue;
+                loadDB.Add(record);
+            }
+
+            await UpdateTable(NameTable.TableReconFWS, loadDB);
+        }
+
+        private async Task ReadRecordFHSS(object table)
+        {
+            if (table == null || clientDB == null)
+                return;
+
+            var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableReconFHSS).ToList<TableReconFHSS>();
+            var loadDB = await clientDB.Tables[NameTable.TableReconFHSS].LoadAsync<TableReconFHSS>().ConfigureAwait(false);
+            //var fromDB = loadDB.Select(t => t.Id).ToList();
+            foreach (var record in recordsToDB)
+            {
+                record.Id = 0;
+                //foreach (var record in table)
+                //{
+                if (loadDB.Any(r => record.FreqMinKHz == r.FreqMinKHz && record.FreqMaxKHz == r.FreqMaxKHz))
+                    continue;
+                loadDB.Add(record);
+            }
+
+            await UpdateTable(NameTable.TableReconFHSS, loadDB);
+        }
+
+        //private async Task ReadRecordFWS2(object table)
+        //{
+        //    if (table == null || clientDB == null)
+        //        return;
+
+        //    var recordsToDB = (table as RepeatedField<Any>).ConvertToDBModel(NameTable.TableReconFWS).ToList<TableReconFWS>();
+        //    var loadDB = await clientDB.Tables[NameTable.TableReconFWS].LoadAsync<TableReconFWS>().ConfigureAwait(false);
+        //    var loadDBJamDirect = loadDB.Select(t=>t.ListJamDirect.Select(s=>s.ID));
+        //    //var fromDB = loadDB.Select(t => t.Id).ToList();
+        //    foreach (var record in recordsToDB)
+        //    {
+        //        record.Id = 0;
+        //        if (record.ListJamDirect.Count != 0)
+        //        {
+        //            foreach (var jamDirect in record.ListJamDirect)
+        //            {
+        //                jamDirect.ID = 0;
+        //            }
+        //        }
+
+        //        //foreach (var record in table)
+        //        //{
+        //        var found = loadDB.FirstOrDefault(r => record.FreqKHz == r.FreqKHz);
+        //        if (found != null)
+        //        {
+        //            if(found.ListJamDirect.)
+        //            if(record.ListJamDirect.Count!=0)
+        //        }
+
+        //        //if ()
+        //        //{
+        //        //    continue;
+        //        //}
+        //        loadDB.Add(record);
+        //    }
+
+        //    await UpdateTable(NameTable.TableReconFWS, loadDB);
+        //}
+
+        private async Task UpdateTable(NameTable table, object updatedTable)
+        {
+            if (this.clientDB == null) return;
+
+            lock (locker)
+            {
+                clientDB.Tables[table].Clear();
+                //await Task.Delay(500);
+                clientDB.Tables[table].AddRange(updatedTable);
+            }
+        }
+
+        //public void ActuallyUpdateFhssReconTable(int stationNumber, TableReconFHSS[] table)
+        //{
+        //    var currentTable = clientDB.Tables[NameTable.TableReconFHSS]
+        //        .Load<TableReconFHSS>()
+        //        .Where(r => r.Id != stationNumber) //todo : here
+        //        .ToList();
+        //    currentTable.AddRange(table);
+
+        //    await UpdateTable(NameTable.TableReconFHSS, currentTable);
+        //    RewriteTable(N, currentTable, 2, "updating master fhss recon");
+        //}
 
         private async Task ReadAsp(object table, GrpcClient selectedStation)
         {
@@ -343,7 +459,7 @@ namespace Ross
 
         public async Task SynchronizeTime(GrpcClient selectedStation)
         {
-             await selectedStation.SendLocalTime(DateTime.Now).ConfigureAwait(false);
+             await selectedStation.SendLocalTime(DateTime.Now.ToUniversalTime()).ConfigureAwait(false);
         }
 
         public async Task<ExecutiveDF?> Client_GetExecutiveDF(GrpcClient selectedStation, int stationId, double frequency, float band)
