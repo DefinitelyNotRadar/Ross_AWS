@@ -198,7 +198,7 @@
 
                 <TabControl>
                     <TabItem Header="{DynamicResource TabItemRES_FF_TD}">
-                        <ReconFWSControl:UserControlReconFWS x:Name="ucReconFWS"
+                        <ReconFWSControl:UserControlReconFWS x:Name="ucReconFWS" IsRoss="True"
                             ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FF_J}">
