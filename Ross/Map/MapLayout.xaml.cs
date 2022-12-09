@@ -264,7 +264,7 @@ namespace Ross.Map
         private MapObjectStyle mapObjectStyleStation;
         private double scale = 0.2;
         private float sectorAngle = 30;
-        private int sectorRadius = 20000;
+        private int sectorRadius = 30000;
         private readonly Color[] colors = new Color[10]
         {
             Color.FromArgb(120, 255,102,102),
@@ -375,7 +375,7 @@ namespace Ross.Map
                 antena.BrushAntenna = colors[i];
                 antena.PenAntenna = new Pen(colors[i], 2);
                 antena.Active = true;
-                RastrMap.ListRangesParam.Add(new RangesParam(10, 100000, 0, 255, 0));
+                RastrMap.ListRangesParam.Add(new RangesParam(10, 3000000, 0, 255, 0));
 
 
                 definderJammingPoint.AntennaDefinder.Add(antena);
