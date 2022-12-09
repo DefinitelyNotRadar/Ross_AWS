@@ -199,11 +199,11 @@
                 <TabControl>
                     <TabItem Header="{DynamicResource TabItemRES_FF_TD}">
                         <ReconFWSControl:UserControlReconFWS x:Name="ucReconFWS" IsRoss="True"
-                            ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
+                            ViewCoord="{Binding Local.Common.View, ElementName=Properties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FF_J}">
                         <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS"
-                             ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
+                             ViewCoord="{Binding Local.Common.View, ElementName=Properties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                 </TabControl>
 
@@ -211,7 +211,7 @@
                 <TabControl Grid.Column="1">
                     <TabItem Header="{DynamicResource TabItemRES_FHSS}">
                         <ReconFHSSControl:UserControlReconFHSS x:Name="ucReconFHSS"
-                            ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
+                            ViewCoord="{Binding Local.Common.View, ElementName=Properties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FHSS_J}">
                         <SuppressFHSSControl:UserControlSuppressFHSS x:Name="ucSuppressFHSS" />
@@ -245,13 +245,13 @@
                     <TabItem Header="{DynamicResource TabItemAJS}">
                         <aspControl:UserControlASP x:Name="ucASP" 
                             IsRoss="True"
-                            ViewCoord="{Binding Local.CoordinatesProperty.View, ElementName=basicProperties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"
-                            StateOPU1="{Binding Local.ARD1.State, ElementName=basicProperties, Mode=OneWay}"
-                            StateOPU2="{Binding Local.ARD2.State, ElementName=basicProperties, Mode=OneWay}"
-                            StateOPU3="{Binding Local.ARD3.State, ElementName=basicProperties, Mode=OneWay}"
-                            OPU1="{Binding Local.ARD1.Device, ElementName=basicProperties, Mode=OneWay}"
-                            OPU2="{Binding Local.ARD2.Device, ElementName=basicProperties, Mode=OneWay}"
-                            OPU3="{Binding Local.ARD3.Device, ElementName=basicProperties, Mode=OneWay}"      />
+                            ViewCoord="{Binding Local.Common.View, ElementName=Properties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"
+                            StateOPU1="{Binding Local.ARD1.State, ElementName=Properties, Mode=OneWay}"
+                            StateOPU2="{Binding Local.ARD2.State, ElementName=Properties, Mode=OneWay}"
+                            StateOPU3="{Binding Local.ARD3.State, ElementName=Properties, Mode=OneWay}"
+                            OPU1="{Binding Local.ARD1.Device, ElementName=Properties, Mode=OneWay}"
+                            OPU2="{Binding Local.ARD2.Device, ElementName=Properties, Mode=OneWay}"
+                            OPU3="{Binding Local.ARD3.Device, ElementName=Properties, Mode=OneWay}"      />
                     </TabItem>
 
                 </TabControl>

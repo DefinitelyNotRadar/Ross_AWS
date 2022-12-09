@@ -451,6 +451,29 @@ namespace Ross.Map
                 mapViewModel.ASPCollection.Add(item);
         }
 
+        public void SetCoordinateFormat(string view)
+        {
+            RastrMap.FormatViewCoord = (FormatCoord)ViewCoordToByte(view);
+        }
+
+        private byte ViewCoordToByte(string viewCoord)
+        {
+            switch (viewCoord)
+            {
+                case "DD.dddddd":
+                    return 1;
+
+                case "DD MM.mmmm":
+                    return 2;
+
+                case "DD MM SS.ss":
+                    return 3;
+            }
+
+            return 1;
+        }
+
+
         public StatusBarModel GetStatusBarModel()
         {
             return mapViewModel.StatusBar;

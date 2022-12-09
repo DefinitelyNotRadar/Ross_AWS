@@ -108,6 +108,8 @@ namespace Ross
         {
             if (e.PropertyName == nameof(Properties.Local.Common.AccessARM))
                 mapLayout.MapProperties.Local.Common.Access = (AccessTypes)(byte)Properties.Local.Common.AccessARM;
+            if (e.PropertyName == nameof(Properties.Local.Common.View))
+                mapLayout.SetCoordinateFormat(Properties.Local.Common.View);
             endPoint = Properties.Local.DbServer.IpAddress + ":" + Properties.Local.DbServer.Port;
             UpdateButtonsCRRD();
         }
