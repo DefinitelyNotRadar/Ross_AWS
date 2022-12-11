@@ -142,5 +142,19 @@ namespace Ross
                     await Poll_Station(item.SelectedConnectionObject);
             }
         }
+
+        private void Properties_DefaultEvent(object sender, ControlProperties.BasicProperties.PropertiesType propertiesType)
+        {
+            if(propertiesType == ControlProperties.BasicProperties.PropertiesType.Local)
+            {
+                Properties.Local = SerializerJSON.Deserialize<ControlProperties.LocalProperties>("DefaultSettings");
+            }
+            else if(propertiesType == ControlProperties.BasicProperties.PropertiesType.Global)
+            {
+                Properties.Global.NumberIri = 10;
+                Properties.Global.GnssInaccuracy = 0;
+
+            }
+        }
     }
 }

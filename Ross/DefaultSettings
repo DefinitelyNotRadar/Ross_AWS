@@ -1,0 +1,164 @@
+{
+  "Common": {
+    "AccessARM": 2,
+    "NumberARM": 1,
+    "Language": 0,
+    "PathData": "",
+    "AutoReport": false,
+    "FileType": 0,
+    "FrequencyUnits": 1,
+    "View": "DD.dddddd",
+    "Latitude": 53.90514,
+    "Longitude": 27.553801,
+    "IsVisibleEN": true,
+    "IsVisibleRU": true,
+    "IsVisibleAZ": false
+  },
+  "DspServer": {
+    "IpAddress": "127.0.0.1",
+    "Port": 1
+  },
+  "DbServer": {
+    "IpAddress": "127.0.0.1",
+    "Port": 8302
+  },
+  "EdServer": {
+    "Viper1": {
+      "IpAddress": "127.0.0.1",
+      "Port": 1
+    },
+    "Viper2": {
+      "IpAddress": "127.0.0.1",
+      "Port": 1
+    },
+    "Robustel1": {
+      "IpAddress": "127.0.0.1",
+      "Port": 1
+    },
+    "Robustel2": {
+      "IpAddress": "127.0.0.1",
+      "Port": 1
+    }
+  },
+  "PCProperties": {
+    "Type": 0,
+    "TypeOfConection": 0,
+    "ComPortAPD": "COM1",
+    "ComPortTainet": "COM1",
+    "IpAddress3G4GRouter": "127.0.0.1",
+    "Port3G4GRouter": 80,
+    "IpAddressPPC": "127.0.0.1",
+    "PortPPC": 80,
+    "IpAddressRouter": "127.0.0.1",
+    "PortRouter": 80,
+    "State": false,
+    "IsGarantVisible": true,
+    "IsBerezinaVisible": true
+  },
+  "AP_2Properties": {
+    "TypeOfConection": 0,
+    "IpAddress3G4GRouter": "127.0.0.1",
+    "Port3G4GRouter": 80,
+    "IpAddressPPC": "127.0.0.1",
+    "PortPPC": 80,
+    "State": false,
+    "IsVisible": true
+  },
+  "ADSB": {
+    "State": false,
+    "IpAddress": "192.168.0.11",
+    "Port": 30005
+  },
+  "CmpRR": {
+    "Compass—orrection": 0,
+    "ComPort": "COM1",
+    "PortSpeed": 115200,
+    "State": false,
+    "IsVisible": true
+  },
+  "CmpPA": {
+    "ComPort": "COM1",
+    "PortSpeed": 115200,
+    "State": false,
+    "IsVisible": true
+  },
+  "ARONE1": {
+    "PathToDataBank": null,
+    "CurrentDataBank": 1,
+    "Type": 2,
+    "ComPort": "COM1",
+    "PortSpeed": 115200,
+    "State": false,
+    "IsVisible": true
+  },
+  "ARONE2": {
+    "PathToDataBank": null,
+    "CurrentDataBank": 1,
+    "Type": 2,
+    "ComPort": "COM1",
+    "PortSpeed": 115200,
+    "State": false,
+    "IsVisible": true
+  },
+  "Tuman": {
+    "ComPort": "COM1",
+    "PortSpeed": 115200,
+    "State": false,
+    "IsVisible": true
+  },
+  "ARD1": {
+    "Type": 0,
+    "Device": 3,
+    "Level": 0,
+    "ComPort": "COM1",
+    "PortSpeed": 115200,
+    "State": false,
+    "Address": 0,
+    "IsVisible": true
+  },
+  "ARD2": {
+    "Type": 0,
+    "Device": 3,
+    "Level": 0,
+    "ComPort": "COM1",
+    "PortSpeed": 115200,
+    "State": false,
+    "Address": 0,
+    "IsVisible": true
+  },
+  "ARD3": {
+    "Type": 0,
+    "Device": 3,
+    "Level": 0,
+    "ComPort": "COM1",
+    "PortSpeed": 115200,
+    "State": false,
+    "Address": 0,
+    "IsVisible": true
+  },
+  "CoordinatesProperty": {
+    "CoordinateSystem": 0,
+    "View": "DD.dddddd",
+    "CoordGPS": {
+      "Latitude": -1.0,
+      "Longitude": -1.0,
+      "Altitude": -1.0
+    }
+  },
+  "VoiceInterference": {
+    "State": false,
+    "IsVisible": true
+  },
+  "Spoofing": {
+    "State": false,
+    "IsVisible": true,
+    "IpAddress": "127.0.0.1",
+    "Port": 80
+  },
+  "Cicada": {
+    "State": false,
+    "IsVisible": false,
+    "IpAddress": "127.0.0.1",
+    "Port": 18081
+  }
+}

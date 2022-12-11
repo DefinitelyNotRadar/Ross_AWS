@@ -71,6 +71,8 @@ namespace Ross.Map
             set => mapViewModel.OnRouteClear = value;
         }
 
+
+
         public MapLayout()
         {
             InitializeComponent();
@@ -267,16 +269,16 @@ namespace Ross.Map
         private int sectorRadius = 30000;
         private readonly Color[] colors = new Color[10]
         {
-            Color.FromArgb(120, 255,102,102),
-            Color.FromArgb(120, 255,178,102),
-            Color.FromArgb(120, 255,255,102),
-            Color.FromArgb(120, 178,255,102),
-            Color.FromArgb(120, 102,255,102),
-            Color.FromArgb(120, 102,255,178),
-            Color.FromArgb(120, 102,255,255),
-            Color.FromArgb(120, 102,178,255),
-            Color.FromArgb(120, 102,102,255),
-            Color.FromArgb(120, 178,102,255),
+            Color.FromArgb(120, 255,40,40),
+            Color.FromArgb(120, 255,148,40),
+            Color.FromArgb(120, 255,255,40),
+            Color.FromArgb(120, 148,255,40),
+            Color.FromArgb(120, 40,255,40),
+            Color.FromArgb(120, 40,255,148),
+            Color.FromArgb(120, 40,255,255),
+            Color.FromArgb(120, 40,178,255),
+            Color.FromArgb(120, 40,40,255),
+            Color.FromArgb(120, 148,40,255),
         };
 
 
@@ -398,7 +400,7 @@ namespace Ross.Map
         }
         #endregion
 
-
+        #region Set some settings
         public void SetRoute(List<TableRoute> tableRoutes)
         {
             try
@@ -455,6 +457,8 @@ namespace Ross.Map
         {
             RastrMap.FormatViewCoord = (FormatCoord)ViewCoordToByte(view);
         }
+        #endregion
+
 
         private byte ViewCoordToByte(string viewCoord)
         {

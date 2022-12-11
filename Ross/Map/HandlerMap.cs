@@ -12,6 +12,7 @@ using System.Windows;
 
 namespace Ross
 {
+    using Ross.JSON;
     using RouteControl.Model;
     using System.Threading;
     using System.Windows.Threading;
@@ -46,6 +47,7 @@ namespace Ross
         {
             Properties.Local.Common.Latitude = Math.Round(e.Data.Latitude, 6);
             Properties.Local.Common.Longitude = Math.Round(e.Data.Longitude,6);
+            SerializerJSON.Serialize(Properties.Local, "LocalProperties");
         }
 
         private void MapLayout_OnCoordASPPropertyGridSelecteted(object sender, CoordEventArgs e)
@@ -304,8 +306,12 @@ namespace Ross
                 mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
             }
 
-                    mapLayout.GetStatusBarModel().RESFWSTDValue = lReconFWS.Count;
-                    mapLayout.GetStatusBarModel().RESFWSJValue = lSuppressFWS.Count;
+
+            //foreach(var aspFws in clientDB?.Tables[NameTable.TableSuppressFWS].)
+
+            
+            mapLayout.GetStatusBarModel().RESFWSTDValue = lReconFWS.Count;
+            mapLayout.GetStatusBarModel().RESFWSJValue = lSuppressFWS.Count;
         }
 
         private void DrawAllFHSS()

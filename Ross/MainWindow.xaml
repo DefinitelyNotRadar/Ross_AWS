@@ -160,7 +160,8 @@
                                           OnPasswordChecked="Properties_OnPasswordChecked"
                                           OnUpdateLocalProperties="Properties_OnUpdateLocalProperties_1"
                                           PropertyChanged="Properties_OnPropertyChanged"
-                                          OnUpdateGlobalProperties="Properties_OnUpdateGlobalProperties"/>
+                                          OnUpdateGlobalProperties="Properties_OnUpdateGlobalProperties"
+                                          DefaultEvent="Properties_DefaultEvent"/>
         </Grid>
 
         <GridSplitter Grid.Column="1" Grid.RowSpan="2"
