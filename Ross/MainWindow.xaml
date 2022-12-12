@@ -203,7 +203,7 @@
                             ViewCoord="{Binding Local.Common.View, ElementName=Properties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FF_J}">
-                        <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS" 
+                        <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS" IsRoss="True"
                              ViewCoord="{Binding Local.Common.View, ElementName=Properties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                 </TabControl>
