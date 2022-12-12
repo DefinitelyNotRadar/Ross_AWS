@@ -188,10 +188,10 @@
                 <RowDefinition
                     Height="{Binding sizeTopTable.Current, Mode=TwoWay, Converter={StaticResource DoubleGridLengthConverter}}" />
                 <RowDefinition Height="2" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="{Binding sizeDownTable.Current, Mode=TwoWay, Converter={StaticResource DoubleGridLengthConverter}}" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Grid.Column="0">
+            <Grid Grid.Row="0" Grid.Column="0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -203,7 +203,7 @@
                             ViewCoord="{Binding Local.Common.View, ElementName=Properties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FF_J}">
-                        <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS"
+                        <suppressFwsControl:UserControlSuppressFWS x:Name="ucSuppressFWS" 
                              ViewCoord="{Binding Local.Common.View, ElementName=Properties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                 </TabControl>

@@ -12,6 +12,9 @@ namespace Ross.Converters
             if (value == null || !(value is double))
                 return Binding.DoNothing;
 
+            if ((double)value == -1)
+                return new GridLength(1, GridUnitType.Star);
+
             return new GridLength((double)value);
         }
 

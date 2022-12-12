@@ -531,7 +531,7 @@ namespace Ross
 
 
         private async void Properties_OnUpdateGlobalProperties(object sender, GlobalProperties e)
-        {
+        { 
             await UpdateCmpRR(e);
             UpdateRanges(e);
         }

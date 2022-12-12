@@ -207,8 +207,8 @@ namespace Ross
 
         private void UpdateRanges(GlobalProperties globalProperties)
         {
-            PropGlobalProperty.RangeRadioRecon = (byte)globalProperties.RangeRadioRecon;
-            PropGlobalProperty.RangeJamming = (byte)globalProperties.RangeJamming;
+            PropGlobalProperty.RangeRadioRecon = (byte)EnumRangeRadioRecon.Range_0_6000;
+            PropGlobalProperty.RangeJamming = (byte)EnumRangeJamming.Range_0_6000;
             ucSuppressFWS.ToggleButtonVisible();
         }
 
