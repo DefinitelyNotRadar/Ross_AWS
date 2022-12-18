@@ -87,7 +87,17 @@ namespace Ross.Map
 
             mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,0), scale, new Offset(0, 0));
 
+            MapProperties.Local.Common.PropertyChanged += Common_PropertyChanged;
             
+        }
+
+        private void Common_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == nameof(MapProperties.Local.Common.Access))
+            {
+                if (MapProperties.Local.Common.Access == 0)
+                    ToggleButton_Setting.IsChecked = false;
+            }
         }
 
         #region EvaTable

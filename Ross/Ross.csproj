@@ -326,6 +326,7 @@
     <Compile Include="ClientServerOD\ConnectOD.cs" />
     <Compile Include="ClientServerOD\HandlerOD.cs" />
     <Compile Include="ClientServerOD\InitOD.cs" />
+    <Compile Include="Converters\AdminVisibleOnlyConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthConverter.cs" />
     <Compile Include="Converters\HelpClasses\EnumHelper.cs" />
     <Compile Include="Converters\EnumToCollectionConverter .cs" />

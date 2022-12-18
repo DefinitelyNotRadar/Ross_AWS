@@ -10,6 +10,6 @@
 
         public const double sizeLeftDownTable = 90;
 
-        public const double sizeDownTable = 400;
+        public const double sizeDownTable = -1;
     }
 }

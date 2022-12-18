@@ -21,6 +21,7 @@
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converter:BooleanToGridLengthConverter x:Key="BooleanToGridLengthConverter"/>
+            <converter:AdminVisibleOnlyConverter x:Key="adminVisibleOnlyConverter" />
         </ResourceDictionary>
     </Window.Resources>
 
@@ -94,6 +95,7 @@
             <ToggleButton x:Name="ToggleButton_Setting" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
                           HorizontalAlignment="Center" Width="32" Height="32"
                           IsThreeState="False" Style="{StaticResource ToggleButton}"
+                          Visibility="{Binding ElementName=Properties, Path=Local.Common.Access, Mode=TwoWay, Converter={StaticResource adminVisibleOnlyConverter}}"
                           IsChecked="{Binding SettingsControlWidth, Mode=OneWayToSource, Converter={StaticResource BooleanToGridLengthConverter}}">
                 <Path Width="20" Height="20" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" Fill="{StaticResource ControlForegroundWhite}" Data="{StaticResource settingsStyle0}" 
                     />
