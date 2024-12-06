@@ -14,6 +14,7 @@ using LocalProperties = ModelsTablesDBLib.LocalProperties;
 namespace Ross
 {
     using Ross.Models;
+    using System.Xml;
     using ValuesCorrectLib;
 
     /// <summary>
@@ -49,7 +50,9 @@ namespace Ross
             DataContext = mainWindowViewSize;
             
             InitChat();
-            CyclePollTimerInitialize();
+
+            if(Properties.Local.Common.IsAutoPollEnabled)
+                CyclePollTimerInitialize();
         }
 
         private byte ViewCoordToByte(string viewCoord)

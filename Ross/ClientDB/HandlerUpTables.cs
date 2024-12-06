@@ -17,6 +17,7 @@ using TransmissionLib.GrpcTransmission;
 
 namespace Ross
 {
+    using System.Windows.Documents;
     using UserControl_Chat;
 
     using WPFControlConnection;
@@ -28,6 +29,10 @@ namespace Ross
         {
             MessageBox.Show(e.GetMessage);
         }
+
+
+
+
 
         private void HandlerUpdate_TableASP(object sender, TableEventArs<TableASP> e)
         {
@@ -109,6 +114,8 @@ namespace Ross
                 lSpecFreqKnown = (from t in e.Table let a = t as TableFreqSpec select a).ToList()
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList();
                 ucSpecFreqKnown.UpdateSpecFreqs(lSpecFreqKnown);
+
+               
 
                 SendToEachStation(e.Table, NameTable.TableFreqKnown);
             });
@@ -236,11 +243,14 @@ namespace Ross
                 //ListFormer(lSuppressFWS, null);
 
                 ucSuppressFWS.UpdateSuppressFWS(lSuppressFWS);
+                
 
 
                 SendToEachStation<TableSuppressFWS>(e.Table, NameTable.TableSuppressFWS);
 
                 DrawAllObjects();
+
+
             });
         }
 
@@ -268,26 +278,40 @@ namespace Ross
                     .Where(x => x.NumberASP == PropNumberASP.SelectedNumASP).ToList();
                 ucSuppressFHSS.UpdateSuppressFHSS(lSuppressFHSS);
 
-
-
                 SendToEachStation(e.Table, NameTable.TableSuppressFHSS);
+
                 DrawAllObjects();
             });
         }
 
-       
 
+
+        int counter = 0;
         private void HandlerUpdate_TableFHSSExcludedFreq(object sender, TableEventArs<TableFHSSExcludedFreq> e)
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
             {
                 lFHSSExcludedFreq = e.Table;
                 ucSuppressFHSS.UpdateFHSSExcludedFreq(lFHSSExcludedFreq);
+
+
+
                 //SendToEachStation(e.Table, NameTable.TableFHSSExcludedFreq);
 
-                //var obj = ClassDataCommon.ConvertToListAbstractCommonTable(e.Table).ConvertToProto(NameTable.TableFHSSExcludedFreq);
-                //SelectedByConnectionTypeClient1.SelectedConnectionObject.SendFhssJamming(obj);
-                //SelectedByConnectionTypeClient2.SelectedConnectionObject?.SendFhssJamming(obj);
+                var listFHSS1ID = lSuppressFHSS.Where(t => t.NumberASP == SelectedByConnectionTypeClient1.IdMaster || t.NumberASP == SelectedByConnectionTypeClient1.IdSlave).Select(t => t.Id).ToList();
+                var list1 = lFHSSExcludedFreq.Where(t => listFHSS1ID.Contains(t.IdFHSS)).ToList();
+
+
+                var listFHSS2ID = lSuppressFHSS.Where(t => t.NumberASP == SelectedByConnectionTypeClient2.IdMaster || t.NumberASP == SelectedByConnectionTypeClient2.IdSlave).Select(t => t.Id).ToList();
+                var list2 = lFHSSExcludedFreq.Where(t => listFHSS2ID.Contains(t.IdFHSS)).ToList();
+
+
+                var obj1 = ClassDataCommon.ConvertToListAbstractCommonTable(list1).ConvertToProto(NameTable.TableFHSSExcludedFreq);
+                var obj2 = ClassDataCommon.ConvertToListAbstractCommonTable(list2).ConvertToProto(NameTable.TableFHSSExcludedFreq);
+
+
+                SelectedByConnectionTypeClient1.SelectedConnectionObject?.SendFhssExcludedJamming(obj1);
+                SelectedByConnectionTypeClient2.SelectedConnectionObject?.SendFhssExcludedJamming(obj2);
                 DrawAllObjects();
             });
         }
@@ -297,6 +321,7 @@ namespace Ross
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
             {
                 lReconFHSS = e.Table;
+                
                 ucReconFHSS.UpdateReconFHSS(lReconFHSS);
                 ucReconFHSS.UpdateASPRP(UpdateASPRPRecon(lASP));
 
@@ -326,57 +351,64 @@ namespace Ross
         }
 
 
-        private async Task SendToEachStation<T>(List<T> list, NameTable nameTable) where T : AbstractDependentASP
+        private async Task SendToEachStation<T>(List<T> list, ModelsTablesDBLib.NameTable nameTable, bool isPreConnected = false) where T : AbstractDependentASP
         {
             try
             {
                 for (int i = 0; i < SelectedStationModels.Length; i++)
                 {
-                    if (SelectedStationModels[i].SelectedConnectionObject == null || SelectedStationModels[i].SelectedConnectionObject.IsConnected == false) continue;
-
-                    List<T> forStation = new List<T>();
-                    
-
-                    foreach (var listItem in list)
-                    {
-                        if (SelectedStationModels[i].IdMaster == listItem.NumberASP || SelectedStationModels[i].IdSlave == listItem.NumberASP)
-                        {
-                            forStation.Add(listItem);
-                        }
-                    }
-
-                    var obj = ClassDataCommon.ConvertToListAbstractCommonTable(forStation).ConvertToProto(nameTable);
-
-                    switch (nameTable)
-                    {
-                        case NameTable.TableSuppressFWS:
-                            await SelectedStationModels[i].SelectedConnectionObject.SendFwsJamming(obj).ConfigureAwait(false);
-                            break;
-                        case NameTable.TableSuppressFHSS:
-                            await SelectedStationModels[i].SelectedConnectionObject.SendFhssJamming(obj).ConfigureAwait(false);
-                            break;
-                        case NameTable.TableFreqKnown:
-                            await SelectedStationModels[i].SelectedConnectionObject.SendTableFreqKnown(obj).ConfigureAwait(false);
-                            break;
-                        case NameTable.TableFreqForbidden:
-                            await SelectedStationModels[i].SelectedConnectionObject.SendTableFreqForbidden(obj).ConfigureAwait(false);
-                            break;
-                        case NameTable.TableFreqImportant:
-                            await SelectedStationModels[i].SelectedConnectionObject.SendTableFreqImportant(obj).ConfigureAwait(false);
-                            break;
-                        case NameTable.TableSectorsRangesRecon:
-                            await SelectedStationModels[i].SelectedConnectionObject.SendSectorsRangesElint(obj).ConfigureAwait(false);
-                            break;
-                        case NameTable.TableSectorsRangesSuppr:
-                            await SelectedStationModels[i].SelectedConnectionObject.SendSectorsRangesJamming(obj).ConfigureAwait(false);
-                            break;
-                    }
-
+                    SendToOneStation(list, nameTable, i, isPreConnected);
                 }
             }
             catch { }
         }
 
+        private async void SendToOneStation<T>(List<T> list, ModelsTablesDBLib.NameTable nameTable, int i, bool isPreConnected = false) where T : AbstractDependentASP
+        {
+            if (SelectedStationModels[i].SelectedConnectionObject == null || (SelectedStationModels[i].SelectedConnectionObject.IsConnected == false && isPreConnected == false)) return;
+
+            List<T> forStation = new List<T>();
+
+
+            foreach (var listItem in list)
+            {
+                if (SelectedStationModels[i].IdMaster == listItem.NumberASP || SelectedStationModels[i].IdSlave == listItem.NumberASP)
+                {
+                    forStation.Add(listItem);
+                }
+            }
+
+            var obj = ClassDataCommon.ConvertToListAbstractCommonTable(forStation).ConvertToProto(nameTable);
+
+            switch (nameTable)
+            {
+                case ModelsTablesDBLib.NameTable.TableSuppressFWS:
+                    await SelectedStationModels[i].SelectedConnectionObject.SendFwsJamming(obj).ConfigureAwait(false);
+                    break;
+                case ModelsTablesDBLib.NameTable.TableSuppressFHSS:
+                    await SelectedStationModels[i].SelectedConnectionObject.SendFhssJamming(obj).ConfigureAwait(false);
+                    break;
+                case ModelsTablesDBLib.NameTable.TableFreqKnown:
+                    await SelectedStationModels[i].SelectedConnectionObject.SendTableFreqKnown(obj).ConfigureAwait(false);
+                    break;
+                case ModelsTablesDBLib.NameTable.TableFreqForbidden:
+                    await SelectedStationModels[i].SelectedConnectionObject.SendTableFreqForbidden(obj).ConfigureAwait(false);
+                    break;
+                case ModelsTablesDBLib.NameTable.TableFreqImportant:
+                    await SelectedStationModels[i].SelectedConnectionObject.SendTableFreqImportant(obj).ConfigureAwait(false);
+                    break;
+                case ModelsTablesDBLib.NameTable.TableSectorsRangesRecon:
+                    await SelectedStationModels[i].SelectedConnectionObject.SendSectorsRangesElint(obj).ConfigureAwait(false);
+                    break;
+                case ModelsTablesDBLib.NameTable.TableSectorsRangesSuppr:
+                    await SelectedStationModels[i].SelectedConnectionObject.SendSectorsRangesJamming(obj).ConfigureAwait(false);
+                    break;
+            
+            }
+        }
+     
+
+ 
 
 
 
@@ -522,7 +554,8 @@ namespace Ross
                 else if(oldStation.IdSlave != tableASP.MatedStationNumber)
                     SelectedStationModels[j].IdSlave = tableASP.MatedStationNumber;
 
-                ChangeAspConnectionStatus(SelectedStationModels[j].SelectedConnectionObject, SelectedStationModels[j].SelectedConnectionObject.IsConnected);
+
+                ChangeAspConnectionStatus(SelectedStationModels[j], SelectedStationModels[j].SelectedConnectionObject.IsConnected);
 
                 if (j == SelectedStationModels.Length-1) return;
                //TODO: if list. count == 0
@@ -544,9 +577,9 @@ namespace Ross
 
                 if (tempGNSS != null)
                 {
-                    tempGNSS.Location.Latitude = Math.Abs(Math.Round(tempGNSS.Location.Latitude, 6));
-                    tempGNSS.Location.Longitude = Math.Abs(Math.Round(tempGNSS.Location.Longitude, 6));
-                    tempGNSS.Location.Altitude = Math.Round(tempGNSS.Location.Altitude, 0);
+                    tempGNSS.Location.Latitude = System.Math.Abs( System.Math.Round(tempGNSS.Location.Latitude, 6));
+                    tempGNSS.Location.Longitude =  System.Math.Abs( System.Math.Round(tempGNSS.Location.Longitude, 6));
+                    tempGNSS.Location.Altitude =  System.Math.Round(tempGNSS.Location.Altitude, 0);
 
                     Properties.Local.CoordinatesProperty.CoordGPS = tempGNSS.Location;
                 }
@@ -563,7 +596,7 @@ namespace Ross
 
                     if (tempGNSS != null)
                     {
-                        var headingAngle = (int)Math.Round(tempGNSS.CmpRR) + Properties.Local.CmpRR.CompassСorrection;
+                        var headingAngle = (int) System.Math.Round(tempGNSS.CmpRR) + Properties.Local.CmpRR.CompassСorrection;
 
                         if (headingAngle >= 360) headingAngle -= 360;
 

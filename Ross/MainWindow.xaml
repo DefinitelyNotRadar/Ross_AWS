@@ -16,6 +16,7 @@
         xmlns:converters="clr-namespace:Ross.Converters"
         xmlns:local="clr-namespace:Ross"
         xmlns:models="clr-namespace:Ross.Models"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowState="Maximized" Closed="Window_Closed" >
 
@@ -199,7 +200,7 @@
 
                 <TabControl>
                     <TabItem Header="{DynamicResource TabItemRES_FF_TD}">
-                        <ReconFWSControl:UserControlReconFWS x:Name="ucReconFWS" IsRoss="True"
+                        <ReconFWSControl:UserControlReconFWS x:Name="ucReconFWS" IsRoss="True" IsBearVisible="True" IsVisibleASPRPColumn="False"
                             ViewCoord="{Binding Local.Common.View, ElementName=Properties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FF_J}">
@@ -211,11 +212,11 @@
 
                 <TabControl Grid.Column="1">
                     <TabItem Header="{DynamicResource TabItemRES_FHSS}">
-                        <ReconFHSSControl:UserControlReconFHSS x:Name="ucReconFHSS"
+                        <ReconFHSSControl:UserControlReconFHSS x:Name="ucReconFHSS" IsRoss="True" 
                             ViewCoord="{Binding Local.Common.View, ElementName=Properties, Mode=OneWay, Converter={StaticResource ViewCoordsConverter}}"/>
                     </TabItem>
                     <TabItem Header="{DynamicResource TabItemRES_FHSS_J}">
-                        <SuppressFHSSControl:UserControlSuppressFHSS x:Name="ucSuppressFHSS" />
+                        <SuppressFHSSControl:UserControlSuppressFHSS x:Name="ucSuppressFHSS" IsRoss="True"/>
                     </TabItem>
                     <!--, Converter={StaticResource visibleConverter}-->
                 </TabControl>
@@ -347,6 +348,11 @@
                                                   ServerConnectionState="{Binding ConnectionStatesGrpcServer2}" ButServerClick="GrpcServer2_ButServerClick" 
                                                   />
                 </StackPanel>
+            </StatusBarItem>
+
+            <StatusBarItem x:Name="LoadingGiff" Style="{x:Null}" Margin="8,0,0,0" Visibility="Collapsed">
+                <Image gif:ImageBehavior.RepeatBehavior="Forever"
+                    gif:ImageBehavior.AnimatedSource="Resources\VAyR.gif" ></Image>
             </StatusBarItem>
         </StatusBar>
 

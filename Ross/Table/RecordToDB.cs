@@ -72,6 +72,8 @@ namespace Ross
 
         private async void LoadTablesByFilter(int id)
         {
+            if (clientDB == null) return;
+
             try
             {
                 lSRangeRecon = await (clientDB.Tables[NameTable.TableSectorsRangesRecon] as IDependentAsp)
@@ -98,9 +100,14 @@ namespace Ross
                     .LoadByFilterAsync<TableSuppressFWS>(id);
                 ucSuppressFWS.UpdateSuppressFWS(lSuppressFWS);
 
+                var lSuppresTempFWS = await (clientDB.Tables[NameTable.TempSuppressFWS] as IDependentAsp)
+                    .LoadByFilterAsync<TempSuppressFWS>(id);
+                ucSuppressFWS.UpdateRadioJamState(lSuppresTempFWS);
+
                 lSuppressFHSS = await (clientDB.Tables[NameTable.TableSuppressFHSS] as IDependentAsp)
                     .LoadByFilterAsync<TableSuppressFHSS>(id);
                 ucSuppressFHSS.UpdateSuppressFHSS(lSuppressFHSS);
+
 
                 lTableRoute = await (clientDB.Tables[NameTable.TableRoute]).LoadAsync<TableRoute>();
                 mapLayout.SetRoute(lTableRoute);
@@ -134,12 +141,15 @@ namespace Ross
                 {
                     case NameTable.TempFWS:
                         var SignalsIdFWS = new int[0];
+
                         // dsp..StorageAction(0 - ФРЧ, 1 - ППРЧ; 0 - удалить, 1 - восстановить; массив id);
                         //await dsp.StorageAction(0, 0, SignalsIdFWS); // отправить запрос на очистку ИРИ ФРЧ на сервер
                         break;
 
                     case NameTable.TableReconFHSS:
                         var SignalsIdFHSS = new int[0];
+
+                        clientDB.Tables[nameTable].Clear();
                         //await VariableWork.aWPtoBearingDSPprotocolNew.StorageAction(0 - ФРЧ, 1 - ППРЧ; 0 - удалить, 1 - восстановить; массив id);
                         //await dsp.StorageAction(1, 0, SignalsIdFHSS); // отправить запрос на очистку ИРИ ППРЧ на сервер
                         break;
@@ -178,7 +188,9 @@ namespace Ross
                 switch (e.NameTable)
                 {
                     case NameTable.TableReconFHSS:
+                        clientDB.Tables[e.NameTable].Delete(e.Record);
 
+                        FilterFHSSSupressTable(selectedASP);
                         break;
 
                     case NameTable.TableReconFWS:
@@ -190,6 +202,8 @@ namespace Ross
                     case NameTable.TableSuppressFWS:
 
                         clientDB.Tables[e.NameTable].Delete(e.Record);
+
+                        FilterFWSSupressTable(selectedASP);
 
                         break;
                     default:
@@ -211,6 +225,8 @@ namespace Ross
                         else
                             MessageBox.Show(sMessage, SMessages.mesMessage, MessageBoxButton.OK,
                                 MessageBoxImage.Exclamation);
+
+                        FilterFWSSupressTable(selectedASP);
                         break;
 
                     case NameTable.TableFreqForbidden:
@@ -236,6 +252,8 @@ namespace Ross
                         else
                             MessageBox.Show(sMessage, SMessages.mesMessage, MessageBoxButton.OK,
                                 MessageBoxImage.Exclamation);
+
+                        FilterFHSSSupressTable(selectedASP);
                         // --------------------------------------------------------------------------------------------
                         break;
 
@@ -245,7 +263,23 @@ namespace Ross
                 }
         }
 
-        private void OnAddRecord(object sender, TableEvent e)
+        private async void FilterFWSSupressTable(int id)
+        {
+            lSuppressFWS = await (clientDB.Tables[NameTable.TableSuppressFWS] as IDependentAsp)
+                 .LoadByFilterAsync<TableSuppressFWS>(id);
+            ucSuppressFWS.UpdateSuppressFWS(lSuppressFWS);
+            
+        }
+
+
+        private async void FilterFHSSSupressTable(int id)
+        {
+            lSuppressFHSS = await (clientDB.Tables[NameTable.TableSuppressFHSS] as IDependentAsp)
+                            .LoadByFilterAsync<TableSuppressFHSS>(id);
+            ucSuppressFHSS.UpdateSuppressFHSS(lSuppressFHSS);
+        }
+
+        private async void OnAddRecord(object sender, TableEvent e)
         {
             if (clientDB != null)
             {
@@ -279,6 +313,9 @@ namespace Ross
                             //   ucSuppressFWS.ToggleButtonUnchecked((e.Record as TableSuppressFWS).FreqKHz.Value);
                             MessageBox.Show(sMessage, SMessages.mesMessage, MessageBoxButton.OK,
                                 MessageBoxImage.Exclamation);
+
+                        FilterFWSSupressTable(selectedASP);
+
 
                         //sMessage = IsUpdateTableSuppressFWS(e.Record as TableSuppressFWS, false);
                         //if (sMessage == string.Empty)
@@ -330,6 +367,9 @@ namespace Ross
                         else
                             MessageBox.Show(sMessage, SMessages.mesMessage, MessageBoxButton.OK,
                                 MessageBoxImage.Exclamation);
+
+                        FilterFHSSSupressTable(selectedASP);
+
                         // --------------------------------------------------------------------------------------------
                         break;
 
@@ -561,6 +601,8 @@ namespace Ross
                 clientDB.Tables[NameTable.TableSuppressFHSS].Add(e);
             else
                 MessageBox.Show(sMessage, SMessages.mesMessage, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            FilterFHSSSupressTable(selectedASP);
             // --------------------------------------------------------------------------------------------
         }
 
@@ -599,7 +641,22 @@ namespace Ross
                 {
                     MessageBox.Show(sMessage, SMessages.mesMessage, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
+
+                FilterFWSSupressTable(selectedASP);
                 // --------------------------------------------------------------------------------------------
+            }
+        }
+
+        private void UcReconFWS_OnSelectedItem(object sender, TableReconFWS e)
+        {
+            mapLayout.RemovePelengs();
+            foreach (var item in e.ListJamDirect)
+            {
+                var asp = lASP.FirstOrDefault(t => t.Id == item.JamDirect.NumberASP);
+                if (asp == null) continue;
+
+                var dist = item.JamDirect.DistanceKM > 0 ? item.JamDirect.DistanceKM : 10000;
+                mapLayout.DrawPeleng(asp.Coordinates, item.JamDirect.Bearing, dist);
             }
         }
 
@@ -641,7 +698,7 @@ namespace Ross
                 if (answer == null) return;
 
                 
-                e.FreqKHz = (answer.Value.Frequency == 0) ? e.FreqKHz : answer.Value.Frequency / 10d; //TODO: зачем деление?
+                e.FreqKHz = (answer.Value.Frequency == 0) ? e.FreqKHz : answer.Value.Frequency;
                 //e.Deviation = e.Deviation; // / 10f TODO:мб передавать и ширину полосы от сервера
                 //e.Coordinates = new Coord
                 //{
@@ -654,7 +711,7 @@ namespace Ross
                 int indOwnASP = (e.ListJamDirect.ToList().FindIndex(x => x.JamDirect.IsOwn == true));
                 if (indOwnASP != -1)
                 {
-                    e.ListJamDirect[indOwnASP].JamDirect.Bearing = (answer.Value.OwnBearing == -1) ? answer.Value.OwnBearing : answer.Value.OwnBearing / 10f;
+                    e.ListJamDirect[indOwnASP].JamDirect.Bearing = (answer.Value.OwnBearing == -1) ? answer.Value.OwnBearing : answer.Value.OwnBearing;
                     //e.ListJamDirect[indOwnASP].JamDirect.Level = Convert.ToInt16((-1) * answer.Source.Amplitude);
                     //e.ListJamDirect[indOwnASP].JamDirect.Std = answer.Source.StandardDeviation / 10f;
                 }

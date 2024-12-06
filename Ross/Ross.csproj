@@ -167,6 +167,9 @@
     <Reference Include="LineOfSightZoneControl">
       <HintPath>dll\LineOfSightZoneControl.dll</HintPath>
     </Reference>
+    <Reference Include="MapMath.Bearing">
+      <HintPath>dll\MapMath.Bearing.dll</HintPath>
+    </Reference>
     <Reference Include="Mapster, Version=7.3.0.0, Culture=neutral, PublicKeyToken=2f39883af23c29a8, processorArchitecture=MSIL">
       <HintPath>..\packages\Mapster.7.3.0\lib\netstandard2.0\Mapster.dll</HintPath>
     </Reference>
@@ -181,6 +184,9 @@
     </Reference>
     <Reference Include="Mapsui.UI.Wpf">
       <HintPath>dll\Mapsui.UI.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Math.Formation_RN_RD_CC">
+      <HintPath>dll\Math.Formation_RN_RD_CC.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
@@ -297,6 +303,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
     <Reference Include="WPFControlConnection">
       <HintPath>dll\WPFControlConnection.dll</HintPath>
     </Reference>
@@ -495,6 +504,24 @@
     <None Include="DefaultSettings">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="DefaultTableSRanges\defaultSRangesReconENG.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultTableSRanges\defaultSRangesReconRUS.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultTableSRanges\defaultSRangesSupprENG.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultTableSRanges\defaultSRangesSupprModifENG.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultTableSRanges\defaultSRangesSupprModifRUS.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultTableSRanges\defaultSRangesSupprRUS.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -505,7 +532,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\VAyR.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Languages\TranslatorTables\TranslatorTables.xml" />
+    <Content Include="Resources\IRIFRCH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\IRIFRCHJam.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\IRIFRCHT.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PPRCH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PPRCHJam.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PPRCHT.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\sqare_black.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

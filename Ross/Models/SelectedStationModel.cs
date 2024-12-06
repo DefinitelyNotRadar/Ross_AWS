@@ -23,6 +23,9 @@ namespace Ross.Models
         private readonly object locker = new object();
 
 
+        public bool OldConnectStatus { get; set; } = false;
+
+
         public GrpcClient SelectedConnectionObject
         {
             get { lock (locker) { return selectedConnectionObject; } }

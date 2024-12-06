@@ -80,6 +80,9 @@ namespace Ross
             ucReconFWS.OnClickRS += new EventHandler<bool>(UcReconFWS_OnClickRS);
             ucReconFWS.OnAddTableToReport += new EventHandler<TableEventReport>(OnAddTableToReport);
             ucReconFWS.OnSelectedASPSuppr += new EventHandler<TableReconFWS>(UcReconFWS_OnSelectedASPSuppr);
+            ucReconFWS.OnItemSelected += new EventHandler<TableReconFWS>(UcReconFWS_OnSelectedItem);
+            
+            
 
             // Таблица ИРИ ФРЧ РП
             ucSuppressFWS.OnAddRecord += OnAddRecord;
@@ -111,5 +114,7 @@ namespace Ross
             ucSuppressFHSS.OnIsWindowPropertyOpenExc += UcSuppressFHSS_OnIsWindowPropertyOpenExc;
             ucSuppressFHSS.OnAddTableToReport += OnAddTableToReport;
         }
+
+
     }
 }

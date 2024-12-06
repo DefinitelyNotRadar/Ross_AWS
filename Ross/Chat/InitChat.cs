@@ -22,7 +22,22 @@ namespace Ross
             newWindow.SetStations();
             //Events.OnDoActionWithMessage += Events_OnDoActionWithMessage;
             newWindow.OnReturnApprovedMessages += NewWindow_OnReturnApprovedMessages;
+            Events.OnClearChatStoryFromDB += Events_OnClearChatStory;
+
         }
+
+        private async void Events_OnClearChatStory(int id)
+        {
+            var table = await clientDB.Tables[NameTable.TableChat].LoadAsync<TableChatMessage>();
+            var messToDelete = table.Where(t => t.ReceiverAddress == id || t.SenderAddress == id).ToList();
+            if (messToDelete.Count > 0)
+            {
+                await clientDB.Tables[NameTable.TableChat].RemoveRangeAsync(messToDelete).ConfigureAwait(false);
+            }
+
+        }
+
+
 
         private async void NewWindow_OnReturnApprovedMessages(object sender, List<Message> messages)
         {

@@ -292,18 +292,22 @@ namespace Ross
 
         private void DrawAllFWS()
         {
+
+
             foreach (var fws in lReconFWS)
             {
                 if (fws.Coordinates.Latitude <= -90 || fws.Coordinates.Latitude >= 90 || fws.Coordinates.Longitude <= -180 || fws.Coordinates.Longitude >= 180)
                     continue;
-                mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow);
+                mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Yellow, fws.FreqKHz);
+
+   
             }
 
             foreach (var fws in lSuppressFWS)
             {
                 if (fws.Coordinates.Latitude <= -90 || fws.Coordinates.Latitude >= 90 || fws.Coordinates.Longitude <= -180 || fws.Coordinates.Longitude >= 180)
                     continue;
-                mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Red);
+                mapLayout.DrawSourceFWS(fws.Coordinates, DLLSettingsControlPointForMap.Model.ColorsForMap.Red, fws.FreqKHz);
             }
 
 

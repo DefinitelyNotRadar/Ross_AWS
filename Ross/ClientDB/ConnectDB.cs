@@ -4,6 +4,7 @@ using System.Windows.Threading;
 using ClientDataBase;
 using ClientDataBase.Exceptions;
 using InheritorsEventArgs;
+using ModelsTablesDBLib;
 
 namespace Ross
 {
@@ -20,8 +21,9 @@ namespace Ross
                 else
                 {
                     clientDB = new ClientDB(Name, endPoint);
-                    InitClientDB();
+                    InitClientDBAsync();
                     clientDB.ConnectAsync();
+
                 }
             }
             catch (ExceptionClient exceptClient)
@@ -46,6 +48,11 @@ namespace Ross
         private void HandlerConnect_ClientDb(object sender, ClientEventArgs e)
         {
             mainWindowViewSize.ConnectionStatesDB = WPFControlConnection.ConnectionStates.Connected;
+
+
+            //clientDB.Tables[NameTable.TableSuppressFHSS].Clear();
+            //clientDB.Tables[NameTable.TableSuppressFWS].Clear();
+
             LoadTables();
         }
     }

@@ -1,0 +1,72 @@
+[
+  {
+    "FreqMinKHz": 30000,
+    "FreqMaxKHz": 50000,
+    "AngleMin": 0,
+    "AngleMax": 360,
+    "Note": "Литера I"
+  },
+  {
+    "FreqMinKHz": 50000,
+    "FreqMaxKHz": 90000,
+    "AngleMin": 0,
+    "AngleMax": 360,
+    "Note": "Литера II"
+  },
+  {
+    "FreqMinKHz": 90000,
+    "FreqMaxKHz": 160000,
+    "AngleMin": 0,
+    "AngleMax": 360,
+    "Note": "Литера III"
+  },
+  {
+    "FreqMinKHz": 160000,
+    "FreqMaxKHz": 290000,
+    "AngleMin": 0,
+    "AngleMax": 360,
+    "Note": "Литера IV"
+  },
+  {
+    "FreqMinKHz": 290000,
+    "FreqMaxKHz": 512000,
+    "AngleMin": 0,
+    "AngleMax": 360,
+    "Note": "Литера V"
+  },
+  {
+    "FreqMinKHz": 512000,
+    "FreqMaxKHz": 860000,
+    "AngleMin": 0,
+    "AngleMax": 360,
+    "Note": "Литера VI"
+  },
+  {
+    "FreqMinKHz": 860000,
+    "FreqMaxKHz": 1215000,
+    "AngleMin": 0,
+    "AngleMax": 360,
+    "Note": "Литера VII"
+  },
+  {
+    "FreqMinKHz": 1215000,
+    "FreqMaxKHz": 2000000,
+    "AngleMin": 0,
+    "AngleMax": 360,
+    "Note": "Литера VIII"
+  },
+  {
+    "FreqMinKHz": 2000000,
+    "FreqMaxKHz": 3000000,
+    "AngleMin": 0,
+    "AngleMax": 360,
+    "Note": "Литера IX"
+  },
+  {
+    "FreqMinKHz": 3000000,
+    "FreqMaxKHz": 6000000,
+    "AngleMin": 0,
+    "AngleMax": 360,
+    "Note": "Литера X"
+  }
+]

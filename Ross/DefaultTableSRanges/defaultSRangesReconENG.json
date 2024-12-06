@@ -1,0 +1,155 @@
+[{
+    "FreqMinKHz":30000,
+    "FreqMaxKHz":88000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"USW land (FF, FHSS)"
+},
+{
+    "FreqMinKHz":88000,
+    "FreqMaxKHz":108000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"FM radio stations"
+},
+{
+    "FreqMinKHz":108000,
+    "FreqMaxKHz":118000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":""
+},
+{
+    "FreqMinKHz":118000,
+    "FreqMaxKHz":137000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"USW aeronautical (ATC)"
+},
+{
+    "FreqMinKHz":120000,
+    "FreqMaxKHz":156000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"AM VHF"
+},
+{
+    "FreqMinKHz":136000,
+    "FreqMaxKHz":174000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"FM VHF official"
+},
+{
+    "FreqMinKHz":143000,
+    "FreqMaxKHz":145000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"License-exempt frequency band"
+},
+{
+    "FreqMinKHz":225000,
+    "FreqMaxKHz":400000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"USW aeronautical (FF, FHSS), SCT"
+},
+{
+    "FreqMinKHz":380000,
+    "FreqMaxKHz":400000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"TETRA"
+},
+{
+    "FreqMinKHz":409000,
+    "FreqMaxKHz":411000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"TETRA"
+},
+{
+    "FreqMinKHz":449000,
+    "FreqMaxKHz":451000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"TETRA"
+},
+{
+    "FreqMinKHz":879000,
+    "FreqMaxKHz":881000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"TETRA"
+},
+{
+    "FreqMinKHz":403000,
+    "FreqMaxKHz":512000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"FM UHF official"
+},
+{
+    "FreqMinKHz":420000,
+    "FreqMaxKHz":450000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"EPLRS (FHSS)"
+},
+{
+    "FreqMinKHz":430000,
+    "FreqMaxKHz":434000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"License-exempt frequency band"
+},
+{
+    "FreqMinKHz":800000,
+    "FreqMaxKHz":900000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"GSM"
+},
+{
+    "FreqMinKHz":969000,
+    "FreqMaxKHz":1206000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"Link 16 JTIDS (FHSS)"
+},
+{
+    "FreqMinKHz":1029000,
+    "FreqMaxKHz":1031000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"Mode S "
+},
+{
+    "FreqMinKHz":1089000,
+    "FreqMaxKHz":1091000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"Mode S "
+},
+{
+    "FreqMinKHz":1525000,
+    "FreqMaxKHz":1661000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"INMARSAT IRIDIUM"
+},
+{
+    "FreqMinKHz":1350000,
+    "FreqMaxKHz":1850000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"DWTS"
+},
+{
+    "FreqMinKHz":1750000,
+    "FreqMaxKHz":1850000,
+    "AngleMin":0,
+    "AngleMax":360,
+    "Note":"Soldier radio"
+}
+]

@@ -1,5 +1,4 @@
-﻿using Database934;
-using Google.Protobuf.Collections;
+﻿using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
 using Mapsui.Styles;
 using ModelsTablesDBLib;
@@ -19,7 +18,10 @@ using NameTable = ModelsTablesDBLib.NameTable;
 
 namespace Ross
 {
+    using Database934;
     using DataTransferModels.DB;
+    using Ross.Models;
+    using TableEvents;
 
     public partial class MainWindow : Window
     {
@@ -43,24 +45,79 @@ namespace Ross
                 });
             }
 
-
             this.ChangeAspConnectionStatus(sender as GrpcClient, e);
+
+
         }
 
-        private void ChangeAspConnectionStatus(GrpcClient client, bool e)
+
+        
+           
+        
+
+        private async void UpdateRanges(bool isPreConnected)
+        {
+            if (Properties.Local.Common.IsUpdateTablesOnStationsAfterConnect)
+            {
+                var lSRangeRecon = await clientDB.Tables[NameTable.TableSectorsRangesRecon].LoadAsync<TableSectorsRanges>();
+                var lSRangeSuppr = await clientDB.Tables[NameTable.TableSectorsRangesSuppr].LoadAsync<TableSectorsRanges>();
+                var lSpecFreqForbidden = await clientDB.Tables[NameTable.TableFreqForbidden].LoadAsync<TableFreqSpec>();
+                var lSpecFreqImportant = await clientDB.Tables[NameTable.TableFreqImportant].LoadAsync<TableFreqSpec>();
+                var lSpecFreqKnown = await clientDB.Tables[NameTable.TableFreqKnown].LoadAsync<TableFreqSpec>();
+                var lSuppressFWS = await clientDB.Tables[NameTable.TableSuppressFWS].LoadAsync<TableSuppressFWS>();
+                var lSuppressFHSS = await clientDB.Tables[NameTable.TableSuppressFHSS].LoadAsync<TableSuppressFHSS>();
+
+                 SendToEachStation(lSRangeRecon, NameTable.TableSectorsRangesRecon, isPreConnected);
+                 SendToEachStation(lSRangeSuppr, NameTable.TableSectorsRangesSuppr, isPreConnected);
+                 SendToEachStation(lSpecFreqForbidden, NameTable.TableFreqForbidden, isPreConnected);
+                 SendToEachStation(lSpecFreqImportant, NameTable.TableFreqImportant, isPreConnected);
+                 SendToEachStation(lSpecFreqKnown, NameTable.TableFreqKnown, isPreConnected);
+
+                 SendToEachStation(lSuppressFWS, NameTable.TableSuppressFWS, isPreConnected);
+                 SendToEachStation(lSuppressFHSS, NameTable.TableSuppressFHSS, isPreConnected);
+            }
+        }
+
+        private async void ChangeAspConnectionStatus(GrpcClient client, bool e)
+        {
+            try
+            {
+                var rec = this.lASP.Find(t => t.Id == client.ServerAddress)?.Clone();
+                if (rec == null) return;
+
+                rec.IsConnect = e ? Led.Green : Led.Empty;
+
+                Dispatcher.Invoke(() => {
+                    ucASP.ChangeASP(rec.Id, rec);
+                });
+
+                if (e)
+                {
+                    UpdateRanges(e);
+                    await Poll_Station(client);
+                }
+            }
+            catch (Exception ex)
+            { }
+        }
+
+
+        private void ChangeAspConnectionStatus(SelectedStationModel client, bool e)
         {
             try
             {
                 //var findRec = 
-                var rec = this.lASP.Find(t => t.Id == client.ServerAddress)?.Clone();
+                var rec = this.lASP.Find(t => t.Id == client.SelectedConnectionObject.ServerAddress)?.Clone();
                 if (rec == null) return;
-                rec.IsConnect = e ? Led.Green : Led.Empty;
 
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                rec.IsConnect = e ? Led.Green : Led.Empty;              
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)async delegate
                 {
                     ucASP.ChangeASP(rec.Id, rec);
-                    //UpdateEvaTableConnection(rec);
                 });
+
+
             }
             catch(Exception ex)
             {}
@@ -102,46 +159,68 @@ namespace Ross
                 });
             }
             this.ChangeAspConnectionStatus(sender as GrpcClient, e);
+
+
         }
 
 
         private async Task Poll_Station(GrpcClient selectedStation)
         {
-            await PollStation(selectedStation).ConfigureAwait(false);
+            try
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    LoadingGiff.Visibility = Visibility.Visible;
+                });
+
+
+                await PollStation(selectedStation).ConfigureAwait(false);
+            }
+            finally
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    LoadingGiff.Visibility = Visibility.Collapsed;
+                });
+            }
         }
 
 
         private async Task PollStation(GrpcClient selectedStation)
         {
-            if (selectedStation == null) return;
 
-            await ReadAsp(await selectedStation.GetAsps().ConfigureAwait(false), selectedStation).ConfigureAwait(false);
+            if (selectedStation != null)
+            {
 
-            await Task.Delay(1000);
+                await ReadAsp(await selectedStation.GetAsps().ConfigureAwait(false), selectedStation).ConfigureAwait(false);
 
-            //await ReadRecord(await selectedStation.GetFwsElintDistribution().ConfigureAwait(false), NameTable.TableReconFWS);
-            await ReadRecordFWS(await selectedStation.GetFwsElintDistribution().ConfigureAwait(false));
+                await Task.Delay(1000);
 
-            await Task.Delay(1000);
+                //await ReadRecord(await selectedStation.GetFwsElintDistribution().ConfigureAwait(false), NameTable.TableReconFWS);
+                await ReadRecordFWS(await selectedStation.GetFwsElintDistribution().ConfigureAwait(false));
 
-            //await ReadRecord(await selectedStation.GetFhssElint().ConfigureAwait(false), NameTable.TableReconFHSS);
-            await ReadRecordFHSS(await selectedStation.GetFhssElint().ConfigureAwait(false));
+                await Task.Delay(1000);
 
-            await Task.Delay(1000);
+                //await ReadRecord(await selectedStation.GetFhssElint().ConfigureAwait(false), NameTable.TableReconFHSS);
+                await ReadRecordFHSS(await selectedStation.GetFhssElint().ConfigureAwait(false));
 
-            await ReadRecord(await selectedStation.GetFwsJamming().ConfigureAwait(false), NameTable.TempSuppressFWS);
+                await Task.Delay(1000);
 
-            await Task.Delay(1000);
+                await ReadRecord(await selectedStation.GetFwsJamming().ConfigureAwait(false), NameTable.TempSuppressFWS);
 
-            await ReadRecord(await selectedStation.GetFhssJamming().ConfigureAwait(false), NameTable.TempSuppressFHSS);
+                await Task.Delay(1000);
 
-            await Task.Delay(1000);
+                await ReadRecord(await selectedStation.GetFhssJamming().ConfigureAwait(false), NameTable.TempSuppressFHSS);
 
-            //await ReadStationCoord(selectedStation).ConfigureAwait(false);
-            //await ReadAntenasDirections(selectedStation).ConfigureAwait(false);
-            await SynchronizeTime(selectedStation).ConfigureAwait(false);
+                await Task.Delay(1000);
 
-            //TODO: try continueWith
+                //await ReadStationCoord(selectedStation).ConfigureAwait(false);
+                //await ReadAntenasDirections(selectedStation).ConfigureAwait(false);
+                await SynchronizeTime(selectedStation).ConfigureAwait(false);
+
+                //TODO: try continueWith
+
+            }
         }
 
         private async Task ReadRecord(object table, NameTable nameTable)
@@ -191,8 +270,13 @@ namespace Ross
                     foreach (var jamDirect in record.ListJamDirect)
                     {
                         jamDirect.ID = 0;
+                        if (jamDirect.JamDirect.Bearing > 360)
+                            jamDirect.JamDirect.Bearing = -1F;
                     }
                 }
+
+                
+
                 //foreach (var record in table)
                 //{
                 if (loadDB.Any(r => record.FreqKHz == r.FreqKHz && record.Time == r.Time))
@@ -219,6 +303,7 @@ namespace Ross
                 if (loadDB.Any(r => record.FreqMinKHz == r.FreqMinKHz && record.FreqMaxKHz == r.FreqMaxKHz))
                     continue;
                 loadDB.Add(record);
+
             }
 
             await UpdateTable(NameTable.TableReconFHSS, loadDB);

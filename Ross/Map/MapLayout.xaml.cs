@@ -17,6 +17,7 @@ using EvaTable;
 using Google.Protobuf.Collections;
 using Mapsui.Geometries;
 using Mapsui.Projection;
+using Mapsui.Providers;
 using Mapsui.Styles;
 using ModelsTablesDBLib;
 using Ross.JSON;
@@ -85,7 +86,7 @@ namespace Ross.Map
             DataContext = mapViewModel;
 
 
-            mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,0), scale, new Offset(0, 0));
+            mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,0), scale, new Offset(0, 13));
 
             MapProperties.Local.Common.PropertyChanged += Common_PropertyChanged;
             
@@ -274,7 +275,8 @@ namespace Ross.Map
         private MapObjectStyle mapObjectStyleSqare;
         private MapObjectStyle mapObjectStyleTriangle;
         private MapObjectStyle mapObjectStyleStation;
-        private double scale = 0.2;
+        private double scale = 0.21;
+        private double iriscale = 0.29;
         private float sectorAngle = 30;
         private int sectorRadius = 30000;
         private readonly Color[] colors = new Color[10]
@@ -306,27 +308,27 @@ namespace Ross.Map
             RastrMap.UpdatePC(controlPost);
         }
 
-        public void DrawSourceFWS(Coord point, ColorsForMap color)
+        public void DrawSourceFWS(Coord point, ColorsForMap color, double? freq)
         {
            var p = Mercator.FromLonLat(point.Longitude, point.Latitude);
             switch (color)
             {
                 case ColorsForMap.Yellow:
-                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "triangle_yellow.png", scale);
+                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "IRIFRCHT.png", new Offset(0,0), iriscale, new Offset(0,15));
                     break;
                 case ColorsForMap.Red:
-                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "triangle_red.png", scale);
+                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "IRIFRCHJam.png", new Offset(0, 0), iriscale, new Offset(0, 15));
                     break;
                 case ColorsForMap.Green:
-                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "triangle_green.png", scale);
+                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "IRIFRCH.png", new Offset(0, 0), iriscale, new Offset(0, 15));
                     break;
                 default:
-                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "triangle_black.png", scale);
+                    mapObjectStyleTriangle = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "IRIFRCH.png", new Offset(0, 0), iriscale, new Offset(0, 15));
                     break;
 
             }
 
-            RastrMap.mapControl.AddMapObject(mapObjectStyleTriangle, "", p);
+            RastrMap.mapControl.AddMapObject(mapObjectStyleTriangle, freq != null ? Math.Round((double)freq) +" kHz" : "", p);
         }
 
 
@@ -336,16 +338,16 @@ namespace Ross.Map
             switch (color)
             {
                 case ColorsForMap.Yellow:
-                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "sqare_yellow.png", scale);
+                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "PPRCHT.png", iriscale);
                     break;
                 case ColorsForMap.Red:
-                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "sqare_red.png", scale);
+                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "PPRCHJam.png", iriscale);
                     break;
                 case ColorsForMap.Green:
-                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "sqare_green.png", scale);
+                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "PPRCH.png", iriscale);
                     break;
                 default:
-                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "sqare_black.png", scale);
+                    mapObjectStyleSqare = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "PPRCH.png", iriscale);
                     break;
 
             }
@@ -359,6 +361,56 @@ namespace Ross.Map
             RastrMap.mapControl.AddMapObject(mapObjectStyleStation, text, p);
 
         }
+
+        List<IFeature> drawedPelengs = new List<IFeature>();
+        List<IMapObject> drawedTextPelengs = new List<IMapObject>();
+        MapObjectStyle pelObjStyle = new MapObjectStyle(new SymbolStyle() { SymbolType = SymbolType.Ellipse,SymbolScale = 0.71 }, new Offset(0,-7));
+        public void DrawPeleng(Coord startPoint, float angle, float distance)
+        {
+            try
+            {
+                var p = Mercator.FromLonLat(startPoint.Longitude, startPoint.Latitude);
+                var secondPoint = GetCirclePoint(p, angle, distance);
+                var halfPoint = GetCirclePoint(p, angle, distance / 2.0);
+
+
+
+                var pList = new List<Point>() { p, secondPoint };
+                var ray = RastrMap.mapControl.AddPolyline(pList);
+                var text = RastrMap.mapControl.AddMapObject(pelObjStyle, Math.Round(angle).ToString() + "°", halfPoint);
+
+                drawedTextPelengs.Add(text);
+                drawedPelengs.Add(ray);
+            }
+            catch { }         
+        }
+
+        private Mapsui.Geometries.Point GetCirclePoint(Mapsui.Geometries.Point centerPoint, float angle, double size)
+        {
+            double num = (double)(90f - angle) * Math.PI / 180.0;
+            double x = centerPoint.X + Math.Cos(num) * size;
+            double y = centerPoint.Y + Math.Sin(num) * size;
+            return new Mapsui.Geometries.Point(x, y);
+        }
+
+        public void RemovePelengs()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                foreach (var p in drawedPelengs)
+                {
+                    RastrMap.mapControl.RemoveObject(p);
+                }
+                drawedPelengs.Clear();
+
+                foreach (var p in drawedTextPelengs)
+                {
+                    RastrMap.mapControl.RemoveObject(p);
+                }
+                drawedTextPelengs.Clear();
+            });
+        }
+
 
         public void ClearSectors()
         {

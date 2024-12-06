@@ -21,6 +21,8 @@ namespace Ross
 
         private async void CyclePollTimerAction()
         {
+            
+
             if(SelectedStationModels.Length < 1 ) return;
 
             foreach (var item in SelectedStationModels)

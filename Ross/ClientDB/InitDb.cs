@@ -2,6 +2,7 @@
 using InheritorsEventArgs;
 using ModelsTablesDBLib;
 using System;
+using System.Threading.Tasks;
 
 namespace Ross
 {
@@ -14,7 +15,7 @@ namespace Ross
         //TODO: по номеру арма из настроек брать
         private new string Name { get; } = "ROSS";
 
-        private void InitClientDB()
+        private void InitClientDBAsync()
         {
             clientDB.OnConnect += HandlerConnect_ClientDb;
             clientDB.OnDisconnect += HandlerDisconnect_ClientDb;
@@ -30,13 +31,14 @@ namespace Ross
             (clientDB.Tables[NameTable.TempSuppressFWS] as ITableUpdate<TempSuppressFWS>).OnUpTable += HandlerUpdate_TempSuppressFWS;
             (clientDB.Tables[NameTable.TableSuppressFHSS] as ITableUpdate<TableSuppressFHSS>).OnUpTable += HandlerUpdate_TableSuppressFHSS;
             (clientDB.Tables[NameTable.TableFHSSExcludedFreq] as ITableUpdate<TableFHSSExcludedFreq>).OnUpTable += HandlerUpdate_TableFHSSExcludedFreq;
-            (clientDB.Tables[NameTable.TableReconFHSS] as ITableUpdate<TableReconFHSS>).OnUpTable += HandlerUpdate_TableReconFHSS;
+            (clientDB.Tables[NameTable.TableReconFHSS] as ITableUpdate<TableReconFHSS>).OnUpTable += HandlerUpdate_TableReconFHSS;            
             (clientDB.Tables[NameTable.TempGNSS] as ITableUpdate<TempGNSS>).OnUpTable +=  HandlerUpdate_TempGNSS;
             (clientDB.Tables[NameTable.TableReconFWS] as ITableUpdate<TableReconFWS>).OnUpTable += HandlerUpdate_TableReconFWS;
             (clientDB.Tables[NameTable.TableReconFWS] as ITableAddRange<TableReconFWS>).OnAddRange += HandlerAddRangeReconFWS;
             (clientDB.Tables[NameTable.TableReconFHSS] as ITableAddRange<TableReconFHSS>).OnAddRange += HandlerAddRangeReconFHSS;
             (clientDB.Tables[NameTable.TableChat] as ITableUpdate<TableChatMessage>).OnUpTable += HandlerUpdate_TableChat;
             (clientDB.Tables[NameTable.TableRoute] as ITableUpdate<TableRoute>).OnUpTable += HandlerUpdate_TableRoute;
+
         }
 
         private void DeinitClientDB()
