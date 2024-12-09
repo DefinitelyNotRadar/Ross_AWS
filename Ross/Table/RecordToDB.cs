@@ -655,7 +655,7 @@ namespace Ross
                 var asp = lASP.FirstOrDefault(t => t.Id == item.JamDirect.NumberASP);
                 if (asp == null) continue;
 
-                var dist = item.JamDirect.DistanceKM > 0 ? item.JamDirect.DistanceKM : 10000;
+                var dist = (item.JamDirect.DistanceKM > 0 && item.JamDirect.DistanceKM < 100000) ? item.JamDirect.DistanceKM : 10000;
                 mapLayout.DrawPeleng(asp.Coordinates, item.JamDirect.Bearing, dist);
             }
         }

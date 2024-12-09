@@ -273,7 +273,7 @@ namespace Ross
             {
                 if (lASP[i].Coordinates.Latitude <= -90 || lASP[i].Coordinates.Latitude >= 90 || lASP[i].Coordinates.Longitude <= -180 || lASP[i].Coordinates.Longitude >= 180)
                     continue;
-                mapLayout.DrawSectors(lASP[i].Coordinates, new short[5] { lASP[i].LPA10, lASP[i].LPA13, lASP[i].LPA24, lASP[i].LPA510, lASP[i].LPA59 }, i);
+                mapLayout.DrawSectors(lASP[i].Coordinates, new short[4] { lASP[i].LPA510 ,lASP[i].BPSS, lASP[i].LPA13, lASP[i].LPA24}, i);
             }
         }
 

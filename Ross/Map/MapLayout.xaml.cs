@@ -53,7 +53,7 @@ namespace Ross.Map
         public MapViewModel mapViewModel;
 
         private List<Point> polygon = new List<Point>();
-      
+
         public EventHandler<Route> RouteChanged
         {
             get => mapViewModel.OnRouteChanged;
@@ -86,15 +86,15 @@ namespace Ross.Map
             DataContext = mapViewModel;
 
 
-            mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0,0), scale, new Offset(0, 13));
+            mapObjectStyleStation = RastrMap.mapControl.LoadObjectStyle(Environment.CurrentDirectory + partOfPath + "station.png", new Offset(0, 0), scale, new Offset(0, 13));
 
             MapProperties.Local.Common.PropertyChanged += Common_PropertyChanged;
-            
+
         }
 
         private void Common_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == nameof(MapProperties.Local.Common.Access))
+            if (e.PropertyName == nameof(MapProperties.Local.Common.Access))
             {
                 if (MapProperties.Local.Common.Access == 0)
                     ToggleButton_Setting.IsChecked = false;
@@ -109,7 +109,7 @@ namespace Ross.Map
         }
 
         public void AddStationInEvaTable(Tabl tabl)
-        {           
+        {
             evaTable.AddNewItem(tabl);
         }
 
@@ -123,7 +123,7 @@ namespace Ross.Map
         {
             return evaTable.GetModel(id);
         }
-    
+
         public SettingsControlForMap MapProperties
         {
             get => Properties;
@@ -167,7 +167,7 @@ namespace Ross.Map
 
         public void TranslateMapLayout(Languages languages)
         {
-            switch(languages)
+            switch (languages)
             {
                 case Languages.Rus:
                     ZoneControl.SetLanguage(LineOfSightZoneControl.Models.Languages.RU);
@@ -257,14 +257,14 @@ namespace Ross.Map
                 OnCoordControlPoinChanged(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
             }
             catch (Exception ex)
-            { 
-            
+            {
+
             }
         }
 
         private void RastrMap_OnOnPointPosition(object sender, Location e)
         {
-           OnCoordASPPropertyGridSelecteted(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
+            OnCoordASPPropertyGridSelecteted(sender, new CoordEventArgs(new Coord() { Latitude = e.Latitude, Longitude = e.Longitude }));
         }
 
         #endregion
@@ -277,20 +277,20 @@ namespace Ross.Map
         private MapObjectStyle mapObjectStyleStation;
         private double scale = 0.21;
         private double iriscale = 0.29;
-        private float sectorAngle = 30;
         private int sectorRadius = 30000;
-        private readonly Color[] colors = new Color[10]
+        private readonly Color[] colors = new Color[]
         {
-            Color.FromArgb(120, 255,40,40),
-            Color.FromArgb(120, 255,148,40),
-            Color.FromArgb(120, 255,255,40),
-            Color.FromArgb(120, 148,255,40),
-            Color.FromArgb(120, 40,255,40),
-            Color.FromArgb(120, 40,255,148),
-            Color.FromArgb(120, 40,255,255),
-            Color.FromArgb(120, 40,178,255),
-            Color.FromArgb(120, 40,40,255),
-            Color.FromArgb(120, 148,40,255),
+            Color.FromArgb(100, 162,58,255),
+            Color.FromArgb(100, 255,18,18),
+            Color.FromArgb(100, 255,97,0),
+            Color.FromArgb(100, 230,255,0),
+        };
+        private readonly int[] sectorsAngles = new int[]
+        {
+            120,
+            60,
+            120,
+            120
         };
 
 
@@ -369,9 +369,11 @@ namespace Ross.Map
         {
             try
             {
+
+
                 var p = Mercator.FromLonLat(startPoint.Longitude, startPoint.Latitude);
-                var secondPoint = GetCirclePoint(p, angle, distance);
-                var halfPoint = GetCirclePoint(p, angle, distance / 2.0);
+                var secondPoint = GetCirclePoint(p, angle, distance * 2.2);
+                var halfPoint = GetCirclePoint(p, angle, distance);
 
 
 
@@ -433,7 +435,7 @@ namespace Ross.Map
             for (int i = 0; i < lpa.Length; i++)
             {
                 var antena = new Antenna();
-                antena.Sector = sectorAngle;
+                antena.Sector = sectorsAngles[i]; 
                 antena.Radius = sectorRadius;
                 antena.Direction = lpa[i];
                 antena.BrushAntenna = colors[i];
