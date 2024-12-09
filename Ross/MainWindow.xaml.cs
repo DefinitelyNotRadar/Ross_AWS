@@ -94,7 +94,9 @@ namespace Ross
         {
             try
             {
-                Properties.Local = SerializerJSON.Deserialize<ControlProperties.LocalProperties>("LocalProperties");
+                var lp = SerializerJSON.Deserialize<ControlProperties.LocalProperties>("LocalProperties");
+
+                Properties.Local = lp ?? new ControlProperties.LocalProperties();
                 Properties.Local.Common.PropertyChanged += Properties_OnPropertyChanged;
                 Properties.Local.Common.IsVisibleAZ = false;
                 endPoint = Properties.Local.DbServer.IpAddress + ":" + Properties.Local.DbServer.Port;

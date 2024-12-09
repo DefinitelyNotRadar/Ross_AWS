@@ -167,9 +167,6 @@
     <Reference Include="LineOfSightZoneControl">
       <HintPath>dll\LineOfSightZoneControl.dll</HintPath>
     </Reference>
-    <Reference Include="MapMath.Bearing">
-      <HintPath>dll\MapMath.Bearing.dll</HintPath>
-    </Reference>
     <Reference Include="Mapster, Version=7.3.0.0, Culture=neutral, PublicKeyToken=2f39883af23c29a8, processorArchitecture=MSIL">
       <HintPath>..\packages\Mapster.7.3.0\lib\netstandard2.0\Mapster.dll</HintPath>
     </Reference>
@@ -184,9 +181,6 @@
     </Reference>
     <Reference Include="Mapsui.UI.Wpf">
       <HintPath>dll\Mapsui.UI.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="Math.Formation_RN_RD_CC">
-      <HintPath>dll\Math.Formation_RN_RD_CC.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>

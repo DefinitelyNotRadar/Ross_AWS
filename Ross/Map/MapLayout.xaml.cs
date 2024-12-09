@@ -226,7 +226,8 @@ namespace Ross.Map
         {
             try
             {
-                MapProperties.Local = SerializerJSON.Deserialize<LocalProperties>("MapProperties");
+                var mp = SerializerJSON.Deserialize<LocalProperties>("MapProperties");
+                MapProperties.Local = mp ?? new LocalProperties();
             }
             catch
             {
