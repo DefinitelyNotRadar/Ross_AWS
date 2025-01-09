@@ -28,6 +28,13 @@
     <system:String x:Key="tooltipCenterMap">Centering map</system:String>
     <system:String x:Key="tooltipSurveyZones">Show/Hide Survey zones</system:String>
 
+
+    <system:String x:Key="toolTipIsShowLPA510Sector">Show/Hide LPA 5-10 Sector</system:String>
+    <system:String x:Key="toolTipIsShowLBPSSSector">Show/Hide BPSS Sector</system:String>
+    <system:String x:Key="toolTipIsShowLPA130Sector">Show/Hide LPA 1-3 Sector</system:String>
+    <system:String x:Key="toolTipIsShowLPA24Sector">Show/Hide LPA 2-4 Sector</system:String>
+
+
     <system:String x:Key="cntMenuSetPCPosition">Set PC position</system:String>
     <system:String x:Key="cntMenuSetPointPosition">Set point position</system:String>
     <system:String x:Key="cntMenuSetRoutePoint">Set route point</system:String>

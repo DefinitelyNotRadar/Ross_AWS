@@ -42,6 +42,9 @@ namespace Ross.Map
             InitTask3();
         }
 
+        public ShowSectorsModel ShowSectorsModel { get; set; } = new ShowSectorsModel();
+
+
         public StatusBarModel StatusBar
         {
             get => statusBar;

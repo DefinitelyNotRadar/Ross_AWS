@@ -54,6 +54,8 @@ namespace Ross.Map
 
         private List<Point> polygon = new List<Point>();
 
+
+
         public EventHandler<Route> RouteChanged
         {
             get => mapViewModel.OnRouteChanged;
@@ -90,7 +92,26 @@ namespace Ross.Map
 
             MapProperties.Local.Common.PropertyChanged += Common_PropertyChanged;
 
+
+            var sectorsSize =  InitializeSectorSizes();
+            sectorsAngles = new int[] { sectorsSize.Sector_LPA_5_10, sectorsSize.Sector_LPA_BPSS, sectorsSize.Sector_LPA_1_3, sectorsSize.Sector_LPA_2_4 };
         }
+
+
+
+        public SectorsSize InitializeSectorSizes()
+        {
+            SectorsSize sectorsSize = null;
+            sectorsSize = SerializerJSON.Deserialize<SectorsSize>("config");
+            if (sectorsSize == null)
+            {
+                sectorsSize = new SectorsSize();
+                SerializerJSON.Serialize(sectorsSize, "config");
+            }
+
+           return sectorsSize;
+        }
+
 
         private void Common_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -286,13 +307,7 @@ namespace Ross.Map
             Color.FromArgb(100, 255,97,0),
             Color.FromArgb(100, 230,255,0),
         };
-        private readonly int[] sectorsAngles = new int[]
-        {
-            120,
-            60,
-            120,
-            120
-        };
+        private readonly int[] sectorsAngles;
 
 
         public void NavigateTo(Coord point)
@@ -370,7 +385,7 @@ namespace Ross.Map
         {
             try
             {
-
+               
 
                 var p = Mercator.FromLonLat(startPoint.Longitude, startPoint.Latitude);
                 var secondPoint = GetCirclePoint(p, angle, distance * 2.2);
@@ -433,20 +448,28 @@ namespace Ross.Map
 
             definderJammingPoint.Coordinate = new WGSCoordinate { Latitude = point.Latitude, Longitude = point.Longitude, Altitude = (float)point.Altitude};
 
+            bool[] sectorShow = new bool[] { mapViewModel.ShowSectorsModel.IsShowLPA510Sector,
+                                             mapViewModel.ShowSectorsModel.IsShowLBPSSSector,
+                                             mapViewModel.ShowSectorsModel.IsShowLPA13Sector,
+                                             mapViewModel.ShowSectorsModel.IsShowLPA24Sector};
+
             for (int i = 0; i < lpa.Length; i++)
             {
-                var antena = new Antenna();
-                antena.Sector = sectorsAngles[i]; 
-                antena.Radius = sectorRadius;
-                antena.Direction = lpa[i];
-                antena.BrushAntenna = colors[i];
-                antena.PenAntenna = new Pen(colors[i], 2);
-                antena.Active = true;
-                RastrMap.ListRangesParam.Add(new RangesParam(10, 3000000, 0, 255, 0));
+                if (sectorShow[i])
+                {
+                    var antena = new Antenna();
+                    antena.Sector = sectorsAngles[i];
+                    antena.Radius = sectorRadius;
+                    antena.Direction = lpa[i];
+                    antena.BrushAntenna = colors[i];
+                    antena.PenAntenna = new Pen(colors[i], 2);
+                    antena.Active = true;
+                    RastrMap.ListRangesParam.Add(new RangesParam(10, 3000000, 0, 255, 0));
 
 
-                definderJammingPoint.AntennaDefinder.Add(antena);
-                definderJammingPoint.AntennaJamming.Add(antena);
+                    definderJammingPoint.AntennaDefinder.Add(antena);
+                    definderJammingPoint.AntennaJamming.Add(antena);
+                }
             }
 
             RastrMap.UpdateDFP(RastrMap.rasterViewModel.DefinderJammingPoint);

@@ -81,8 +81,8 @@ namespace Ross
             ucReconFWS.OnAddTableToReport += new EventHandler<TableEventReport>(OnAddTableToReport);
             ucReconFWS.OnSelectedASPSuppr += new EventHandler<TableReconFWS>(UcReconFWS_OnSelectedASPSuppr);
             ucReconFWS.OnItemSelected += new EventHandler<TableReconFWS>(UcReconFWS_OnSelectedItem);
-            
-            
+            ucReconFWS.ClearReconFWS(); 
+           
 
             // Таблица ИРИ ФРЧ РП
             ucSuppressFWS.OnAddRecord += OnAddRecord;

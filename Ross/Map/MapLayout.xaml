@@ -56,7 +56,57 @@
                                Margin="3,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                                BorderBrush="Transparent" Visibility="{Binding IsVisibleEvaTable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                GetLine="EvaTable_OnGetLine" ChangeFocusLine="evaTable_ChangeFocusLine"
+                                               
         />
+
+        <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,1,0,0">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ToggleButton}">
+                    <Setter Property="Height" Value="23"/>
+                    <Setter Property="Width" Value="23"/>
+                    <Setter Property="Margin" Value="2, 3, 2, 3"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource ControlBackgroundNormal}"/>
+                    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusLine}"/>
+             
+                </Style>
+                <Style TargetType="{x:Type Path}">
+                    <Setter Property="Height" Value="17"/>
+                    <Setter Property="Width" Value="17"/>
+                    <Setter Property="Data" Value="M 9,2 L 2,18 L 18,10 A 7,7,300,0,0,9,2 Z"/>
+                    <Setter Property="Stretch" Value="Fill"/>
+                    <Setter Property="StrokeThickness" Value="1"/>
+                </Style>
+                
+            </StackPanel.Resources>
+            
+            <ToggleButton IsChecked="{Binding ShowSectorsModel.IsShowLPA510Sector}" 
+                          ToolTip="{DynamicResource toolTipIsShowLPA510Sector}">
+                <Path Fill="#a23aff" Stroke="#8000f2">
+                </Path>
+            </ToggleButton>
+
+            <ToggleButton IsChecked="{Binding ShowSectorsModel.IsShowLBPSSSector}"
+                            ToolTip="{DynamicResource toolTipIsShowLBPSSSector}">
+                <Path Fill="#ff1212" Stroke="#a40000" >
+                </Path>
+            </ToggleButton>
+
+            <ToggleButton IsChecked="{Binding ShowSectorsModel.IsShowLPA13Sector}"
+                            ToolTip="{DynamicResource toolTipIsShowLPA13Sector}">
+                <Path Fill="#ff6100" Stroke="#b64500" >
+                </Path>
+            </ToggleButton>
+
+            <ToggleButton IsChecked="{Binding ShowSectorsModel.IsShowLPA24Sector}" 
+                            ToolTip="{DynamicResource toolTipIsShowLPA24Sector}">
+                <Path Fill="#e6ff00" Stroke="#b3c600" >
+                </Path>
+            </ToggleButton>
+
+        </StackPanel>
+
 
         <Grid Grid.Column="4" Grid.Row="2">
             <TabControl>
@@ -90,7 +140,7 @@
                       VerticalAlignment="Stretch" />
 
 
-        <StackPanel Grid.Column="0" Grid.Row="0">
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
 
             <ToggleButton x:Name="ToggleButton_Setting" Margin="2, 3, 2, 3" VerticalAlignment="Bottom"
                           HorizontalAlignment="Center" Width="32" Height="32"

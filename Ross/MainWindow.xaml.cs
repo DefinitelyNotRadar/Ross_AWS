@@ -13,6 +13,8 @@ using LocalProperties = ModelsTablesDBLib.LocalProperties;
 
 namespace Ross
 {
+    using DataTransferModels.Config;
+    using Newtonsoft.Json;
     using Ross.Models;
     using System.Xml;
     using ValuesCorrectLib;
@@ -53,7 +55,13 @@ namespace Ross
 
             if(Properties.Local.Common.IsAutoPollEnabled)
                 CyclePollTimerInitialize();
+
+            InitializeHandlersMap();
+           
         }
+
+    
+
 
         private byte ViewCoordToByte(string viewCoord)
         {

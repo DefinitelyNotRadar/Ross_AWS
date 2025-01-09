@@ -9,4 +9,6 @@
     <system:String x:Key="toolTipToggleButton_DownTablePanel">Hide/show tables at the bottom of the screen</system:String>
 
     <system:String x:Key="toolTipToggleButton_Poll">Poll the status of all stations</system:String>
+
+
 </ResourceDictionary>

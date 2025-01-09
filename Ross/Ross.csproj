@@ -340,8 +340,10 @@
     <Compile Include="Map\HandlerMap.cs" />
     <Compile Include="Map\InitMap.cs" />
     <Compile Include="Map\MapViewModel.cs" />
+    <Compile Include="Map\ShowSectorsModel.cs" />
     <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\SelectedStationModel.cs" />
+    <Compile Include="SectorsSize.cs" />
     <Compile Include="Table\InitTables.cs" />
     <Compile Include="Table\RecordToDB.cs" />
     <Compile Include="Converters\BoolToRowHeightConverter.cs" />
@@ -526,6 +528,54 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ResourcesMap\Images\UnknownZorkiR.png" />
+    <Resource Include="ResourcesMap\Images\UnknownRodnik.png" />
+    <Resource Include="ResourcesMap\Images\UnknownGlobus.png" />
+    <Resource Include="ResourcesMap\Images\unknownAeroscope.png" />
+    <Resource Include="ResourcesMap\Images\Unknown.png" />
+    <Resource Include="ResourcesMap\Images\Triangle.png" />
+    <Resource Include="ResourcesMap\Images\TankZorkiR.png" />
+    <Resource Include="ResourcesMap\Images\StopPoint.png" />
+    <Resource Include="ResourcesMap\Images\StartPoint.png" />
+    <Resource Include="ResourcesMap\Images\SpoofingDirection.png" />
+    <Resource Include="ResourcesMap\Images\Spoofing.png" />
+    <Resource Include="ResourcesMap\Images\PPRCHT.png" />
+    <Resource Include="ResourcesMap\Images\PPRCHJam.png" />
+    <Resource Include="ResourcesMap\Images\PPRCH.png" />
+    <Resource Include="ResourcesMap\Images\PlaneRodnik.png" />
+    <Resource Include="ResourcesMap\Images\Plane.png" />
+    <Resource Include="ResourcesMap\Images\ManZorkiR.png" />
+    <Resource Include="ResourcesMap\Images\LightningYellow.png" />
+    <Resource Include="ResourcesMap\Images\LightningWhite.png" />
+    <Resource Include="ResourcesMap\Images\LightningRed.png" />
+    <Resource Include="ResourcesMap\Images\LightningGreen.png" />
+    <Resource Include="ResourcesMap\Images\LightningBlue.png" />
+    <Resource Include="ResourcesMap\Images\LightningBlack.png" />
+    <Resource Include="ResourcesMap\Images\Jammer.png" />
+    <Resource Include="ResourcesMap\Images\IRIFRCHT.png" />
+    <Resource Include="ResourcesMap\Images\IRIFRCHJam.png" />
+    <Resource Include="ResourcesMap\Images\IRIFRCH.png" />
+    <Resource Include="ResourcesMap\Images\helipad.png" />
+    <Resource Include="ResourcesMap\Images\HelicopterZorkiR.png" />
+    <Resource Include="ResourcesMap\Images\HelicopterRodnik.png" />
+    <Resource Include="ResourcesMap\Images\GSM.png" />
+    <Resource Include="ResourcesMap\Images\GroupZorkiR.png" />
+    <Resource Include="ResourcesMap\Images\GNSS.png" />
+    <Resource Include="ResourcesMap\Images\DroneZorkiR.png" />
+    <Resource Include="ResourcesMap\Images\Drone.png" />
+    <Resource Include="ResourcesMap\Images\CuirassePoint.png" />
+    <Resource Include="ResourcesMap\Images\CuirasseOperator.png" />
+    <Resource Include="ResourcesMap\Images\CopterRodnik.png" />
+    <Resource Include="ResourcesMap\Images\Copter.png" />
+    <Resource Include="ResourcesMap\Images\CarZorkiR.png" />
+    <Resource Include="ResourcesMap\Images\BombRodnik.png" />
+    <Resource Include="ResourcesMap\Images\BMPZorkiR.png" />
+    <Resource Include="ResourcesMap\Images\BalloonRodnik.png" />
+    <Resource Include="ResourcesMap\Images\3_G.png" />
+    <Resource Include="ResourcesMap\Images\0_Unknown.png" />
+    <Resource Include="ResourcesMap\ImagesIcon\StopPoint.png" />
+    <Resource Include="ResourcesMap\ImagesIcon\StartPoint.png" />
+    <Resource Include="ResourcesMap\ImagesIcon\Jammer.png" />
     <Content Include="Resources\VAyR.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -27,6 +27,13 @@
     <system:String x:Key="tooltipOpenMatrix">Открыть матрицу высот</system:String>
     <system:String x:Key="tooltipCenterMap">Центрировать карту</system:String>
 
+
+    <system:String x:Key="toolTipIsShowLPA510Sector">Отобразить/скрыть сектор LPA 5-10</system:String>
+    <system:String x:Key="toolTipIsShowLBPSSSector">Отобразить/скрыть сектор БПСС</system:String>
+    <system:String x:Key="toolTipIsShowLPA130Sector">Отобразить/скрыть сектор LPA 1-3</system:String>
+    <system:String x:Key="toolTipIsShowLPA24Sector">Отобразить/скрыть сектор LPA 2-4</system:String>
+
+
     <system:String x:Key="tooltipSurveyZones">Отобразить/скрыть зоны контроля</system:String>
 
     <system:String x:Key="cntMenuSetPCPosition">Установить позицию ПУ</system:String>

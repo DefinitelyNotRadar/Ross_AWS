@@ -42,6 +42,12 @@ namespace Ross
         }
 
 
+        public void InitializeHandlersMap()
+        {
+            mapLayout.mapViewModel.ShowSectorsModel.PropertyChanged += ShowSectorsModel_PropertyChanged;
+        }
+
+
         #region Context Menu
         private void MapLayout_OnCoordControlPoinChanged(object sender, CoordEventArgs e)
         {
@@ -199,6 +205,7 @@ namespace Ross
 
         #region Draw
 
+
         private void DrawAllObjects()
         {
             if (this.mapLayout == null) return;
@@ -228,6 +235,10 @@ namespace Ross
         }
 
 
+        private void ShowSectorsModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            DrawSectors();
+        }
 
 
         private void UpdateEvaTable()
